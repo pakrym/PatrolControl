@@ -21,20 +21,20 @@ namespace PatrolControl.UI
     
     
     /// <summary>
-    /// Context for the RIA application.
+    /// Контекст полнофункционального интернет-приложения (RIA).
     /// </summary>
     /// <remarks>
-    /// This context extends the base to make application services and types available
-    /// for consumption from code and xaml.
+    /// Данный контекст расширяет базовый и делает доступными службы и типы приложений,
+    /// которые могут быть использованы в коде и xaml.
     /// </remarks>
     public sealed partial class WebContext : WebContextBase
     {
         
-        #region Extensibility Method Definitions
+        #region Определение методов расширяемости
 
         /// <summary>
-        /// This method is invoked from the constructor once initialization is complete and
-        /// can be used for further object setup.
+        /// Этот метод вызывается из конструктора по завершении инициализации и
+        /// не может быть использован для последующей настройки объекта.
         /// </summary>
         partial void OnCreated();
 
@@ -42,7 +42,7 @@ namespace PatrolControl.UI
         
         
         /// <summary>
-        /// Initializes a new instance of the WebContext class.
+        /// Инициализирует новый экземпляр класса WebContext.
         /// </summary>
         public WebContext()
         {
@@ -50,10 +50,10 @@ namespace PatrolControl.UI
         }
         
         /// <summary>
-        /// Gets the context that is registered as a lifetime object with the current application.
+        /// Возвращает контекст, зарегистрированный как объект времени существования в данном приложении.
         /// </summary>
-        /// <exception cref="InvalidOperationException"> is thrown if there is no current application,
-        /// no contexts have been added, or more than one context has been added.
+        /// Исключение <exception cref="InvalidOperationException"> вызывается в том случае, если отсутствует текущее приложение,
+        /// не добавлено ни одного контекста либо было добавлено более одного контекста.
         /// </exception>
         /// <seealso cref="System.Windows.Application.ApplicationLifetimeObjects"/>
         public new static WebContext Current
