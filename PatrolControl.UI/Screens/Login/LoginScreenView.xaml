@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="PatrolControl.UI.ShellView"
+﻿<UserControl x:Class="PatrolControl.UI.Screens.Login.LoginScreenView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,12 +7,6 @@
     d:DesignHeight="300" d:DesignWidth="400">
     
     <Grid x:Name="LayoutRoot" Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        
-        <TextBlock>Hello world</TextBlock>
-        <ContentControl x:Name="ActivePage" Grid.Row="1"></ContentControl>
+        <Button x:Name="StartMapEditor">Map editor</Button>
     </Grid>
 </UserControl>

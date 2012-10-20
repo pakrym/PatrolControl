@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Caliburn.Micro;
 using Microsoft.Practices.Unity;
+using PatrolControl.UI.Screens.MapEditor;
+using PatrolControl.UI.Screens.Shell;
 
-namespace PatrolControl.UI
+namespace PatrolControl.UI.Screens.Login
 {
     public class LoginScreenViewModel : PropertyChangedBase
     {
@@ -19,10 +18,5 @@ namespace PatrolControl.UI
         {
             ShellViewModel.Push(MapEditorScreen());
         }
-    }
-
-    public class MapEditorScreenViewModel: PropertyChangedBase
-    {
-        
     }
 }

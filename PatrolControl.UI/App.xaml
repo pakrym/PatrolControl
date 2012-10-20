@@ -4,6 +4,18 @@
              xmlns:local="clr-namespace:PatrolControl.UI"
 >
     <Application.Resources>
-        <local:PatrolControlUiBootstrapper x:Key="bootstrapper" />        
+        
+        <ResourceDictionary >
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/PatrolControl.UI;component/Themes/Styles.xaml"/>
+
+                <ResourceDictionary Source="/PatrolControl.UI;component/Themes/Brushes.xaml"/>
+                <ResourceDictionary Source="/PatrolControl.UI;component/Themes/CoreStyles.xaml"/>
+                <!--<ResourceDictionary Source="Themes\SDKStyles.xaml"/>
+                <ResourceDictionary Source="Themes\ToolkitStyles.xaml"/>-->
+                
+            </ResourceDictionary.MergedDictionaries>
+            <local:PatrolControlUiBootstrapper x:Key="bootstrapper" />
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

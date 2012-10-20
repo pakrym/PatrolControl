@@ -10,11 +10,11 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace PatrolControl.UI
+namespace PatrolControl.UI.Screens.MapEditor
 {
-    public partial class ShellView : UserControl
+    public partial class MapEditorScreenView : UserControl
     {
-        public ShellView()
+        public MapEditorScreenView()
         {
             InitializeComponent();
         }
