@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/PatrolControl.Service.Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/PatrolControl.Service.Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:1823/PatrolControlService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Data.Spatial" />
+  <xs:complexType name="ArrayOfBuilding">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Building" nillable="true" type="tns:Building" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBuilding" nillable="true" type="tns:ArrayOfBuilding" />
+  <xs:complexType name="Building">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Entity">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Data.Spatial" minOccurs="0" name="Geography" nillable="true" type="q1:DbGeography" />
+          <xs:element minOccurs="0" name="Number" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StreetId" type="xs:int" />
+          <xs:element minOccurs="0" name="Tags" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Building" nillable="true" type="tns:Building" />
+  <xs:complexType name="Entity">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Entity" nillable="true" type="tns:Entity" />
+</xs:schema>

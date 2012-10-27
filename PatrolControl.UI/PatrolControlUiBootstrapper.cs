@@ -29,6 +29,8 @@ namespace PatrolControl.UI
                 }
             }
             _container.RegisterType<ShellViewModel>(new ContainerControlledLifetimeManager());
+
+            
         }
 
         protected override void BuildUp(object instance)
