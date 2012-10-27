@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -24,8 +25,14 @@ namespace PatrolControl.Service
                 context.Response.Write("X or Y or Z parameters or TilePath in web.config is not set");
                 return;
             }
-
-            context.Response.WriteFile(string.Format(_tilePath, x, y, z));
+            var tilePath = string.Format(_tilePath, x, y, z);
+            if (!File.Exists(tilePath))
+            {
+                context.Response.StatusCode = 404;
+                context.Response.Write("Tile not found");
+                return;
+            }
+            context.Response.WriteFile(tilePath);
         }
 
         public bool IsReusable

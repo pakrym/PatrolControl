@@ -16,12 +16,12 @@ using ESRI.ArcGIS.Client.Geometry;
 namespace PatrolControl.UI
 {
 
-    public class GoogleCacheTiledLayer : TiledMapServiceLayer
+    public class YanderCacheTiledLayer : TiledMapServiceLayer
     {
         private double cornerCoordinate = 20037508;
         private const int WKID = 102113;
 
-        public GoogleCacheTiledLayer()
+        public YanderCacheTiledLayer()
         {
               if (Application.Current.Host.Source != null)
               {
@@ -71,9 +71,9 @@ namespace PatrolControl.UI
         }
     }
 
-    //public class GoogleCacheTiledLayer : ESRI.ArcGIS.Client.TiledLayer
+    //public class YanderCacheTiledLayer : ESRI.ArcGIS.Client.TiledLayer
     //{
-    //    public GoogleCacheTiledLayer()
+    //    public YanderCacheTiledLayer()
     //    {
             
     //        FullExtent =new Envelope(34,50,35,51);

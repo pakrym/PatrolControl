@@ -18,8 +18,8 @@
         </Grid.RowDefinitions>
         <!--Extent="50, 34, 51, 34" ZoomFactor="15"-->
         <esri:Map x:Name="MyMap" SnapToLevels="True" Extent="3862000,6612000,3883000,6600000" IsLogoVisible="False" Grid.RowSpan="2">
-            <UI:GoogleCacheTiledLayer  Visible="True"/>
-            <esri:OpenStreetMapLayer Opacity="0.5"/>
+            <UI:YanderCacheTiledLayer  Visible="True"/>
+            
             <i:Interaction.Behaviors>
                 <esri:ShowCoordinatesBehavior FormatString="{}{0:0.00} , {1:0.00}"/>
             </i:Interaction.Behaviors>

@@ -107,7 +107,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GoogleCacheTiledLayer.cs" />
+    <Compile Include="YanderCacheTiledLayer.cs" />
     <Compile Include="Screens\Common\ObjectEditorViewModel.cs" />
     <Compile Include="Screens\Login\LoginScreenView.xaml.cs">
       <DependentUpon>LoginScreenView.xaml</DependentUpon>
