@@ -21,7 +21,7 @@ namespace PatrolControl.Service.Model
                 using (var reader = new StreamReader(stream))
                 {
                     var resource = reader.ReadToEnd();
-                    if (dc.Database.ExecuteSqlCommand(resource) == 0)
+                    if (dc.Database.ExecuteSqlCommand(resource) <= 0)
                     {
                         throw new InvalidOperationException("Failed to execute request: '" + reader.ReadToEnd() + "'");
                     }
