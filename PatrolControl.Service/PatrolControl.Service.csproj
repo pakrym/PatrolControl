@@ -81,6 +81,7 @@
     </Compile>
     <Compile Include="IPatrolControlService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Model\Sql\ModelInstaller.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
