@@ -3,22 +3,43 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:esri="http://schemas.esri.com/arcgis/client/2009" mc:Ignorable="d"
+             xmlns:esri="http://schemas.esri.com/arcgis/client/2009" xmlns:UI="clr-namespace:PatrolControl.UI"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400" >
-
-    <Grid x:Name="LayoutRoot" Background="Blue"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+	<UserControl.Resources>
+		<Style x:Key="BottomBar" TargetType="Border">
+			<Setter Property="Background" Value="#AAFFFFFF"/>
+		</Style>
+	</UserControl.Resources>
+    <Grid x:Name="LayoutRoot"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <esri:Map x:Name="MyMap">
-            <esri:ArcGISTiledMapServiceLayer ID="MyLayer" 
-                Url="http://server.arcgisonline.com/ArcGIS/rest/services/ESRI_StreetMap_World_2D/MapServer" />
+        <!--Extent="50, 34, 51, 34" ZoomFactor="15"-->
+        <esri:Map x:Name="MyMap" SnapToLevels="True" Extent="3862000,6612000,3883000,6600000" IsLogoVisible="False" Grid.RowSpan="2">
+            <UI:GoogleCacheTiledLayer  Visible="True"/>
+            <esri:OpenStreetMapLayer Opacity="0.5"/>
+            <i:Interaction.Behaviors>
+                <esri:ShowCoordinatesBehavior FormatString="{}{0:0.00} , {1:0.00}"/>
+            </i:Interaction.Behaviors>
+
         </esri:Map>
-        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal">
-            <Button x:Name="AddStreet">Add street</Button>
-            <Button x:Name="AddBuilding">Add building</Button>
-            <Button x:Name="Cancel">Cancel</Button>
-        </StackPanel>
+        <esri:Navigation Margin="5" HorizontalAlignment="Left" VerticalAlignment="Bottom" 
+                         Map="{Binding ElementName=MyMap}"   >
+        </esri:Navigation>
+		<Border Style="{StaticResource BottomBar}"   Grid.Row="1">
+			<Border.Resources>
+				<Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
+					<Setter Property="Margin" Value="4" />
+				</Style>
+			</Border.Resources>
+			<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+				<Button x:Name="AddStreet" Margin="5" >Add street</Button>
+				<Button x:Name="AddBuilding">Add building</Button>
+				<Button x:Name="Cancel">Cancel</Button>
+			</StackPanel>	
+		</Border>
+        
     </Grid>
 </UserControl>
