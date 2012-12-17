@@ -13,6 +13,8 @@ namespace PatrolControl.Service.Model
     {
         public DbSet<Street> Streets { get; set; }
         public DbSet<Building> Buildings { get; set; }
+        public DbSet<PatrolDistrict> PatrolDistricts { get; set; }
+        public DbSet<TownDistrict> TownDistricts { get; set; }
     }
 
     [DataContract]
@@ -23,6 +25,7 @@ namespace PatrolControl.Service.Model
 
         [DataMember]
         public int StreetId { get; set; }
+        
         public Street Street { get; set; }
 
         [DataMember]
@@ -32,13 +35,35 @@ namespace PatrolControl.Service.Model
         public DbGeography Geography { get; set; }
     }
 
+    [DataContract]
     public class Street : Entity
     {
-
+        [DataMember]
         public string Name { get; set; }
-
+        
+        [DataMember]
         public DbGeography Geography { get; set; }
 
+    }
+
+    [DataContract]
+    public class PatrolDistrict : Entity
+    {
+        [DataMember]
+        public string Name { get; set; }
+
+        [DataMember]
+        public DbGeography Geography { get; set; }
+    }
+
+    [DataContract]
+    public class TownDistrict : Entity
+    {
+        [DataMember]
+        public string Name { get; set; }
+
+        [DataMember]
+        public DbGeography Geography { get; set; }
     }
 
     [DataContract]
@@ -46,7 +71,6 @@ namespace PatrolControl.Service.Model
     {
         [Key]
         [DataMember]
-
         public int Id { get; set; }
     }
 }

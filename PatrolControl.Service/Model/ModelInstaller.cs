@@ -23,7 +23,7 @@ namespace PatrolControl.Service.Model
                     var resource = reader.ReadToEnd();
                     if (dc.Database.ExecuteSqlCommand(resource) <= 0)
                     {
-                        throw new InvalidOperationException("Failed to execute request: '" + reader.ReadToEnd() + "'");
+                        throw new InvalidOperationException("Failed to execute request: '" + resource + "'");
                     }
                 }
             }
