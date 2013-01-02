@@ -76,6 +76,8 @@ namespace PatrolControl.UI
             base.OnStartup(sender, e);
             var baseLocate = ViewLocator.LocateTypeForModelType;
 
+            var preLocate = ViewLocator.LocateForModel;
+
             ViewLocator.LocateTypeForModelType = (modelType, displayLocation, context) =>
             {
                 if (modelType.IsGenericType && modelType.GetGenericTypeDefinition() == typeof(EditableAdapter<>))

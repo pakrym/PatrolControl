@@ -31,36 +31,36 @@
 
         <!--Extent="50, 34, 51, 34" ZoomFactor="15"-->
         <esri:Map x:Name="MyMap" SnapToLevels="True" Extent="3862000,6612000,3883000,6600000" IsLogoVisible="False" Grid.Column="1" 
-                  cal:Message.Attach="[Event Loaded] = [Action LoadLayers]">
+                  cal:Message.Attach="[Event Loaded] = [Action LoadLayers]"  >
             <esri:Map.Resources>
                 <UI:DataContextProxy x:Key ="Proxy" Data="{Binding}"/>
             </esri:Map.Resources>
             <esri:Map.Layers>
-                <UI:YanderCacheTiledLayer  Visible="True"/>
-                <esri:GraphicsLayer Visible="{Binding Path=Data.BuildingsLayer.IsVisible, Source={StaticResource Proxy}}" x:Name="BuildingsLayer" Graphics="{Binding Path=Data.BuildingsLayer.Features, Source={StaticResource Proxy}}" >
-                    <esri:GraphicsLayer.Renderer>
-                        <esri:SimpleRenderer>
-                            <esri:SimpleMarkerSymbol Color="Red"></esri:SimpleMarkerSymbol>
-                        </esri:SimpleRenderer>
-                    </esri:GraphicsLayer.Renderer>
+                <UI:YanderCacheTiledLayer Visible="True"/>
+
+                <esri:GraphicsLayer 
+                    MouseLeftButtonUp="Click"
+                    Visible="{Binding Path=Data.BuildingsLayer.IsVisible, Source={StaticResource Proxy}}"
+                    Graphics="{Binding Path=Data.BuildingsLayer.Features, Source={StaticResource Proxy}}"
+                    Renderer="{StaticResource BuildingsLayerRenderer}">
                 </esri:GraphicsLayer>
 
-                <esri:GraphicsLayer Visible="{Binding Path=Data.StreetsLayer.IsVisible, Source={StaticResource Proxy}}" 
-                                    x:Name="StreetsLayer" 
-                                    Graphics="{Binding Path=Data.StreetsLayer.Features, Source={StaticResource Proxy}}" >
-                    <esri:GraphicsLayer.Renderer>
-                        <esri:SimpleRenderer>
-                            <esri:SimpleLineSymbol Color="Black"></esri:SimpleLineSymbol>
-                        </esri:SimpleRenderer>
-                    </esri:GraphicsLayer.Renderer>
+                <esri:GraphicsLayer MouseLeftButtonUp="Click"
+                    x:Name="StreetsLayer" 
+                                    Visible="{Binding Path=Data.StreetsLayer.IsVisible, Source={StaticResource Proxy}}" 
+                                    Graphics="{Binding Path=Data.StreetsLayer.Features, Source={StaticResource Proxy}}" 
+                                    Renderer="{StaticResource StreetLayerRenderer}"
+                                    >
+                    <esri:GraphicsLayer.MapTip>
+                        <ContentControl ContentTemplate="{StaticResource StreetLayerTooltip}">
+                        </ContentControl>
+                    </esri:GraphicsLayer.MapTip>
                 </esri:GraphicsLayer>
-
-
             </esri:Map.Layers>
+
             <i:Interaction.Behaviors>
                 <esri:ShowCoordinatesBehavior FormatString="{}{0:0.00} , {1:0.00}"/>
             </i:Interaction.Behaviors>
-
         </esri:Map>
 
         <Border Style="{StaticResource ToolBar}"   Grid.Column="0">
@@ -83,15 +83,15 @@
 
                 <controls:GroupPanel Title="Add">
                     <StackPanel Orientation="Vertical">
-                        <HyperlinkButton Click="ViewAll" >Add street</HyperlinkButton>
+                        
                         <HyperlinkButton x:Name="AddStreet">Add street</HyperlinkButton>
                         <HyperlinkButton x:Name="AddBuilding">Add building</HyperlinkButton>
                         <HyperlinkButton x:Name="Cancel">Cancel</HyperlinkButton>
                     </StackPanel>
                 </controls:GroupPanel>
 
-                <controls:GroupPanel Title="Edit" Visibility="{Binding Editor.IsEditing, Converter={local:BoolToVisibilityConverter}}">
-                    <ContentPresenter x:Name="Editor" ></ContentPresenter>
+                <controls:GroupPanel Title="Edit" Visibility="{Binding ObjectEditor.IsEditing, Converter={local:BoolToVisibilityConverter}}">
+                    <ContentControl x:Name="ObjectEditor" ></ContentControl>
                 </controls:GroupPanel>
 
             </StackPanel>

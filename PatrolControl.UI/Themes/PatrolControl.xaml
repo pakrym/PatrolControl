@@ -5,19 +5,23 @@
     xmlns:uriMapper="clr-namespace:System.Windows.Navigation;assembly=System.Windows.Controls.Navigation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:c="clr-namespace:PatrolControl.UI.Controls" mc:Ignorable="d">
+    xmlns:c="clr-namespace:PatrolControl.UI.Controls" xmlns:esri="http://schemas.esri.com/arcgis/client/2009"
+    mc:Ignorable="d">
 
-    <Style x:Key="GroupPanelStyle"  TargetType="c:GroupPanel">
-        <Setter Property="Margin" Value="5"></Setter>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate>
-                    <StackPanel>
-                        <TextBlock Margin="0,0,0,4" Style="{StaticResource HeaderTextStyle}" Text="{Binding Title, RelativeSource={RelativeSource TemplatedParent}}" />
-                        <ContentPresenter Margin="15,5"></ContentPresenter>
-                    </StackPanel>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    <esri:SimpleRenderer x:Key="BuildingsLayerRenderer">
+        <esri:SimpleMarkerSymbol></esri:SimpleMarkerSymbol>
+    </esri:SimpleRenderer>
+
+    <esri:SimpleRenderer x:Key="StreetLayerRenderer">
+        <esri:SimpleLineSymbol Color="#3F000000" Width="4"></esri:SimpleLineSymbol>
+    </esri:SimpleRenderer>
+    <DataTemplate x:Key="StreetLayerTooltip">
+        <Border BorderBrush="Black" BorderThickness="1" Background="White">
+            
+                <TextBlock>Fuck me!</TextBlock>
+            
+        </Border>
+    </DataTemplate>
+
+    
 </ResourceDictionary>

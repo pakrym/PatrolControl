@@ -1,10 +1,11 @@
 ﻿using ESRI.ArcGIS.Client;
+using PatrolControl.UI.PatrolControlServiceReference;
 
 namespace PatrolControl.UI.Screens.Common.Map
 {
-    public class FeatureGraphics<T> : Graphic
+    public class FeatureGraphics : Graphic
     {
-        public T Feature { get; set; }
+        public Feature Feature { get; set; }
 
         public FeatureState State { get; set; }
     }

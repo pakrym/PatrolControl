@@ -2,7 +2,7 @@
 
 namespace PatrolControl.UI.Screens.Common.Map
 {
-    public class BuildingFeatureLayerViewModel : FeatureLayerViewModel<Building>
+    public class BuildingFeatureLayerViewModel : FeatureLayerViewModel
     {
         public override string Name
         {
@@ -17,7 +17,7 @@ namespace PatrolControl.UI.Screens.Common.Map
         }
     }
 
-    public class StreetFeatureLayerViewModel : FeatureLayerViewModel<Street>
+    public class StreetFeatureLayerViewModel : FeatureLayerViewModel
     {
         public override string Name
         {

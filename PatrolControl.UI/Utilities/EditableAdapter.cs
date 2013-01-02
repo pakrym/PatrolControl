@@ -73,7 +73,7 @@ namespace PatrolControl.UI.Utilities
             {
                 npc.PropertyChanged -= ModelPropertyChanged;
             }
-            
+
             Model = null;
             _cache = null;
         }
@@ -99,6 +99,13 @@ namespace PatrolControl.UI.Utilities
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null) handler(this, e);
+        }
+
+        public static object CreateGeneric(object o)
+        {
+            if (o == null) throw new ArgumentNullException("o");
+
+            return Activator.CreateInstance(typeof(EditableAdapter<>).MakeGenericType(o.GetType()),o);
         }
     }
 }

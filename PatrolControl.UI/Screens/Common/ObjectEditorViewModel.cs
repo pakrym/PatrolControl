@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Caliburn.Micro;
+using PatrolControl.UI.Utilities;
 
 namespace PatrolControl.UI.Screens.Common
 {
@@ -49,7 +50,8 @@ namespace PatrolControl.UI.Screens.Common
 
         public void Edit(object o)
         {
-            Target = o;
+            Target = EditableAdapter.CreateGeneric(o);
+            
             IsEditing = true;
             var ieo = Target as IEditableObject;
             if (ieo != null)

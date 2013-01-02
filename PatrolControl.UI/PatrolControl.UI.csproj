@@ -140,6 +140,7 @@
     <Compile Include="Utilities\EditableAdapterCustomPropertyInfo.cs" />
     <Compile Include="Utilities\EditableAdapterCustomType.cs" />
     <Compile Include="Utilities\GeometryExtentions.cs" />
+    <Compile Include="Utilities\MarginSetter.cs" />
     <Compile Include="YanderCacheTiledLayer.cs" />
     <Compile Include="Screens\Common\ObjectEditorViewModel.cs" />
     <Compile Include="Screens\Login\LoginScreenView.xaml.cs">

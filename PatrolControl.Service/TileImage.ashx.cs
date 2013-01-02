@@ -10,7 +10,9 @@ namespace PatrolControl.Web
     public class TileImage : IHttpHandler
     {
 
-        private string _tilePath = ConfigurationManager.AppSettings["TilePath"];
+        private string _tilePath = Path.Combine(
+            HttpContext.Current.Server.MapPath("~"),
+            ConfigurationManager.AppSettings["TilePath"]);
 
         public void ProcessRequest(HttpContext context)
         {
@@ -29,6 +31,7 @@ namespace PatrolControl.Web
                 context.Response.Write("Tile not found");
                 return;
             }
+            context.Response.ContentType = "image/png";
             context.Response.WriteFile(tilePath);
         }
 

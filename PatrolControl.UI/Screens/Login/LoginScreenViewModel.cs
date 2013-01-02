@@ -14,8 +14,11 @@ namespace PatrolControl.UI.Screens.Login
         public LoginScreenViewModel()
         {
             ObjectEditor = new ObjectEditorViewModel();
-            ObjectEditor.Edit(new EditableAdapter<Street>(new Street() {Id = 3, Name = "Hello"}));
+            ObjectEditor.Edit(new Street() {Id = 3, Name = "Hello"});
         }
+
+        public string Login { get; set; }
+        public string Password { get; set; }
 
         [Dependency]
         public ShellViewModel ShellViewModel { get; set; }
@@ -25,11 +28,11 @@ namespace PatrolControl.UI.Screens.Login
 
         public ObjectEditorViewModel ObjectEditor { get; set; }
 
-        public void StartMapEditor()
+        public void DoLogin()
         {
             ShellViewModel.Push(MapEditorScreen());
         }
-
+        
 
 
     }

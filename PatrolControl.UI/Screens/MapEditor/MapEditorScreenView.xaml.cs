@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using ESRI.ArcGIS.Client;
 
 namespace PatrolControl.UI.Screens.MapEditor
 {
@@ -19,9 +20,10 @@ namespace PatrolControl.UI.Screens.MapEditor
             InitializeComponent();
         }
 
-        private void ViewAll(object sender, RoutedEventArgs e)
+        
+        private void Click(object sender, GraphicMouseButtonEventArgs e)
         {
-            
+            (DataContext as MapEditorScreenViewModel).Click(sender,e);
         }
     }
 }
