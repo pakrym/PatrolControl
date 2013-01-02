@@ -20,8 +20,10 @@ namespace PatrolControl.UI.Screens.Common
 
         public ObjectEditorViewModel()
         {
-
+            CanDelete = false;
         }
+
+        public bool CanDelete { get; set; }
 
         public bool IsEditing
         {
@@ -56,13 +58,26 @@ namespace PatrolControl.UI.Screens.Common
 
         public void Save()
         {
-
+            var ieo = Target as IEditableObject;
+            if (ieo != null)
+                ieo.EndEdit();
+            EndEdit();
         }
 
         public void Cancel()
         {
-
+            var ieo = Target as IEditableObject;
+            if (ieo != null)
+                ieo.CancelEdit();
+            EndEdit();
         }
+
+        private void EndEdit()
+        {
+            Target = null;
+            IsEditing = false;
+        }
+
 
     }
 }
