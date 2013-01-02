@@ -10,9 +10,48 @@ using PatrolControl.UI.Screens.Common.Map;
 using PatrolControl.UI.Screens.Login;
 using PatrolControl.UI.Screens.Shell;
 using PatrolControl.UI.Utilities;
+using System.Diagnostics;
 
 namespace PatrolControl.UI
 {
+
+    class DebugLogger : ILog
+    {
+        #region Fields
+        private readonly Type _type;
+        #endregion
+
+        #region Constructors
+        public DebugLogger(Type type)
+        {
+            _type = type;
+        }
+        #endregion
+
+        #region Helper Methods
+        private string CreateLogMessage(string format, params object[] args)
+        {
+            return string.Format("[{0}] {1}",
+                                 DateTime.Now.ToString("o"),
+                                 string.Format(format, args));
+        }
+        #endregion
+
+        #region ILog Members
+        public void Error(Exception exception)
+        {
+            Debug.WriteLine(CreateLogMessage(exception.ToString()), "ERROR");
+        }
+        public void Info(string format, params object[] args)
+        {
+            Debug.WriteLine(CreateLogMessage(format, args), "INFO");
+        }
+        public void Warn(string format, params object[] args)
+        {
+            Debug.WriteLine(CreateLogMessage(format, args), "WARN");
+        }
+        #endregion
+    }
 
     public class DataContextProxy : DependencyObject
     {
@@ -33,10 +72,7 @@ namespace PatrolControl.UI
 
         protected override void OnStartup(object sender, System.Windows.StartupEventArgs e)
         {
-            Caliburn.Micro.LogManager.GetLog = type =>
-                {
-
-                };
+            Caliburn.Micro.LogManager.GetLog = type => new DebugLogger(type);
             base.OnStartup(sender, e);
             var baseLocate = ViewLocator.LocateTypeForModelType;
 

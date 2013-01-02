@@ -14,16 +14,17 @@ using System.Windows.Shapes;
 namespace PatrolControl.UI.Utilities
 {
 
-    public class EditableAdapter<T>:EditableAdapter
+    public class EditableAdapter<T> : EditableAdapter
     {
-        public EditableAdapter(T o) : base(o)
+        public EditableAdapter(T o)
+            : base(o)
         {
         }
 
 
     }
 
-    public class EditableAdapter : IEditableObject, ICustomTypeProvider
+    public class EditableAdapter : IEditableObject, ICustomTypeProvider, INotifyPropertyChanged
     {
         private readonly Type _type;
         private object _model;
@@ -45,6 +46,11 @@ namespace PatrolControl.UI.Utilities
         {
             _cache = Activator.CreateInstance(_type);
 
+            var npc = Model as INotifyPropertyChanged;
+            if (npc != null)
+            {
+                npc.PropertyChanged += ModelPropertyChanged;
+            }
             //Set Properties of Cache
             foreach (var info in _type.GetProperties())
             {
@@ -55,8 +61,20 @@ namespace PatrolControl.UI.Utilities
             }
         }
 
+        private void ModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged(e);
+        }
+
         public void EndEdit()
         {
+            var npc = Model as INotifyPropertyChanged;
+            if (npc != null)
+            {
+                npc.PropertyChanged -= ModelPropertyChanged;
+            }
+            
+            Model = null;
             _cache = null;
         }
 
@@ -73,6 +91,14 @@ namespace PatrolControl.UI.Utilities
         public Type GetCustomType()
         {
             return new EditableAdapterCustomType(_type);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null) handler(this, e);
         }
     }
 }

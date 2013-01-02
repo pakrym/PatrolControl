@@ -7,6 +7,7 @@ namespace PatrolControl.UI.Utilities
 {
     public class EditableAdapterCustomType : Type
     {
+        
         private readonly Type _type;
 
         public EditableAdapterCustomType(Type type)
@@ -62,7 +63,10 @@ namespace PatrolControl.UI.Utilities
         protected override PropertyInfo GetPropertyImpl(string name, BindingFlags bindingAttr, Binder binder, Type returnType, Type[] types,
                                                         ParameterModifier[] modifiers)
         {
-            return new EditableAdapterCustomPropertyInfo(_type.GetProperty(name));
+            var prop = _type.GetProperty(name);
+            if (prop == null) return null;
+
+            return new EditableAdapterCustomPropertyInfo(prop);
         }
 
         public override PropertyInfo[] GetProperties(BindingFlags bindingAttr)
@@ -80,7 +84,9 @@ namespace PatrolControl.UI.Utilities
 
         public override MethodInfo[] GetMethods(BindingFlags bindingAttr)
         {
-            throw new NotImplementedException();
+            return _type.GetMethods()
+                        .Select(p => new EditableAdapterCustomMethodInfo(p))
+                        .ToArray();
         }
 
         public override FieldInfo GetField(string name, BindingFlags bindingAttr)
@@ -100,7 +106,7 @@ namespace PatrolControl.UI.Utilities
 
         protected override TypeAttributes GetAttributeFlagsImpl()
         {
-            throw new NotImplementedException();
+            return _type.Attributes;
         }
 
         protected override bool IsArrayImpl()
@@ -146,7 +152,7 @@ namespace PatrolControl.UI.Utilities
 
         public override Type UnderlyingSystemType
         {
-            get { throw new NotImplementedException(); }
+            get { return _type.UnderlyingSystemType; }
         }
 
         protected override ConstructorInfo GetConstructorImpl(BindingFlags bindingAttr, Binder binder, CallingConventions callConvention,
@@ -199,5 +205,6 @@ namespace PatrolControl.UI.Utilities
         {
             throw new NotImplementedException();
         }
+
     }
 }

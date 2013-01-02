@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -48,6 +49,9 @@ namespace PatrolControl.UI.Screens.Common
         {
             Target = o;
             IsEditing = true;
+            var ieo = Target as IEditableObject;
+            if (ieo != null)
+                ieo.BeginEdit();
         }
 
         public void Save()
