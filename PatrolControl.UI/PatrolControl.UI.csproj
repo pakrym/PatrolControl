@@ -107,6 +107,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\GroupPanel.xaml.cs">
+      <DependentUpon>GroupPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\WellKnownText\Algorithms.cs" />
     <Compile Include="Converters\WellKnownText\GeometryCollection.cs" />
     <Compile Include="Converters\WellKnownText\GeometryFromWKT.cs" />
@@ -115,15 +118,25 @@
     <Compile Include="Converters\WellKnownText\TokenType.cs" />
     <Compile Include="Converters\WellKnownText\WKTStreamTokenizer.cs" />
     <Compile Include="Data\IBuildingProvider.cs" />
+    <Compile Include="Screens\Common\Editors\Street.xaml.cs">
+      <DependentUpon>Street.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Common\Map\BuildingFeatureLayerViewModel.cs" />
     <Compile Include="Screens\Common\Map\FeatureGraphics.cs" />
     <Compile Include="Screens\Common\Map\FeatureLayerViewModel.cs" />
     <Compile Include="Screens\Common\Map\IFeatureLayerViewModel.cs" />
+    <Compile Include="Screens\Common\ObjectEditorView.xaml.cs">
+      <DependentUpon>ObjectEditorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Service References\PatrolControlServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\BoolToVisibilityConverter.cs" />
+    <Compile Include="Utilities\EditableAdapter.cs" />
+    <Compile Include="Utilities\EditableAdapterCustomPropertyInfo.cs" />
+    <Compile Include="Utilities\EditableAdapterCustomType.cs" />
     <Compile Include="Utilities\GeometryExtentions.cs" />
     <Compile Include="YanderCacheTiledLayer.cs" />
     <Compile Include="Screens\Common\ObjectEditorViewModel.cs" />
@@ -150,7 +163,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="Controls\GroupPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Common\Editors\Street.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Common\ObjectEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -167,6 +192,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Brushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\PatrolControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -223,9 +252,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\PatrolControlServiceReference\" />
   </ItemGroup>

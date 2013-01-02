@@ -5,21 +5,32 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:esri="http://schemas.esri.com/arcgis/client/2009" xmlns:UI="clr-namespace:PatrolControl.UI"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:cal="http://www.caliburnproject.org" mc:Ignorable="d"
+             xmlns:cal="http://www.caliburnproject.org" xmlns:controls="clr-namespace:PatrolControl.UI.Controls"
+             xmlns:local="clr-namespace:PatrolControl.UI.Utilities"
+             mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400" >
     <UserControl.Resources>
-        <UI:DebuggingConverter x:Key="DC" />
-        <Style x:Key="BottomBar" TargetType="Border">
-            <Setter Property="Background" Value="#AAFFFFFF"/>
+        <Style x:Key="ToolBar" TargetType="Border">
+
+            <Setter Property="MinWidth" Value="200"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="Effect" >
+                <Setter.Value>
+                    <DropShadowEffect Color="Black" Direction="0" ShadowDepth="2" 
+             BlurRadius="5" Opacity="0.5" />
+                </Setter.Value>
+            </Setter>
         </Style>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
         <!--Extent="50, 34, 51, 34" ZoomFactor="15"-->
-        <esri:Map x:Name="MyMap" SnapToLevels="True" Extent="3862000,6612000,3883000,6600000" IsLogoVisible="False" Grid.RowSpan="2" 
+        <esri:Map x:Name="MyMap" SnapToLevels="True" Extent="3862000,6612000,3883000,6600000" IsLogoVisible="False" Grid.Column="1" 
                   cal:Message.Attach="[Event Loaded] = [Action LoadLayers]">
             <esri:Map.Resources>
                 <UI:DataContextProxy x:Key ="Proxy" Data="{Binding}"/>
@@ -51,32 +62,38 @@
             </i:Interaction.Behaviors>
 
         </esri:Map>
-        <esri:Navigation Margin="5" HorizontalAlignment="Left" VerticalAlignment="Bottom" 
-                         Map="{Binding ElementName=MyMap}"   >
-        </esri:Navigation>
-        <ItemsControl x:Name="Layers">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel></StackPanel>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <CheckBox x:Name="Toggle" Content="{Binding Name}" IsChecked="{Binding IsVisible, Mode=TwoWay}"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-        <Border Style="{StaticResource BottomBar}"   Grid.Row="1">
-            <Border.Resources>
-                <Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
-                    <Setter Property="Margin" Value="4" />
-                </Style>
-            </Border.Resources>
-            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                <Button Click="ViewAll"  Margin="5" >Add street</Button>
-                <Button x:Name="AddStreet" Margin="5" >Add street</Button>
-                <Button x:Name="AddBuilding">Add building</Button>
-                <Button x:Name="Cancel">Cancel</Button>
+
+        <Border Style="{StaticResource ToolBar}"   Grid.Column="0">
+            <StackPanel Orientation="Vertical">
+
+                <controls:GroupPanel Title="Layers">
+                    <ItemsControl x:Name="Layers">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel></StackPanel>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox x:Name="Toggle" Content="{Binding Name}" IsChecked="{Binding IsVisible, Mode=TwoWay}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </controls:GroupPanel>
+
+                <controls:GroupPanel Title="Add">
+                    <StackPanel Orientation="Vertical">
+                        <HyperlinkButton Click="ViewAll" >Add street</HyperlinkButton>
+                        <HyperlinkButton x:Name="AddStreet">Add street</HyperlinkButton>
+                        <HyperlinkButton x:Name="AddBuilding">Add building</HyperlinkButton>
+                        <HyperlinkButton x:Name="Cancel">Cancel</HyperlinkButton>
+                    </StackPanel>
+                </controls:GroupPanel>
+
+                <controls:GroupPanel Title="Edit" Visibility="{Binding Editor.IsEditing, Converter={local:BoolToVisibilityConverter}}">
+                    <ContentPresenter x:Name="Editor" ></ContentPresenter>
+                </controls:GroupPanel>
+
             </StackPanel>
         </Border>
 

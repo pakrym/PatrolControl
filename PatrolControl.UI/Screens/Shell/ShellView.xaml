@@ -12,7 +12,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <TextBlock>Hello world jjsadfj asd fajsd 5</TextBlock>
         <ContentControl HorizontalContentAlignment="Stretch"  VerticalContentAlignment="Stretch" x:Name="ActivePage" Grid.Row="1"></ContentControl>
     </Grid>
 </UserControl>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 using Caliburn.Micro;
@@ -8,6 +9,7 @@ using PatrolControl.UI.PatrolControlServiceReference;
 using PatrolControl.UI.Screens.Common.Map;
 using PatrolControl.UI.Screens.Login;
 using PatrolControl.UI.Screens.Shell;
+using PatrolControl.UI.Utilities;
 
 namespace PatrolControl.UI
 {
@@ -24,25 +26,32 @@ namespace PatrolControl.UI
             DependencyProperty.Register("Data", typeof(object), typeof(DataContextProxy), new PropertyMetadata(null));
     }
 
-    public class DebuggingConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return value;
-        }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return value;
-        }
-    }
     public class PatrolControlUiBootstrapper : Bootstrapper<ShellViewModel>
     {
         private UnityContainer _container;
 
         protected override void OnStartup(object sender, System.Windows.StartupEventArgs e)
         {
+            Caliburn.Micro.LogManager.GetLog = type =>
+                {
+
+                };
             base.OnStartup(sender, e);
+            var baseLocate = ViewLocator.LocateTypeForModelType;
+
+            ViewLocator.LocateTypeForModelType = (modelType, displayLocation, context) =>
+            {
+                if (modelType.IsGenericType && modelType.GetGenericTypeDefinition() == typeof(EditableAdapter<>))
+                {
+                    var subtype = modelType.GetGenericArguments().First();
+                    return Type.GetType("PatrolControl.UI.Screens.Common.Editors." + subtype.Name);
+                }
+                else
+                {
+                    return baseLocate(modelType, displayLocation, context);
+                }
+            };
             _container.Resolve<ShellViewModel>().Push(_container.Resolve<LoginScreenViewModel>());
         }
 
