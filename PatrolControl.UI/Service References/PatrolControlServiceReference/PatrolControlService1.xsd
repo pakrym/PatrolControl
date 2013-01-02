@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:1823/PatrolControlService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/PatrolControl.Service.Model" />
+  <xs:import schemaLocation="http://localhost:1823/PatrolControlService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Data.Spatial" />
   <xs:element name="GetBuildings">
     <xs:complexType>
       <xs:sequence />
@@ -11,6 +12,167 @@
       <xs:sequence>
         <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/PatrolControl.Service.Model" minOccurs="0" name="GetBuildingsResult" nillable="true" type="q1:ArrayOfBuilding" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStreets">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStreetsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/PatrolControl.Service.Model" minOccurs="0" name="GetStreetsResult" nillable="true" type="q2:ArrayOfStreet" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPatrolDistricts">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPatrolDistrictsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/PatrolControl.Service.Model" minOccurs="0" name="GetPatrolDistrictsResult" nillable="true" type="q3:ArrayOfPatrolDistrict" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTownDistricts">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTownDistrictsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/PatrolControl.Service.Model" minOccurs="0" name="GetTownDistrictsResult" nillable="true" type="q4:ArrayOfTownDistrict" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNearestStreets">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/System.Data.Spatial" minOccurs="0" name="position" nillable="true" type="q5:DbGeography" />
+        <xs:element minOccurs="0" name="count" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNearestStreetsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/PatrolControl.Service.Model" minOccurs="0" name="GetNearestStreetsResult" nillable="true" type="q6:ArrayOfStreet" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStreetsWithSimularNames">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStreetsWithSimularNamesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/PatrolControl.Service.Model" minOccurs="0" name="GetStreetsWithSimularNamesResult" nillable="true" type="q7:ArrayOfStreet" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddBuildings">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/PatrolControl.Service.Model" minOccurs="0" name="buildings" nillable="true" type="q8:ArrayOfBuilding" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddBuildingsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddStreets">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/PatrolControl.Service.Model" minOccurs="0" name="streets" nillable="true" type="q9:ArrayOfStreet" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddStreetsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddPatrolDistricts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/PatrolControl.Service.Model" minOccurs="0" name="districts" nillable="true" type="q10:ArrayOfPatrolDistrict" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddPatrolDistrictsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddTownDistricts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/PatrolControl.Service.Model" minOccurs="0" name="districts" nillable="true" type="q11:ArrayOfTownDistrict" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddTownDistrictsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateBuildings">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/PatrolControl.Service.Model" minOccurs="0" name="buildings" nillable="true" type="q12:ArrayOfBuilding" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateBuildingsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateStreets">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/PatrolControl.Service.Model" minOccurs="0" name="streets" nillable="true" type="q13:ArrayOfStreet" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateStreetsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdatePatrolDistricts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/PatrolControl.Service.Model" minOccurs="0" name="districts" nillable="true" type="q14:ArrayOfPatrolDistrict" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdatePatrolDistrictsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateTownDistricts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/PatrolControl.Service.Model" minOccurs="0" name="districts" nillable="true" type="q15:ArrayOfTownDistrict" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateTownDistrictsResponse">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
 </xs:schema>

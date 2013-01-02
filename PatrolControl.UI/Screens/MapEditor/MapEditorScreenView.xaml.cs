@@ -18,5 +18,10 @@ namespace PatrolControl.UI.Screens.MapEditor
         {
             InitializeComponent();
         }
+
+        private void ViewAll(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

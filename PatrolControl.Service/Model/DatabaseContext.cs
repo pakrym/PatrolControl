@@ -18,7 +18,14 @@ namespace PatrolControl.Service.Model
     }
 
     [DataContract]
-    public class Building : Entity
+    public class Feature : Entity
+    {
+        [DataMember]
+        public DbGeography Geography { get; set; }
+    }
+
+    [DataContract]
+    public class Building : Feature
     {
         [DataMember]
         public string Number { get; set; }
@@ -30,40 +37,31 @@ namespace PatrolControl.Service.Model
 
         [DataMember]
         public long Tags { get; set; }
-
-        [DataMember]
-        public DbGeography Geography { get; set; }
     }
 
     [DataContract]
-    public class Street : Entity
+    public class Street : Feature
     {
         [DataMember]
         public string Name { get; set; }
         
-        [DataMember]
-        public DbGeography Geography { get; set; }
 
     }
 
     [DataContract]
-    public class PatrolDistrict : Entity
+    public class PatrolDistrict : Feature
     {
         [DataMember]
         public string Name { get; set; }
 
-        [DataMember]
-        public DbGeography Geography { get; set; }
     }
 
     [DataContract]
-    public class TownDistrict : Entity
+    public class TownDistrict : Feature
     {
         [DataMember]
         public string Name { get; set; }
 
-        [DataMember]
-        public DbGeography Geography { get; set; }
     }
 
     [DataContract]

@@ -1,0 +1,323 @@
+From 2a4d908947bb1e3d25667ba893212adbb340220b Mon Sep 17 00:00:00 2001
+From: pakrym <pavel@krymets.com>
+Date: Tue, 1 Jan 2013 15:38:38 +0200
+Subject: [PATCH] my work
+
+---
+ PatrolControl.Service/PatrolControlService.svc.cs  | 21 ++++++++------
+ PatrolControl.UI/Data/IBuildingProvider.cs         | 32 ----------------------
+ PatrolControl.UI/PatrolControlUiBootstrapper.cs    | 28 +++++++++++++++++++
+ .../Common/Map/BuildingFeatureLayerViewModel.cs    |  2 +-
+ .../Screens/Common/Map/FeatureGraphics.cs          | 10 +++++++
+ .../Screens/Common/Map/FeatureLayerViewModel.cs    | 28 +++++++++++++++++--
+ .../Screens/Common/Map/IFeatureLayerViewModel.cs   |  5 +++-
+ .../Screens/Common/ObjectEditorViewModel.cs        | 10 +++++--
+ .../Screens/MapEditor/MapEditorScreenView.xaml     |  9 ++++--
+ .../Screens/MapEditor/MapEditorScreenView.xaml.cs  |  5 ++++
+ 10 files changed, 99 insertions(+), 51 deletions(-)
+ delete mode 100644 PatrolControl.UI/Data/IBuildingProvider.cs
+
+diff --git a/PatrolControl.Service/PatrolControlService.svc.cs b/PatrolControl.Service/PatrolControlService.svc.cs
+index 323d731..c91be97 100644
+--- a/PatrolControl.Service/PatrolControlService.svc.cs
++++ b/PatrolControl.Service/PatrolControlService.svc.cs
+@@ -29,19 +29,22 @@ public IList<Building> GetBuildings()
+             var lonc = 34.804945;
+             var latc = 50.911487;
+ 
+-            for (int i = 0; i < 10; i++)
++            for (int j = 0; j < 100; j++)
+             {
+-                var lon = lonc + Math.Cos(Math.PI / 10 * i) * 0.2;
+-                var lat = latc + Math.Sin(Math.PI / 10 * i) * 0.2;
++                for (int i = 0; i < 36; i++)
++                {
++                    var lon = lonc + Math.Cos(2 * Math.PI / 36 * i) * (0.001+0.001*j) ;
++                    var lat = (latc + Math.Sin(2 * Math.PI / 36 * i) * (0.001+0.001*j) / 2);
+ 
+-                var p = DbGeography.PointFromText(
+-                    string.Format("POINT({0} {1})",
+-                        lon.ToString(CultureInfo.InvariantCulture),
+-                        lat.ToString(CultureInfo.InvariantCulture)), SRID);
++                    var p = DbGeography.PointFromText(
++                        string.Format("POINT({0} {1})",
++                            lon.ToString(CultureInfo.InvariantCulture),
++                            lat.ToString(CultureInfo.InvariantCulture)), SRID);
+ 
+-                buildings.Add(new Building() { Geography = p, Id = i, Number = i.ToString() });
+-            }
++                    buildings.Add(new Building() { Geography = p, Id = i, Number = i.ToString() });
++                }
+ 
++            }
+             return buildings;
+         }
+     }
+diff --git a/PatrolControl.UI/Data/IBuildingProvider.cs b/PatrolControl.UI/Data/IBuildingProvider.cs
+deleted file mode 100644
+index d055735..0000000
+--- a/PatrolControl.UI/Data/IBuildingProvider.cs
++++ /dev/null
+@@ -1,32 +0,0 @@
+-﻿using System;
+-using System.Collections.Generic;
+-using System.Net;
+-using System.Windows;
+-using System.Windows.Controls;
+-using System.Windows.Documents;
+-using System.Windows.Ink;
+-using System.Windows.Input;
+-using System.Windows.Media;
+-using System.Windows.Media.Animation;
+-using System.Windows.Shapes;
+-using PatrolControl.UI.PatrolControlServiceReference;
+-
+-namespace PatrolControl.UI.Data
+-{
+-
+-
+-    public interface IBuildingProvider
+-    {
+-        void GetBuilding(Action<IEnumerable<Building>> callback);
+-    }
+-
+-    class BuildingProvider : IBuildingProvider
+-    {
+-        public void GetBuilding(Action<IEnumerable<Building>> callback)
+-        {
+-            var client = new PatrolControlServiceClient();
+-            client.GetBuildingsCompleted += ((sender, args) => callback(args.Result));
+-            client.GetBuildingsAsync();
+-        }
+-    }
+-}
+diff --git a/PatrolControl.UI/PatrolControlUiBootstrapper.cs b/PatrolControl.UI/PatrolControlUiBootstrapper.cs
+index 24da4b4..268699e 100644
+--- a/PatrolControl.UI/PatrolControlUiBootstrapper.cs
++++ b/PatrolControl.UI/PatrolControlUiBootstrapper.cs
+@@ -1,4 +1,7 @@
+ ﻿using System;
++using System.Globalization;
++using System.Windows;
++using System.Windows.Data;
+ using Caliburn.Micro;
+ using Microsoft.Practices.Unity;
+ using PatrolControl.UI.PatrolControlServiceReference;
+@@ -8,6 +11,31 @@
+ 
+ namespace PatrolControl.UI
+ {
++
++    public class DataContextProxy : DependencyObject
++    {
++        public object Data
++        {
++            get { return (object)GetValue(DataProperty); }
++            set { SetValue(DataProperty, value); }
++        }
++
++        public static readonly DependencyProperty DataProperty =
++            DependencyProperty.Register("Data", typeof(object), typeof(DataContextProxy), new PropertyMetadata(null));
++    }
++
++    public class DebuggingConverter : IValueConverter
++    {
++        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
++        {
++            return value;
++        }
++
++        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
++        {
++            return value;
++        }
++    }
+     public class PatrolControlUiBootstrapper : Bootstrapper<ShellViewModel>
+     {
+         private UnityContainer _container;
+diff --git a/PatrolControl.UI/Screens/Common/Map/BuildingFeatureLayerViewModel.cs b/PatrolControl.UI/Screens/Common/Map/BuildingFeatureLayerViewModel.cs
+index 7db1e76..f1d6737 100644
+--- a/PatrolControl.UI/Screens/Common/Map/BuildingFeatureLayerViewModel.cs
++++ b/PatrolControl.UI/Screens/Common/Map/BuildingFeatureLayerViewModel.cs
+@@ -4,7 +4,7 @@ namespace PatrolControl.UI.Screens.Common.Map
+ {
+     public class BuildingFeatureLayerViewModel : FeatureLayerViewModel<Building>
+     {
+-        public override void Update()
++        public override void Update(ESRI.ArcGIS.Client.Geometry.Envelope envelope)
+         {
+             var client = new PatrolControlServiceClient();
+             client.GetBuildingsCompleted += (sender, args) => SetFeatures(args.Result);
+diff --git a/PatrolControl.UI/Screens/Common/Map/FeatureGraphics.cs b/PatrolControl.UI/Screens/Common/Map/FeatureGraphics.cs
+index 0c87465..a05411f 100644
+--- a/PatrolControl.UI/Screens/Common/Map/FeatureGraphics.cs
++++ b/PatrolControl.UI/Screens/Common/Map/FeatureGraphics.cs
+@@ -5,5 +5,15 @@ namespace PatrolControl.UI.Screens.Common.Map
+     public class FeatureGraphics<T> : Graphic
+     {
+         public T Feature { get; set; }
++
++        public FeatureState State { get; set; }
++    }
++
++    public enum FeatureState
++    {
++        NotChanged,
++        Edited,//???
++        Added,
++        Deleted
+     }
+ }
+\ No newline at end of file
+diff --git a/PatrolControl.UI/Screens/Common/Map/FeatureLayerViewModel.cs b/PatrolControl.UI/Screens/Common/Map/FeatureLayerViewModel.cs
+index 5ffbec4..a77de83 100644
+--- a/PatrolControl.UI/Screens/Common/Map/FeatureLayerViewModel.cs
++++ b/PatrolControl.UI/Screens/Common/Map/FeatureLayerViewModel.cs
+@@ -26,7 +26,29 @@ protected FeatureLayerViewModel()
+ 
+         public GraphicCollection Features { get; private set; }
+ 
+-        public abstract void Update();
++        public abstract void Update(Envelope envelope);
++
++        public void Commit()
++        {
++            
++        }
++        
++        public void Add(FeatureGraphics<T> feature)
++        {
++            feature.State = FeatureState.Added;
++        }
++
++        public void Remove(FeatureGraphics<T> feature)
++        {
++            if (feature.State == FeatureState.Added)
++                Features.Remove(feature);
++            feature.State = FeatureState.Deleted;
++        }
++
++        public void MarkEdited(FeatureGraphics<T> feature)
++        {
++            feature.State = FeatureState.Edited;
++        }
+ 
+         protected void SetFeatures(IEnumerable<T> features)
+         {
+@@ -39,9 +61,9 @@ protected void SetFeatures(IEnumerable<T> features)
+                 var m = new ESRI.ArcGIS.Client.Projection.WebMercator();
+                 var gg = m.FromGeographic(geom);
+                 
+-                var feature = new Graphic()
++                var feature = new FeatureGraphics<T>()
+                 {
+-                    //Feature = building,
++                    Feature = building,
+                     Geometry = gg
+                 };
+ 
+diff --git a/PatrolControl.UI/Screens/Common/Map/IFeatureLayerViewModel.cs b/PatrolControl.UI/Screens/Common/Map/IFeatureLayerViewModel.cs
+index 1e01953..e48920c 100644
+--- a/PatrolControl.UI/Screens/Common/Map/IFeatureLayerViewModel.cs
++++ b/PatrolControl.UI/Screens/Common/Map/IFeatureLayerViewModel.cs
+@@ -1,5 +1,6 @@
+ ﻿using System.Collections.ObjectModel;
+ using ESRI.ArcGIS.Client;
++using ESRI.ArcGIS.Client.Geometry;
+ using PatrolControl.UI.PatrolControlServiceReference;
+ 
+ namespace PatrolControl.UI.Screens.Common.Map
+@@ -7,6 +8,8 @@ namespace PatrolControl.UI.Screens.Common.Map
+     public interface IFeatureLayerViewModel<T> where T : Feature
+     {
+         GraphicCollection Features { get; }
+-        void Update();
++        void Update(Envelope envelope);
++
++        void Commit();
+     }
+ }
+\ No newline at end of file
+diff --git a/PatrolControl.UI/Screens/Common/ObjectEditorViewModel.cs b/PatrolControl.UI/Screens/Common/ObjectEditorViewModel.cs
+index 0956a54..080206c 100644
+--- a/PatrolControl.UI/Screens/Common/ObjectEditorViewModel.cs
++++ b/PatrolControl.UI/Screens/Common/ObjectEditorViewModel.cs
+@@ -11,17 +11,21 @@
+ 
+ namespace PatrolControl.UI.Screens.Common
+ {
+-    public class ObjectEditorViewModel
++    public class ObjectEditorViewModel<T>
+     {
++        public ObjectEditorViewModel()
++        {
++
++        }
+ 
+         public void Save()
+         {
+-            
++
+         }
+ 
+         public void Cancel()
+         {
+-            
++
+         }
+ 
+     }
+diff --git a/PatrolControl.UI/Screens/MapEditor/MapEditorScreenView.xaml b/PatrolControl.UI/Screens/MapEditor/MapEditorScreenView.xaml
+index cc4ee04..c6962d8 100644
+--- a/PatrolControl.UI/Screens/MapEditor/MapEditorScreenView.xaml
++++ b/PatrolControl.UI/Screens/MapEditor/MapEditorScreenView.xaml
+@@ -8,6 +8,7 @@
+              xmlns:cal="http://www.caliburnproject.org" mc:Ignorable="d"
+     d:DesignHeight="300" d:DesignWidth="400" >
+     <UserControl.Resources>
++         <UI:DebuggingConverter x:Key="DC" />
+         <Style x:Key="BottomBar" TargetType="Border">
+             <Setter Property="Background" Value="#AAFFFFFF"/>
+         </Style>
+@@ -20,10 +21,13 @@
+         <!--Extent="50, 34, 51, 34" ZoomFactor="15"-->
+         <esri:Map x:Name="MyMap" SnapToLevels="True" Extent="3862000,6612000,3883000,6600000" IsLogoVisible="False" Grid.RowSpan="2" 
+                   cal:Message.Attach="[Event Loaded] = [Action LoadLayers]">
++            <esri:Map.Resources>
++                <UI:DataContextProxy x:Key ="Proxy" Data="{Binding}"/>
++            </esri:Map.Resources>
+             <esri:Map.Layers>
+                 <UI:YanderCacheTiledLayer  Visible="True"/>
+-                <esri:GraphicsLayer Graphics="{Binding Path=BuildingsLayer.Features}">
+-                    <!--GraphicsSource="{Binding Path=BuildingsLayer.Features}-->
++                <esri:GraphicsLayer x:Name="BuildingsLayer" Graphics="{Binding Path=Data.BuildingsLayer.Features, Source={StaticResource Proxy}}" >
++                    <!--GraphicsSource="{Binding Path=BuildingsLayer.FeBuildingsLayeratures}-->
+ 
+                     <esri:GraphicsLayer.Renderer>
+                         <esri:SimpleRenderer>
+@@ -56,6 +60,7 @@
+                 </Style>
+             </Border.Resources>
+             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
++                <Button Click="ViewAll"  Margin="5" >Add street</Button>
+                 <Button x:Name="AddStreet" Margin="5" >Add street</Button>
+                 <Button x:Name="AddBuilding">Add building</Button>
+                 <Button x:Name="Cancel">Cancel</Button>
+diff --git a/PatrolControl.UI/Screens/MapEditor/MapEditorScreenView.xaml.cs b/PatrolControl.UI/Screens/MapEditor/MapEditorScreenView.xaml.cs
+index 3abb0bf..a9000b3 100644
+--- a/PatrolControl.UI/Screens/MapEditor/MapEditorScreenView.xaml.cs
++++ b/PatrolControl.UI/Screens/MapEditor/MapEditorScreenView.xaml.cs
+@@ -18,5 +18,10 @@ public MapEditorScreenView()
+         {
+             InitializeComponent();
+         }
++
++        private void ViewAll(object sender, RoutedEventArgs e)
++        {
++            
++        }
+     }
+ }
+-- 
+1.8.0.msysgit.0
+

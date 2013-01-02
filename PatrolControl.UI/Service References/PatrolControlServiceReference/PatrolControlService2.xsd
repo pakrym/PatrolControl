@@ -9,9 +9,8 @@
   <xs:element name="ArrayOfBuilding" nillable="true" type="tns:ArrayOfBuilding" />
   <xs:complexType name="Building">
     <xs:complexContent mixed="false">
-      <xs:extension base="tns:Entity">
+      <xs:extension base="tns:Feature">
         <xs:sequence>
-          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Data.Spatial" minOccurs="0" name="Geography" nillable="true" type="q1:DbGeography" />
           <xs:element minOccurs="0" name="Number" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="StreetId" type="xs:int" />
           <xs:element minOccurs="0" name="Tags" type="xs:long" />
@@ -20,10 +19,68 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="Building" nillable="true" type="tns:Building" />
+  <xs:complexType name="Feature">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Entity">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Data.Spatial" minOccurs="0" name="Geography" nillable="true" type="q1:DbGeography" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Feature" nillable="true" type="tns:Feature" />
   <xs:complexType name="Entity">
     <xs:sequence>
       <xs:element minOccurs="0" name="Id" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Entity" nillable="true" type="tns:Entity" />
+  <xs:complexType name="ArrayOfStreet">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Street" nillable="true" type="tns:Street" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfStreet" nillable="true" type="tns:ArrayOfStreet" />
+  <xs:complexType name="Street">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Feature">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Street" nillable="true" type="tns:Street" />
+  <xs:complexType name="ArrayOfPatrolDistrict">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PatrolDistrict" nillable="true" type="tns:PatrolDistrict" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPatrolDistrict" nillable="true" type="tns:ArrayOfPatrolDistrict" />
+  <xs:complexType name="PatrolDistrict">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Feature">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PatrolDistrict" nillable="true" type="tns:PatrolDistrict" />
+  <xs:complexType name="ArrayOfTownDistrict">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TownDistrict" nillable="true" type="tns:TownDistrict" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTownDistrict" nillable="true" type="tns:ArrayOfTownDistrict" />
+  <xs:complexType name="TownDistrict">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Feature">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TownDistrict" nillable="true" type="tns:TownDistrict" />
 </xs:schema>

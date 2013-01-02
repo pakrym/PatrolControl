@@ -1,11 +1,41 @@
 ﻿using System;
+using System.Globalization;
+using System.Windows;
+using System.Windows.Data;
 using Caliburn.Micro;
 using Microsoft.Practices.Unity;
+using PatrolControl.UI.PatrolControlServiceReference;
+using PatrolControl.UI.Screens.Common.Map;
 using PatrolControl.UI.Screens.Login;
 using PatrolControl.UI.Screens.Shell;
 
 namespace PatrolControl.UI
 {
+
+    public class DataContextProxy : DependencyObject
+    {
+        public object Data
+        {
+            get { return (object)GetValue(DataProperty); }
+            set { SetValue(DataProperty, value); }
+        }
+
+        public static readonly DependencyProperty DataProperty =
+            DependencyProperty.Register("Data", typeof(object), typeof(DataContextProxy), new PropertyMetadata(null));
+    }
+
+    public class DebuggingConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+    }
     public class PatrolControlUiBootstrapper : Bootstrapper<ShellViewModel>
     {
         private UnityContainer _container;
@@ -20,7 +50,6 @@ namespace PatrolControl.UI
         {
             _container = new UnityContainer();
 
-
             foreach (Type t in typeof(PatrolControlUiBootstrapper).Assembly.GetTypes())
             {
                 if (t.Name.EndsWith("ViewModel"))
@@ -30,7 +59,9 @@ namespace PatrolControl.UI
             }
             _container.RegisterType<ShellViewModel>(new ContainerControlledLifetimeManager());
 
-            
+            _container.RegisterType<IFeatureLayerViewModel, BuildingFeatureLayerViewModel>("buildings");
+            _container.RegisterType<IFeatureLayerViewModel, StreetFeatureLayerViewModel>("streets");
+
         }
 
         protected override void BuildUp(object instance)

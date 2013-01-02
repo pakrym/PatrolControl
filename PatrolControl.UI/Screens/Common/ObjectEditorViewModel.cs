@@ -11,17 +11,21 @@ using System.Windows.Shapes;
 
 namespace PatrolControl.UI.Screens.Common
 {
-    public class ObjectEditorViewModel
+    public class ObjectEditorViewModel<T>
     {
+        public ObjectEditorViewModel()
+        {
+
+        }
 
         public void Save()
         {
-            
+
         }
 
         public void Cancel()
         {
-            
+
         }
 
     }
