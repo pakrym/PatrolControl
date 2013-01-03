@@ -8,23 +8,23 @@
              mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
 
-    <Grid x:Name="LayoutRoot" Background="White">
-        <controls:GroupPanel Title="Login" VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" utilities:MarginSetter.Margin="5">
-            <StackPanel>
+    <Grid x:Name="LayoutRoot" >
+        <Border Style="{StaticResource PanelWithShade}" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <controls:GroupPanel Title="Sign-in">
+                <StackPanel utilities:MarginSetter.Margin="5"  >
+                    <TextBlock Text="Login"></TextBlock>
+                    <ComboBox x:Name="Login">
+                        <ComboBox.Items>
+                            <ComboBoxItem>Some user</ComboBoxItem>
+                        </ComboBox.Items>
+                    </ComboBox>
+                    <TextBlock  Text="Password" ></TextBlock>
+                    <PasswordBox x:Name="Password"></PasswordBox>
+                    <Button x:Name="DoLogin" >Login</Button>
 
-                <TextBlock  x:Name="Login" Text="Login"></TextBlock>
 
-                <ComboBox>
-                    <ComboBox.Items>
-                        <ComboBoxItem>Some user</ComboBoxItem>
-                    </ComboBox.Items>
-                </ComboBox>
-                <TextBlock x:Name="Password" Text="Password" ></TextBlock>
-                <PasswordBox ></PasswordBox>
-                <Button x:Name="DoLogin" >Login</Button>
-
-
-            </StackPanel>
-        </controls:GroupPanel>
+                </StackPanel>
+            </controls:GroupPanel>
+        </Border>
     </Grid>
 </UserControl>

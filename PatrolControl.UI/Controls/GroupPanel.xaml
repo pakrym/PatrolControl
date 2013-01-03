@@ -12,10 +12,12 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <StackPanel>
-                            <TextBlock Margin="0,0,0,4" Style="{StaticResource HeaderTextStyle}" Text="{Binding Title, RelativeSource={RelativeSource TemplatedParent}}" />
-                            <ContentPresenter Margin="15,5"></ContentPresenter>
-                        </StackPanel>
+                        <Border Padding="10"  Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}">
+                            <StackPanel >
+                                <TextBlock Margin="0,0,0,4" Style="{StaticResource HeaderTextStyle}" Text="{Binding Title, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <ContentPresenter Margin="15,5"></ContentPresenter>
+                            </StackPanel>
+                        </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

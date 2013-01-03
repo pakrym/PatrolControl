@@ -10,17 +10,7 @@
              mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400" >
     <UserControl.Resources>
-        <Style x:Key="ToolBar" TargetType="Border">
-
-            <Setter Property="MinWidth" Value="200"/>
-            <Setter Property="Padding" Value="10"/>
-            <Setter Property="Background" Value="#FFFFFF"/>
-            <Setter Property="Effect" >
-                <Setter.Value>
-                    <DropShadowEffect Color="Black" Direction="0" ShadowDepth="2" 
-             BlurRadius="5" Opacity="0.5" />
-                </Setter.Value>
-            </Setter>
+        <Style x:Key="ToolBar" TargetType="Border" BasedOn="{StaticResource PanelWithShade}">
         </Style>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -39,12 +29,13 @@
                 <UI:YanderCacheTiledLayer Visible="True"/>
 
                 <esri:GraphicsLayer 
+                    
                     MouseLeftButtonUp="Click"
                     Visible="{Binding Path=Data.BuildingsLayer.IsVisible, Source={StaticResource Proxy}}"
                     Graphics="{Binding Path=Data.BuildingsLayer.Features, Source={StaticResource Proxy}}"
                     Renderer="{StaticResource BuildingsLayerRenderer}">
                 </esri:GraphicsLayer>
-
+              
                 <esri:GraphicsLayer MouseLeftButtonUp="Click"
                     x:Name="StreetsLayer" 
                                     Visible="{Binding Path=Data.StreetsLayer.IsVisible, Source={StaticResource Proxy}}" 
@@ -65,6 +56,15 @@
 
         <Border Style="{StaticResource ToolBar}"   Grid.Column="0">
             <StackPanel Orientation="Vertical">
+
+                <esri:EditorWidget x:Name="MyEditorWidget"
+                             Map="{Binding ElementName=MyMap}" 
+                                      Width="300" 
+                                      AutoSelect="False"
+                                      AlwaysDisplayDefaultTemplates="True" 
+                                      GeometryServiceUrl="http://tasks.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer"
+                                      ShowAttributesOnAdd="True"  
+                                     />
 
                 <controls:GroupPanel Title="Layers">
                     <ItemsControl x:Name="Layers">

@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using ESRI.ArcGIS.Client;
+using ESRI.ArcGIS.Client.Toolkit;
 using Microsoft.Practices.Unity;
 using PatrolControl.UI.PatrolControlServiceReference;
 using PatrolControl.UI.Screens.Common;
@@ -13,6 +14,8 @@ namespace PatrolControl.UI.Screens.MapEditor
         {
             ObjectEditor = new ObjectEditorViewModel();
         }
+
+        public Graphic SelectedGraphics { get; set; }
 
         [Dependency("buildings")]
         public IFeatureLayerViewModel BuildingsLayer { get; set; }
@@ -28,7 +31,14 @@ namespace PatrolControl.UI.Screens.MapEditor
 
         public void Click(object sender, GraphicMouseButtonEventArgs e)
         {
+            if (SelectedGraphics == e.Graphic) return;
+
+            if (SelectedGraphics != null)
+                SelectedGraphics.UnSelect();
+            
+            SelectedGraphics = e.Graphic;
             e.Graphic.Select();
+
             var featureGraphics = e.Graphic as FeatureGraphics;
             if (featureGraphics != null)
             {

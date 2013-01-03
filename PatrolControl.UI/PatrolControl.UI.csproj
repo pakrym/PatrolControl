@@ -66,7 +66,6 @@
     </Reference>
     <Reference Include="ESRI.ArcGIS.Client, Version=3.0.0.388, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL" />
     <Reference Include="ESRI.ArcGIS.Client.Behaviors, Version=3.0.0.388, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL" />
-    <Reference Include="ESRI.ArcGIS.Client.Bing, Version=3.0.0.388, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL" />
     <Reference Include="ESRI.ArcGIS.Client.Toolkit, Version=3.0.0.388, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL" />
     <Reference Include="ESRI.ArcGIS.Client.Toolkit.DataSources, Version=3.0.0.388, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Practices.ServiceLocation">
@@ -119,6 +118,9 @@
     <Compile Include="Converters\WellKnownText\TokenType.cs" />
     <Compile Include="Converters\WellKnownText\WKTStreamTokenizer.cs" />
     <Compile Include="Data\IBuildingProvider.cs" />
+    <Compile Include="Screens\Common\Editors\Building.xaml.cs">
+      <DependentUpon>Building.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Common\Editors\Street.xaml.cs">
       <DependentUpon>Street.xaml</DependentUpon>
     </Compile>
@@ -174,6 +176,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Screens\Common\Editors\Building.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Screens\Common\Editors\Street.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -216,6 +222,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Themes\Images\background.jpg" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Service References\PatrolControlServiceReference\PatrolControl.UI.PatrolControlServiceReference.Building.datasource">
