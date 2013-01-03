@@ -6,7 +6,7 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
     
-    <Grid x:Name="LayoutRoot" Background="White">
+    <Grid x:Name="LayoutRoot" Style="{StaticResource BackroundImage}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>

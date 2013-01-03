@@ -13,12 +13,8 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <ContentControl x:Name="Target"></ContentControl>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
-            <StackPanel.Resources>
-                <Style TargetType="Button">
-                    <Setter Property="Margin" Value="5"></Setter>
-                </Style>
-            </StackPanel.Resources>
+       
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left" local:MarginSetter.Margin="5">
             <Button x:Name="Save">Save</Button>
             <Button x:Name="Cancel">Cancel</Button>
             <Button x:Name="Delete" Visibility="{Binding CanDelete, Converter={local:BoolToVisibilityConverter}}">Delete</Button>
