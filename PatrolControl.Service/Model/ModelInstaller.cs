@@ -1,32 +1,40 @@
 ﻿using System;
+using System.Collections;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Resources;
+using System.Text;
 
 namespace PatrolControl.Service.Model
 {
     public class ModelInstaller
     {
-        public bool Install(string @namespace = "Install.Sql")
+        public bool Install(DatabaseContext dc = null, string @namespace = "Install.Sql")
         {
-            var dc = new DatabaseContext();
+            if (dc == null) dc = new DatabaseContext();
             dc.Database.CreateIfNotExists();
 
             var assembly = Assembly.GetExecutingAssembly();
+
             var resourceNames = assembly.GetManifestResourceNames()
                                         .Where(r => r.StartsWith(@namespace)).OrderBy(r => r);
-
-            foreach (var stream in resourceNames.Select(assembly.GetManifestResourceStream).Where(stream => stream != null))
+            foreach (var resourceName in resourceNames)
             {
-                using (var reader = new StreamReader(stream))
+                var rm = new ResourceManager(resourceName.Substring(0,resourceName.LastIndexOf('.')), assembly);
+                foreach (var stream in rm.GetResourceSet(CultureInfo.CurrentUICulture, true, true).Cast<DictionaryEntry>().OrderBy(e => e.Key))
                 {
-                    var resource = reader.ReadToEnd();
+                    var resource = stream.Value.ToString();
                     if (dc.Database.ExecuteSqlCommand(resource) <= 0)
                     {
                         throw new InvalidOperationException("Failed to execute request: '" + resource + "'");
                     }
                 }
             }
+            
+
+
             return true;
         }
     }

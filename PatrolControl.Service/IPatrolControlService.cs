@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Spatial;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Security;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
@@ -14,7 +15,13 @@ namespace PatrolControl.Service
     [ServiceContract]
     public interface IPatrolControlService
     {
+        [OperationContract]
+        User Login(String name, String password);
+
         #region Get
+
+        [OperationContract]
+        IList<User> GetUsers();
 
         [OperationContract]
         IList<Building> GetBuildings();
@@ -39,6 +46,9 @@ namespace PatrolControl.Service
         #region Add
 
         [OperationContract]
+        void AddUsers(params User[] users);
+
+        [OperationContract]
         void AddBuildings(params Building[] buildings);
 
         [OperationContract]
@@ -53,6 +63,9 @@ namespace PatrolControl.Service
         #endregion
 
         #region Update
+
+        [OperationContract]
+        void UpdateUsers(params User[] users);
 
         [OperationContract]
         void UpdateBuildings(params Building[] buildings);
@@ -70,12 +83,19 @@ namespace PatrolControl.Service
 
         #region Delete
 
+        [OperationContract]
+        void DeleteUsers(params User[] users);
+
+        [OperationContract]
         void DeleteBuildings(params Building[] buildings);
 
+        [OperationContract]
         void DeleteStreets(params Street[] streets);
 
+        [OperationContract]
         void DeletePatrolDistricts(params PatrolDistrict[] districts);
 
+        [OperationContract]
         void DeleteTownDistricts(params TownDistrict[] districts);
 
         #endregion

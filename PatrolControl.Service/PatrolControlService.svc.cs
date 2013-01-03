@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Spatial;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Security;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using PatrolControl.Service.Model;
 using System.Globalization;
+using System.Data.SqlClient;
 
 namespace PatrolControl.Service
 {
@@ -17,17 +20,31 @@ namespace PatrolControl.Service
 
         private readonly DatabaseContext _context;
 
+        static PatrolControlService()
+        {
+            Database.SetInitializer(new DatabaseContext.Initializer());
+        }
+
         public PatrolControlService()
         {
             _context = new DatabaseContext();
         }
 
+        public User Login(String name, String password)
+        {
+            return _context.Users.Where(u => u.Name.Equals(name)).AsEnumerable().SingleOrDefault(u => u.ValidatePasword(password));
+        }
+
         #region Get
+
+        public IList<User> GetUsers()
+        {
+            return _context.Users.ToList();
+        }
 
         public IList<Building> GetBuildings()
         {
             List<Building> buildings = new List<Building>();
-
             var lonc = 34.804945;
             var latc = 50.911487;
 
@@ -45,11 +62,10 @@ namespace PatrolControl.Service
 
                     buildings.Add(new Building() { Geography = p, Id = i, Number = i.ToString() });
                 }
-
             }
             return buildings;
+            //return _context.Buildings.ToList();
         }
-
 
         public IList<Street> GetStreets()
         {
@@ -75,15 +91,15 @@ namespace PatrolControl.Service
                         lat.ToString(CultureInfo.InvariantCulture),
                         lon1.ToString(CultureInfo.InvariantCulture),
                         lat1.ToString(CultureInfo.InvariantCulture)
-                        
+
                         ), SRID);
 
-                buildings.Add(new Street() { Geography = p, Id = i,  Name = i.ToString() });
+                buildings.Add(new Street() { Geography = p, Id = i, Name = i.ToString() });
             }
 
             return buildings;
+            //return _context.Streets.Where(s => s.Geography != null).ToList();
         }
-
 
         public IList<PatrolDistrict> GetPatrolDistricts()
         {
@@ -102,13 +118,20 @@ namespace PatrolControl.Service
 
         public IList<Street> GetStreetsWithSimularNames(string name)
         {
-            //TODO: make it right!
-            return _context.Streets.Where(e => e.Name.Contains(name)).ToList();
+            //return _context.Streets.Where(e => e.Name.Contains(name)).ToList();
+            return _context.Database.SqlQuery<Street>("EXEC StreetsWithSimularnames @name", new SqlParameter("name", name)).ToList();
         }
 
         #endregion
 
         #region Add
+
+        public void AddUsers(params User[] users)
+        {
+            foreach (var user in users)
+                _context.Users.Add(user);
+            _context.SaveChanges();
+        }
 
         public void AddBuildings(params Building[] buildings)
         {
@@ -141,6 +164,21 @@ namespace PatrolControl.Service
         #endregion
 
         #region Update
+
+        public void UpdateUsers(params User[] users)
+        {
+            var elements = _context.Users
+                           .Select(b => new { User = b, Entity = users.LastOrDefault(e => e.Id == b.Id) })
+                           .Where(e => e.Entity != null);
+
+            foreach (var element in elements)
+            {
+                element.Entity.Name = element.User.Name;
+                element.Entity.PasswordHash = element.User.PasswordHash;
+                element.Entity.Type = element.User.Type;
+            }
+            _context.SaveChanges();
+        }
 
         public void UpdateBuildings(params Building[] buildings)
         {
@@ -203,6 +241,13 @@ namespace PatrolControl.Service
         #endregion
 
         #region Delete
+
+        public void DeleteUsers(params User[] users)
+        {
+            foreach (var user in _context.Users.Where(b => users.Any(e => e.Id == b.Id)))
+                _context.Users.Remove(user);
+            _context.SaveChanges();
+        }
 
         public void DeleteBuildings(params Building[] buildings)
         {
