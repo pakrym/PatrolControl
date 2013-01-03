@@ -12,17 +12,12 @@
         <Border Style="{StaticResource PanelWithShade}" VerticalAlignment="Center" HorizontalAlignment="Center">
             <controls:GroupPanel Title="Sign-in">
                 <StackPanel utilities:MarginSetter.Margin="5"  >
+                    <TextBlock Visibility="Collapsed" x:Name="ErrorMessage"></TextBlock>
                     <TextBlock Text="Login"></TextBlock>
-                    <ComboBox x:Name="Login">
-                        <ComboBox.Items>
-                            <ComboBoxItem>Some user</ComboBoxItem>
-                        </ComboBox.Items>
-                    </ComboBox>
+                    <TextBox x:Name="Login"></TextBox>
                     <TextBlock  Text="Password" ></TextBlock>
                     <PasswordBox x:Name="Password"></PasswordBox>
                     <Button x:Name="DoLogin" >Login</Button>
-
-
                 </StackPanel>
             </controls:GroupPanel>
         </Border>

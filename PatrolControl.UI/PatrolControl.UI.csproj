@@ -237,6 +237,9 @@
     <None Include="Service References\PatrolControlServiceReference\PatrolControl.UI.PatrolControlServiceReference.TownDistrict.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\PatrolControlServiceReference\PatrolControl.UI.PatrolControlServiceReference.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\PatrolControlServiceReference\PatrolControlService.disco" />
     <None Include="Service References\PatrolControlServiceReference\configuration91.svcinfo" />
     <None Include="Service References\PatrolControlServiceReference\configuration.svcinfo" />

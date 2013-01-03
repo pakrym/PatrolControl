@@ -13,8 +13,9 @@ namespace PatrolControl.UI.Screens.MapEditor
 {
     public class MapEditorScreenViewModel : ViewAware
     {
-        public MapEditorScreenViewModel()
+        public MapEditorScreenViewModel(User user)
         {
+            User = user;
             ObjectEditor = new ObjectEditorViewModel();
             this.ViewAttached += HandleViewAttached;
         }
@@ -22,9 +23,11 @@ namespace PatrolControl.UI.Screens.MapEditor
 
         [Dependency("buildings")]
         public IFeatureLayerViewModel BuildingsLayer { get; set; }
+
         [Dependency("streets")]
         public IFeatureLayerViewModel StreetsLayer { get; set; }
-        
+
+        public User User { get; private set; }
         public EditGeometry GraphicEditor { get; set; }
         public Map Map { get; set; }
 

@@ -19,6 +19,7 @@ namespace PatrolControl.UI.Screens.Login
 
         public string Login { get; set; }
         public string Password { get; set; }
+        public string ErrorMessage { get; set; }
 
         [Dependency]
         public ShellViewModel ShellViewModel { get; set; }
@@ -30,9 +31,23 @@ namespace PatrolControl.UI.Screens.Login
 
         public void DoLogin()
         {
-            ShellViewModel.Push(MapEditorScreen());
+            var client = new PatrolControlServiceClient();
+            client.LoginCompleted += (sender, args) => CheckUser(args.Result);
+            client.LoginAsync(Login, Password);
         }
-        
+
+        private void CheckUser(User user)
+        {
+            if (user == null)
+            {
+                ErrorMessage = "Invalid login or password";
+            }
+            else
+            {
+                ShellViewModel.Push(MapEditorScreen());
+            }
+        }
+
 
 
     }
