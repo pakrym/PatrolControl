@@ -63,8 +63,8 @@
 
         <Border Style="{StaticResource ToolBar}"   Grid.Column="0">
             <StackPanel Orientation="Vertical">
-
-
+                <HyperlinkButton Style="{StaticResource BackButton}" ></HyperlinkButton>
+                
                 <controls:GroupPanel Title="Layers">
                     <ItemsControl x:Name="Layers">
                         <ItemsControl.ItemsPanel>

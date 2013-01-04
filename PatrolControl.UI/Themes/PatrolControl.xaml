@@ -63,11 +63,16 @@
     <DataTemplate x:Key="StreetLayerTooltip">
         <Border BorderBrush="Black" BorderThickness="1" Background="White">
 
-            <TextBlock>Fuck me!</TextBlock>
-
+           
         </Border>
     </DataTemplate>
 
+    <Style x:Key="BackButton" TargetType="HyperlinkButton">
+        <Setter Property="Margin" Value="10"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="Content" Value="BACK!"></Setter>
+    </Style>
+    
     <Style x:Key="BackroundImage" TargetType="Panel">
         <Setter Property="Background">
             <Setter.Value>

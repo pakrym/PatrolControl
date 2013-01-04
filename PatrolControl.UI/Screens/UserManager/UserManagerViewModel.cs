@@ -13,11 +13,18 @@ using PatrolControl.UI.Screens.Common;
 
 namespace PatrolControl.UI.Screens.UserManager
 {
-    public class UserManagerViewModel : PropertyChangedBase
+    public class UserManagerViewModel : Screen
     {
-        private object _selectedUser;
+        public override string DisplayName
+        {
+            get
+            {
+                return "User Manager";
+            }
+        }
 
-        public IUserRepository UserRepository { get; set; }
+
+        private object _selectedUser;
 
         public UserManagerViewModel()
         {
@@ -43,10 +50,4 @@ namespace PatrolControl.UI.Screens.UserManager
         }
     }
 
-    public interface IUserRepository
-    {
-        User[] List();
-        void Delete(User user);
-        void Save(User user);
-    }
 }

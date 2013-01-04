@@ -117,7 +117,23 @@
     <Compile Include="Converters\WellKnownText\StreamTokenizer.cs" />
     <Compile Include="Converters\WellKnownText\TokenType.cs" />
     <Compile Include="Converters\WellKnownText\WKTStreamTokenizer.cs" />
-    <Compile Include="Data\IBuildingProvider.cs" />
+    <Compile Include="Framework\BackendUiExtensions.cs" />
+    <Compile Include="Framework\IOpenResult.cs" />
+    <Compile Include="Framework\IShell.cs" />
+    <Compile Include="Framework\OpenChildResult.cs" />
+    <Compile Include="Framework\OpenResultBase.cs" />
+    <Compile Include="Framework\Show.cs" />
+    <Compile Include="Model\GetLoginUsers.cs" />
+    <Compile Include="Model\GetScreensForUser.cs" />
+    <Compile Include="Services\BackendService.cs" />
+    <Compile Include="Services\IPermissionService.cs" />
+    <Compile Include="Services\IUserService.cs" />
+    <Compile Include="Framework\CommandResult.cs" />
+    <Compile Include="Framework\IQuery.cs" />
+    <Compile Include="Framework\IService.cs" />
+    <Compile Include="Framework\QueryResult.cs" />
+    <Compile Include="Framework\ServiceBase.cs" />
+    <Compile Include="Model\LoginUser.cs" />
     <Compile Include="Screens\Common\Editors\Building.xaml.cs">
       <DependentUpon>Building.xaml</DependentUpon>
     </Compile>
@@ -141,12 +157,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Services\PermissionService.cs" />
+    <Compile Include="Services\UserService.cs" />
     <Compile Include="Utilities\BoolToVisibilityConverter.cs" />
     <Compile Include="Utilities\EditableAdapter.cs" />
     <Compile Include="Utilities\EditableAdapterCustomMethodInfo.cs" />
     <Compile Include="Utilities\EditableAdapterCustomPropertyInfo.cs" />
     <Compile Include="Utilities\EditableAdapterCustomType.cs" />
     <Compile Include="Utilities\GeometryExtentions.cs" />
+    <Compile Include="Framework\ICommand.cs" />
     <Compile Include="Utilities\MarginSetter.cs" />
     <Compile Include="YanderCacheTiledLayer.cs" />
     <Compile Include="Screens\Common\ObjectEditorViewModel.cs" />
@@ -274,7 +293,9 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Bin\" />
+  </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\PatrolControlServiceReference\" />
   </ItemGroup>
