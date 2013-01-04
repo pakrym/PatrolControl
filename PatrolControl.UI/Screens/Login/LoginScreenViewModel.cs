@@ -13,8 +13,6 @@ namespace PatrolControl.UI.Screens.Login
     {
         public LoginScreenViewModel()
         {
-            ObjectEditor = new ObjectEditorViewModel();
-            ObjectEditor.Edit(new Street() {Id = 3, Name = "Hello"});
         }
 
         public string Login { get; set; }
@@ -25,8 +23,6 @@ namespace PatrolControl.UI.Screens.Login
 
         [Dependency]
         public Func<MapEditorScreenViewModel> MapEditorScreen { get; set; }
-
-        public ObjectEditorViewModel ObjectEditor { get; set; }
 
         public void DoLogin()
         {
