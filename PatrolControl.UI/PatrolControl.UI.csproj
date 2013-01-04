@@ -128,9 +128,14 @@
     <Compile Include="Screens\Common\Map\FeatureGraphics.cs" />
     <Compile Include="Screens\Common\Map\FeatureLayerViewModel.cs" />
     <Compile Include="Screens\Common\Map\IFeatureLayerViewModel.cs" />
+    <Compile Include="Screens\Common\Map\StreetFeatureLayerViewModel.cs" />
     <Compile Include="Screens\Common\ObjectEditorView.xaml.cs">
       <DependentUpon>ObjectEditorView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Screens\UserManager\UserManagerView.xaml.cs">
+      <DependentUpon>UserManagerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\UserManager\UserManagerViewModel.cs" />
     <Compile Include="Service References\PatrolControlServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -197,6 +202,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Screens\Shell\ShellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\UserManager\UserManagerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
