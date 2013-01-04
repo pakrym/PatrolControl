@@ -64,14 +64,6 @@
         <Border Style="{StaticResource ToolBar}"   Grid.Column="0">
             <StackPanel Orientation="Vertical">
 
-                <esri:EditorWidget x:Name="MyEditorWidget"
-                             Map="{Binding ElementName=MyMap}" 
-                                      Width="300" 
-                                      AutoSelect="False"
-                                      AlwaysDisplayDefaultTemplates="True" 
-                                      GeometryServiceUrl="http://tasks.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer"
-                                      ShowAttributesOnAdd="True"  
-                                     />
 
                 <controls:GroupPanel Title="Layers">
                     <ItemsControl x:Name="Layers">

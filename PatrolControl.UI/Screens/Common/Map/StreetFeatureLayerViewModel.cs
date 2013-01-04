@@ -2,18 +2,18 @@
 
 namespace PatrolControl.UI.Screens.Common.Map
 {
-    public class BuildingFeatureLayerViewModel : FeatureLayerViewModel
+    public class StreetFeatureLayerViewModel : FeatureLayerViewModel
     {
         public override string Name
         {
-            get { return "Buildings"; }
+            get { return "Streets"; }
         }
 
         public override void Update(ESRI.ArcGIS.Client.Geometry.Envelope envelope)
         {
             var client = new PatrolControlServiceClient();
-            client.GetBuildingsCompleted += (sender, args) => SetFeatures(args.Result);
-            client.GetBuildingsAsync();
+            client.GetStreetsCompleted += (sender, args) => SetFeatures(args.Result);
+            client.GetStreetsAsync();
         }
     }
 }
