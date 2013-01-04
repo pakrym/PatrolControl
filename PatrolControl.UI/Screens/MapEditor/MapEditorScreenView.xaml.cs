@@ -33,7 +33,6 @@ namespace PatrolControl.UI.Screens.MapEditor
 
         private void MouseMove(object sender, MouseEventArgs e)
         {
-            
             (DataContext as MapEditorScreenViewModel).MouseMove(sender, e);
         }
 
