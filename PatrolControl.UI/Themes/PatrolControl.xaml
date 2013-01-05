@@ -8,7 +8,7 @@
     xmlns:c="clr-namespace:PatrolControl.UI.Controls" xmlns:esri="http://schemas.esri.com/arcgis/client/2009"
     mc:Ignorable="d">
 
-    <!--<esri:SimpleRenderer x:Key="BuildingsLayerRenderer">
+    <esri:SimpleRenderer x:Key="BuildingsLayerRenderer">
         <esri:SimpleMarkerSymbol>
             <esri:SimpleMarkerSymbol.ControlTemplate>
                 <ControlTemplate>
@@ -33,7 +33,7 @@
                 </ControlTemplate>
             </esri:SimpleMarkerSymbol.ControlTemplate>
         </esri:SimpleMarkerSymbol>
-    </esri:SimpleRenderer>-->
+    </esri:SimpleRenderer>
 
     <esri:SimpleRenderer x:Key="StreetLayerRenderer">
         <esri:SimpleLineSymbol>

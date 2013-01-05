@@ -20,7 +20,7 @@ namespace PatrolControl.UI.Services
                         Type = 3
                     });
             }
-
+            
             callback(null);
         }
 

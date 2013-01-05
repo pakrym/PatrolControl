@@ -51,7 +51,7 @@ namespace PatrolControl.UI.Screens.Common
         public void Edit(object o)
         {
             Target = EditableAdapter.CreateGeneric(o);
-            
+
             IsEditing = true;
             var ieo = Target as IEditableObject;
             if (ieo != null)
@@ -64,6 +64,7 @@ namespace PatrolControl.UI.Screens.Common
             if (ieo != null)
                 ieo.EndEdit();
             EndEdit();
+            OnSaved();
         }
 
         public void Cancel()
@@ -72,6 +73,16 @@ namespace PatrolControl.UI.Screens.Common
             if (ieo != null)
                 ieo.CancelEdit();
             EndEdit();
+            OnCancelled();
+        }
+
+        public void Delete()
+        {
+            var ieo = Target as IEditableObject;
+            if (ieo != null)
+                ieo.CancelEdit();
+            EndEdit();
+            OnDeleted();
         }
 
         private void EndEdit()
@@ -80,6 +91,28 @@ namespace PatrolControl.UI.Screens.Common
             IsEditing = false;
         }
 
+        public event EventHandler Saved;
 
+        protected virtual void OnSaved()
+        {
+            EventHandler handler = Saved;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
+
+        public event EventHandler Cancelled;
+
+        protected virtual void OnCancelled()
+        {
+            EventHandler handler = Cancelled;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
+
+        public event EventHandler Deleted;
+
+        protected virtual void OnDeleted()
+        {
+            EventHandler handler = Deleted;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
     }
 }

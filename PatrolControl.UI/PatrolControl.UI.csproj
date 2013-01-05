@@ -127,7 +127,10 @@
     <Compile Include="Framework\Show.cs" />
     <Compile Include="Model\GetLoginUsers.cs" />
     <Compile Include="Model\GetScreensForUser.cs" />
+    <Compile Include="Model\SaveFeature.cs" />
+    <Compile Include="Model\UpdateLayer.cs" />
     <Compile Include="Services\BackendService.cs" />
+    <Compile Include="Services\IFeatureService.cs" />
     <Compile Include="Services\IPermissionService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Framework\CommandResult.cs" />

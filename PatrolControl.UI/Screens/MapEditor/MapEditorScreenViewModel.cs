@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Input;
 using Caliburn.Micro;
 using ESRI.ArcGIS.Client;
@@ -8,6 +9,7 @@ using Microsoft.Practices.Unity;
 using PatrolControl.UI.PatrolControlServiceReference;
 using PatrolControl.UI.Screens.Common;
 using PatrolControl.UI.Screens.Common.Map;
+using PatrolControl.UI.Utilities;
 
 namespace PatrolControl.UI.Screens.MapEditor
 {
@@ -24,21 +26,48 @@ namespace PatrolControl.UI.Screens.MapEditor
         public MapEditorScreenViewModel()
         {
             ObjectEditor = new ObjectEditorViewModel();
+            ObjectEditor.Saved += (sender, args) => Coroutine.BeginExecute(Saved().GetEnumerator()); 
+            ObjectEditor.Cancelled += (sender, args) => Coroutine.BeginExecute(Cancelled().GetEnumerator());
+            ObjectEditor.Deleted += (sender, args) => Coroutine.BeginExecute(Deleted().GetEnumerator());
             this.ViewAttached += HandleViewAttached;
         }
+
+        private IEnumerable<IResult> Deleted()
+        {
+                
+        }
+
+        private IEnumerable<IResult> Cancelled()
+        {
+            GraphicEditor.CancelEditEx();
+            yield break;
+        }
+
+        private IEnumerable<IResult> Saved()
+        {
+            GraphicEditor.StopEditEx();
+            
+            var featureGraphics = SelectedGraphics as FeatureGraphics;
+
+            if (featureGraphics != null)
+            {
+                featureGraphics.FeatureLayer.MarkEdited(featureGraphics);
+            }
+            yield break;
+        }
+
 
         [Dependency("buildings")]
         public IFeatureLayerViewModel BuildingsLayer { get; set; }
         [Dependency("streets")]
         public IFeatureLayerViewModel StreetsLayer { get; set; }
-        
-        public EditGeometry GraphicEditor { get; set; }
+
+        public EditGeometryExtended GraphicEditor { get; set; }
+
         public Map Map { get; set; }
 
         public Graphic SelectedGraphics { get; set; }
 
-        public bool MovingPoint { get; set; }
-        public MapPoint InitialLocation { get; set; }
 
 
         public ObjectEditorViewModel ObjectEditor { get; private set; }
@@ -58,8 +87,11 @@ namespace PatrolControl.UI.Screens.MapEditor
         {
             var view = (MapEditorScreenView)eventArgs.View;
 
-            GraphicEditor = (EditGeometry)view.Resources["GraphicEditor"];
+            GraphicEditor = (EditGeometryExtended)view.Resources["GraphicEditor"];
             Map = (Map)view.FindName("MyMap");
+
+            GraphicEditor.Init(Map);
+
         }
 
         public void MouseDown(object sender, GraphicMouseButtonEventArgs e)
@@ -69,20 +101,14 @@ namespace PatrolControl.UI.Screens.MapEditor
                 if (SelectedGraphics != null)
                 {
                     SelectedGraphics.UnSelect();
-                    GraphicEditor.CancelEdit();
+                    GraphicEditor.CancelEditEx();
                     ObjectEditor.Cancel();
-                    if (SelectedGraphics.Geometry is MapPoint) // return to initial position
-                    {
-                        SelectedGraphics.Geometry = InitialLocation;
-                    }
                 }
 
                 SelectedGraphics = e.Graphic;
                 SelectedGraphics.Select();
-                if (!(SelectedGraphics.Geometry is MapPoint))
-                {
-                    GraphicEditor.StartEdit(SelectedGraphics);
-                }
+                
+                GraphicEditor.StartEditEx(SelectedGraphics);
 
                 var featureGraphics = e.Graphic as FeatureGraphics;
                 if (featureGraphics != null)
@@ -90,33 +116,7 @@ namespace PatrolControl.UI.Screens.MapEditor
                     ObjectEditor.Edit(featureGraphics.Feature);
                 }
             }
-            
-            var point = SelectedGraphics.Geometry as MapPoint;
-            if (SelectedGraphics != null && point != null)
-            {
-                InitialLocation = point;
-                MovingPoint = true;
-                e.Handled = true;
-            }
-
         }
 
-        public void MouseUp(object sender, GraphicMouseButtonEventArgs e)
-        {
-            MovingPoint = false;
-        }
-
-        public void MouseMove(object sender, MouseEventArgs e)
-        {
-
-            if (!MovingPoint || SelectedGraphics == null) return;
-
-
-            var point = SelectedGraphics.Geometry as MapPoint;
-            if (point != null)
-            {
-                SelectedGraphics.Geometry = Map.ScreenToMap(e.GetPosition(Map));
-            }
-        }
     }
 }
