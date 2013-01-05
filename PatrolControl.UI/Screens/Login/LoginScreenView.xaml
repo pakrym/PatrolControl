@@ -14,24 +14,23 @@
             <StackPanel>
                 <controls:GroupPanel Title="Sign-in">
                     <StackPanel utilities:MarginSetter.Margin="5"  >
-                        <TextBlock Text="Login"></TextBlock>
+                        <TextBlock Text="Login"/>
                         <ComboBox x:Name="Login" SelectedItem="{Binding Login, Mode=TwoWay}" ItemsSource="{Binding Users}" >
                             <ComboBox.ItemTemplate>
-                                <DataTemplate><TextBlock Text="{Binding Name}"></TextBlock></DataTemplate>
+                                <DataTemplate><TextBlock Text="{Binding Name}"/></DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <TextBlock  Text="Password" ></TextBlock>
-                        <PasswordBox x:Name="Password"></PasswordBox>
-                        <Button x:Name="DoLogin" >Login</Button>
+                        <TextBlock  Text="Password" />
+                        <PasswordBox x:Name="Password"/>
+                        <Button x:Name="DoLogin" Content="Login" />
                     </StackPanel>
                 </controls:GroupPanel>
 
                 <controls:GroupPanel Title="Screens" Visibility="{Binding ShowScreens, Converter={utilities:BoolToVisibilityConverter}}">
-                    <ItemsControl x:Name="Screens">
+					<ItemsControl x:Name="Screens">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <StackPanel>
-                            </StackPanel>
+                                <StackPanel utilities:MarginSetter.Margin="5"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>

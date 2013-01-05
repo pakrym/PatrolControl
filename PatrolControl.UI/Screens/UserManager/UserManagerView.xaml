@@ -14,13 +14,15 @@
         </Grid.ColumnDefinitions>
 
         <Border Style="{StaticResource PanelWithShade}">
-            <controls:GroupPanel Title="Add" >
+            <StackPanel>
+            <controls:GroupPanel Title="Tasks" >
                 <HyperlinkButton x:Name="Add">Add</HyperlinkButton>
             </controls:GroupPanel>
 
             <controls:GroupPanel Title="Edit" >
                 <ContentControl x:Name="ObjectEditor" ></ContentControl>
-            </controls:GroupPanel>
+                </controls:GroupPanel>
+            </StackPanel>
         </Border>
     </Grid>
 </UserControl>

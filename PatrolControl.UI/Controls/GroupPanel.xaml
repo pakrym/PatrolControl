@@ -6,21 +6,5 @@
                 xmlns:c="clr-namespace:PatrolControl.UI.Controls"
                 mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
-    <ContentControl.Style>
-        <Style TargetType="c:GroupPanel">
-            <Setter Property="Margin" Value="5"></Setter>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <Border Padding="10"  Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}">
-                            <StackPanel >
-                                <TextBlock Margin="0,0,0,4" Style="{StaticResource HeaderTextStyle}" Text="{Binding Title, RelativeSource={RelativeSource TemplatedParent}}" />
-                                <ContentPresenter Margin="15,5"></ContentPresenter>
-                            </StackPanel>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </ContentControl.Style>
+   
 </ContentControl>
