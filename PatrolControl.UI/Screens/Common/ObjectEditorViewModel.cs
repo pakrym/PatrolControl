@@ -1,5 +1,8 @@
 ﻿using System;
+<<<<<<< HEAD
+=======
 using System.ComponentModel;
+>>>>>>> origin/master
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,6 +12,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+<<<<<<< HEAD
+
+namespace PatrolControl.UI.Screens.Common
+{
+    public class ObjectEditorViewModel
+    {
+
+        public void Save()
+        {
+            
+=======
 using Caliburn.Micro;
 using PatrolControl.UI.Utilities;
 
@@ -64,10 +78,16 @@ namespace PatrolControl.UI.Screens.Common
             if (ieo != null)
                 ieo.EndEdit();
             EndEdit();
+>>>>>>> origin/master
         }
 
         public void Cancel()
         {
+<<<<<<< HEAD
+            
+        }
+
+=======
             var ieo = Target as IEditableObject;
             if (ieo != null)
                 ieo.CancelEdit();
@@ -81,5 +101,6 @@ namespace PatrolControl.UI.Screens.Common
         }
 
 
+>>>>>>> origin/master
     }
 }

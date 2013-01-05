@@ -11,23 +11,27 @@ using PatrolControl.UI.Screens.Common.Map;
 
 namespace PatrolControl.UI.Screens.MapEditor
 {
-    public class MapEditorScreenViewModel : ViewAware
+    public class MapEditorScreenViewModel : Screen
     {
-        public MapEditorScreenViewModel(User user)
+        public override string DisplayName
         {
-            User = user;
+            get
+            {
+                return "Map Editor";
+            }
+        }
+
+        public MapEditorScreenViewModel()
+        {
             ObjectEditor = new ObjectEditorViewModel();
             this.ViewAttached += HandleViewAttached;
         }
 
-
         [Dependency("buildings")]
         public IFeatureLayerViewModel BuildingsLayer { get; set; }
-
         [Dependency("streets")]
         public IFeatureLayerViewModel StreetsLayer { get; set; }
-
-        public User User { get; private set; }
+        
         public EditGeometry GraphicEditor { get; set; }
         public Map Map { get; set; }
 
@@ -86,7 +90,7 @@ namespace PatrolControl.UI.Screens.MapEditor
                     ObjectEditor.Edit(featureGraphics.Feature);
                 }
             }
-
+            
             var point = SelectedGraphics.Geometry as MapPoint;
             if (SelectedGraphics != null && point != null)
             {

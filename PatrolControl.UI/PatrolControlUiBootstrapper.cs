@@ -5,10 +5,14 @@ using System.Windows;
 using System.Windows.Data;
 using Caliburn.Micro;
 using Microsoft.Practices.Unity;
+using PatrolControl.UI.Framework;
 using PatrolControl.UI.PatrolControlServiceReference;
 using PatrolControl.UI.Screens.Common.Map;
 using PatrolControl.UI.Screens.Login;
+using PatrolControl.UI.Screens.MapEditor;
 using PatrolControl.UI.Screens.Shell;
+using PatrolControl.UI.Screens.UserManager;
+using PatrolControl.UI.Services;
 using PatrolControl.UI.Utilities;
 using System.Diagnostics;
 
@@ -90,7 +94,6 @@ namespace PatrolControl.UI
                     return baseLocate(modelType, displayLocation, context);
                 }
             };
-            _container.Resolve<ShellViewModel>().Push(_container.Resolve<LoginScreenViewModel>());
         }
 
         protected override void Configure()
@@ -104,16 +107,23 @@ namespace PatrolControl.UI
                     _container.RegisterType(t);
                 }
             }
-            _container.RegisterType<ShellViewModel>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IShell, ShellViewModel>(new ContainerControlledLifetimeManager());
 
-            _container.RegisterType<IFeatureLayerViewModel, BuildingFeatureLayerViewModel>("buildings");
-            _container.RegisterType<IFeatureLayerViewModel, StreetFeatureLayerViewModel>("streets");
+            _container.RegisterType<IFeatureLayerViewModel, BuildingFeatureLayerViewModel>("buildings", new ContainerControlledLifetimeManager());
+            _container.RegisterType<IFeatureLayerViewModel, StreetFeatureLayerViewModel>("streets", new ContainerControlledLifetimeManager());
 
+            _container.RegisterType<IScreen, MapEditorScreenViewModel>("mapeditor");
+            _container.RegisterType<IScreen, UserManagerViewModel>("usermanager");
+
+            _container.RegisterType<IUserService, UserService>();
+            _container.RegisterType<IPermissionService, PermissionService>();
+
+            _container.RegisterInstance(_container);
         }
 
         protected override void BuildUp(object instance)
         {
-            _container.BuildUp(instance);
+            _container.BuildUp(instance.GetType(), instance);
         }
 
         protected override System.Collections.Generic.IEnumerable<object> GetAllInstances(Type service)
