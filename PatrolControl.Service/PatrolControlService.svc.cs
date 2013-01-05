@@ -69,36 +69,36 @@ namespace PatrolControl.Service
 
         public IList<Street> GetStreets()
         {
-            List<Street> buildings = new List<Street>();
+            //List<Street> buildings = new List<Street>();
 
-            var lonc = 34.804945;
-            var latc = 50.911487;
+            //var lonc = 34.804945;
+            //var latc = 50.911487;
 
-            var random = new Random();
+            //var random = new Random();
 
-            for (int i = 0; i < 36; i++)
-            {
-                var lon = lonc + (random.NextDouble() / 10 - random.NextDouble() / 20);
-                var lat = latc + (random.NextDouble() / 10 - random.NextDouble() / 20);
+            //for (int i = 0; i < 36; i++)
+            //{
+            //    var lon = lonc + (random.NextDouble() / 10 - random.NextDouble() / 20);
+            //    var lat = latc + (random.NextDouble() / 10 - random.NextDouble() / 20);
 
-                var lon1 = lon + (random.NextDouble() / 10 - random.NextDouble() / 20);
-                var lat1 = lat + (random.NextDouble() / 10 - random.NextDouble() / 20);
+            //    var lon1 = lon + (random.NextDouble() / 10 - random.NextDouble() / 20);
+            //    var lat1 = lat + (random.NextDouble() / 10 - random.NextDouble() / 20);
 
 
-                var p = DbGeography.LineFromText(
-                    string.Format("LINESTRING ({0} {1}, {2} {3})",
-                        lon.ToString(CultureInfo.InvariantCulture),
-                        lat.ToString(CultureInfo.InvariantCulture),
-                        lon1.ToString(CultureInfo.InvariantCulture),
-                        lat1.ToString(CultureInfo.InvariantCulture)
+            //    var p = DbGeography.LineFromText(
+            //        string.Format("LINESTRING ({0} {1}, {2} {3})",
+            //            lon.ToString(CultureInfo.InvariantCulture),
+            //            lat.ToString(CultureInfo.InvariantCulture),
+            //            lon1.ToString(CultureInfo.InvariantCulture),
+            //            lat1.ToString(CultureInfo.InvariantCulture)
 
-                        ), SRID);
+            //            ), SRID);
 
-                buildings.Add(new Street() { Geography = p, Id = i, Name = i.ToString() });
-            }
+            //    buildings.Add(new Street() { Geography = p, Id = i, Name = i.ToString() });
+            //}
 
-            return buildings;
-            //return _context.Streets.Where(s => s.Geography != null).ToList();
+            //return buildings;
+            return _context.Streets.ToList();
         }
 
         public IList<PatrolDistrict> GetPatrolDistricts()

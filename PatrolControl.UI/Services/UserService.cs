@@ -10,28 +10,15 @@ namespace PatrolControl.UI.Services
     {
         public void Handle(LoginUser command, Action<User> callback)
         {
-            if (command.Login == "1" && command.Password == "1")
-            {
-                callback(new User()
-                    {
-                        Id = 1,
-                        Name = "2",
-                        PasswordHash = "3",
-                        Type = 3
-                    });
-            }
-            
-            callback(null);
+            Client.LoginCompleted += (sender, args) => callback(args.Result);
+            Client.LoginAsync(command.Login, command.Password);
+
         }
 
         public void Handle(GetLoginUsers command, Action<IEnumerable<User>> callback)
         {
-            callback(new[]
-                {
-                    new User() {Name = "1",Type = 1},
-                    new User() {Name = "2",Type = 2},
-                        new User() {Name = "3",Type = 3}
-                });
+            Client.GetUsersCompleted += (sender, args) => callback(args.Result);
+            Client.GetUsersAsync();
         }
     }
 }

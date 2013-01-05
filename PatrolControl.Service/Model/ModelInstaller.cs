@@ -19,22 +19,20 @@ namespace PatrolControl.Service.Model
             var assembly = Assembly.GetExecutingAssembly();
 
             var resourceNames = assembly.GetManifestResourceNames()
-                                        .Where(r => r.StartsWith(@namespace)).OrderBy(r => r);
+                                        .Where(r => r.StartsWith(@namespace)).OrderBy(r => r).ToArray();
             foreach (var resourceName in resourceNames)
             {
                 var rm = new ResourceManager(resourceName.Substring(0,resourceName.LastIndexOf('.')), assembly);
-                foreach (var stream in rm.GetResourceSet(CultureInfo.CurrentUICulture, true, true).Cast<DictionaryEntry>().OrderBy(e => e.Key))
+                foreach (var resource in rm.GetResourceSet(CultureInfo.CurrentUICulture, true, true).Cast<DictionaryEntry>().OrderBy(e => e.Key))
                 {
-                    var resource = stream.Value.ToString();
-                    if (dc.Database.ExecuteSqlCommand(resource) <= 0)
-                    {
-                        throw new InvalidOperationException("Failed to execute request: '" + resource + "'");
-                    }
+                    var command = resource.Value.ToString();
+                    var result = dc.Database.ExecuteSqlCommand(command);
+                    //if (result <= 0)
+                    //{
+                    //    throw new InvalidOperationException("Failed to execute request: '" + resource + "'");
+                    //}
                 }
             }
-            
-
-
             return true;
         }
     }

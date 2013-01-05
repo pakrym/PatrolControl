@@ -67,6 +67,7 @@
     </Reference>
     <Reference Include="ESRI.ArcGIS.Client, Version=3.0.0.388, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL" />
     <Reference Include="ESRI.ArcGIS.Client.Behaviors, Version=3.0.0.388, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL" />
+    <Reference Include="ESRI.ArcGIS.Client.Bing, Version=3.0.0.388, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL" />
     <Reference Include="ESRI.ArcGIS.Client.Toolkit, Version=3.0.0.388, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL" />
     <Reference Include="ESRI.ArcGIS.Client.Toolkit.DataSources, Version=3.0.0.388, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Expression.Interactions" />
@@ -109,6 +110,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GoogleCacheTiledLayer.cs" />
     <Compile Include="Controls\GroupPanel.xaml.cs">
       <DependentUpon>GroupPanel.xaml</DependentUpon>
     </Compile>
@@ -297,6 +299,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Bin\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\PatrolControlServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
