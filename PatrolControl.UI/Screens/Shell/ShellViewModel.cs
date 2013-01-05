@@ -1,40 +1,31 @@
 ﻿using System.Collections.Generic;
 using Caliburn.Micro;
+using PatrolControl.UI.Framework;
+using PatrolControl.UI.Screens.Login;
 
 namespace PatrolControl.UI.Screens.Shell
 {
-    public class ShellViewModel : PropertyChangedBase
+    public class ShellViewModel : Conductor<IScreen>, IShell
     {
-        private Stack<object> _screenStack;
-        private object _activePage;
+         readonly LoginScreenViewModel _firstScreen;
 
-        public ShellViewModel()
-        {
-            _screenStack = new Stack<object>();
+        public ShellViewModel(LoginScreenViewModel firstScreen) {
+            this._firstScreen = firstScreen;
+            
         }
 
-        public object ActivePage
-        {
-            get { return _activePage; }
-            set
-            {
-                if (Equals(value, _activePage)) return;
-                _activePage = value;
-                NotifyOfPropertyChange(() => ActivePage);
-            }
+
+        protected override void OnInitialize() {
+            ActivateItem(_firstScreen);
+            base.OnInitialize();
+            
         }
 
-        public void Push(object o)
+        public void Back()
         {
-            _screenStack.Push(_screenStack);
-            ActivePage = o;
+            ActivateItem(_firstScreen);
         }
 
-        public void Pop()
-        {
-            _screenStack.Pop();
-            ActivePage = _screenStack.Peek();
-        }
     }
 
     

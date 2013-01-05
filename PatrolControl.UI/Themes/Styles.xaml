@@ -8,8 +8,12 @@
     xmlns:c="clr-namespace:PatrolControl.UI.Controls" mc:Ignorable="d">
 
     <ResourceDictionary.MergedDictionaries>
+        
         <ResourceDictionary Source="Brushes.xaml"/>
         <ResourceDictionary Source="Fonts.xaml"/>
+        <ResourceDictionary Source="CoreStyles.xaml"/>
+        <ResourceDictionary Source="PatrolControl.xaml"/>
+        
     </ResourceDictionary.MergedDictionaries>
 
     <!-- ******MAIN PAGE STYLES****** -->
@@ -62,7 +66,7 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
-
+    
     <Style x:Key="HeaderTextStyle" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{StaticResource HighlightBrush}"/>
         <Setter Property="FontFamily" Value="{StaticResource HeaderFontFamily}"/>
@@ -310,4 +314,8 @@
         <Setter Property="TextOptions.TextHintingMode" Value="Animated" />
     </Style>
 
+
+    <Style TargetType="c:GroupPanel">
+        <Setter Property="Margin" Value="5"></Setter>
+    </Style>
 </ResourceDictionary>

@@ -6,13 +6,11 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
     
-    <Grid x:Name="LayoutRoot" Background="White">
+    <Grid x:Name="LayoutRoot" Style="{StaticResource BackroundImage}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
-        <TextBlock>Hello world jjsadfj asd fajsd 5</TextBlock>
-        <ContentControl HorizontalContentAlignment="Stretch"  VerticalContentAlignment="Stretch" x:Name="ActivePage" Grid.Row="1"></ContentControl>
+        <ContentControl HorizontalContentAlignment="Stretch"  VerticalContentAlignment="Stretch" x:Name="ActiveItem" Grid.Row="1"></ContentControl>
     </Grid>
 </UserControl>

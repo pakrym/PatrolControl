@@ -8,20 +8,38 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatrolControl.UI", "..\Patr
 		{DD0FA9CC-6282-4514-9DE9-604C4B52CDC7} = {DD0FA9CC-6282-4514-9DE9-604C4B52CDC7}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatrolControl.Web", "..\PatrolControl.Web\PatrolControl.Web.csproj", "{583F85BA-2E07-4555-ABF6-AFCBD489BAF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{DD0FA9CC-6282-4514-9DE9-604C4B52CDC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DD0FA9CC-6282-4514-9DE9-604C4B52CDC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD0FA9CC-6282-4514-9DE9-604C4B52CDC7}.Debug|x86.ActiveCfg = Debug|x86
+		{DD0FA9CC-6282-4514-9DE9-604C4B52CDC7}.Debug|x86.Build.0 = Debug|x86
 		{DD0FA9CC-6282-4514-9DE9-604C4B52CDC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD0FA9CC-6282-4514-9DE9-604C4B52CDC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD0FA9CC-6282-4514-9DE9-604C4B52CDC7}.Release|x86.ActiveCfg = Release|x86
+		{DD0FA9CC-6282-4514-9DE9-604C4B52CDC7}.Release|x86.Build.0 = Release|x86
 		{42316775-B9CB-4A44-BD45-055D045EDE4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{42316775-B9CB-4A44-BD45-055D045EDE4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42316775-B9CB-4A44-BD45-055D045EDE4D}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{42316775-B9CB-4A44-BD45-055D045EDE4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42316775-B9CB-4A44-BD45-055D045EDE4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42316775-B9CB-4A44-BD45-055D045EDE4D}.Release|x86.ActiveCfg = Release|Any CPU
+		{583F85BA-2E07-4555-ABF6-AFCBD489BAF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{583F85BA-2E07-4555-ABF6-AFCBD489BAF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{583F85BA-2E07-4555-ABF6-AFCBD489BAF9}.Debug|x86.ActiveCfg = Debug|x86
+		{583F85BA-2E07-4555-ABF6-AFCBD489BAF9}.Debug|x86.Build.0 = Debug|x86
+		{583F85BA-2E07-4555-ABF6-AFCBD489BAF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{583F85BA-2E07-4555-ABF6-AFCBD489BAF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{583F85BA-2E07-4555-ABF6-AFCBD489BAF9}.Release|x86.ActiveCfg = Release|x86
+		{583F85BA-2E07-4555-ABF6-AFCBD489BAF9}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

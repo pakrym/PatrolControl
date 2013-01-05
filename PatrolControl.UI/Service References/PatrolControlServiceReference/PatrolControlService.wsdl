@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PatrolControlService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:1823/PatrolControlService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:1823/PatrolControlService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:1823/PatrolControlService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/PatrolControl.Service.Model" />
+      <xsd:import schemaLocation="http://localhost:1823/PatrolControlService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Data.Spatial" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IPatrolControlService_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsers" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetBuildings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBuildings" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetBuildings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBuildingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetStreets_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStreets" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetStreets_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStreetsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetPatrolDistricts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPatrolDistricts" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetPatrolDistricts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPatrolDistrictsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetTownDistricts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTownDistricts" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetTownDistricts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTownDistrictsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetNearestStreets_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNearestStreets" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetNearestStreets_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNearestStreetsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetStreetsWithSimularNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStreetsWithSimularNames" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetStreetsWithSimularNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStreetsWithSimularNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_AddUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUsers" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_AddUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_AddBuildings_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddBuildings" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_AddBuildings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddBuildingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_AddStreets_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddStreets" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_AddStreets_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddStreetsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_AddPatrolDistricts_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPatrolDistricts" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_AddPatrolDistricts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPatrolDistrictsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_AddTownDistricts_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddTownDistricts" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_AddTownDistricts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddTownDistrictsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_UpdateUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUsers" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_UpdateUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_UpdateBuildings_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBuildings" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_UpdateBuildings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBuildingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_UpdateStreets_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStreets" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_UpdateStreets_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStreetsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_UpdatePatrolDistricts_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePatrolDistricts" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_UpdatePatrolDistricts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePatrolDistrictsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_UpdateTownDistricts_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTownDistricts" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_UpdateTownDistricts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTownDistrictsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_DeleteUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUsers" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_DeleteUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_DeleteBuildings_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteBuildings" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_DeleteBuildings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteBuildingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_DeleteStreets_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteStreets" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_DeleteStreets_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteStreetsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_DeletePatrolDistricts_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePatrolDistricts" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_DeletePatrolDistricts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePatrolDistrictsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_DeleteTownDistricts_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTownDistricts" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_DeleteTownDistricts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTownDistrictsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IPatrolControlService">
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/Login" message="tns:IPatrolControlService_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/LoginResponse" message="tns:IPatrolControlService_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/GetUsers" message="tns:IPatrolControlService_GetUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/GetUsersResponse" message="tns:IPatrolControlService_GetUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBuildings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/GetBuildings" message="tns:IPatrolControlService_GetBuildings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/GetBuildingsResponse" message="tns:IPatrolControlService_GetBuildings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStreets">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/GetStreets" message="tns:IPatrolControlService_GetStreets_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/GetStreetsResponse" message="tns:IPatrolControlService_GetStreets_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPatrolDistricts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/GetPatrolDistricts" message="tns:IPatrolControlService_GetPatrolDistricts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/GetPatrolDistrictsResponse" message="tns:IPatrolControlService_GetPatrolDistricts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTownDistricts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/GetTownDistricts" message="tns:IPatrolControlService_GetTownDistricts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/GetTownDistrictsResponse" message="tns:IPatrolControlService_GetTownDistricts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNearestStreets">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/GetNearestStreets" message="tns:IPatrolControlService_GetNearestStreets_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/GetNearestStreetsResponse" message="tns:IPatrolControlService_GetNearestStreets_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStreetsWithSimularNames">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/GetStreetsWithSimularNames" message="tns:IPatrolControlService_GetStreetsWithSimularNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/GetStreetsWithSimularNamesResponse" message="tns:IPatrolControlService_GetStreetsWithSimularNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/AddUsers" message="tns:IPatrolControlService_AddUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/AddUsersResponse" message="tns:IPatrolControlService_AddUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddBuildings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/AddBuildings" message="tns:IPatrolControlService_AddBuildings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/AddBuildingsResponse" message="tns:IPatrolControlService_AddBuildings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddStreets">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/AddStreets" message="tns:IPatrolControlService_AddStreets_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/AddStreetsResponse" message="tns:IPatrolControlService_AddStreets_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPatrolDistricts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/AddPatrolDistricts" message="tns:IPatrolControlService_AddPatrolDistricts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/AddPatrolDistrictsResponse" message="tns:IPatrolControlService_AddPatrolDistricts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTownDistricts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/AddTownDistricts" message="tns:IPatrolControlService_AddTownDistricts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/AddTownDistrictsResponse" message="tns:IPatrolControlService_AddTownDistricts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/UpdateUsers" message="tns:IPatrolControlService_UpdateUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/UpdateUsersResponse" message="tns:IPatrolControlService_UpdateUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBuildings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/UpdateBuildings" message="tns:IPatrolControlService_UpdateBuildings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/UpdateBuildingsResponse" message="tns:IPatrolControlService_UpdateBuildings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStreets">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/UpdateStreets" message="tns:IPatrolControlService_UpdateStreets_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/UpdateStreetsResponse" message="tns:IPatrolControlService_UpdateStreets_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePatrolDistricts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/UpdatePatrolDistricts" message="tns:IPatrolControlService_UpdatePatrolDistricts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/UpdatePatrolDistrictsResponse" message="tns:IPatrolControlService_UpdatePatrolDistricts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTownDistricts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/UpdateTownDistricts" message="tns:IPatrolControlService_UpdateTownDistricts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/UpdateTownDistrictsResponse" message="tns:IPatrolControlService_UpdateTownDistricts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/DeleteUsers" message="tns:IPatrolControlService_DeleteUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/DeleteUsersResponse" message="tns:IPatrolControlService_DeleteUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBuildings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/DeleteBuildings" message="tns:IPatrolControlService_DeleteBuildings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/DeleteBuildingsResponse" message="tns:IPatrolControlService_DeleteBuildings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteStreets">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/DeleteStreets" message="tns:IPatrolControlService_DeleteStreets_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/DeleteStreetsResponse" message="tns:IPatrolControlService_DeleteStreets_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePatrolDistricts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/DeletePatrolDistricts" message="tns:IPatrolControlService_DeletePatrolDistricts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/DeletePatrolDistrictsResponse" message="tns:IPatrolControlService_DeletePatrolDistricts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTownDistricts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/DeleteTownDistricts" message="tns:IPatrolControlService_DeleteTownDistricts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/DeleteTownDistrictsResponse" message="tns:IPatrolControlService_DeleteTownDistricts_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IPatrolControlService" type="tns:IPatrolControlService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/GetUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBuildings">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/GetBuildings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStreets">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/GetStreets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPatrolDistricts">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/GetPatrolDistricts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTownDistricts">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/GetTownDistricts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNearestStreets">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/GetNearestStreets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStreetsWithSimularNames">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/GetStreetsWithSimularNames" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUsers">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/AddUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddBuildings">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/AddBuildings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddStreets">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/AddStreets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPatrolDistricts">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/AddPatrolDistricts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTownDistricts">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/AddTownDistricts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUsers">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/UpdateUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBuildings">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/UpdateBuildings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStreets">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/UpdateStreets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePatrolDistricts">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/UpdatePatrolDistricts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTownDistricts">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/UpdateTownDistricts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUsers">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/DeleteUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBuildings">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/DeleteBuildings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteStreets">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/DeleteStreets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePatrolDistricts">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/DeletePatrolDistricts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTownDistricts">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/DeleteTownDistricts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PatrolControlService">
+    <wsdl:port name="BasicHttpBinding_IPatrolControlService" binding="tns:BasicHttpBinding_IPatrolControlService">
+      <soap:address location="http://localhost:1823/PatrolControlService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
