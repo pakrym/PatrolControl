@@ -18,7 +18,7 @@ using Caliburn.Micro;
 
 namespace PatrolControl.UI.Screens.Common.Map
 {
-    public abstract class FeatureLayerViewModel : PropertyChangedBase, IFeatureLayerViewModel 
+    public abstract class FeatureLayerViewModel : PropertyChangedBase, IFeatureLayerViewModel
     {
         private bool _isVisible;
 
@@ -47,9 +47,27 @@ namespace PatrolControl.UI.Screens.Common.Map
 
         public void Commit()
         {
-            
+            foreach (FeatureGraphics feature in Features)
+            {
+                if (feature.State == FeatureState.Edited)
+                {
+                    UpdateFeature(feature);
+                }
+                if (feature.State == FeatureState.Added)
+                {
+                    AddFeature(feature);
+                }
+                if (feature.State == FeatureState.Deleted)
+                {
+                    DeleteFeature(feature);
+                }
+            }
         }
-        
+
+        protected abstract void UpdateFeature(FeatureGraphics feature);
+        protected abstract void AddFeature(FeatureGraphics feature);
+        protected abstract void DeleteFeature(FeatureGraphics feature);
+
         public void Add(FeatureGraphics feature)
         {
             feature.State = FeatureState.Added;
@@ -77,11 +95,12 @@ namespace PatrolControl.UI.Screens.Common.Map
 
                 var m = new ESRI.ArcGIS.Client.Projection.WebMercator();
                 var gg = m.FromGeographic(geom);
-                
+
                 var feature = new FeatureGraphics()
                 {
                     Feature = building,
-                    Geometry = gg
+                    Geometry = gg,
+                    FeatureLayer = this
                 };
 
                 Features.Add(feature);

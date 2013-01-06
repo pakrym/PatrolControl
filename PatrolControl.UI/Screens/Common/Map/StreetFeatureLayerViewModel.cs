@@ -15,5 +15,20 @@ namespace PatrolControl.UI.Screens.Common.Map
             client.GetStreetsCompleted += (sender, args) => SetFeatures(args.Result);
             client.GetStreetsAsync();
         }
+
+        protected override void UpdateFeature(FeatureGraphics feature)
+        {
+            
+        }
+
+        protected override void AddFeature(FeatureGraphics feature)
+        {
+            
+        }
+
+        protected override void DeleteFeature(FeatureGraphics feature)
+        {
+            
+        }
     }
 }

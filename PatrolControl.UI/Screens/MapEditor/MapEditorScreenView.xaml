@@ -12,7 +12,7 @@
     <UserControl.Resources>
         <Style x:Key="ToolBar" TargetType="Border" BasedOn="{StaticResource PanelWithShade}">
         </Style>
-        <esri:EditGeometry x:Key="GraphicEditor" 
+        <local:EditGeometryExtended x:Key="GraphicEditor" 
                                Map="{Binding ElementName=MyMap}" 
                                IsEnabled="True" 
 							/>
@@ -25,7 +25,7 @@
 
         <!--Extent="50, 34, 51, 34" ZoomFactor="15"-->
         <esri:Map x:Name="MyMap" SnapToLevels="True" Extent="3862000,6612000,3883000,6600000" IsLogoVisible="False" Grid.Column="1" 
-                  cal:Message.Attach="[Event Loaded] = [Action LoadLayers]" MouseMove="MouseMove" >
+                  cal:Message.Attach="[Event Loaded] = [Action LoadLayers]" >
             <esri:Map.Resources>
                 <UI:DataContextProxy x:Key ="Proxy" Data="{Binding}"/>
             </esri:Map.Resources>
@@ -33,8 +33,6 @@
                 <UI:YanderCacheTiledLayer Visible="True"/>
 
                 <esri:GraphicsLayer 
-                    
-                    MouseLeftButtonUp="MouseUp"
                     MouseLeftButtonDown="MouseDown"
                     Visible="{Binding Path=Data.BuildingsLayer.IsVisible, Source={StaticResource Proxy}}"
                     Graphics="{Binding Path=Data.BuildingsLayer.Features, Source={StaticResource Proxy}}"
@@ -42,9 +40,8 @@
                 </esri:GraphicsLayer>
 
                 <esri:GraphicsLayer  
-                    MouseLeftButtonUp="MouseUp"
-                    MouseLeftButtonDown="MouseDown"
                     x:Name="StreetsLayer" 
+                    MouseLeftButtonDown="MouseDown"
                                     Visible="{Binding Path=Data.StreetsLayer.IsVisible, Source={StaticResource Proxy}}" 
                                     Graphics="{Binding Path=Data.StreetsLayer.Features, Source={StaticResource Proxy}}" 
                                     Renderer="{StaticResource StreetLayerRenderer}"
