@@ -116,10 +116,15 @@ namespace PatrolControl.Service
             return _context.Streets.OrderBy(s => s.Geography.Distance(position)).Take(count).ToList();
         }
 
-        public IList<Street> GetStreetsWithSimularNames(string name)
+        //public IList<Street> GetStreetsWithSimularNames(string name)
+        //{
+        //    //return _context.Streets.Where(e => e.Name.Contains(name)).ToList();
+        //    return _context.Database.SqlQuery<Street>("EXEC StreetsWithSimularnames @name", new SqlParameter("name", name)).ToList();
+        //}
+
+        public IList<Building> GetBuildingsWithSimularNames(string name)
         {
-            //return _context.Streets.Where(e => e.Name.Contains(name)).ToList();
-            return _context.Database.SqlQuery<Street>("EXEC StreetsWithSimularnames @name", new SqlParameter("name", name)).ToList();
+            return _context.Database.SqlQuery<Building>("EXEC BuildingsWithSimularNames @name", new SqlParameter("name","%" +  name.Trim().Replace(' ','%') + "%")).ToList();
         }
 
         #endregion

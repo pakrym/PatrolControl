@@ -36,10 +36,7 @@ namespace PatrolControl.Service
         IList<TownDistrict> GetTownDistricts();
 
         [OperationContract]
-        IList<Street> GetNearestStreets(DbGeography position, int count);
-
-        [OperationContract]
-        IList<Street> GetStreetsWithSimularNames(string name);
+        IList<Building> GetBuildingsWithSimularNames(string name);
 
         #endregion
 

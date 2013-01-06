@@ -71,7 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClientBin\PatrolControl.UI.xap" />
-    <Content Include="Model\Sql\StorageProcedure.sql" />
+    <Content Include="Model\Sql\UnusedSql.txt" />
     <Content Include="PatrolControl.UITestPage.aspx" />
     <Content Include="PatrolControl.UITestPage.html" />
     <Content Include="PatrolControlService.svc" />
