@@ -71,6 +71,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClientBin\PatrolControl.UI.xap" />
+    <EmbeddedResource Include="Model\Sql\100-InsertUsers.sql" />
+    <EmbeddedResource Include="Model\Sql\001-View FullTextBuildings.sql" />
+    <EmbeddedResource Include="Model\Sql\010-StoredProcedure BuildingsWithSimularNames.sql" />
     <Content Include="Model\Sql\UnusedSql.txt" />
     <Content Include="PatrolControl.UITestPage.aspx" />
     <Content Include="PatrolControl.UITestPage.html" />
@@ -102,9 +105,6 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Model\Sql\Sql.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

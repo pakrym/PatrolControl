@@ -6,6 +6,7 @@ using System.Data.Spatial;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Security;
+using System.Text;
 using System.Web;
 
 namespace PatrolControl.Service.Model
@@ -15,6 +16,7 @@ namespace PatrolControl.Service.Model
         public DatabaseContext()
             : base("PatrolControl")
         {
+
         }
 
         public DbSet<User> Users { get; set; }
@@ -58,8 +60,14 @@ namespace PatrolControl.Service.Model
         {
             var x = new System.Security.Cryptography.MD5CryptoServiceProvider();
             byte[] data = System.Text.Encoding.ASCII.GetBytes(value);
-            data = x.ComputeHash(data);
-            return System.Text.Encoding.ASCII.GetString(data);
+
+            var hash = x.ComputeHash(data);
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < hash.Length; i++)
+            {
+                sb.Append(hash[i].ToString("x2"));
+            }
+            return sb.ToString();
         }
 
         public bool ValidatePasword(String pasword)
