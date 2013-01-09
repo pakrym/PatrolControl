@@ -6,6 +6,7 @@ using System.Data.Spatial;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Security;
+using System.Text;
 using System.Web;
 
 namespace PatrolControl.Service.Model
@@ -15,6 +16,7 @@ namespace PatrolControl.Service.Model
         public DatabaseContext()
             : base("PatrolControl")
         {
+
         }
 
         public DbSet<User> Users { get; set; }
@@ -23,17 +25,6 @@ namespace PatrolControl.Service.Model
         public DbSet<PatrolDistrict> PatrolDistricts { get; set; }
         public DbSet<TownDistrict> TownDistricts { get; set; }
 
-        public class Initializer : IDatabaseInitializer<DatabaseContext>
-        {
-            public void InitializeDatabase(DatabaseContext context)
-            {
-                if (!context.Database.Exists() || !context.Database.CompatibleWithModel(false))
-                {
-                    context.Database.Delete();
-                    (new ModelInstaller()).Install(context, "PatrolControl.Service.Model.Sql");
-                }
-            }
-        }
     }
 
     [DataContract]
@@ -57,9 +48,15 @@ namespace PatrolControl.Service.Model
         private static String Encript(String value)
         {
             var x = new System.Security.Cryptography.MD5CryptoServiceProvider();
-            byte[] data = System.Text.Encoding.ASCII.GetBytes(value);
-            data = x.ComputeHash(data);
-            return System.Text.Encoding.ASCII.GetString(data);
+            byte[] data = Encoding.ASCII.GetBytes(value);
+
+            var hash = x.ComputeHash(data);
+            var sb = new StringBuilder();
+            for (var i = 0; i < hash.Length; i++)
+            {
+                sb.Append(hash[i].ToString("x2"));
+            }
+            return sb.ToString();
         }
 
         public bool ValidatePasword(String pasword)

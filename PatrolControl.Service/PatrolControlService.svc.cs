@@ -20,10 +20,6 @@ namespace PatrolControl.Service
 
         private readonly DatabaseContext _context;
 
-        static PatrolControlService()
-        {
-            Database.SetInitializer(new DatabaseContext.Initializer());
-        }
 
         public PatrolControlService()
         {
@@ -44,27 +40,27 @@ namespace PatrolControl.Service
 
         public IList<Building> GetBuildings()
         {
-            List<Building> buildings = new List<Building>();
-            var lonc = 34.804945;
-            var latc = 50.911487;
+            //List<Building> buildings = new List<Building>();
+            //var lonc = 34.804945;
+            //var latc = 50.911487;
 
-            for (int j = 0; j < 10; j++)
-            {
-                for (int i = 0; i < 36; i++)
-                {
-                    var lon = lonc + Math.Cos(2 * Math.PI / 36 * i) * (0.01 + 0.01 * j);
-                    var lat = (latc + Math.Sin(2 * Math.PI / 36 * i) * (0.01 + 0.01 * j) / 2);
+            //for (int j = 0; j < 10; j++)
+            //{
+            //    for (int i = 0; i < 36; i++)
+            //    {
+            //        var lon = lonc + Math.Cos(2 * Math.PI / 36 * i) * (0.01 + 0.01 * j);
+            //        var lat = (latc + Math.Sin(2 * Math.PI / 36 * i) * (0.01 + 0.01 * j) / 2);
 
-                    var p = DbGeography.PointFromText(
-                        string.Format("POINT({0} {1})",
-                            lon.ToString(CultureInfo.InvariantCulture),
-                            lat.ToString(CultureInfo.InvariantCulture)), SRID);
+            //        var p = DbGeography.PointFromText(
+            //            string.Format("POINT({0} {1})",
+            //                lon.ToString(CultureInfo.InvariantCulture),
+            //                lat.ToString(CultureInfo.InvariantCulture)), SRID);
 
-                    buildings.Add(new Building() { Geography = p, Id = i, Number = i.ToString() });
-                }
-            }
-            return buildings;
-            //return _context.Buildings.ToList();
+            //        buildings.Add(new Building() { Geography = p, Id = i, Number = i.ToString() });
+            //    }
+            //}
+            //return buildings;
+            return _context.Buildings.ToList();
         }
 
         public IList<Street> GetStreets()
