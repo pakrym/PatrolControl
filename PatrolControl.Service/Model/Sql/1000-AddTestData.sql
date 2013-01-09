@@ -2,9 +2,6 @@
 VALUES 
 (N'Куликовская', geography::Parse('LINESTRING (34.780716 50.912897, 34.783505 50.918635)'));
 
-DECLARE @street_id INT;
-SET @street_id = SCOPE_IDENTITY();
-
 INSERT INTO Buildings (StreetId, Number, Geography, Tags)
 VALUES 
 (SCOPE_IDENTITY(), '1', geography::Parse('POINT(34.78358  50.918387)'), 0),
