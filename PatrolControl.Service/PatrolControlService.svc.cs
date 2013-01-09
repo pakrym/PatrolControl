@@ -44,60 +44,60 @@ namespace PatrolControl.Service
 
         public IList<Building> GetBuildings()
         {
-            List<Building> buildings = new List<Building>();
-            var lonc = 34.804945;
-            var latc = 50.911487;
+            //List<Building> buildings = new List<Building>();
+            //var lonc = 34.804945;
+            //var latc = 50.911487;
 
-            for (int j = 0; j < 10; j++)
-            {
-                for (int i = 0; i < 36; i++)
-                {
-                    var lon = lonc + Math.Cos(2 * Math.PI / 36 * i) * (0.01 + 0.01 * j);
-                    var lat = (latc + Math.Sin(2 * Math.PI / 36 * i) * (0.01 + 0.01 * j) / 2);
+            //for (int j = 0; j < 10; j++)
+            //{
+            //    for (int i = 0; i < 36; i++)
+            //    {
+            //        var lon = lonc + Math.Cos(2 * Math.PI / 36 * i) * (0.01 + 0.01 * j);
+            //        var lat = (latc + Math.Sin(2 * Math.PI / 36 * i) * (0.01 + 0.01 * j) / 2);
 
-                    var p = DbGeography.PointFromText(
-                        string.Format("POINT({0} {1})",
-                            lon.ToString(CultureInfo.InvariantCulture),
-                            lat.ToString(CultureInfo.InvariantCulture)), SRID);
+            //        var p = DbGeography.PointFromText(
+            //            string.Format("POINT({0} {1})",
+            //                lon.ToString(CultureInfo.InvariantCulture),
+            //                lat.ToString(CultureInfo.InvariantCulture)), SRID);
 
-                    buildings.Add(new Building() { Geography = p, Id = i, Number = i.ToString() });
-                }
-            }
-            return buildings;
-            //return _context.Buildings.ToList();
+            //        buildings.Add(new Building() { Geography = p, Id = i, Number = i.ToString() });
+            //    }
+            //}
+            //return buildings;
+            return _context.Buildings.ToList();
         }
 
         public IList<Street> GetStreets()
         {
-            List<Street> buildings = new List<Street>();
+            //List<Street> buildings = new List<Street>();
 
-            var lonc = 34.804945;
-            var latc = 50.911487;
+            //var lonc = 34.804945;
+            //var latc = 50.911487;
 
-            var random = new Random();
+            //var random = new Random();
 
-            for (int i = 0; i < 36; i++)
-            {
-                var lon = lonc + (random.NextDouble() / 10 - random.NextDouble() / 20);
-                var lat = latc + (random.NextDouble() / 10 - random.NextDouble() / 20);
+            //for (int i = 0; i < 36; i++)
+            //{
+            //    var lon = lonc + (random.NextDouble() / 10 - random.NextDouble() / 20);
+            //    var lat = latc + (random.NextDouble() / 10 - random.NextDouble() / 20);
 
-                var lon1 = lon + (random.NextDouble() / 10 - random.NextDouble() / 20);
-                var lat1 = lat + (random.NextDouble() / 10 - random.NextDouble() / 20);
+            //    var lon1 = lon + (random.NextDouble() / 10 - random.NextDouble() / 20);
+            //    var lat1 = lat + (random.NextDouble() / 10 - random.NextDouble() / 20);
 
 
-                var p = DbGeography.LineFromText(
-                    string.Format("LINESTRING ({0} {1}, {2} {3})",
-                        lon.ToString(CultureInfo.InvariantCulture),
-                        lat.ToString(CultureInfo.InvariantCulture),
-                        lon1.ToString(CultureInfo.InvariantCulture),
-                        lat1.ToString(CultureInfo.InvariantCulture)
+            //    var p = DbGeography.LineFromText(
+            //        string.Format("LINESTRING ({0} {1}, {2} {3})",
+            //            lon.ToString(CultureInfo.InvariantCulture),
+            //            lat.ToString(CultureInfo.InvariantCulture),
+            //            lon1.ToString(CultureInfo.InvariantCulture),
+            //            lat1.ToString(CultureInfo.InvariantCulture)
 
-                        ), SRID);
+            //            ), SRID);
 
-                buildings.Add(new Street() { Geography = p, Id = i, Name = i.ToString() });
-            }
+            //    buildings.Add(new Street() { Geography = p, Id = i, Name = i.ToString() });
+            //}
 
-            return buildings;
+            //return buildings;
             return _context.Streets.ToList();
         }
 

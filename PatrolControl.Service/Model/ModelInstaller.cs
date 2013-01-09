@@ -21,11 +21,8 @@ namespace PatrolControl.Service.Model
                                         .Where(r => r.StartsWith(@namespace) && r.ToLower().EndsWith(".sql"))
                                         .OrderBy(r => r).ToArray();
 
-            foreach (var resourceName in resourceNames)
+            foreach (var stream in resourceNames.Select(assembly.GetManifestResourceStream).Where(e => e != null))
             {
-                var stream = assembly.GetManifestResourceStream(resourceName);
-                if (stream == null) continue;
-                
                 using (var reader = new StreamReader(stream))
                 {
                     var result = dc.Database.ExecuteSqlCommand(reader.ReadToEnd());

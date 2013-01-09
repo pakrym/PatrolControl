@@ -1,0 +1,12 @@
+﻿CREATE UNIQUE CLUSTERED INDEX IDX_FullTextBuildings_Primary ON FullTextBuildings(BuildingId)
+
+CREATE FULLTEXT CATALOG ftCatalog AS DEFAULT
+
+CREATE FULLTEXT INDEX ON FullTextBuildings(Address Language 1049/*Russian*/) KEY INDEX IDX_FullTextBuildings_Primary
+
+CREATE PROCEDURE StreetsWithSimularNames
+	@request varchar(500) 
+AS 
+	SELECT *
+	FROM FullTextBuildings
+	WHERE FREETEXT(Adress, @request)
