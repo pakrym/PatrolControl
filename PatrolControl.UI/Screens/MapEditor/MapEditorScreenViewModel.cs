@@ -34,7 +34,7 @@ namespace PatrolControl.UI.Screens.MapEditor
 
         private IEnumerable<IResult> Deleted()
         {
-                
+          yield break;       
         }
 
         private IEnumerable<IResult> Cancelled()

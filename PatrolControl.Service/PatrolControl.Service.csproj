@@ -71,7 +71,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClientBin\PatrolControl.UI.xap" />
-    <Content Include="Model\Sql\UnusedSql.txt" />
     <Content Include="PatrolControl.UITestPage.aspx" />
     <Content Include="PatrolControl.UITestPage.html" />
     <Content Include="PatrolControlService.svc" />
@@ -102,9 +101,6 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Model\Sql\Sql.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
