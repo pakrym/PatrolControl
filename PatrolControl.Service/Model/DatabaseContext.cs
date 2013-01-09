@@ -25,17 +25,6 @@ namespace PatrolControl.Service.Model
         public DbSet<PatrolDistrict> PatrolDistricts { get; set; }
         public DbSet<TownDistrict> TownDistricts { get; set; }
 
-        public class Initializer : IDatabaseInitializer<DatabaseContext>
-        {
-            public void InitializeDatabase(DatabaseContext context)
-            {
-                if (!context.Database.Exists() || !context.Database.CompatibleWithModel(false))
-                {
-                    context.Database.Delete();
-                    (new ModelInstaller()).Install(context, "PatrolControl.Service.Model.Sql");
-                }
-            }
-        }
     }
 
     [DataContract]

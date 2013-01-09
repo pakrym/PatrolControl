@@ -74,6 +74,7 @@
     <EmbeddedResource Include="Model\Sql\100-InsertUsers.sql" />
     <EmbeddedResource Include="Model\Sql\001-View FullTextBuildings.sql" />
     <EmbeddedResource Include="Model\Sql\010-StoredProcedure BuildingsWithSimularNames.sql" />
+    <Content Include="Global.asax" />
     <Content Include="Model\Sql\UnusedSql.txt" />
     <Content Include="PatrolControl.UITestPage.aspx" />
     <Content Include="PatrolControl.UITestPage.html" />
@@ -82,6 +83,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Model\DatabaseContext.cs" />
     <Compile Include="PatrolControlService.svc.cs">
       <DependentUpon>PatrolControlService.svc</DependentUpon>

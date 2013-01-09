@@ -20,10 +20,6 @@ namespace PatrolControl.Service
 
         private readonly DatabaseContext _context;
 
-        static PatrolControlService()
-        {
-            Database.SetInitializer(new DatabaseContext.Initializer());
-        }
 
         public PatrolControlService()
         {

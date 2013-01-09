@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Data.Entity;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -9,29 +10,30 @@ using System.Text;
 
 namespace PatrolControl.Service.Model
 {
-    public class ModelInstaller
+    public class ModelInstaller<T> : DropCreateDatabaseIfModelChanges<T> where T : DbContext
     {
-        public bool Install(DatabaseContext dc, string @namespace)
+        const string Namespace = "PatrolControl.Service.Model.Sql";
+
+        protected override void Seed(T context)
         {
-            dc.Database.CreateIfNotExists();
+            base.Seed(context);
 
             var assembly = Assembly.GetExecutingAssembly();
 
             var resourceNames = assembly.GetManifestResourceNames()
-                                        .Where(r => r.StartsWith(@namespace) && r.ToLower().EndsWith(".sql"))
+                                        .Where(r => r.StartsWith(Namespace) && r.ToLower().EndsWith(".sql"))
                                         .OrderBy(r => r).ToArray();
 
             foreach (var resourceName in resourceNames)
             {
                 var stream = assembly.GetManifestResourceStream(resourceName);
                 if (stream == null) continue;
-                
+
                 using (var reader = new StreamReader(stream))
                 {
-                    var result = dc.Database.ExecuteSqlCommand(reader.ReadToEnd());
+                    var result = context.Database.ExecuteSqlCommand(reader.ReadToEnd());
                 }
             }
-            return true;
         }
     }
 }
