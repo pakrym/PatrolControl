@@ -48,11 +48,11 @@ namespace PatrolControl.Service.Model
         private static String Encript(String value)
         {
             var x = new System.Security.Cryptography.MD5CryptoServiceProvider();
-            byte[] data = System.Text.Encoding.ASCII.GetBytes(value);
+            byte[] data = Encoding.ASCII.GetBytes(value);
 
             var hash = x.ComputeHash(data);
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < hash.Length; i++)
+            var sb = new StringBuilder();
+            for (var i = 0; i < hash.Length; i++)
             {
                 sb.Append(hash[i].ToString("x2"));
             }
