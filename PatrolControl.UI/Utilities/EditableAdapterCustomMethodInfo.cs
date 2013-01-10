@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace PatrolControl.UI.Utilities
 {
-    public class EditableAdapterCustomMethodInfo: MethodInfo
+    public class EditableAdapterCustomMethodInfo : MethodInfo
     {
         private readonly MethodInfo _methodInfo;
 
@@ -35,9 +35,18 @@ namespace PatrolControl.UI.Utilities
 
         public override object Invoke(object obj, BindingFlags invokeAttr, Binder binder, object[] parameters, CultureInfo culture)
         {
+            object theobj;
 
-            var adapter = (EditableAdapter)obj;
-            return _methodInfo.Invoke(adapter.Model, invokeAttr, binder, parameters, culture);
+            if (typeof (EditableAdapter).IsAssignableFrom(_methodInfo.DeclaringType))
+            {
+                theobj = obj;
+            }
+            else
+            {
+                theobj = ((EditableAdapter)obj).Model;    
+            }
+
+            return _methodInfo.Invoke(theobj, invokeAttr, binder, parameters, culture);
         }
 
         public override MethodInfo GetBaseDefinition()

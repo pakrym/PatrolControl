@@ -9,10 +9,13 @@ namespace PatrolControl.UI.Utilities
     {
         
         private readonly Type _type;
+        private Type _thisType;
 
         public EditableAdapterCustomType(Type type)
         {
             _type = type;
+            _thisType = GetType();
+
         }
 
         public override object[] GetCustomAttributes(bool inherit)
@@ -63,7 +66,7 @@ namespace PatrolControl.UI.Utilities
         protected override PropertyInfo GetPropertyImpl(string name, BindingFlags bindingAttr, Binder binder, Type returnType, Type[] types,
                                                         ParameterModifier[] modifiers)
         {
-            var prop = _type.GetProperty(name);
+            var prop = _type.GetProperty(name) ?? _thisType.GetProperty(name);
             if (prop == null) return null;
 
             return new EditableAdapterCustomPropertyInfo(prop);
@@ -71,7 +74,7 @@ namespace PatrolControl.UI.Utilities
 
         public override PropertyInfo[] GetProperties(BindingFlags bindingAttr)
         {
-            return _type.GetProperties()
+            return _type.GetProperties().Concat(_thisType.GetProperties())
                         .Select(p => new EditableAdapterCustomPropertyInfo(p))
                         .ToArray();
         }
@@ -79,12 +82,15 @@ namespace PatrolControl.UI.Utilities
         protected override MethodInfo GetMethodImpl(string name, BindingFlags bindingAttr, Binder binder, CallingConventions callConvention,
                                                     Type[] types, ParameterModifier[] modifiers)
         {
-            throw new NotImplementedException();
+            var meth = _type.GetMethod(name) ?? _thisType.GetMethod(name);
+            if (meth == null) return null;
+
+            return new EditableAdapterCustomMethodInfo(meth);
         }
 
         public override MethodInfo[] GetMethods(BindingFlags bindingAttr)
         {
-            return _type.GetMethods()
+            return _type.GetMethods().Concat(_thisType.GetMethods())
                         .Select(p => new EditableAdapterCustomMethodInfo(p))
                         .ToArray();
         }
