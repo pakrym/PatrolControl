@@ -109,8 +109,12 @@ namespace PatrolControl.UI
             }
             _container.RegisterType<IShell, ShellViewModel>(new ContainerControlledLifetimeManager());
 
-            _container.RegisterType<IFeatureLayerViewModel, BuildingFeatureLayerViewModel>("buildings", new ContainerControlledLifetimeManager());
-            _container.RegisterType<IFeatureLayerViewModel, StreetFeatureLayerViewModel>("streets", new ContainerControlledLifetimeManager());
+            _container.RegisterType<IFeatureLayerViewModel,BuildingFeatureLayerViewModel>("buildings");
+
+            _container.RegisterType<IFeatureLayerViewModel,StreetsFeatureLayerViewModel>("streets");
+
+            _container.RegisterType<IFeatureProvider, BuildingFeatureProvider>("buildings");
+            _container.RegisterType<IFeatureProvider, StreetFeatureProvider>("streets");
 
             _container.RegisterType<IScreen, MapEditorScreenViewModel>("mapeditor");
             _container.RegisterType<IScreen, UserManagerViewModel>("usermanager");
