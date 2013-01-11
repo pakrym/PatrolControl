@@ -24,6 +24,7 @@ namespace PatrolControl.Service
         public PatrolControlService()
         {
             _context = new DatabaseContext();
+            
         }
 
         public User Login(String name, String password)

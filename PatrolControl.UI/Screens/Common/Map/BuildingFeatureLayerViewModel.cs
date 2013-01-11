@@ -1,34 +1,16 @@
-﻿using PatrolControl.UI.PatrolControlServiceReference;
+﻿using Microsoft.Practices.Unity;
+using PatrolControl.UI.PatrolControlServiceReference;
+using PatrolControl.UI.Services;
 
 namespace PatrolControl.UI.Screens.Common.Map
 {
     public class BuildingFeatureLayerViewModel : FeatureLayerViewModel
     {
-        public override string Name
+        public BuildingFeatureLayerViewModel(
+            [Dependency("buildings")]
+            IFeatureProvider featureProvider)
+            : base("Buildings", featureProvider)
         {
-            get { return "Buildings"; }
-        }
-
-        public override void Update(ESRI.ArcGIS.Client.Geometry.Envelope envelope)
-        {
-            var client = new PatrolControlServiceClient();
-            client.GetBuildingsCompleted += (sender, args) => SetFeatures(args.Result);
-            client.GetBuildingsAsync();
-        }
-
-        protected override void UpdateFeature(FeatureGraphics feature)
-        {
-            
-        }
-
-        protected override void AddFeature(FeatureGraphics feature)
-        {
-            
-        }
-
-        protected override void DeleteFeature(FeatureGraphics feature)
-        {
-            
         }
     }
 }

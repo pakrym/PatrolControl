@@ -12,7 +12,7 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <ContentControl x:Name="Target"></ContentControl>
+        <ContentControl x:Name="Target" HorizontalContentAlignment="Stretch"></ContentControl>
        
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left" local:MarginSetter.Margin="5">
             <Button x:Name="Save">Save</Button>

@@ -71,9 +71,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClientBin\PatrolControl.UI.xap" />
-    <EmbeddedResource Include="Model\Sql\100-InsertUsers.sql" />
-    <EmbeddedResource Include="Model\Sql\001-View FullTextBuildings.sql" />
-    <EmbeddedResource Include="Model\Sql\010-StoredProcedure BuildingsWithSimularNames.sql" />
     <Content Include="Global.asax" />
     <EmbeddedResource Include="Model\Sql\0100-InsertUsers.sql" />
     <EmbeddedResource Include="Model\Sql\0001-View FullTextBuildings.sql" />
