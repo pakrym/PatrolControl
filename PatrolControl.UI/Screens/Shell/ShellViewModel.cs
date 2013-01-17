@@ -7,18 +7,23 @@ namespace PatrolControl.UI.Screens.Shell
 {
     public class ShellViewModel : Conductor<IScreen>, IShell
     {
-         readonly LoginScreenViewModel _firstScreen;
+        readonly LoginScreenViewModel _firstScreen;
 
-        public ShellViewModel(LoginScreenViewModel firstScreen) {
+        public ShellViewModel(LoginScreenViewModel firstScreen)
+        {
             this._firstScreen = firstScreen;
-            
+            BusyIndicator = new BusyIndicatorViewModel();
+
         }
 
+        public BusyIndicatorViewModel BusyIndicator { get; set; }
 
-        protected override void OnInitialize() {
+
+        protected override void OnInitialize()
+        {
             ActivateItem(_firstScreen);
             base.OnInitialize();
-            
+
         }
 
         public void Back()
@@ -28,5 +33,5 @@ namespace PatrolControl.UI.Screens.Shell
 
     }
 
-    
+
 }

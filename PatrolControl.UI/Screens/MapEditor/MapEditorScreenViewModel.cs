@@ -4,8 +4,11 @@ using System.Windows.Input;
 using Caliburn.Micro;
 using ESRI.ArcGIS.Client;
 using ESRI.ArcGIS.Client.Geometry;
+using ESRI.ArcGIS.Client.Symbols;
 using ESRI.ArcGIS.Client.Toolkit;
 using Microsoft.Practices.Unity;
+using PatrolControl.UI.Framework;
+using PatrolControl.UI.Model;
 using PatrolControl.UI.PatrolControlServiceReference;
 using PatrolControl.UI.Screens.Common;
 using PatrolControl.UI.Screens.Common.Map;
@@ -26,7 +29,7 @@ namespace PatrolControl.UI.Screens.MapEditor
         public MapEditorScreenViewModel()
         {
             ObjectEditor = new ObjectEditorViewModel();
-            ObjectEditor.Saved += (sender, args) => Coroutine.BeginExecute(Saved().GetEnumerator()); 
+            ObjectEditor.Saved += (sender, args) => Coroutine.BeginExecute(Saved());
             ObjectEditor.Cancelled += (sender, args) => Coroutine.BeginExecute(Cancelled().GetEnumerator());
             ObjectEditor.Deleted += (sender, args) => Coroutine.BeginExecute(Deleted().GetEnumerator());
             this.ViewAttached += HandleViewAttached;
@@ -34,26 +37,47 @@ namespace PatrolControl.UI.Screens.MapEditor
 
         private IEnumerable<IResult> Deleted()
         {
+            SaveActiveEdit();
+
+            var featureGraphics = SelectedGraphics as FeatureGraphics;
+            if (featureGraphics != null)
+                SelectedLayer.Remove(featureGraphics);
+
+            //yield return new CommitLayer().AsResult();
+
+            CleanUp();
             yield break;
+            
         }
 
         private IEnumerable<IResult> Cancelled()
         {
-            GraphicEditor.CancelEditEx();
+            CancelActiveEdit();
+
+
+            var featureGraphics = SelectedGraphics as FeatureGraphics;
+            if (featureGraphics != null)
+                SelectedLayer.SaveOrAdd(featureGraphics);
+
+//            yield return new CommitLayer().AsResult();
+
+            CleanUp();
             yield break;
+            
         }
 
-        private IEnumerable<IResult> Saved()
+        private IEnumerator<IResult> Saved()
         {
-            GraphicEditor.StopEditEx();
-            
-            var featureGraphics = SelectedGraphics as FeatureGraphics;
+            SaveActiveEdit();
 
+            var featureGraphics = SelectedGraphics as FeatureGraphics;
             if (featureGraphics != null)
-            {
-                featureGraphics.FeatureLayer.MarkEdited(featureGraphics);
-            }
-            yield break;
+                SelectedLayer.SaveOrAdd(featureGraphics);
+
+
+            yield return new CommitLayer() { FeatureLayer = SelectedLayer }.AsResult();
+
+            CleanUp();
         }
 
 
@@ -67,8 +91,7 @@ namespace PatrolControl.UI.Screens.MapEditor
         public Map Map { get; set; }
 
         public Graphic SelectedGraphics { get; set; }
-
-
+        public FeatureLayerViewModel SelectedLayer { get; set; }
 
         public ObjectEditorViewModel ObjectEditor { get; private set; }
 
@@ -77,11 +100,18 @@ namespace PatrolControl.UI.Screens.MapEditor
             get { return new[] { BuildingsLayer, StreetsLayer }; }
         }
 
-        public void LoadLayers()
+        public IEnumerable<IResult> LoadLayers()
         {
-            BuildingsLayer.Update(null);
-            StreetsLayer.Update(null);
+            foreach (var layer in Layers)
+            {
+                yield return Show.Busy("Loading " + layer.Name);
+                
+                yield return new UpdateLayer() {Layer = layer, Envelope = null}.AsResult();
+
+                yield return Show.NotBusy();
+            }
         }
+
 
         public void HandleViewAttached(object viewObject, ViewAttachedEventArgs eventArgs)
         {
@@ -91,23 +121,23 @@ namespace PatrolControl.UI.Screens.MapEditor
             Map = (Map)view.FindName("MyMap");
 
             GraphicEditor.Init(Map);
-
         }
 
-        public void MouseDown(object sender, GraphicMouseButtonEventArgs e)
+        public void MouseDown(FeatureLayerViewModel sender, GraphicMouseButtonEventArgs e)
         {
+            if (sender == null)
+            {
+                return;
+            }
+
             if (SelectedGraphics != e.Graphic)
             {
-                if (SelectedGraphics != null)
-                {
-                    SelectedGraphics.UnSelect();
-                    GraphicEditor.CancelEditEx();
-                    ObjectEditor.Cancel();
-                }
+                CancelActiveEdit();
 
+                SelectedLayer = sender;
                 SelectedGraphics = e.Graphic;
                 SelectedGraphics.Select();
-                
+
                 GraphicEditor.StartEditEx(SelectedGraphics);
 
                 var featureGraphics = e.Graphic as FeatureGraphics;
@@ -116,6 +146,65 @@ namespace PatrolControl.UI.Screens.MapEditor
                     ObjectEditor.Edit(featureGraphics.Feature);
                 }
             }
+        }
+
+        public void AddStreet()
+        {
+            Add(StreetsLayer);
+        }
+
+        public void AddBuilding()
+        {
+            Add(BuildingsLayer);
+        }
+
+        public void Add(IFeatureLayerViewModel featureLayer)
+        {
+            var model = featureLayer as FeatureLayerViewModel;
+
+            if (model != null)
+            {
+                var view = model.GetView();
+                var layer = view as GraphicsLayer;
+
+                if (layer != null)
+                {
+                    CancelActiveEdit();
+
+                    var featureGraphics = model.NewFeature();
+
+                    ObjectEditor.Edit(featureGraphics.Feature);
+                    GraphicEditor.Add(layer, featureGraphics);
+                    SelectedGraphics = featureGraphics;
+                    SelectedLayer = model;
+                }
+            }
+        }
+
+        private void SaveActiveEdit()
+        {
+            if (SelectedGraphics != null)
+            {
+                SelectedGraphics.UnSelect();
+                GraphicEditor.StopEditEx();
+                ObjectEditor.Save();
+            }
+        }
+
+        private void CancelActiveEdit()
+        {
+            if (SelectedGraphics != null)
+            {
+                SelectedGraphics.UnSelect();
+                GraphicEditor.CancelEditEx();
+                ObjectEditor.Cancel();
+            }
+        }
+
+        private void CleanUp()
+        {
+            SelectedGraphics = null;
+            SelectedLayer = null;
         }
 
     }

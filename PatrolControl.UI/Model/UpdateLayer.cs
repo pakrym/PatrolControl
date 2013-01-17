@@ -7,7 +7,7 @@ namespace PatrolControl.UI.Model
 {
     public class UpdateLayer : ICommand<IFeatureService>
     {
-        public FeatureLayerViewModel Layer { get; set; }
+        public IFeatureLayerViewModel Layer { get; set; }
         public Envelope Envelope { get; set; }
     }
 }

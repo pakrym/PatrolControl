@@ -118,11 +118,12 @@ namespace PatrolControl.UI.Screens.Login
         {
             Caliburn.Micro.Coroutine.BeginExecute(LoadUsers().GetEnumerator());
             base.OnInitialize();
-
         }
 
         private IEnumerable<IResult> LoadUsers()
         {
+            yield return Show.Busy("Loading users...");
+
             var getUsers = new GetLoginUsers().AsResult();
             yield return getUsers;
 
@@ -130,6 +131,8 @@ namespace PatrolControl.UI.Screens.Login
             {
                 Users.Add(user);
             }
+
+            yield return Show.NotBusy();
         }
     }
 }

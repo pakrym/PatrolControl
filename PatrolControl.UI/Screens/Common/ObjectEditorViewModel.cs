@@ -60,6 +60,8 @@ namespace PatrolControl.UI.Screens.Common
 
         public void Save()
         {
+            if (Target == null) return;
+            
             var ieo = Target as IEditableObject;
             if (ieo != null)
                 ieo.EndEdit();
@@ -69,6 +71,8 @@ namespace PatrolControl.UI.Screens.Common
 
         public void Cancel()
         {
+            if (Target == null) return;
+            
             var ieo = Target as IEditableObject;
             if (ieo != null)
                 ieo.CancelEdit();
@@ -78,6 +82,8 @@ namespace PatrolControl.UI.Screens.Common
 
         public void Delete()
         {
+            if (Target == null) return;
+            
             var ieo = Target as IEditableObject;
             if (ieo != null)
                 ieo.CancelEdit();

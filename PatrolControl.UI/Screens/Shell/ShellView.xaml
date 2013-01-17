@@ -5,12 +5,17 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-    
+
     <Grid x:Name="LayoutRoot" Style="{StaticResource BackroundImage}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ContentControl HorizontalContentAlignment="Stretch"  VerticalContentAlignment="Stretch" x:Name="ActiveItem" Grid.Row="1"></ContentControl>
+        <ContentControl HorizontalContentAlignment="Stretch"  VerticalContentAlignment="Stretch" x:Name="ActiveItem" Grid.RowSpan="2" Grid.ColumnSpan="2"></ContentControl>
+        <ContentControl x:Name="BusyIndicator" Grid.Column="1"></ContentControl>
     </Grid>
 </UserControl>

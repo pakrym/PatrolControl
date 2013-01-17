@@ -16,12 +16,20 @@
                                Map="{Binding ElementName=MyMap}" 
                                IsEnabled="True" 
 							/>
+        <esri:Editor  x:Key="Editor" 
+                         Map="{Binding ElementName=MyMap}" 
+                          LayerIDs="BuildingsLayer"
+                          />
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
+
+        <Grid.Resources>
+          
+        </Grid.Resources>
 
         <!--Extent="50, 34, 51, 34" ZoomFactor="15"-->
         <esri:Map x:Name="MyMap" SnapToLevels="True" Extent="3862000,6612000,3883000,6600000" IsLogoVisible="False" Grid.Column="1" 
@@ -32,16 +40,18 @@
             <esri:Map.Layers>
                 <UI:YanderCacheTiledLayer Visible="True"/>
 
-                <esri:GraphicsLayer 
+                <esri:GraphicsLayer  ID="BuildingsLayer"
                     MouseLeftButtonDown="MouseDown"
                     Visible="{Binding Path=Data.BuildingsLayer.IsVisible, Source={StaticResource Proxy}}"
                     Graphics="{Binding Path=Data.BuildingsLayer.Features, Source={StaticResource Proxy}}"
+                     local:ViewModelHelper.ViewModel="{Binding Path=Data.BuildingsLayer, Source={StaticResource Proxy}}"
                     Renderer="{StaticResource BuildingsLayerRenderer}">
                 </esri:GraphicsLayer>
 
-                <esri:GraphicsLayer  
+                <esri:GraphicsLayer   ID="StreetsLayer"
                     x:Name="StreetsLayer" 
                     MouseLeftButtonDown="MouseDown"
+                    local:ViewModelHelper.ViewModel="{Binding Path=Data.StreetsLayer, Source={StaticResource Proxy}}"
                                     Visible="{Binding Path=Data.StreetsLayer.IsVisible, Source={StaticResource Proxy}}" 
                                     Graphics="{Binding Path=Data.StreetsLayer.Features, Source={StaticResource Proxy}}" 
                                     Renderer="{StaticResource StreetLayerRenderer}"
@@ -61,7 +71,7 @@
         <Border Style="{StaticResource ToolBar}"   Grid.Column="0">
             <StackPanel Orientation="Vertical">
                 <HyperlinkButton Style="{StaticResource BackButton}" ></HyperlinkButton>
-                
+
                 <controls:GroupPanel Title="Layers">
                     <ItemsControl x:Name="Layers">
                         <ItemsControl.ItemsPanel>
@@ -79,16 +89,15 @@
 
                 <controls:GroupPanel Title="Add">
                     <StackPanel Orientation="Vertical">
-                        
-                        <HyperlinkButton x:Name="AddStreet">Add street</HyperlinkButton>
-                        <HyperlinkButton x:Name="AddBuilding">Add building</HyperlinkButton>
-                        <HyperlinkButton x:Name="Cancel">Cancel</HyperlinkButton>
+
+                        <HyperlinkButton x:Name="AddStreet">Street</HyperlinkButton>
+                        <HyperlinkButton x:Name="AddBuilding">Building</HyperlinkButton>
                     </StackPanel>
                 </controls:GroupPanel>
 
                 <controls:GroupPanel Title="Edit" Visibility="{Binding ObjectEditor.IsEditing, Converter={local:BoolToVisibilityConverter}}">
                     <ContentControl x:Name="ObjectEditor" ></ContentControl>
-                </controls:GroupPanel>
+                </controls:GroupPanel>  
 
             </StackPanel>
         </Border>

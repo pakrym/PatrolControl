@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using PatrolControl.UI.Model;
 
 namespace PatrolControl.UI.Framework
 {
@@ -16,14 +17,14 @@ namespace PatrolControl.UI.Framework
             return new OpenChildResult<TChild>(child);
         }
 
-        //public static IResult Busy()
-        //{
-        //    return new BusyResult(false);
-        //}
+        public static IResult Busy(string text)
+        {
+            return new SetBusy() { Status = true, Text = text }.AsResult();
+        }
 
-        //public static IResult NotBusy()
-        //{
-        //    return new BusyResult(true);
-        //}
+        public static IResult NotBusy()
+        {
+            return new SetBusy() { Status = false }.AsResult();
+        }
     }
 }

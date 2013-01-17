@@ -204,6 +204,7 @@ namespace PatrolControl.Service
                            .Select(b => new { Street = b, Entity = streets.LastOrDefault(e => e.Id == b.Id) })
                            .Where(e => e.Entity != null);
 
+           
             foreach (var element in elements)
             {
                 element.Entity.Name = element.Street.Name;

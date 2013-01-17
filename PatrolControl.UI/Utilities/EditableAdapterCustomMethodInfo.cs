@@ -76,7 +76,7 @@ namespace PatrolControl.UI.Utilities
 
         public override MethodAttributes Attributes
         {
-            get { throw new NotImplementedException(); }
+            get { return _methodInfo.Attributes;  }
         }
 
         public override ICustomAttributeProvider ReturnTypeCustomAttributes

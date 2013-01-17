@@ -7,6 +7,7 @@ using Caliburn.Micro;
 using Microsoft.Practices.Unity;
 using PatrolControl.UI.Framework;
 using PatrolControl.UI.PatrolControlServiceReference;
+using PatrolControl.UI.Providers;
 using PatrolControl.UI.Screens.Common.Map;
 using PatrolControl.UI.Screens.Login;
 using PatrolControl.UI.Screens.MapEditor;
@@ -115,6 +116,10 @@ namespace PatrolControl.UI
 
             _container.RegisterType<IFeatureProvider, BuildingFeatureProvider>("buildings");
             _container.RegisterType<IFeatureProvider, StreetFeatureProvider>("streets");
+
+            _container.RegisterType<IFeatureService, FeatureService>();
+
+            _container.RegisterType<IShellService, ShellService>();
 
             _container.RegisterType<IScreen, MapEditorScreenViewModel>("mapeditor");
             _container.RegisterType<IScreen, UserManagerViewModel>("usermanager");
