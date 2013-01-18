@@ -141,6 +141,10 @@
     <Compile Include="Model\GetScreensForUser.cs" />
     <Compile Include="Model\SaveFeature.cs" />
     <Compile Include="Model\UpdateLayer.cs" />
+    <Compile Include="Screens\OperationScreen\OperationScreen.xaml.cs">
+      <DependentUpon>OperationScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\OperationScreen\OperationScreenModel.cs" />
     <Compile Include="Services\BackendService.cs" />
     <Compile Include="Services\IFeatureService.cs" />
     <Compile Include="Services\IPermissionService.cs" />
@@ -234,6 +238,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Screens\MapEditor\MapEditorScreenView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\OperationScreen\OperationScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

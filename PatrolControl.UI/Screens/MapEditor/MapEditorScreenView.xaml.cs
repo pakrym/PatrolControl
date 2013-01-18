@@ -20,12 +20,9 @@ namespace PatrolControl.UI.Screens.MapEditor
             InitializeComponent();
         }
 
-
         private void MouseDown(object sender, GraphicMouseButtonEventArgs e)
         {
             (DataContext as MapEditorScreenViewModel).MouseDown(sender, e);
         }
-
-
     }
 }

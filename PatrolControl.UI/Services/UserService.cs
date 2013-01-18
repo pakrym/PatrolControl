@@ -12,7 +12,6 @@ namespace PatrolControl.UI.Services
         {
             Client.LoginCompleted += (sender, args) => callback(args.Result);
             Client.LoginAsync(command.Login, command.Password);
-
         }
 
         public void Handle(GetLoginUsers command, Action<IEnumerable<User>> callback)

@@ -1,34 +1,16 @@
-﻿using PatrolControl.UI.PatrolControlServiceReference;
+﻿using Microsoft.Practices.Unity;
+using PatrolControl.UI.PatrolControlServiceReference;
+using PatrolControl.UI.Services;
 
 namespace PatrolControl.UI.Screens.Common.Map
 {
-    public class StreetFeatureLayerViewModel : FeatureLayerViewModel
+    public class StreetsFeatureLayerViewModel : FeatureLayerViewModel
     {
-        public override string Name
+        public StreetsFeatureLayerViewModel(
+            [Dependency("streets")]
+            IFeatureProvider featureProvider)
+            : base("Streets", featureProvider)
         {
-            get { return "Streets"; }
-        }
-
-        public override void Update(ESRI.ArcGIS.Client.Geometry.Envelope envelope)
-        {
-            var client = new PatrolControlServiceClient();
-            client.GetStreetsCompleted += (sender, args) => SetFeatures(args.Result);
-            client.GetStreetsAsync();
-        }
-
-        protected override void UpdateFeature(FeatureGraphics feature)
-        {
-            
-        }
-
-        protected override void AddFeature(FeatureGraphics feature)
-        {
-            
-        }
-
-        protected override void DeleteFeature(FeatureGraphics feature)
-        {
-            
         }
     }
 }

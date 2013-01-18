@@ -7,7 +7,8 @@
     d:DesignHeight="300" d:DesignWidth="400">
     
     <StackPanel x:Name="LayoutRoot" Background="White" HorizontalAlignment="Stretch">
-        <TextBlock Text="Name"></TextBlock>
-        <TextBox Name="Name"></TextBox>
+        <TextBlock Text="Name" ></TextBlock>
+        <TextBox Name="StreetId" ></TextBox>
+        <TextBox Name="Number" ></TextBox>
     </StackPanel>
 </UserControl>
