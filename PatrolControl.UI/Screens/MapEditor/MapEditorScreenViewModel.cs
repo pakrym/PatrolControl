@@ -39,7 +39,7 @@ namespace PatrolControl.UI.Screens.MapEditor
         {
             SaveActiveEdit();
 
-            var featureGraphics = SelectedGraphics as FeatureGraphics;
+            var featureGraphics = SelectedGraphics as FeatureGraphic;
             if (featureGraphics != null)
                 SelectedLayer.Remove(featureGraphics);
 
@@ -55,7 +55,7 @@ namespace PatrolControl.UI.Screens.MapEditor
             CancelActiveEdit();
 
 
-            var featureGraphics = SelectedGraphics as FeatureGraphics;
+            var featureGraphics = SelectedGraphics as FeatureGraphic;
             if (featureGraphics != null)
                 SelectedLayer.SaveOrAdd(featureGraphics);
 
@@ -70,7 +70,7 @@ namespace PatrolControl.UI.Screens.MapEditor
         {
             SaveActiveEdit();
 
-            var featureGraphics = SelectedGraphics as FeatureGraphics;
+            var featureGraphics = SelectedGraphics as FeatureGraphic;
             if (featureGraphics != null)
                 SelectedLayer.SaveOrAdd(featureGraphics);
 
@@ -140,7 +140,7 @@ namespace PatrolControl.UI.Screens.MapEditor
 
                 GraphicEditor.StartEditEx(SelectedGraphics);
 
-                var featureGraphics = e.Graphic as FeatureGraphics;
+                var featureGraphics = e.Graphic as FeatureGraphic;
                 if (featureGraphics != null)
                 {
                     ObjectEditor.Edit(featureGraphics.Feature);

@@ -7,9 +7,8 @@ using PatrolControl.UI.PatrolControlServiceReference;
 
 namespace PatrolControl.UI.Providers
 {
-    public class StreetFeatureProvider : ProviderBase, IFeatureProvider
+    public class StreetFeatureProvider : ProviderBase, IFeatureProvider, ICrud
     {
-
         public Task<Feature[]> List(Envelope envelope)
         {
             var tcs = new TaskCompletionSource<Feature[]>();
@@ -30,7 +29,17 @@ namespace PatrolControl.UI.Providers
             return tcs.Task;
         }
 
-        public Task Save(Feature[] feature)
+        public Task<Entity[]> List()
+        {
+            return List(null).ContinueWith(f => (Entity[])f.Result);
+        }
+
+        public Entity New()
+        {
+            return new Street();
+        }
+
+        public Task Save(Entity[] feature)
         {
             var tcs = new TaskCompletionSource<object>();
             EventHandler<AsyncCompletedEventArgs> callback = null;
@@ -53,7 +62,7 @@ namespace PatrolControl.UI.Providers
             return tcs.Task;
         }
 
-        public Task Add(Feature[] feature)
+        public Task Add(Entity[] feature)
         {
             var tcs = new TaskCompletionSource<object>();
             EventHandler<AsyncCompletedEventArgs> callback = null;
@@ -72,10 +81,10 @@ namespace PatrolControl.UI.Providers
             Client.AddStreetsCompleted += callback;
             Client.AddStreetsAsync(feature.Cast<Street>().ToArray());
 
-            return tcs.Task;   
+            return tcs.Task;
         }
 
-        public Task Remove(Feature[] feature)
+        public Task Remove(Entity[] feature)
         {
             var tcs = new TaskCompletionSource<object>();
             EventHandler<AsyncCompletedEventArgs> callback = null;
@@ -94,7 +103,8 @@ namespace PatrolControl.UI.Providers
             Client.DeleteStreetsCompleted += callback;
             Client.DeleteStreetsAsync(feature.Cast<Street>().ToArray());
 
-            return tcs.Task;   
+            return tcs.Task;
         }
+
     }
 }

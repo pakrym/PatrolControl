@@ -42,5 +42,10 @@ namespace PatrolControl.UI.Providers
         {
             throw new NotImplementedException();
         }
+
+        public Entity New()
+        {
+            return new Building();
+        }
     }
 }
