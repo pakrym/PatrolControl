@@ -139,15 +139,27 @@
     </Compile>
     <Compile Include="Model\GetLoginUsers.cs" />
     <Compile Include="Model\GetScreensForUser.cs" />
-    <Compile Include="Model\SaveFeature.cs" />
+    <Compile Include="Model\CommitLayer.cs" />
+    <Compile Include="Model\SetBusy.cs" />
     <Compile Include="Model\UpdateLayer.cs" />
     <Compile Include="Screens\OperationScreen\OperationScreen.xaml.cs">
       <DependentUpon>OperationScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Screens\OperationScreen\OperationScreenModel.cs" />
     <Compile Include="Services\BackendService.cs" />
+    <Compile Include="Providers\BuildingFeatureProvider.cs" />
+    <Compile Include="Providers\ProviderBase.cs" />
+    <Compile Include="Providers\StreetFeatureProvider.cs" />
+    <Compile Include="Screens\Shell\BusyIndicatorView.xaml.cs">
+      <DependentUpon>BusyIndicatorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Shell\BusyIndicatorViewModel.cs" />
+    <Compile Include="Services\BackendService.cs" />
+    <Compile Include="Providers\IFeatureProvider.cs" />
+    <Compile Include="Services\FeatureService.cs" />
     <Compile Include="Services\IFeatureService.cs" />
     <Compile Include="Services\IPermissionService.cs" />
+    <Compile Include="Services\IShellService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Framework\CommandResult.cs" />
     <Compile Include="Framework\IQuery.cs" />
@@ -179,6 +191,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Services\PermissionService.cs" />
+    <Compile Include="Services\ShellService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Utilities\BoolToVisibilityConverter.cs" />
     <Compile Include="Utilities\EditableAdapter.cs" />
@@ -242,6 +255,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Screens\OperationScreen\OperationScreen.xaml">
+    <Page Include="Screens\Shell\BusyIndicatorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

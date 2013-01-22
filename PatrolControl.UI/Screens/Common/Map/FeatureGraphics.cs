@@ -8,9 +8,6 @@ namespace PatrolControl.UI.Screens.Common.Map
         public Feature Feature { get; set; }
 
         public FeatureState State { get; set; }
-
-        public FeatureLayerViewModel FeatureLayer { get; set; }
-
     }
 
     public enum FeatureState

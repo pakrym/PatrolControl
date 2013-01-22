@@ -26,9 +26,10 @@ namespace PatrolControl.UI.Framework
         }
 
         void Invoke(object request, params object[] args) {
+
             ThreadPool.QueueUserWorkItem(state => {
                                                       var requestType = request.GetType();
-                                                      var handler = _methods.Where(x => requestType.IsAssignableFrom(x.GetParameters().First().ParameterType)).First();
+                                                      var handler = _methods.First(x => requestType.IsAssignableFrom(x.GetParameters().First().ParameterType));
 
                                                       handler.Invoke(this, args);
             });

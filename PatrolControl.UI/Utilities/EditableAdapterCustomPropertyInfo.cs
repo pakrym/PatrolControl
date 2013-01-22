@@ -25,14 +25,37 @@ namespace PatrolControl.UI.Utilities
 
         public override object GetValue(object obj, BindingFlags invokeAttr, Binder binder, object[] index, CultureInfo culture)
         {
-            var adapter = (EditableAdapter)obj;
-            return _propertyInfo.GetValue(adapter.Model, invokeAttr, binder, index, culture);
+
+            object theobj;
+
+            if (typeof(EditableAdapter).IsAssignableFrom(_propertyInfo.DeclaringType))
+            {
+                theobj = obj;
+            }
+            else
+            {
+                theobj = ((EditableAdapter)obj).Model;
+            }
+
+
+
+            return _propertyInfo.GetValue(theobj, invokeAttr, binder, index, culture);
         }
 
         public override void SetValue(object obj, object value, BindingFlags invokeAttr, Binder binder, object[] index, CultureInfo culture)
         {
-            var adapter = (EditableAdapter)obj;
-            _propertyInfo.SetValue(adapter.Model, value, invokeAttr, binder, index, culture);
+            object theobj;
+
+            if (typeof(EditableAdapter).IsAssignableFrom(_propertyInfo.DeclaringType))
+            {
+                theobj = obj;
+            }
+            else
+            {
+                theobj = ((EditableAdapter)obj).Model;
+            }
+
+            _propertyInfo.SetValue(theobj, value, invokeAttr, binder, index, culture);
         }
 
         public override MethodInfo[] GetAccessors(bool nonPublic)
@@ -42,12 +65,12 @@ namespace PatrolControl.UI.Utilities
 
         public override MethodInfo GetGetMethod(bool nonPublic)
         {
-            return new EditableAdapterMethodInfo(_propertyInfo.GetGetMethod(nonPublic));
+            return new EditableAdapterCustomMethodInfo(_propertyInfo.GetGetMethod(nonPublic));
         }
 
         public override MethodInfo GetSetMethod(bool nonPublic)
         {
-            return new EditableAdapterMethodInfo(_propertyInfo.GetSetMethod(nonPublic));
+            return new EditableAdapterCustomMethodInfo(_propertyInfo.GetSetMethod(nonPublic));
         }
 
         public override ParameterInfo[] GetIndexParameters()
@@ -96,79 +119,5 @@ namespace PatrolControl.UI.Utilities
         }
     }
 
-    public class EditableAdapterMethodInfo : MethodInfo
-    {
-        private readonly MethodInfo _methodInfo;
-
-        public EditableAdapterMethodInfo(MethodInfo methodInfo)
-        {
-            _methodInfo = methodInfo;
-        }
-
-        public override object[] GetCustomAttributes(bool inherit)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool IsDefined(Type attributeType, bool inherit)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override ParameterInfo[] GetParameters()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override MethodImplAttributes GetMethodImplementationFlags()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override object Invoke(object obj, BindingFlags invokeAttr, Binder binder, object[] parameters, CultureInfo culture)
-        {
-            var adapter = (EditableAdapter)obj;
-            return _methodInfo.Invoke(adapter.Model, invokeAttr, binder, parameters, culture);
-        }
-
-        public override MethodInfo GetBaseDefinition()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override string Name
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public override Type DeclaringType
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public override Type ReflectedType
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public override RuntimeMethodHandle MethodHandle
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public override MethodAttributes Attributes
-        {
-            get { return _methodInfo.Attributes; }
-        }
-
-        public override ICustomAttributeProvider ReturnTypeCustomAttributes
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public override object[] GetCustomAttributes(Type attributeType, bool inherit)
-        {
-            throw new NotImplementedException();
-        }
-    }
+    
 }

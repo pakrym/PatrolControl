@@ -118,7 +118,6 @@ namespace PatrolControl.UI.Screens.Login
         {
             Caliburn.Micro.Coroutine.BeginExecute(LoadUsers().GetEnumerator());
             base.OnInitialize();
-
         }
 
         private IEnumerable<IResult> LoadUsers()
