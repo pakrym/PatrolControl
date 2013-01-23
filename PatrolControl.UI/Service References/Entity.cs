@@ -7,4 +7,5 @@ namespace PatrolControl.UI.PatrolControlServiceReference
     {
         internal EntityState State { get; set; }
     }
+
 }

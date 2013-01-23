@@ -69,5 +69,20 @@ namespace PatrolControl.UI.Screens.Common.Map
                 Geometry = (Geometry)Activator.CreateInstance(_geometryType)
             };
         }
+
+        public Task Commit()
+        {
+            return _entityCollection.Commit();
+        }
+
+        public void Remove(FeatureGraphic featureGraphic)
+        { 
+            _entityCollection.Delete(featureGraphic.Feature);
+        }
+
+        public void SaveOrAdd(FeatureGraphic featureGraphic)
+        {
+            _entityCollection.SaveOrAdd(featureGraphic.Feature);
+        }
     }
 }

@@ -9,7 +9,8 @@ namespace PatrolControl.UI.Screens.Common.Map
         public FeatureGraphic(Feature feature)
         {
             Feature = feature;
-            this.Geometry = GeometryFromWKT.Parse(feature.Geography.Geography.WellKnownText);
+            if (feature.Geography != null)
+                this.Geometry = GeometryFromWKT.Parse(feature.Geography.Geography.WellKnownText);
         }
 
         public Feature Feature { get; private set; }

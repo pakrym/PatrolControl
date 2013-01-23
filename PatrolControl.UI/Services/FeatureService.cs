@@ -6,14 +6,14 @@ namespace PatrolControl.UI.Services
 {
     public class FeatureService : ServiceBase, IFeatureService
     {
-        public void Handle(CommitLayer command)
+        public async void Handle(CommitLayer command)
         {
-            command.FeatureLayer.Commit();
+            await command.FeatureLayer.Commit();
         }
 
-        public void Handle(UpdateLayer command)
+        public async void Handle(UpdateLayer command)
         {
-            command.Layer.Update(command.Envelope);
+            await command.Layer.Update(command.Envelope);
         }
     }
 

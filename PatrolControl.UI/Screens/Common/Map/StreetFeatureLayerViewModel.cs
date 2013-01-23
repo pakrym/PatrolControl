@@ -11,7 +11,7 @@ namespace PatrolControl.UI.Screens.Common.Map
         public StreetsFeatureLayerViewModel(
             [Dependency("streets")]
             IFeatureProvider featureProvider)
-            : base("Streets", featureProvider, typeof(Polyline), typeof(Street))
+            : base("Streets", featureProvider, typeof(Polyline))
         {
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Caliburn.Micro;
 using PatrolControl.UI.PatrolControlServiceReference;
 using PatrolControl.UI.Providers;
 
@@ -14,6 +15,7 @@ namespace PatrolControl.UI.Screens.Common.Map
 
         public EntityCollection(ICrud crud)
         {
+            Entities = new ObservableCollection<Entity>();
             _deleted = new List<Entity>();
             _crud = crud;
         }
@@ -57,7 +59,7 @@ namespace PatrolControl.UI.Screens.Common.Map
             var features = await _crud.List();
 
             OnAfterUpdate(features);
-            SetEntities(features);
+            Execute.OnUIThread(() => SetEntities(features));
         }
 
         public async Task Commit()

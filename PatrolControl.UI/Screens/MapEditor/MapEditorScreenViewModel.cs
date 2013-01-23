@@ -82,9 +82,9 @@ namespace PatrolControl.UI.Screens.MapEditor
 
 
         [Dependency("buildings")]
-        public IFeatureLayerViewModel BuildingsLayer { get; set; }
+        public FeatureLayerViewModel BuildingsLayer { get; set; }
         [Dependency("streets")]
-        public IFeatureLayerViewModel StreetsLayer { get; set; }
+        public FeatureLayerViewModel StreetsLayer { get; set; }
 
         public EditGeometryExtended GraphicEditor { get; set; }
 
@@ -95,7 +95,7 @@ namespace PatrolControl.UI.Screens.MapEditor
 
         public ObjectEditorViewModel ObjectEditor { get; private set; }
 
-        public IFeatureLayerViewModel[] Layers
+        public FeatureLayerViewModel[] Layers
         {
             get { return new[] { BuildingsLayer, StreetsLayer }; }
         }
@@ -158,7 +158,7 @@ namespace PatrolControl.UI.Screens.MapEditor
             Add(BuildingsLayer);
         }
 
-        public void Add(IFeatureLayerViewModel featureLayer)
+        public void Add(FeatureLayerViewModel featureLayer)
         {
             var model = featureLayer as FeatureLayerViewModel;
 

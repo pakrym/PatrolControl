@@ -28,17 +28,23 @@ namespace PatrolControl.UI.Providers
             return tcs.Task;
         }
 
-        public Task Save(Feature[] feature)
+
+        public Task<Entity[]> List()
+        {
+            return List(null).ContinueWith(t => (Entity[])t.Result);
+        }
+
+        public Task Save(Entity[] feature)
         {
             return null;
         }
 
-        public Task Add(Feature[] feature)
+        public Task Add(Entity[] feature)
         {
             throw new NotImplementedException();
         }
 
-        public Task Remove(Feature[] feature)
+        public Task Remove(Entity[] feature)
         {
             throw new NotImplementedException();
         }
@@ -47,5 +53,6 @@ namespace PatrolControl.UI.Providers
         {
             return new Building();
         }
+
     }
 }
