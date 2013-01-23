@@ -169,75 +169,36 @@ namespace PatrolControl.Service
 
         public void UpdateUsers(params User[] users)
         {
-            var elements = _context.Users
-                           .Select(b => new { User = b, Entity = users.LastOrDefault(e => e.Id == b.Id) })
-                           .Where(e => e.Entity != null);
-
-            foreach (var element in elements)
-            {
-                element.Entity.Name = element.User.Name;
-                element.Entity.PasswordHash = element.User.PasswordHash;
-                element.Entity.Type = element.User.Type;
-            }
+            foreach (var user in users) 
+                _context.Users.Attach(user);
             _context.SaveChanges();
         }
 
         public void UpdateBuildings(params Building[] buildings)
         {
-            var elements = _context.Buildings
-                           .Select(b => new { Building = b, Entity = buildings.LastOrDefault(e => e.Id == b.Id) })
-                           .Where(e => e.Entity != null);
-
-            foreach (var element in elements)
-            {
-                element.Entity.Number = element.Building.Number;
-                element.Entity.StreetId = element.Building.StreetId;
-                element.Entity.Tags = element.Building.Tags;
-                element.Entity.Geography = element.Building.Geography;
-            }
+            foreach (var building in buildings) 
+                _context.Buildings.Attach(building);
             _context.SaveChanges();
         }
 
         public void UpdateStreets(params Street[] streets)
         {
-            var elements = _context.Streets
-                           .Select(b => new { Street = b, Entity = streets.LastOrDefault(e => e.Id == b.Id) })
-                           .Where(e => e.Entity != null);
-
-           
-            foreach (var element in elements)
-            {
-                element.Entity.Name = element.Street.Name;
-                element.Entity.Geography = element.Street.Geography;
-            }
+            foreach (var street in streets) 
+                _context.Streets.Attach(street);
             _context.SaveChanges();
         }
 
         public void UpdatePatrolDistricts(params PatrolDistrict[] districts)
         {
-            var elements = _context.PatrolDistricts
-                           .Select(b => new { District = b, Entity = districts.LastOrDefault(e => e.Id == b.Id) })
-                           .Where(e => e.Entity != null);
-
-            foreach (var element in elements)
-            {
-                element.Entity.Name = element.District.Name;
-                element.Entity.Geography = element.District.Geography;
-            }
+            foreach (var district in districts)
+                _context.PatrolDistricts.Attach(district);
             _context.SaveChanges();
         }
 
         public void UpdateTownDistricts(params TownDistrict[] districts)
         {
-            var elements = _context.TownDistricts
-                           .Select(b => new { District = b, Entity = districts.LastOrDefault(e => e.Id == b.Id) })
-                           .Where(e => e.Entity != null);
-
-            foreach (var element in elements)
-            {
-                element.Entity.Name = element.District.Name;
-                element.Entity.Geography = element.District.Geography;
-            }
+            foreach (var district in districts)
+                _context.TownDistricts.Attach(district);
             _context.SaveChanges();
         }
 

@@ -30,7 +30,6 @@ namespace PatrolControl.UI.Screens.MapEditor
         {
             
         }
-
         private void MouseDown(object sender, GraphicMouseButtonEventArgs e)
         {
             var mapEditorScreenViewModel = DataContext as MapEditorScreenViewModel;

@@ -13,11 +13,7 @@ namespace PatrolControl.Service.Model
 {
     public class DatabaseContext : DbContext
     {
-        public DatabaseContext()
-            : base("PatrolControl")
-        {
-
-        }
+        public DatabaseContext() : base("PatrolControl") { }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Street> Streets { get; set; }

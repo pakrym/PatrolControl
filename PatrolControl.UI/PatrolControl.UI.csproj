@@ -70,9 +70,6 @@
     <Reference Include="ESRI.ArcGIS.Client.Bing, Version=3.0.0.388, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL" />
     <Reference Include="ESRI.ArcGIS.Client.Toolkit, Version=3.0.0.388, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL" />
     <Reference Include="ESRI.ArcGIS.Client.Toolkit.DataSources, Version=3.0.0.388, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.CompilerServices.AsyncTargetingPack.Silverlight5">
-      <HintPath>..\PatrolControl.Service\packages\Microsoft.CompilerServices.AsyncTargetingPack.1.0.0\lib\sl50\Microsoft.CompilerServices.AsyncTargetingPack.Silverlight5.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Expression.Interactions" />
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\PatrolControl.Service\packages\CommonServiceLocator.1.0\lib\SL30\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -130,11 +127,26 @@
     <Compile Include="Framework\OpenChildResult.cs" />
     <Compile Include="Framework\OpenResultBase.cs" />
     <Compile Include="Framework\Show.cs" />
+    <Compile Include="Localization.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Localization.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Localization.ru.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Localization.ru.resx</DependentUpon>
+    </Compile>
     <Compile Include="Model\GetLoginUsers.cs" />
     <Compile Include="Model\GetScreensForUser.cs" />
     <Compile Include="Model\CommitLayer.cs" />
     <Compile Include="Model\SetBusy.cs" />
     <Compile Include="Model\UpdateLayer.cs" />
+    <Compile Include="Screens\OperationScreen\OperationScreen.xaml.cs">
+      <DependentUpon>OperationScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\OperationScreen\OperationScreenModel.cs" />
+    <Compile Include="Services\BackendService.cs" />
     <Compile Include="Providers\BuildingFeatureProvider.cs" />
     <Compile Include="Providers\ProviderBase.cs" />
     <Compile Include="Providers\StreetFeatureProvider.cs" />
@@ -192,7 +204,6 @@
     <Compile Include="Utilities\EditableAdapterCustomMethodInfo.cs" />
     <Compile Include="Utilities\EditableAdapterCustomPropertyInfo.cs" />
     <Compile Include="Utilities\EditableAdapterCustomType.cs" />
-    <Compile Include="Utilities\EditGeometryExtended.cs" />
     <Compile Include="Utilities\GeometryExtentions.cs" />
     <Compile Include="Framework\ICommand.cs" />
     <Compile Include="Utilities\MarginSetter.cs" />
@@ -333,6 +344,16 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Localization.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Localization.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization.ru.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Localization.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
