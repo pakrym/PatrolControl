@@ -70,6 +70,10 @@
     <Reference Include="ESRI.ArcGIS.Client.Bing, Version=3.0.0.388, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL" />
     <Reference Include="ESRI.ArcGIS.Client.Toolkit, Version=3.0.0.388, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL" />
     <Reference Include="ESRI.ArcGIS.Client.Toolkit.DataSources, Version=3.0.0.388, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.CompilerServices.AsyncTargetingPack.Silverlight5, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\PatrolControl.Service\packages\Microsoft.CompilerServices.AsyncTargetingPack.1.0.0\lib\sl50\Microsoft.CompilerServices.AsyncTargetingPack.Silverlight5.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Expression.Interactions" />
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\PatrolControl.Service\packages\CommonServiceLocator.1.0\lib\SL30\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -142,11 +146,6 @@
     <Compile Include="Model\CommitLayer.cs" />
     <Compile Include="Model\SetBusy.cs" />
     <Compile Include="Model\UpdateLayer.cs" />
-    <Compile Include="Screens\OperationScreen\OperationScreen.xaml.cs">
-      <DependentUpon>OperationScreen.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\OperationScreen\OperationScreenModel.cs" />
-    <Compile Include="Services\BackendService.cs" />
     <Compile Include="Providers\BuildingFeatureProvider.cs" />
     <Compile Include="Providers\ProviderBase.cs" />
     <Compile Include="Providers\StreetFeatureProvider.cs" />
@@ -204,6 +203,7 @@
     <Compile Include="Utilities\EditableAdapterCustomMethodInfo.cs" />
     <Compile Include="Utilities\EditableAdapterCustomPropertyInfo.cs" />
     <Compile Include="Utilities\EditableAdapterCustomType.cs" />
+    <Compile Include="Utilities\EditGeometryExtended.cs" />
     <Compile Include="Utilities\GeometryExtentions.cs" />
     <Compile Include="Framework\ICommand.cs" />
     <Compile Include="Utilities\MarginSetter.cs" />
