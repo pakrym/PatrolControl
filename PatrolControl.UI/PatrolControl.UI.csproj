@@ -141,15 +141,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Localization.ru.resx</DependentUpon>
     </Compile>
+    <Compile Include="Model\CommitEntities.cs" />
     <Compile Include="Model\GetLoginUsers.cs" />
     <Compile Include="Model\GetScreensForUser.cs" />
     <Compile Include="Model\CommitLayer.cs" />
     <Compile Include="Model\SetBusy.cs" />
+    <Compile Include="Model\UpdateEntities.cs" />
     <Compile Include="Model\UpdateLayer.cs" />
     <Compile Include="Providers\BuildingFeatureProvider.cs" />
     <Compile Include="Providers\ProviderBase.cs" />
     <Compile Include="Providers\StreetFeatureProvider.cs" />
     <Compile Include="Providers\UserProvider.cs" />
+    <Compile Include="Screens\Common\Editors\User.xaml.cs">
+      <DependentUpon>User.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Common\Map\EntityCollection.cs" />
     <Compile Include="Screens\Common\Map\FeatureCollection.cs" />
     <Compile Include="Screens\Common\Map\FeatureGraphicCollection.cs" />
@@ -161,7 +166,9 @@
     <Compile Include="Service References\EntityState.cs" />
     <Compile Include="Services\BackendService.cs" />
     <Compile Include="Providers\IFeatureProvider.cs" />
+    <Compile Include="Services\EntityService.cs" />
     <Compile Include="Services\FeatureService.cs" />
+    <Compile Include="Services\IEntityService.cs" />
     <Compile Include="Services\IFeatureService.cs" />
     <Compile Include="Services\IPermissionService.cs" />
     <Compile Include="Services\IShellService.cs" />
@@ -245,6 +252,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Screens\Common\Editors\Street.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Common\Editors\User.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

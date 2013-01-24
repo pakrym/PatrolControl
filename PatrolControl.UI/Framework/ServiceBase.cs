@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace PatrolControl.UI.Framework
 {
-    public class ServiceBase: IService
+    public class ServiceBase : IService
     {
         readonly IEnumerable<MethodInfo> _methods;
 
@@ -17,21 +18,35 @@ namespace PatrolControl.UI.Framework
                            .Where(x => x.Name == "Handle");
         }
 
-        public void Send<TService, TResponse>(IQuery<TService, TResponse> query, Action<TResponse> reply) {
-            Invoke(query, query, reply);
+        public void Send<TService, TResponse>(IQuery<TService, TResponse> query, Action<TResponse> reply)
+        {
+            Invoke(query, null, query, reply);
         }
 
-        public void Send<TService>(ICommand<TService> command) {
-            Invoke(command, command);
+        public void Send<TService>(ICommand<TService> command, Action callback)
+        {
+            Invoke(command, callback, command);
         }
 
-        void Invoke(object request, params object[] args) {
 
-            ThreadPool.QueueUserWorkItem(state => {
-                                                      var requestType = request.GetType();
-                                                      var handler = _methods.First(x => requestType.IsAssignableFrom(x.GetParameters().First().ParameterType));
+        void Invoke(object request, Action callback, params object[] args)
+        {
 
-                                                      handler.Invoke(this, args);
+            ThreadPool.QueueUserWorkItem(async state =>
+            {
+                var requestType = request.GetType();
+                var handler = _methods.First(x => requestType.IsAssignableFrom(x.GetParameters().First().ParameterType));
+
+                var result = handler.Invoke(this, args);
+                var task = result as Task;
+
+                if (task != null)
+                    await task;
+
+                if (callback != null)
+                    callback();
+
+
             });
         }
     }

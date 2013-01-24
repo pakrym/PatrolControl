@@ -82,7 +82,7 @@ namespace PatrolControl.UI.Utilities
             var point = graphic.Geometry as MapPoint;
             if (point != null)
             {
-
+                InitialLocation = point;
             }
             else
             {
@@ -132,9 +132,7 @@ namespace PatrolControl.UI.Utilities
 
             if (AddingToLayer != null)
             {
-                Map.InvalidateMeasure();
-                Map.InvalidateArrange();
-
+                AddingToLayer.Refresh();
             }
 
             SelectedGraphics = null;
@@ -174,7 +172,6 @@ namespace PatrolControl.UI.Utilities
             var point = SelectedGraphics.Geometry as MapPoint;
             if (point != null)
             {
-                InitialLocation = point;
                 MovingPoint = true;
                 e.Handled = true;
             }

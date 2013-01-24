@@ -16,5 +16,4 @@ namespace PatrolControl.UI.Services
             await command.Layer.Update(command.Envelope);
         }
     }
-
 }

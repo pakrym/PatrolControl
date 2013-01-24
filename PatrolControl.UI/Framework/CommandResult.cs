@@ -4,7 +4,7 @@ using Microsoft.Practices.Unity;
 
 namespace PatrolControl.UI.Framework
 {
-    public class CommandResult<TService> : IResult where TService: IService
+    public class CommandResult<TService> : IResult where TService : IService
     {
         readonly ICommand<TService> _command;
 
@@ -18,8 +18,8 @@ namespace PatrolControl.UI.Framework
 
         public void Execute(ActionExecutionContext context)
         {
-            Backend.Send(_command);
-            Completed(this, new ResultCompletionEventArgs());
+            Backend.Send(_command, () => Completed(this, new ResultCompletionEventArgs()));
+
         }
 
         public event EventHandler<ResultCompletionEventArgs> Completed = delegate { };
