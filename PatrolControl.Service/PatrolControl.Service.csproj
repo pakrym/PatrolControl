@@ -71,7 +71,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ClientBin\PatrolControl.UI.xap" />
     <Content Include="Global.asax" />
     <EmbeddedResource Include="Model\Sql\0100-InsertUsers.sql" />
     <EmbeddedResource Include="Model\Sql\0001-View FullTextBuildings.sql" />
@@ -103,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ClientBin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

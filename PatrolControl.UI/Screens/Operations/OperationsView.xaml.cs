@@ -11,11 +11,11 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
 
-namespace PatrolControl.UI.Screens.OperationScreen
+namespace PatrolControl.UI.Screens.Operations
 {
-    public partial class OperationScreen : Page
+    public partial class OperationsView : Page
     {
-        public OperationScreen()
+        public OperationsView()
         {
             InitializeComponent();
         }
@@ -24,6 +24,5 @@ namespace PatrolControl.UI.Screens.OperationScreen
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
         }
-
     }
 }

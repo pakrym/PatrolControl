@@ -12,7 +12,7 @@ using Caliburn.Micro;
 
 namespace PatrolControl.UI.Screens.OperationScreen
 {
-    public class OperationScreenModel : Screen
+    public class OperationsViewModel : Screen
     {
         public override string DisplayName
         {

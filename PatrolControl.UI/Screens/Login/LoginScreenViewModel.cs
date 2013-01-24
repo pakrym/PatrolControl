@@ -71,7 +71,6 @@ namespace PatrolControl.UI.Screens.Login
             if (loginUser.Response == null)
             {
                 Error = "Invalid password";
-
             }
             else
             {
