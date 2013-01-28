@@ -4,9 +4,8 @@ using PatrolControl.UI.Services;
 
 namespace PatrolControl.UI.Model
 {
-    public class CommitLayer: ICommand<IFeatureService>
+    public class CommitLayer : ICommand<IFeatureService>
     {
         public FeatureLayerViewModel FeatureLayer { get; set; }
     }
-
 }

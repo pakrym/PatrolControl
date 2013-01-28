@@ -4,23 +4,35 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:PatrolControl.UI.Controls"
+             xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
+             xmlns:local="clr-namespace:PatrolControl.UI.Utilities"
              mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
 
-    <Grid x:Name="LayoutRoot"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Grid x:Name="LayoutRoot"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" cal:Message.Attach="[Event Loaded] = [Action LoadEntities]">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Border Style="{StaticResource PanelWithShade}">
-            <StackPanel>
-            <controls:GroupPanel Title="Tasks" >
-                <HyperlinkButton x:Name="Add">Add</HyperlinkButton>
-            </controls:GroupPanel>
+        <ListBox Grid.Column="1" Opacity=".7"
+                 ItemsSource="{Binding EntitieCollection.Entities}" 
+                 SelectedItem="{Binding SelectedEntity, Mode=TwoWay}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" FontSize="20"></TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
-            <controls:GroupPanel Title="Edit" >
-                <ContentControl x:Name="ObjectEditor" ></ContentControl>
+        <Border Style="{StaticResource PanelWithShade}"  >
+            <StackPanel>
+                <controls:GroupPanel Title="Tasks" >
+                    <HyperlinkButton x:Name="Add">Add</HyperlinkButton>
+                </controls:GroupPanel>
+
+                <controls:GroupPanel Title="Edit" Visibility="{Binding ObjectEditor.IsEditing, Converter={local:BoolToVisibilityConverter}}" >
+                    <ContentControl x:Name="ObjectEditor" ></ContentControl>
                 </controls:GroupPanel>
             </StackPanel>
         </Border>

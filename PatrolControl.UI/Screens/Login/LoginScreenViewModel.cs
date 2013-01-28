@@ -66,6 +66,8 @@ namespace PatrolControl.UI.Screens.Login
             ShowScreens = false;
             Error = null;
 
+            if (Login == null) yield break;
+
             var loginUser = new LoginUser() { Login = Login.Name, Password = Password }.AsResult();
             yield return loginUser;
             if (loginUser.Response == null)

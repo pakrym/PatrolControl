@@ -6,6 +6,6 @@ namespace PatrolControl.UI.Framework
     {
         void Send<TService, TResponse>(IQuery<TService, TResponse> query, Action<TResponse> callback);
 
-        void Send<TService>(ICommand<TService> command);
+        void Send<TService>(ICommand<TService> command, Action callback);
     }
 }

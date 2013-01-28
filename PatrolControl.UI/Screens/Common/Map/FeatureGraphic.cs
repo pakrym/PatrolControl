@@ -1,4 +1,5 @@
 ﻿using ESRI.ArcGIS.Client;
+using ESRI.ArcGIS.Client.Projection;
 using PatrolControl.UI.Converters.WellKnownText;
 using PatrolControl.UI.PatrolControlServiceReference;
 
@@ -6,18 +7,26 @@ namespace PatrolControl.UI.Screens.Common.Map
 {
     public class FeatureGraphic : Graphic
     {
-        public FeatureGraphic(Feature feature)
+        private static readonly WebMercator Mercator = new WebMercator();
+
+        public FeatureGraphic(Feature feature):this()
         {
             Feature = feature;
+
             if (feature.Geography != null)
-                this.Geometry = GeometryFromWKT.Parse(feature.Geography.Geography.WellKnownText);
+                this.Geometry = Mercator.FromGeographic(GeometryFromWKT.Parse(feature.Geography.Geography.WellKnownText));
         }
 
         public Feature Feature { get; private set; }
 
-        public FeatureGraphic()
+         
+        public FeatureGraphic(): base()
         {
-            PropertyChanged += (sender, args) =>
+            AttributeValueChanged += (sender, args) =>
+                {
+                    
+                };
+             PropertyChanged += (sender, args) =>
                 {
                     if (args.PropertyName == "Geometry")
                     {

@@ -72,6 +72,7 @@ namespace PatrolControl.UI.Screens.Common.Map
             Entities.Clear();
             foreach (var feature in entities)
             {
+                feature.State = EntityState.NotChanged;
                 Entities.Add(feature);
             }
         }

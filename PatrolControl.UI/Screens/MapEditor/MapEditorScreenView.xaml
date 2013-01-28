@@ -32,7 +32,7 @@
         </Grid.Resources>
 
         <!--Extent="50, 34, 51, 34" ZoomFactor="15"-->
-        <esri:Map x:Name="MyMap" SnapToLevels="True" Extent="3862000,6612000,3883000,6600000" IsLogoVisible="False" Grid.Column="1" 
+        <esri:Map x:Name="MyMap" SnapToLevels="True"  ZoomDuration="00:00:00" PanDuration="00:00:00.75" Extent="3862000,6612000,3883000,6600000" IsLogoVisible="False" Grid.Column="1" 
                   cal:Message.Attach="[Event Loaded] = [Action LoadLayers]" >
             <esri:Map.Resources>
                 <UI:DataContextProxy x:Key ="Proxy" Data="{Binding}"/>
@@ -70,7 +70,11 @@
 
         <Border Style="{StaticResource ToolBar}"   Grid.Column="0">
             <StackPanel Orientation="Vertical">
-                <HyperlinkButton Style="{StaticResource BackButton}" ></HyperlinkButton>
+
+                <!-- -->
+                <HyperlinkButton  cal:Message.Attach="[Event Click] = [Action Back]" 
+                                  Style="{StaticResource BackButton}">
+                </HyperlinkButton>
 
                 <controls:GroupPanel Title="Layers">
                     <ItemsControl x:Name="Layers">
