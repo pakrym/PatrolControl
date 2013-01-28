@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.Objects;
+using System.Data.Objects.DataClasses;
 using System.Data.Spatial;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -24,7 +28,7 @@ namespace PatrolControl.Service
         public PatrolControlService()
         {
             _context = new DatabaseContext();
-            
+
         }
 
         public User Login(String name, String password)
@@ -121,7 +125,7 @@ namespace PatrolControl.Service
 
         public IList<Building> GetBuildingsWithSimularNames(string name)
         {
-            return _context.Database.SqlQuery<Building>("EXEC BuildingsWithSimularNames @name", new SqlParameter("name","%" +  name.Trim().Replace(' ','%') + "%")).ToList();
+            return _context.Database.SqlQuery<Building>("EXEC BuildingsWithSimularNames @name", new SqlParameter("name", "%" + name.Trim().Replace(' ', '%') + "%")).ToList();
         }
 
         #endregion
@@ -144,7 +148,7 @@ namespace PatrolControl.Service
 
         public void AddOfficers(params Officer[] users)
         {
-            
+
         }
 
         public void AddStreets(params Street[] streets)
@@ -174,7 +178,7 @@ namespace PatrolControl.Service
 
         public void UpdateUsers(params User[] users)
         {
-            foreach (var user in users) 
+            foreach (var user in users)
                 _context.Users.Attach(user);
             _context.SaveChanges();
         }
@@ -185,15 +189,18 @@ namespace PatrolControl.Service
 
         public void UpdateBuildings(params Building[] buildings)
         {
-            foreach (var building in buildings) 
+            foreach (var building in buildings)
                 _context.Buildings.Attach(building);
             _context.SaveChanges();
         }
 
         public void UpdateStreets(params Street[] streets)
         {
-            foreach (var street in streets) 
+            foreach (var street in streets)
+            {
                 _context.Streets.Attach(street);
+                _context.Entry(street).State = EntityState.Modified;
+            }
             _context.SaveChanges();
         }
 
@@ -251,5 +258,8 @@ namespace PatrolControl.Service
         }
 
         #endregion
+
+
+
     }
 }

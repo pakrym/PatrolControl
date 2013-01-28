@@ -16,11 +16,7 @@ namespace PatrolControl.UI.Screens.Common.Map
 
             if (feature.Geography != null)
             {
-                this.Geometry = GeometryFromWKT.Parse(feature.Geography.Geography.WellKnownText);
-                if (feature.Geography.Geography.CoordinateSystemId != 10233)
-                {
-                    this.Geometry = Mercator.FromGeographic(this.Geometry);
-                }
+                this.Geometry = Mercator.FromGeographic(GeometryFromWKT.Parse(feature.Geography.Geography.WellKnownText));
             }
 
             PropertyChanged += (sender, args) =>
@@ -35,8 +31,8 @@ namespace PatrolControl.UI.Screens.Common.Map
                             {
                                 Feature.Geography = new DbGeography() { Geography = new DbGeographyWellKnownValue() };
                             }
-                            Feature.Geography.Geography.WellKnownText = GeometryToWKT.Write(this.Geometry);
-                            Feature.Geography.Geography.CoordinateSystemId = 10233;
+                            Feature.Geography.Geography.CoordinateSystemId = 4326;
+                            Feature.Geography.Geography.WellKnownText = GeometryToWKT.Write(Mercator.ToGeographic(this.Geometry));
                         }
                         catch (Exception)
                         {

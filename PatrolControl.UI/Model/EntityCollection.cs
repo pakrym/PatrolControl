@@ -60,7 +60,7 @@ namespace PatrolControl.UI.Model
             var features = await _crud.List();
 
             OnAfterUpdate(features);
-            Execute.OnUIThread(() => SetEntities(features));
+            Execute.OnUIThread(()=>SetEntities(features));
         }
 
         public async Task Commit()

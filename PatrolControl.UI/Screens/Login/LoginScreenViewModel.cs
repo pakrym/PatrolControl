@@ -124,6 +124,7 @@ namespace PatrolControl.UI.Screens.Login
 
         private IEnumerable<IResult> LoadUsers()
         {
+            yield return Show.Busy("Loading users");
             var getUsers = new GetLoginUsers().AsResult();
             yield return getUsers;
 
@@ -131,6 +132,7 @@ namespace PatrolControl.UI.Screens.Login
             {
                 Users.Add(user);
             }
+            yield return Show.NotBusy();
         }
     }
 }

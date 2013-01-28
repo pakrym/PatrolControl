@@ -114,6 +114,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Framework\AgregatedResult.cs" />
     <Compile Include="GoogleCacheTiledLayer.cs" />
     <Compile Include="Controls\GroupPanel.xaml.cs">
       <DependentUpon>GroupPanel.xaml</DependentUpon>

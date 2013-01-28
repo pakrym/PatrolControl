@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using Action = System.Action;
 
 namespace PatrolControl.UI.Framework
 {

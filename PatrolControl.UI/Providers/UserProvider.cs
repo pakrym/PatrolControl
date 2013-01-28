@@ -15,13 +15,11 @@ namespace PatrolControl.UI.Providers
 
             callback = (sender, e) =>
                 {
-
                     Client.GetUsersCompleted -= callback;
 
                     if (e.Error != null) tcs.TrySetException(e.Error);
                     else if (e.Cancelled) tcs.TrySetCanceled();
                     else tcs.TrySetResult(e.Result);
-
                 };
 
             Client.GetUsersCompleted += callback;

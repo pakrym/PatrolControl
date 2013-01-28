@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 using Caliburn.Micro;
 using ESRI.ArcGIS.Client;
@@ -44,11 +45,10 @@ namespace PatrolControl.UI.Screens.MapEditor
             if (featureGraphics != null)
                 SelectedLayer.Remove(featureGraphics);
 
-            //yield return new CommitLayer().AsResult();
+            yield return new CommitLayer().AsResult();
+            yield return Update(SelectedLayer).AsResult();
 
             CleanUp();
-            yield break;
-            
         }
 
         private IEnumerable<IResult> Cancelled()
@@ -60,11 +60,11 @@ namespace PatrolControl.UI.Screens.MapEditor
             if (featureGraphics != null)
                 SelectedLayer.SaveOrAdd(featureGraphics);
 
-//            yield return new CommitLayer().AsResult();
+            //            yield return new CommitLayer().AsResult();
 
             CleanUp();
             yield break;
-            
+
         }
 
         private IEnumerator<IResult> Saved()
@@ -77,8 +77,9 @@ namespace PatrolControl.UI.Screens.MapEditor
 
 
             yield return new CommitLayer() { FeatureLayer = SelectedLayer }.AsResult();
+            yield return Update(SelectedLayer).AsResult();
 
-            CleanUp();
+            CleanUp(); 
         }
 
 
@@ -101,15 +102,20 @@ namespace PatrolControl.UI.Screens.MapEditor
             get { return new[] { BuildingsLayer, StreetsLayer }; }
         }
 
+        private IEnumerable<IResult> Update(FeatureLayerViewModel layer)
+        {
+            yield return Show.Busy("Loading " + layer.Name);
+
+            yield return new UpdateLayer() { Layer = layer, Envelope = null }.AsResult();
+
+            yield return Show.NotBusy();
+        }
+
         public IEnumerable<IResult> LoadLayers()
         {
             foreach (var layer in Layers)
             {
-                yield return Show.Busy("Loading " + layer.Name);
-                
-                yield return new UpdateLayer() {Layer = layer, Envelope = null}.AsResult();
-
-                yield return Show.NotBusy();
+                yield return Update(layer).AsResult();
             }
         }
 
