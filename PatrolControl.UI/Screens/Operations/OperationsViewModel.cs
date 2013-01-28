@@ -4,6 +4,7 @@ using ESRI.ArcGIS.Client;
 using Microsoft.Practices.Unity;
 using PatrolControl.UI.Framework;
 using PatrolControl.UI.Model;
+using PatrolControl.UI.Model.Commands;
 using PatrolControl.UI.Screens.Common;
 using PatrolControl.UI.Screens.Common.Map;
 using PatrolControl.UI.Screens.MapEditor;

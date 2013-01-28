@@ -142,6 +142,11 @@ namespace PatrolControl.Service
             _context.SaveChanges();
         }
 
+        public void AddOfficers(params Officer[] users)
+        {
+            
+        }
+
         public void AddStreets(params Street[] streets)
         {
             foreach (var street in streets)
@@ -172,6 +177,10 @@ namespace PatrolControl.Service
             foreach (var user in users) 
                 _context.Users.Attach(user);
             _context.SaveChanges();
+        }
+
+        public void UpdateOfficers(params Officer[] users)
+        {
         }
 
         public void UpdateBuildings(params Building[] buildings)

@@ -148,13 +148,6 @@
     <Compile Include="Model\Commands\SetBusy.cs" />
     <Compile Include="Model\Commands\UpdateEntities.cs" />
     <Compile Include="Model\Commands\UpdateLayer.cs" />
-    <Compile Include="Model\CommitEntities.cs" />
-    <Compile Include="Model\GetLoginUsers.cs" />
-    <Compile Include="Model\GetScreensForUser.cs" />
-    <Compile Include="Model\CommitLayer.cs" />
-    <Compile Include="Model\SetBusy.cs" />
-    <Compile Include="Model\UpdateEntities.cs" />
-    <Compile Include="Model\UpdateLayer.cs" />
     <Compile Include="Screens\Operations\OperationsView.xaml.cs">
       <DependentUpon>OperationsView.xaml</DependentUpon>
     </Compile>
