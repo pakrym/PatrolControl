@@ -2,44 +2,40 @@ using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
-using ESRI.ArcGIS.Client.Geometry;
 using PatrolControl.UI.PatrolControlServiceReference;
 
 namespace PatrolControl.UI.Providers
 {
-    public class StreetFeatureProvider : ProviderBase, IFeatureProvider, ICrud
+    public class UserProvider : ProviderBase, ICrud
     {
-        public Task<Feature[]> List(Envelope envelope)
+        public Task<Entity[]> List()
         {
-            var tcs = new TaskCompletionSource<Feature[]>();
-            EventHandler<GetStreetsCompletedEventArgs> callback = null;
+            var tcs = new TaskCompletionSource<Entity[]>();
+            EventHandler<GetUsersCompletedEventArgs> callback = null;
 
             callback = (sender, e) =>
                 {
-                    Client.GetStreetsCompleted -= callback;
+
+                    Client.GetUsersCompleted -= callback;
 
                     if (e.Error != null) tcs.TrySetException(e.Error);
                     else if (e.Cancelled) tcs.TrySetCanceled();
                     else tcs.TrySetResult(e.Result);
+
                 };
 
-            Client.GetStreetsCompleted += callback;
-            Client.GetStreetsAsync();
+            Client.GetUsersCompleted += callback;
+            Client.GetUsersAsync();
 
             return tcs.Task;
-        }
-
-        public Task<Entity[]> List()
-        {
-            return List(null).ContinueWith(f => (Entity[])f.Result);
         }
 
         public Entity New()
         {
-            return new Street();
+            return new User();
         }
 
-        public Task Save(Entity[] feature)
+        public Task Save(Entity[] entities)
         {
             var tcs = new TaskCompletionSource<object>();
             EventHandler<AsyncCompletedEventArgs> callback = null;
@@ -47,7 +43,7 @@ namespace PatrolControl.UI.Providers
             callback = (sender, e) =>
                 {
 
-                    Client.UpdateStreetsCompleted -= callback;
+                    Client.UpdateUsersCompleted -= callback;
 
                     if (e.Error != null) tcs.TrySetException(e.Error);
                     else if (e.Cancelled) tcs.TrySetCanceled();
@@ -55,14 +51,13 @@ namespace PatrolControl.UI.Providers
 
                 };
 
-            Client.UpdateStreetsCompleted += callback;
-
-            Client.UpdateStreetsAsync(feature.Cast<Street>().ToArray());
+            Client.UpdateUsersCompleted += callback;
+            Client.UpdateUsersAsync(entities.Cast<User>().ToArray());
 
             return tcs.Task;
         }
 
-        public Task Add(Entity[] feature)
+        public Task Add(Entity[] entities)
         {
             var tcs = new TaskCompletionSource<object>();
             EventHandler<AsyncCompletedEventArgs> callback = null;
@@ -70,7 +65,7 @@ namespace PatrolControl.UI.Providers
             callback = (sender, e) =>
                 {
 
-                    Client.AddStreetsCompleted -= callback;
+                    Client.AddUsersCompleted -= callback;
 
                     if (e.Error != null) tcs.TrySetException(e.Error);
                     else if (e.Cancelled) tcs.TrySetCanceled();
@@ -78,13 +73,13 @@ namespace PatrolControl.UI.Providers
 
                 };
 
-            Client.AddStreetsCompleted += callback;
-            Client.AddStreetsAsync(feature.Cast<Street>().ToArray());
+            Client.AddUsersCompleted += callback;
+            Client.AddUsersAsync(entities.Cast<User>().ToArray());
 
-            return tcs.Task;
+            return tcs.Task;   
         }
 
-        public Task Remove(Entity[] feature)
+        public Task Remove(Entity[] entities)
         {
             var tcs = new TaskCompletionSource<object>();
             EventHandler<AsyncCompletedEventArgs> callback = null;
@@ -92,7 +87,7 @@ namespace PatrolControl.UI.Providers
             callback = (sender, e) =>
                 {
 
-                    Client.DeleteStreetsCompleted -= callback;
+                    Client.DeleteUsersCompleted -= callback;
 
                     if (e.Error != null) tcs.TrySetException(e.Error);
                     else if (e.Cancelled) tcs.TrySetCanceled();
@@ -100,11 +95,10 @@ namespace PatrolControl.UI.Providers
 
                 };
 
-            Client.DeleteStreetsCompleted += callback;
-            Client.DeleteStreetsAsync(feature.Cast<Street>().ToArray());
+            Client.DeleteUsersCompleted += callback;
+            Client.DeleteUsersAsync(entities.Cast<User>().ToArray());
 
-            return tcs.Task;
+            return tcs.Task;   
         }
-
     }
 }

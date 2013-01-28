@@ -39,7 +39,7 @@ namespace PatrolControl.UI.Screens.MapEditor
         {
             SaveActiveEdit();
 
-            var featureGraphics = SelectedGraphics as FeatureGraphics;
+            var featureGraphics = SelectedGraphics as FeatureGraphic;
             if (featureGraphics != null)
                 SelectedLayer.Remove(featureGraphics);
 
@@ -55,7 +55,7 @@ namespace PatrolControl.UI.Screens.MapEditor
             CancelActiveEdit();
 
 
-            var featureGraphics = SelectedGraphics as FeatureGraphics;
+            var featureGraphics = SelectedGraphics as FeatureGraphic;
             if (featureGraphics != null)
                 SelectedLayer.SaveOrAdd(featureGraphics);
 
@@ -70,7 +70,7 @@ namespace PatrolControl.UI.Screens.MapEditor
         {
             SaveActiveEdit();
 
-            var featureGraphics = SelectedGraphics as FeatureGraphics;
+            var featureGraphics = SelectedGraphics as FeatureGraphic;
             if (featureGraphics != null)
                 SelectedLayer.SaveOrAdd(featureGraphics);
 
@@ -82,9 +82,9 @@ namespace PatrolControl.UI.Screens.MapEditor
 
 
         [Dependency("buildings")]
-        public IFeatureLayerViewModel BuildingsLayer { get; set; }
+        public FeatureLayerViewModel BuildingsLayer { get; set; }
         [Dependency("streets")]
-        public IFeatureLayerViewModel StreetsLayer { get; set; }
+        public FeatureLayerViewModel StreetsLayer { get; set; }
 
         public EditGeometryExtended GraphicEditor { get; set; }
 
@@ -95,7 +95,7 @@ namespace PatrolControl.UI.Screens.MapEditor
 
         public ObjectEditorViewModel ObjectEditor { get; private set; }
 
-        public IFeatureLayerViewModel[] Layers
+        public FeatureLayerViewModel[] Layers
         {
             get { return new[] { BuildingsLayer, StreetsLayer }; }
         }
@@ -140,7 +140,7 @@ namespace PatrolControl.UI.Screens.MapEditor
 
                 GraphicEditor.StartEditEx(SelectedGraphics);
 
-                var featureGraphics = e.Graphic as FeatureGraphics;
+                var featureGraphics = e.Graphic as FeatureGraphic;
                 if (featureGraphics != null)
                 {
                     ObjectEditor.Edit(featureGraphics.Feature);
@@ -158,7 +158,7 @@ namespace PatrolControl.UI.Screens.MapEditor
             Add(BuildingsLayer);
         }
 
-        public void Add(IFeatureLayerViewModel featureLayer)
+        public void Add(FeatureLayerViewModel featureLayer)
         {
             var model = featureLayer as FeatureLayerViewModel;
 
