@@ -44,7 +44,7 @@ namespace PatrolControl.Service.Model
         private static String Encript(String value)
         {
             var x = new System.Security.Cryptography.MD5CryptoServiceProvider();
-            byte[] data = Encoding.ASCII.GetBytes(value);
+            byte[] data = Encoding.ASCII.GetBytes(value ?? "");
 
             var hash = x.ComputeHash(data);
             var sb = new StringBuilder();

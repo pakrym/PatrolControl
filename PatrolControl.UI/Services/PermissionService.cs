@@ -18,7 +18,8 @@ namespace PatrolControl.UI.Services
             _container = container;
             _screens = new Dictionary<int, string>() {
                 {0, "mapeditor"},
-                {1, "usermanager"}
+                {1, "usermanager"},
+                {2, "operationscreen"}
             };
         }
 
@@ -29,7 +30,9 @@ namespace PatrolControl.UI.Services
             {
                 if ((1 << i & command.Permissions) > 0)
                 {
-                    screens.Add(_container.Resolve<IScreen>(_screens[i]));
+                    string screenName;
+                    if(_screens.TryGetValue(i, out screenName)) 
+                        screens.Add(_container.Resolve<IScreen>(screenName));
                 }
             }
             callback(screens);

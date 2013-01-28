@@ -1,33 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Input;
+﻿using System.Collections.Generic;
 using Caliburn.Micro;
 using ESRI.ArcGIS.Client;
-using ESRI.ArcGIS.Client.Geometry;
-using ESRI.ArcGIS.Client.Symbols;
-using ESRI.ArcGIS.Client.Toolkit;
 using Microsoft.Practices.Unity;
 using PatrolControl.UI.Framework;
 using PatrolControl.UI.Model;
-using PatrolControl.UI.Model.Commands;
-using PatrolControl.UI.PatrolControlServiceReference;
 using PatrolControl.UI.Screens.Common;
 using PatrolControl.UI.Screens.Common.Map;
+using PatrolControl.UI.Screens.MapEditor;
 using PatrolControl.UI.Utilities;
 
-namespace PatrolControl.UI.Screens.MapEditor
+namespace PatrolControl.UI.Screens.Operations
 {
-    public class MapEditorScreenViewModel : Screen
+    public class OperationsViewModel : Screen
     {
         public override string DisplayName
         {
             get
             {
-                return "Map Editor";
+                return "Operation Screen";
             }
         }
 
-        public MapEditorScreenViewModel()
+        public OperationsViewModel()
         {
             ObjectEditor = new ObjectEditorViewModel();
             ObjectEditor.Saved += (sender, args) => Coroutine.BeginExecute(Saved());
@@ -48,7 +42,6 @@ namespace PatrolControl.UI.Screens.MapEditor
 
             CleanUp();
             yield break;
-            
         }
 
         private IEnumerable<IResult> Cancelled()
@@ -75,15 +68,14 @@ namespace PatrolControl.UI.Screens.MapEditor
             if (featureGraphics != null)
                 SelectedLayer.SaveOrAdd(featureGraphics);
 
-
             yield return new CommitLayer() { FeatureLayer = SelectedLayer }.AsResult();
-
             CleanUp();
         }
 
 
         [Dependency("buildings")]
         public FeatureLayerViewModel BuildingsLayer { get; set; }
+
         [Dependency("streets")]
         public FeatureLayerViewModel StreetsLayer { get; set; }
 
@@ -113,10 +105,9 @@ namespace PatrolControl.UI.Screens.MapEditor
             }
         }
 
-
         public void HandleViewAttached(object viewObject, ViewAttachedEventArgs eventArgs)
         {
-            var view = (MapEditorScreenView)eventArgs.View;
+            var view = (OperationsView)eventArgs.View;
 
             GraphicEditor = (EditGeometryExtended)view.Resources["GraphicEditor"];
             Map = (Map)view.FindName("MyMap");

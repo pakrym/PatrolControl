@@ -20,9 +20,7 @@ namespace PatrolControl.UI.Screens.MapEditor
     {
         public MapEditorScreenView()
         {
-            InitializeComponent();
-
-             
+            InitializeComponent(); 
         }
 
         

@@ -11,6 +11,7 @@ using PatrolControl.UI.Providers;
 using PatrolControl.UI.Screens.Common.Map;
 using PatrolControl.UI.Screens.Login;
 using PatrolControl.UI.Screens.MapEditor;
+using PatrolControl.UI.Screens.Operations;
 using PatrolControl.UI.Screens.Shell;
 using PatrolControl.UI.Screens.UserManager;
 using PatrolControl.UI.Services;
@@ -124,6 +125,7 @@ namespace PatrolControl.UI
 
             _container.RegisterType<IScreen, MapEditorScreenViewModel>("mapeditor");
             _container.RegisterType<IScreen, UserManagerViewModel>("usermanager");
+            _container.RegisterType<IScreen, OperationsViewModel>("operationscreen");
 
             _container.RegisterType<IUserService, UserService>();
             _container.RegisterType<IPermissionService, PermissionService>();
