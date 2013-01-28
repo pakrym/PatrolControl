@@ -15,7 +15,7 @@ namespace PatrolControl.Service
         {
             using (var context = new DatabaseContext())
             {
-                // context.Database.Delete();
+                 context.Database.Delete();
             }
  
             Database.SetInitializer(new ModelInstaller<DatabaseContext>());

@@ -119,6 +119,7 @@ namespace PatrolControl.UI.Converters.WellKnownText
 			string number = GetStringValue();
 			if (GetTokenType() == TokenType.Number)
 			{
+			  
 				return double.Parse(number, CultureInfo.InvariantCulture);
 			}
 			throw new Exception(String.Format(CultureInfo.InvariantCulture,

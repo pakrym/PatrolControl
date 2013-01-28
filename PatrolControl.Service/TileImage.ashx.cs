@@ -2,7 +2,7 @@
 using System.IO;
 using System.Web;
 
-namespace PatrolControl.Web
+namespace PatrolControl.Service
 {
     /// <summary>
     /// Summary description for TileImage

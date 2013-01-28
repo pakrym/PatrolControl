@@ -141,13 +141,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Localization.ru.resx</DependentUpon>
     </Compile>
-    <Compile Include="Model\CommitEntities.cs" />
-    <Compile Include="Model\GetLoginUsers.cs" />
-    <Compile Include="Model\GetScreensForUser.cs" />
-    <Compile Include="Model\CommitLayer.cs" />
-    <Compile Include="Model\SetBusy.cs" />
-    <Compile Include="Model\UpdateEntities.cs" />
-    <Compile Include="Model\UpdateLayer.cs" />
+    <Compile Include="Model\Commands\CommitEntities.cs" />
+    <Compile Include="Model\Commands\GetLoginUsers.cs" />
+    <Compile Include="Model\Commands\GetScreensForUser.cs" />
+    <Compile Include="Model\Commands\CommitLayer.cs" />
+    <Compile Include="Model\Commands\SetBusy.cs" />
+    <Compile Include="Model\Commands\UpdateEntities.cs" />
+    <Compile Include="Model\Commands\UpdateLayer.cs" />
     <Compile Include="Providers\BuildingFeatureProvider.cs" />
     <Compile Include="Providers\ProviderBase.cs" />
     <Compile Include="Providers\StreetFeatureProvider.cs" />
@@ -155,8 +155,8 @@
     <Compile Include="Screens\Common\Editors\User.xaml.cs">
       <DependentUpon>User.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Screens\Common\Map\EntityCollection.cs" />
-    <Compile Include="Screens\Common\Map\FeatureCollection.cs" />
+    <Compile Include="Model\EntityCollection.cs" />
+    <Compile Include="Model\FeatureCollection.cs" />
     <Compile Include="Screens\Common\Map\FeatureGraphicCollection.cs" />
     <Compile Include="Screens\Shell\BusyIndicatorView.xaml.cs">
       <DependentUpon>BusyIndicatorView.xaml</DependentUpon>
@@ -178,7 +178,7 @@
     <Compile Include="Framework\IService.cs" />
     <Compile Include="Framework\QueryResult.cs" />
     <Compile Include="Framework\ServiceBase.cs" />
-    <Compile Include="Model\LoginUser.cs" />
+    <Compile Include="Model\Commands\LoginUser.cs" />
     <Compile Include="Screens\Common\Editors\Building.xaml.cs">
       <DependentUpon>Building.xaml</DependentUpon>
     </Compile>

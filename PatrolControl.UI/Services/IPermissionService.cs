@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Caliburn.Micro;
 using PatrolControl.UI.Framework;
 using PatrolControl.UI.Model;
+using PatrolControl.UI.Model.Commands;
 
 namespace PatrolControl.UI.Services
 {

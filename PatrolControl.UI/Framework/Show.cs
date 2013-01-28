@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using PatrolControl.UI.Model;
+using PatrolControl.UI.Model.Commands;
 
 namespace PatrolControl.UI.Framework
 {

@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using ESRI.ArcGIS.Client.Geometry;
 using PatrolControl.UI.Converters.WellKnownText;
+using PatrolControl.UI.Model;
 using PatrolControl.UI.PatrolControlServiceReference;
 using PatrolControl.UI.Providers;
 using PatrolControl.UI.Services;

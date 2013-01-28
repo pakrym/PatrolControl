@@ -1,1 +1,1 @@
-﻿<%@ WebHandler Language="C#" CodeBehind="TileImage.ashx.cs" Class="PatrolControl.Web.TileImage" %>
+﻿<%@ WebHandler Language="C#" CodeBehind="TileImage.ashx.cs" Class="PatrolControl.Service.TileImage" %>

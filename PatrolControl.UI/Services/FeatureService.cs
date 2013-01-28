@@ -1,5 +1,6 @@
 ﻿using PatrolControl.UI.Framework;
 using PatrolControl.UI.Model;
+using PatrolControl.UI.Model.Commands;
 using PatrolControl.UI.Screens.Common.Map;
 
 namespace PatrolControl.UI.Services

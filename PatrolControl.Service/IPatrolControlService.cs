@@ -49,6 +49,10 @@ namespace PatrolControl.Service
         void AddBuildings(params Building[] buildings);
 
         [OperationContract]
+        void AddOfficers(params Officer[] users);
+
+
+        [OperationContract]
         void AddStreets(params Street[] streets);
 
         [OperationContract]
@@ -63,6 +67,9 @@ namespace PatrolControl.Service
 
         [OperationContract]
         void UpdateUsers(params User[] users);
+
+        [OperationContract]
+        void UpdateOfficers(params Officer[] users);
 
         [OperationContract]
         void UpdateBuildings(params Building[] buildings);

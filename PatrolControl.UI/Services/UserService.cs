@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Caliburn.Micro;
 using PatrolControl.UI.Model;
+using PatrolControl.UI.Model.Commands;
 using PatrolControl.UI.PatrolControlServiceReference;
 
 namespace PatrolControl.UI.Services

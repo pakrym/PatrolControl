@@ -4,6 +4,7 @@ using Caliburn.Micro;
 using Microsoft.Practices.Unity;
 using PatrolControl.UI.Framework;
 using PatrolControl.UI.Model;
+using PatrolControl.UI.Model.Commands;
 
 namespace PatrolControl.UI.Services
 {

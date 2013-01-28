@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Caliburn.Micro;
 using PatrolControl.UI.Framework;
 using PatrolControl.UI.Model;
+using PatrolControl.UI.Model.Commands;
 using PatrolControl.UI.PatrolControlServiceReference;
 using PatrolControl.UI.Providers;
 using PatrolControl.UI.Screens.Common;

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Practices.Unity;
 using PatrolControl.UI.Framework;
 using PatrolControl.UI.Model;
+using PatrolControl.UI.Model.Commands;
 using PatrolControl.UI.Screens.Shell;
 
 namespace PatrolControl.UI.Services
