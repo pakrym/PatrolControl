@@ -11,7 +11,7 @@ using PatrolControl.UI.Providers;
 using PatrolControl.UI.Screens.Common.Map;
 using PatrolControl.UI.Screens.Login;
 using PatrolControl.UI.Screens.MapEditor;
-using PatrolControl.UI.Screens.OperationScreen;
+using PatrolControl.UI.Screens.Operations;
 using PatrolControl.UI.Screens.Shell;
 using PatrolControl.UI.Screens.UserManager;
 using PatrolControl.UI.Services;

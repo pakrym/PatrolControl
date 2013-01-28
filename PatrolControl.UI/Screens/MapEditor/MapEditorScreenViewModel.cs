@@ -206,6 +206,5 @@ namespace PatrolControl.UI.Screens.MapEditor
             SelectedGraphics = null;
             SelectedLayer = null;
         }
-
     }
 }

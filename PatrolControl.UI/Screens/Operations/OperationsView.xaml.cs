@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
+using ESRI.ArcGIS.Client;
 
 namespace PatrolControl.UI.Screens.Operations
 {
@@ -23,6 +24,11 @@ namespace PatrolControl.UI.Screens.Operations
         // Executes when the user navigates to this page.
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+        }
+
+        private void MouseDown(object sender, GraphicMouseButtonEventArgs e)
+        {
+            
         }
     }
 }

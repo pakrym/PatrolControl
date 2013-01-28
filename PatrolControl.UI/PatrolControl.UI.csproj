@@ -149,7 +149,7 @@
     <Compile Include="Screens\Operations\OperationsView.xaml.cs">
       <DependentUpon>OperationsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Screens\Operations\OperationsModel.cs" />
+    <Compile Include="Screens\Operations\OperationsViewModel.cs" />
     <Compile Include="Services\BackendService.cs" />
     <Compile Include="Providers\BuildingFeatureProvider.cs" />
     <Compile Include="Providers\ProviderBase.cs" />
@@ -164,7 +164,6 @@
     <Compile Include="Screens\Shell\BusyIndicatorViewModel.cs" />
     <Compile Include="Service References\Entity.cs" />
     <Compile Include="Service References\EntityState.cs" />
-    <Compile Include="Services\BackendService.cs" />
     <Compile Include="Providers\IFeatureProvider.cs" />
     <Compile Include="Services\FeatureService.cs" />
     <Compile Include="Services\IFeatureService.cs" />
