@@ -49,6 +49,10 @@ namespace PatrolControl.UI
                 e.Handled = true;
                 Deployment.Current.Dispatcher.BeginInvoke(delegate { ReportErrorToDOM(e); });
             }
+            else
+            {
+                System.Diagnostics.Debugger.Break();
+            }
         }
 
         private void ReportErrorToDOM(ApplicationUnhandledExceptionEventArgs e)

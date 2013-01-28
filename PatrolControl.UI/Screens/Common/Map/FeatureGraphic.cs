@@ -9,7 +9,7 @@ namespace PatrolControl.UI.Screens.Common.Map
     {
         private static readonly WebMercator Mercator = new WebMercator();
 
-        public FeatureGraphic(Feature feature)
+        public FeatureGraphic(Feature feature):this()
         {
             Feature = feature;
 
@@ -19,9 +19,14 @@ namespace PatrolControl.UI.Screens.Common.Map
 
         public Feature Feature { get; private set; }
 
-        public FeatureGraphic()
+         
+        public FeatureGraphic(): base()
         {
-            PropertyChanged += (sender, args) =>
+            AttributeValueChanged += (sender, args) =>
+                {
+                    
+                };
+             PropertyChanged += (sender, args) =>
                 {
                     if (args.PropertyName == "Geometry")
                     {

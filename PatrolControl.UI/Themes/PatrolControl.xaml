@@ -86,7 +86,7 @@
     <Style x:Key="BackButton" TargetType="HyperlinkButton">
         <Setter Property="Margin" Value="10"></Setter>
         <Setter Property="FontSize" Value="14"></Setter>
-        <Setter Property="Content" Value="BACK!"></Setter>
+        <Setter Property="Content" Value="← Back"></Setter>
     </Style>
     
     <Style x:Key="BackroundImage" TargetType="Panel">
