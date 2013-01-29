@@ -25,11 +25,11 @@ namespace PatrolControl.Service.Model
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Officer> Officers { get; set; }
         public DbSet<Street> Streets { get; set; }
         public DbSet<Building> Buildings { get; set; }
         public DbSet<PatrolDistrict> PatrolDistricts { get; set; }
         public DbSet<TownDistrict> TownDistricts { get; set; }
-
     }
 
 }

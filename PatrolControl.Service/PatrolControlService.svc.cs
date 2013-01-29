@@ -102,6 +102,11 @@ namespace PatrolControl.Service
             return _context.Streets.ToList();
         }
 
+        public IList<Officer> GetOfficers()
+        {
+            return _context.Officers.ToList();
+        }
+
         public IList<PatrolDistrict> GetPatrolDistricts()
         {
             return _context.PatrolDistricts.ToList();
@@ -146,9 +151,11 @@ namespace PatrolControl.Service
             _context.SaveChanges();
         }
 
-        public void AddOfficers(params Officer[] users)
+        public void AddOfficers(params Officer[] officers)
         {
-
+            foreach (var officer in officers)
+                _context.Officers.Add(officer);
+            _context.SaveChanges();
         }
 
         public void AddStreets(params Street[] streets)
@@ -179,18 +186,30 @@ namespace PatrolControl.Service
         public void UpdateUsers(params User[] users)
         {
             foreach (var user in users)
+            {
                 _context.Users.Attach(user);
+                _context.Entry(user).State = EntityState.Modified;
+            }
             _context.SaveChanges();
         }
 
-        public void UpdateOfficers(params Officer[] users)
+        public void UpdateOfficers(params Officer[] officers)
         {
+            foreach (var officer in officers)
+            {
+                _context.Officers.Attach(officer);
+                _context.Entry(officer).State = EntityState.Modified;
+            }
+            _context.SaveChanges();
         }
 
         public void UpdateBuildings(params Building[] buildings)
         {
             foreach (var building in buildings)
+            {
                 _context.Buildings.Attach(building);
+                _context.Entry(building).State = EntityState.Modified;
+            }
             _context.SaveChanges();
         }
 
@@ -207,14 +226,21 @@ namespace PatrolControl.Service
         public void UpdatePatrolDistricts(params PatrolDistrict[] districts)
         {
             foreach (var district in districts)
+            {
                 _context.PatrolDistricts.Attach(district);
+                _context.Entry(districts).State = EntityState.Modified;
+            }
+                
             _context.SaveChanges();
         }
 
         public void UpdateTownDistricts(params TownDistrict[] districts)
         {
             foreach (var district in districts)
+            {
                 _context.TownDistricts.Attach(district);
+                _context.Entry(districts).State = EntityState.Modified;
+            }    
             _context.SaveChanges();
         }
 
@@ -243,6 +269,13 @@ namespace PatrolControl.Service
             _context.SaveChanges();
         }
 
+        public void DeleteOfficers(params Officer[] officers)
+        {
+            foreach (var officer in _context.Officers.Where(b => officers.Any(e => e.Id == b.Id)))
+                _context.Officers.Remove(officer);
+            _context.SaveChanges();
+        }
+
         public void DeletePatrolDistricts(params PatrolDistrict[] districts)
         {
             foreach (var district in _context.PatrolDistricts.Where(b => districts.Any(e => e.Id == b.Id)))
@@ -258,8 +291,5 @@ namespace PatrolControl.Service
         }
 
         #endregion
-
-
-
     }
 }

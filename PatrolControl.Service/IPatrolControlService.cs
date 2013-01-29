@@ -29,6 +29,9 @@ namespace PatrolControl.Service
         IList<Street> GetStreets();
 
         [OperationContract]
+        IList<Officer> GetOfficers();
+
+        [OperationContract]
         IList<PatrolDistrict> GetPatrolDistricts();
 
         [OperationContract]
@@ -49,7 +52,6 @@ namespace PatrolControl.Service
 
         [OperationContract]
         void AddOfficers(params Officer[] users);
-
 
         [OperationContract]
         void AddStreets(params Street[] streets);
@@ -94,6 +96,9 @@ namespace PatrolControl.Service
 
         [OperationContract]
         void DeleteStreets(params Street[] streets);
+
+        [OperationContract]
+        void DeleteOfficers(params Officer[] officers);
 
         [OperationContract]
         void DeletePatrolDistricts(params PatrolDistrict[] districts);
