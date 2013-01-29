@@ -149,6 +149,8 @@
     <Compile Include="Model\Commands\SetBusy.cs" />
     <Compile Include="Model\Commands\UpdateEntities.cs" />
     <Compile Include="Model\Commands\UpdateLayer.cs" />
+    <Compile Include="Providers\OfficerProvider.cs" />
+    <Compile Include="Providers\PatrolDistrictFeatureProvider.cs" />
     <Compile Include="Screens\Operations\OperationsView.xaml.cs">
       <DependentUpon>OperationsView.xaml</DependentUpon>
     </Compile>
@@ -318,6 +320,9 @@
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Service References\PatrolControlServiceReference\PatrolControl.UI.PatrolControlServiceReference.Building.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PatrolControlServiceReference\PatrolControl.UI.PatrolControlServiceReference.Officer.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\PatrolControlServiceReference\PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict.datasource">

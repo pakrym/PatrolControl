@@ -43,13 +43,11 @@ namespace PatrolControl.UI.Providers
 
             callback = (sender, e) =>
                 {
-
                     Client.UpdateBuildingsCompleted -= callback;
 
                     if (e.Error != null) tcs.TrySetException(e.Error);
                     else if (e.Cancelled) tcs.TrySetCanceled();
                     else tcs.TrySetResult(null);
-
                 };
 
             Client.UpdateBuildingsCompleted += callback;
@@ -106,6 +104,5 @@ namespace PatrolControl.UI.Providers
         {
             return new Building();
         }
-
     }
 }

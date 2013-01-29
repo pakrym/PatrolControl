@@ -84,7 +84,9 @@
     <Content Include="PatrolControl.UITestPage.html" />
     <Content Include="PatrolControlService.svc" />
     <Content Include="Silverlight.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">

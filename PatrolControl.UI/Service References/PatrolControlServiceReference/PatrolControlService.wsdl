@@ -32,6 +32,12 @@
   <wsdl:message name="IPatrolControlService_GetStreets_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetStreetsResponse" />
   </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetOfficers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOfficers" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetOfficers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOfficersResponse" />
+  </wsdl:message>
   <wsdl:message name="IPatrolControlService_GetPatrolDistricts_InputMessage">
     <wsdl:part name="parameters" element="tns:GetPatrolDistricts" />
   </wsdl:message>
@@ -44,17 +50,11 @@
   <wsdl:message name="IPatrolControlService_GetTownDistricts_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTownDistrictsResponse" />
   </wsdl:message>
-  <wsdl:message name="IPatrolControlService_GetNearestStreets_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetNearestStreets" />
+  <wsdl:message name="IPatrolControlService_GetBuildingsWithSimularNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBuildingsWithSimularNames" />
   </wsdl:message>
-  <wsdl:message name="IPatrolControlService_GetNearestStreets_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetNearestStreetsResponse" />
-  </wsdl:message>
-  <wsdl:message name="IPatrolControlService_GetStreetsWithSimularNames_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetStreetsWithSimularNames" />
-  </wsdl:message>
-  <wsdl:message name="IPatrolControlService_GetStreetsWithSimularNames_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetStreetsWithSimularNamesResponse" />
+  <wsdl:message name="IPatrolControlService_GetBuildingsWithSimularNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBuildingsWithSimularNamesResponse" />
   </wsdl:message>
   <wsdl:message name="IPatrolControlService_AddUsers_InputMessage">
     <wsdl:part name="parameters" element="tns:AddUsers" />
@@ -67,6 +67,12 @@
   </wsdl:message>
   <wsdl:message name="IPatrolControlService_AddBuildings_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddBuildingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_AddOfficers_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddOfficers" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_AddOfficers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddOfficersResponse" />
   </wsdl:message>
   <wsdl:message name="IPatrolControlService_AddStreets_InputMessage">
     <wsdl:part name="parameters" element="tns:AddStreets" />
@@ -91,6 +97,12 @@
   </wsdl:message>
   <wsdl:message name="IPatrolControlService_UpdateUsers_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_UpdateOfficers_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOfficers" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_UpdateOfficers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOfficersResponse" />
   </wsdl:message>
   <wsdl:message name="IPatrolControlService_UpdateBuildings_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateBuildings" />
@@ -134,6 +146,12 @@
   <wsdl:message name="IPatrolControlService_DeleteStreets_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteStreetsResponse" />
   </wsdl:message>
+  <wsdl:message name="IPatrolControlService_DeleteOfficers_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOfficers" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_DeleteOfficers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOfficersResponse" />
+  </wsdl:message>
   <wsdl:message name="IPatrolControlService_DeletePatrolDistricts_InputMessage">
     <wsdl:part name="parameters" element="tns:DeletePatrolDistricts" />
   </wsdl:message>
@@ -163,6 +181,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/GetStreets" message="tns:IPatrolControlService_GetStreets_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/GetStreetsResponse" message="tns:IPatrolControlService_GetStreets_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetOfficers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/GetOfficers" message="tns:IPatrolControlService_GetOfficers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/GetOfficersResponse" message="tns:IPatrolControlService_GetOfficers_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetPatrolDistricts">
       <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/GetPatrolDistricts" message="tns:IPatrolControlService_GetPatrolDistricts_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/GetPatrolDistrictsResponse" message="tns:IPatrolControlService_GetPatrolDistricts_OutputMessage" />
@@ -171,13 +193,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/GetTownDistricts" message="tns:IPatrolControlService_GetTownDistricts_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/GetTownDistrictsResponse" message="tns:IPatrolControlService_GetTownDistricts_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetNearestStreets">
-      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/GetNearestStreets" message="tns:IPatrolControlService_GetNearestStreets_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/GetNearestStreetsResponse" message="tns:IPatrolControlService_GetNearestStreets_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetStreetsWithSimularNames">
-      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/GetStreetsWithSimularNames" message="tns:IPatrolControlService_GetStreetsWithSimularNames_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/GetStreetsWithSimularNamesResponse" message="tns:IPatrolControlService_GetStreetsWithSimularNames_OutputMessage" />
+    <wsdl:operation name="GetBuildingsWithSimularNames">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/GetBuildingsWithSimularNames" message="tns:IPatrolControlService_GetBuildingsWithSimularNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/GetBuildingsWithSimularNamesResponse" message="tns:IPatrolControlService_GetBuildingsWithSimularNames_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddUsers">
       <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/AddUsers" message="tns:IPatrolControlService_AddUsers_InputMessage" />
@@ -186,6 +204,10 @@
     <wsdl:operation name="AddBuildings">
       <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/AddBuildings" message="tns:IPatrolControlService_AddBuildings_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/AddBuildingsResponse" message="tns:IPatrolControlService_AddBuildings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddOfficers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/AddOfficers" message="tns:IPatrolControlService_AddOfficers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/AddOfficersResponse" message="tns:IPatrolControlService_AddOfficers_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddStreets">
       <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/AddStreets" message="tns:IPatrolControlService_AddStreets_InputMessage" />
@@ -202,6 +224,10 @@
     <wsdl:operation name="UpdateUsers">
       <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/UpdateUsers" message="tns:IPatrolControlService_UpdateUsers_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/UpdateUsersResponse" message="tns:IPatrolControlService_UpdateUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOfficers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/UpdateOfficers" message="tns:IPatrolControlService_UpdateOfficers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/UpdateOfficersResponse" message="tns:IPatrolControlService_UpdateOfficers_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdateBuildings">
       <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/UpdateBuildings" message="tns:IPatrolControlService_UpdateBuildings_InputMessage" />
@@ -230,6 +256,10 @@
     <wsdl:operation name="DeleteStreets">
       <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/DeleteStreets" message="tns:IPatrolControlService_DeleteStreets_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/DeleteStreetsResponse" message="tns:IPatrolControlService_DeleteStreets_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOfficers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/DeleteOfficers" message="tns:IPatrolControlService_DeleteOfficers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/DeleteOfficersResponse" message="tns:IPatrolControlService_DeleteOfficers_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="DeletePatrolDistricts">
       <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/DeletePatrolDistricts" message="tns:IPatrolControlService_DeletePatrolDistricts_InputMessage" />
@@ -278,6 +308,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetOfficers">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/GetOfficers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetPatrolDistricts">
       <soap:operation soapAction="http://tempuri.org/IPatrolControlService/GetPatrolDistricts" style="document" />
       <wsdl:input>
@@ -296,17 +335,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetNearestStreets">
-      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/GetNearestStreets" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetStreetsWithSimularNames">
-      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/GetStreetsWithSimularNames" style="document" />
+    <wsdl:operation name="GetBuildingsWithSimularNames">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/GetBuildingsWithSimularNames" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -325,6 +355,15 @@
     </wsdl:operation>
     <wsdl:operation name="AddBuildings">
       <soap:operation soapAction="http://tempuri.org/IPatrolControlService/AddBuildings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddOfficers">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/AddOfficers" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -361,6 +400,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateUsers">
       <soap:operation soapAction="http://tempuri.org/IPatrolControlService/UpdateUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOfficers">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/UpdateOfficers" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -424,6 +472,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteStreets">
       <soap:operation soapAction="http://tempuri.org/IPatrolControlService/DeleteStreets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOfficers">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/DeleteOfficers" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
