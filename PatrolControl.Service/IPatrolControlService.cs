@@ -11,7 +11,6 @@ using PatrolControl.Service.Model;
 
 namespace PatrolControl.Service
 {
-    
     [ServiceContract]
     public interface IPatrolControlService
     {

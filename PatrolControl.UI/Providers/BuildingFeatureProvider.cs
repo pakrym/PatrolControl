@@ -1,4 +1,6 @@
 using System;
+using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 using ESRI.ArcGIS.Client.Geometry;
 using PatrolControl.UI.PatrolControlServiceReference;
@@ -11,7 +13,7 @@ namespace PatrolControl.UI.Providers
         {
             var tcs = new TaskCompletionSource<Feature[]>();
             EventHandler<GetBuildingsCompletedEventArgs> callback = null;
-            
+
             callback = (sender, e) =>
                 {
                     Client.GetBuildingsCompleted -= callback;
@@ -36,17 +38,68 @@ namespace PatrolControl.UI.Providers
 
         public Task Save(Entity[] feature)
         {
-            return null;
+            var tcs = new TaskCompletionSource<object>();
+            EventHandler<AsyncCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+                {
+
+                    Client.UpdateBuildingsCompleted -= callback;
+
+                    if (e.Error != null) tcs.TrySetException(e.Error);
+                    else if (e.Cancelled) tcs.TrySetCanceled();
+                    else tcs.TrySetResult(null);
+
+                };
+
+            Client.UpdateBuildingsCompleted += callback;
+            Client.UpdateBuildingsAsync(feature.Cast<Building>().ToArray());
+
+            return tcs.Task;
         }
 
         public Task Add(Entity[] feature)
         {
-            throw new NotImplementedException();
+            var tcs = new TaskCompletionSource<object>();
+            EventHandler<AsyncCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+                {
+
+                    Client.AddBuildingsCompleted -= callback;
+
+                    if (e.Error != null) tcs.TrySetException(e.Error);
+                    else if (e.Cancelled) tcs.TrySetCanceled();
+                    else tcs.TrySetResult(null);
+
+                };
+
+            Client.AddBuildingsCompleted += callback;
+            Client.AddBuildingsAsync(feature.Cast<Building>().ToArray());
+
+            return tcs.Task;   
         }
 
         public Task Remove(Entity[] feature)
         {
-            throw new NotImplementedException();
+            var tcs = new TaskCompletionSource<object>();
+            EventHandler<AsyncCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+                {
+
+                    Client.DeleteBuildingsCompleted -= callback;
+
+                    if (e.Error != null) tcs.TrySetException(e.Error);
+                    else if (e.Cancelled) tcs.TrySetCanceled();
+                    else tcs.TrySetResult(null);
+
+                };
+
+            Client.DeleteBuildingsCompleted += callback;
+            Client.DeleteBuildingsAsync(feature.Cast<Building>().ToArray());
+
+            return tcs.Task;   
         }
 
         public Entity New()

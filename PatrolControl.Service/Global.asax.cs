@@ -13,13 +13,8 @@ namespace PatrolControl.Service
     {
         protected void Application_Start(object sender, EventArgs e)
         {
-            using (var context = new DatabaseContext())
-            {
-                 //context.Database.Delete();
-            }
- 
-            Database.SetInitializer(new ModelInstaller<DatabaseContext>());
-        }
+            
+    }
 
         protected void Session_Start(object sender, EventArgs e)
         {
