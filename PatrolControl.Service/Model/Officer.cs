@@ -3,7 +3,7 @@
 namespace PatrolControl.Service.Model
 {
     [DataContract]
-    public class Officer : Feature
+    public class Officer : Entity
     {
         [DataMember]
         public string FirstName { get; set; }
