@@ -10,7 +10,7 @@ using System.Text;
 
 namespace PatrolControl.Service.Model
 {
-    public class ModelInstaller<T> : DropCreateDatabaseAlways<T> where T : DbContext
+    public class ModelInstaller<T> : DropCreateDatabaseIfModelChanges<T> where T : DbContext
     {
         const string Namespace = "PatrolControl.Service.Model.Sql";
 

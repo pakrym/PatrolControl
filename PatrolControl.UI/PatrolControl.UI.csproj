@@ -153,6 +153,7 @@
       <DependentUpon>OperationsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Screens\Operations\OperationsViewModel.cs" />
+    <Compile Include="Screens\Common\ListManager\ListManagerViewModel.cs" />
     <Compile Include="Services\BackendService.cs" />
     <Compile Include="Providers\BuildingFeatureProvider.cs" />
     <Compile Include="Providers\ProviderBase.cs" />
@@ -198,8 +199,8 @@
     <Compile Include="Screens\Common\ObjectEditorView.xaml.cs">
       <DependentUpon>ObjectEditorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Screens\UserManager\UserManagerView.xaml.cs">
-      <DependentUpon>UserManagerView.xaml</DependentUpon>
+    <Compile Include="Screens\Common\ListManager\ListManagerView.xaml.cs">
+      <DependentUpon>ListManagerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Screens\UserManager\UserManagerViewModel.cs" />
     <Compile Include="Service References\PatrolControlServiceReference\Reference.cs">
@@ -288,7 +289,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Screens\UserManager\UserManagerView.xaml">
+    <Page Include="Screens\Common\ListManager\ListManagerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
