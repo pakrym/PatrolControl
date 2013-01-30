@@ -81,8 +81,8 @@ namespace PatrolControl.UI.Providers
 
             };
 
-            Client.AddUsersCompleted += callback;
-            Client.AddUsersAsync(entities.Cast<User>().ToArray());
+            Client.AddOfficersCompleted += callback;
+            Client.AddOfficersAsync(entities.Cast<Officer>().ToArray());
 
             return tcs.Task;   
         }

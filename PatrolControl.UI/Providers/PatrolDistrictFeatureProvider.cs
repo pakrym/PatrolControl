@@ -44,8 +44,8 @@ namespace PatrolControl.UI.Providers
 
             };
 
-            Client.UpdateBuildingsCompleted += callback;
-            Client.UpdateBuildingsAsync(entities.Cast<Building>().ToArray());
+            Client.UpdatePatrolDistrictsCompleted += callback;
+            Client.UpdatePatrolDistrictsAsync(entities.Cast<PatrolDistrict>().ToArray());
 
             return tcs.Task;
         }
