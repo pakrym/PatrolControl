@@ -15,7 +15,6 @@ namespace PatrolControl.UI.PatrolControlServiceReference
         public Entity()
         {
             State = EntityState.New;
-            ;
         }
 
         internal EntityState State

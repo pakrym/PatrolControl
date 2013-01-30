@@ -22,13 +22,9 @@ namespace PatrolControl.Service
     {
         private int SRID = 4326;
 
-        private readonly DatabaseContext _context;
-
-
-        public PatrolControlService()
+        private DatabaseContext _context
         {
-            _context = new DatabaseContext();
-
+            get { return new DatabaseContext();}
         }
 
         public User Login(String name, String password)
