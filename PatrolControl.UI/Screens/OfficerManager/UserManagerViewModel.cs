@@ -12,16 +12,16 @@ using PatrolControl.UI.Screens.Common;
 using PatrolControl.UI.Screens.Common.ListManager;
 using PatrolControl.UI.Screens.Common.Map;
 
-namespace PatrolControl.UI.Screens.UserManager
+namespace PatrolControl.UI.Screens.OfficerManager
 {
-    public class UserManagerView : ListManagerView
+    public class OfficerManagerView : ListManagerView
     {
-
+        
     }
-    public class UserManagerViewModel : ListManagerViewModel
+    public class OfficerManagerViewModel : ListManagerViewModel
     {
-        public UserManagerViewModel(ObjectEditorViewModel editor)
-            : base(new UserProvider(), editor)
+        public OfficerManagerViewModel(ObjectEditorViewModel editor)
+            : base(new OfficerProvider(), editor)
         {
         }
 
@@ -29,7 +29,7 @@ namespace PatrolControl.UI.Screens.UserManager
         {
             get
             {
-                return "User Manager";
+                return "Officer Manager";
             }
         }
 

@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Caliburn.Micro;
+using Microsoft.Practices.Unity;
 using PatrolControl.UI.Utilities;
 
 namespace PatrolControl.UI.Screens.Common
@@ -18,6 +19,9 @@ namespace PatrolControl.UI.Screens.Common
     {
         private bool _isEditing;
         private object _target;
+
+        [Dependency]
+        public IEditorViewModelFactory EditorViewModelFactory { get; set; }
 
         public ObjectEditorViewModel()
         {
@@ -50,7 +54,7 @@ namespace PatrolControl.UI.Screens.Common
 
         public void Edit(object o)
         {
-            Target = EditableAdapter.CreateGeneric(o);
+            Target = EditorViewModelFactory.GetEditorViewModel(o);
 
             IsEditing = true;
             var ieo = Target as IEditableObject;
@@ -61,7 +65,7 @@ namespace PatrolControl.UI.Screens.Common
         public void Save()
         {
             if (Target == null) return;
-            
+
             var ieo = Target as IEditableObject;
             if (ieo != null)
                 ieo.EndEdit();
@@ -72,7 +76,7 @@ namespace PatrolControl.UI.Screens.Common
         public void Cancel()
         {
             if (Target == null) return;
-            
+
             var ieo = Target as IEditableObject;
             if (ieo != null)
                 ieo.CancelEdit();
@@ -83,7 +87,7 @@ namespace PatrolControl.UI.Screens.Common
         public void Delete()
         {
             if (Target == null) return;
-            
+
             var ieo = Target as IEditableObject;
             if (ieo != null)
                 ieo.CancelEdit();

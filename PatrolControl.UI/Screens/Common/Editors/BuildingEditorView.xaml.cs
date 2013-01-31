@@ -12,9 +12,9 @@ using System.Windows.Shapes;
 
 namespace PatrolControl.UI.Screens.Common.Editors
 {
-    public partial class Street : UserControl
+    public partial class BuildingEditorView : UserControl
     {
-        public Street()
+        public BuildingEditorView()
         {
             InitializeComponent();
         }

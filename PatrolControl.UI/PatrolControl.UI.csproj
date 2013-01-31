@@ -151,6 +151,13 @@
     <Compile Include="Model\Commands\UpdateLayer.cs" />
     <Compile Include="Providers\OfficerProvider.cs" />
     <Compile Include="Providers\PatrolDistrictFeatureProvider.cs" />
+    <Compile Include="Screens\Common\Editors\BuildingEditorViewModel.cs" />
+    <Compile Include="Screens\Common\Editors\StreetEditorViewModel.cs" />
+    <Compile Include="Screens\Common\Editors\UserEditorViewModel.cs" />
+    <Compile Include="Screens\Common\EditorViewModelFactory.cs" />
+    <Compile Include="Screens\Common\IEditorViewModel.cs" />
+    <Compile Include="Screens\Common\IEditorViewModelFactory.cs" />
+    <Compile Include="Screens\OfficerManager\UserManagerViewModel.cs" />
     <Compile Include="Screens\Operations\OperationsView.xaml.cs">
       <DependentUpon>OperationsView.xaml</DependentUpon>
     </Compile>
@@ -161,8 +168,8 @@
     <Compile Include="Providers\ProviderBase.cs" />
     <Compile Include="Providers\StreetFeatureProvider.cs" />
     <Compile Include="Providers\UserProvider.cs" />
-    <Compile Include="Screens\Common\Editors\User.xaml.cs">
-      <DependentUpon>User.xaml</DependentUpon>
+    <Compile Include="Screens\Common\Editors\UserEditorView.xaml.cs">
+      <DependentUpon>UserEditorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\EntityCollection.cs" />
     <Compile Include="Model\FeatureCollection.cs" />
@@ -187,11 +194,11 @@
     <Compile Include="Framework\QueryResult.cs" />
     <Compile Include="Framework\ServiceBase.cs" />
     <Compile Include="Model\Commands\LoginUser.cs" />
-    <Compile Include="Screens\Common\Editors\Building.xaml.cs">
-      <DependentUpon>Building.xaml</DependentUpon>
+    <Compile Include="Screens\Common\Editors\BuildingEditorView.xaml.cs">
+      <DependentUpon>BuildingEditorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Screens\Common\Editors\Street.xaml.cs">
-      <DependentUpon>Street.xaml</DependentUpon>
+    <Compile Include="Screens\Common\Editors\StreetEditorView.xaml.cs">
+      <DependentUpon>StreetEditorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Screens\Common\Map\BuildingFeatureLayerViewModel.cs" />
     <Compile Include="Screens\Common\Map\FeatureGraphic.cs" />
@@ -255,15 +262,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Screens\Common\Editors\Building.xaml">
+    <Page Include="Screens\Common\Editors\BuildingEditorView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Screens\Common\Editors\Street.xaml">
+    <Page Include="Screens\Common\Editors\StreetEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Screens\Common\Editors\User.xaml">
+    <Page Include="Screens\Common\Editors\UserEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

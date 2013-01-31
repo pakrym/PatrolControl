@@ -10,18 +10,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using PatrolControl.UI.Screens.Common;
 
 namespace PatrolControl.UI.Utilities
 {
 
-    public class EditableAdapter<T> : EditableAdapter
+    public class EditableAdapter<T> : EditableAdapter, IEditorViewModel<T>
     {
-        public EditableAdapter(T o)
-            : base(o)
+        public EditableAdapter(T model)
+            : base(model)
         {
         }
-
-
     }
 
     public class EditableAdapter : IEditableObject, ICustomTypeProvider, INotifyPropertyChanged
