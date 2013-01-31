@@ -6,7 +6,7 @@ using PatrolControl.UI.PatrolControlServiceReference;
 
 namespace PatrolControl.UI.Providers
 {
-    public class UserProvider : ProviderBase, ICrud
+    public class UserProvider : ProviderBase, ICrud 
     {
         public Task<Entity[]> List()
         {

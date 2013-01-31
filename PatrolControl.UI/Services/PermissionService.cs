@@ -19,7 +19,8 @@ namespace PatrolControl.UI.Services
             _screens = new Dictionary<int, string>() {
                 {0, "mapeditor"},
                 {1, "usermanager"},
-                {2, "operationscreen"}
+                {2, "operationscreen"},
+                {3, "officermanager"}
             };
         }
 

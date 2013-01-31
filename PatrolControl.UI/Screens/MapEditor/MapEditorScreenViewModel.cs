@@ -28,9 +28,9 @@ namespace PatrolControl.UI.Screens.MapEditor
             }
         }
 
-        public MapEditorScreenViewModel()
+        public MapEditorScreenViewModel(ObjectEditorViewModel editorViewModel)
         {
-            ObjectEditor = new ObjectEditorViewModel();
+            ObjectEditor = editorViewModel;
             ObjectEditor.Saved += (sender, args) => Coroutine.BeginExecute(Saved());
             ObjectEditor.Cancelled += (sender, args) => Coroutine.BeginExecute(Cancelled().GetEnumerator());
             ObjectEditor.Deleted += (sender, args) => Coroutine.BeginExecute(Deleted().GetEnumerator());

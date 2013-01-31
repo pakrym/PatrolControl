@@ -11,7 +11,7 @@
 
     <Grid x:Name="LayoutRoot"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" cal:Message.Attach="[Event Loaded] = [Action LoadEntities]">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="250"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 

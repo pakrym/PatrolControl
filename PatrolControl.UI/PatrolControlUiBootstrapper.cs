@@ -8,9 +8,12 @@ using Microsoft.Practices.Unity;
 using PatrolControl.UI.Framework;
 using PatrolControl.UI.PatrolControlServiceReference;
 using PatrolControl.UI.Providers;
+using PatrolControl.UI.Screens.Common;
+using PatrolControl.UI.Screens.Common.Editors;
 using PatrolControl.UI.Screens.Common.Map;
 using PatrolControl.UI.Screens.Login;
 using PatrolControl.UI.Screens.MapEditor;
+using PatrolControl.UI.Screens.OfficerManager;
 using PatrolControl.UI.Screens.Operations;
 using PatrolControl.UI.Screens.Shell;
 using PatrolControl.UI.Screens.UserManager;
@@ -111,13 +114,17 @@ namespace PatrolControl.UI
             }
             _container.RegisterType<IShell, ShellViewModel>(new ContainerControlledLifetimeManager());
 
-            _container.RegisterType<FeatureLayerViewModel,BuildingFeatureLayerViewModel>("buildings");
 
-            _container.RegisterType<FeatureLayerViewModel,StreetsFeatureLayerViewModel>("streets");
+
+            _container.RegisterType<FeatureLayerViewModel, BuildingFeatureLayerViewModel>("buildings");
+
+            _container.RegisterType<FeatureLayerViewModel, StreetsFeatureLayerViewModel>("streets");
 
             _container.RegisterType<IFeatureProvider, BuildingFeatureProvider>("buildings");
             _container.RegisterType<IFeatureProvider, StreetFeatureProvider>("streets");
 
+            _container.RegisterType<ICrud, UserProvider>("user");
+            
             _container.RegisterType<IFeatureService, FeatureService>();
             _container.RegisterType<IEntityService, EntityService>();
 
@@ -126,6 +133,13 @@ namespace PatrolControl.UI
             _container.RegisterType<IScreen, MapEditorScreenViewModel>("mapeditor");
             _container.RegisterType<IScreen, UserManagerViewModel>("usermanager");
             _container.RegisterType<IScreen, OperationsViewModel>("operationscreen");
+            _container.RegisterType<IScreen, OfficerManagerViewModel>("operationscreen");
+
+            _container.RegisterType<IEditorViewModel<User>, UserEditorViewModel>();
+            _container.RegisterType<IEditorViewModel<Building>, BuildingEditorViewModel>();
+            _container.RegisterType<IEditorViewModel<Street>, StreetEditorViewModel>();
+
+            _container.RegisterType<IEditorViewModelFactory, EditorViewModelFactory>();
 
             _container.RegisterType<IUserService, UserService>();
             _container.RegisterType<IPermissionService, PermissionService>();
