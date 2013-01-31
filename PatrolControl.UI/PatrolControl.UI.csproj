@@ -149,11 +149,15 @@
     <Compile Include="Model\Commands\SetBusy.cs" />
     <Compile Include="Model\Commands\UpdateEntities.cs" />
     <Compile Include="Model\Commands\UpdateLayer.cs" />
+    <Compile Include="Providers\ICrud.cs" />
+    <Compile Include="Providers\IRightProvider.cs" />
     <Compile Include="Providers\OfficerProvider.cs" />
     <Compile Include="Providers\PatrolDistrictFeatureProvider.cs" />
     <Compile Include="Screens\Common\Editors\BuildingEditorViewModel.cs" />
+    <Compile Include="Screens\Common\Editors\FeatureGraphicEditorViewModel.cs" />
     <Compile Include="Screens\Common\Editors\StreetEditorViewModel.cs" />
     <Compile Include="Screens\Common\Editors\UserEditorViewModel.cs" />
+    <Compile Include="Screens\Common\Editors\UserRightViewModel.cs" />
     <Compile Include="Screens\Common\EditorViewModelFactory.cs" />
     <Compile Include="Screens\Common\IEditorViewModel.cs" />
     <Compile Include="Screens\Common\IEditorViewModelFactory.cs" />
@@ -163,6 +167,7 @@
     </Compile>
     <Compile Include="Screens\Operations\OperationsViewModel.cs" />
     <Compile Include="Screens\Common\ListManager\ListManagerViewModel.cs" />
+    <Compile Include="Model\Right.cs" />
     <Compile Include="Services\BackendService.cs" />
     <Compile Include="Providers\BuildingFeatureProvider.cs" />
     <Compile Include="Providers\ProviderBase.cs" />

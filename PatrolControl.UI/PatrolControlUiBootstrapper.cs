@@ -122,12 +122,11 @@ namespace PatrolControl.UI
 
             _container.RegisterType<IFeatureProvider, BuildingFeatureProvider>("buildings");
             _container.RegisterType<IFeatureProvider, StreetFeatureProvider>("streets");
+            _container.RegisterType<IUserProvider, UserProvider>();
+            _container.RegisterType<IRightProvider, RightProvider>();
 
-            _container.RegisterType<ICrud, UserProvider>("user");
-            
             _container.RegisterType<IFeatureService, FeatureService>();
             _container.RegisterType<IEntityService, EntityService>();
-
             _container.RegisterType<IShellService, ShellService>();
 
             _container.RegisterType<IScreen, MapEditorScreenViewModel>("mapeditor");

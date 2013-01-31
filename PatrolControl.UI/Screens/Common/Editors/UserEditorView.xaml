@@ -9,5 +9,18 @@
     <StackPanel x:Name="LayoutRoot">
         <TextBlock Text="Name"></TextBlock>
         <TextBox Name="Name"></TextBox>
+
+        <ItemsControl ItemsSource="{Binding UserRights}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox IsChecked="{Binding Allowed, Mode=TwoWay}" Content="{Binding Name}"></CheckBox>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </StackPanel>
 </UserControl>

@@ -7,7 +7,8 @@ using PatrolControl.UI.PatrolControlServiceReference;
 
 namespace PatrolControl.UI.Providers
 {
-    public class StreetFeatureProvider : ProviderBase, IFeatureProvider, ICrud
+
+    public class StreetFeatureProvider : ProviderBase, IFeatureProvider
     {
         public Task<Feature[]> List(Envelope envelope)
         {
