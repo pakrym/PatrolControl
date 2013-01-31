@@ -8,7 +8,7 @@ using ESRI.ArcGIS.Client.Geometry;
 namespace PatrolControl.UI.Providers
 {
 
-	public class BuildingFeatureProvider : ProviderBase, IFeatureProvider 
+	public partial class BuildingFeatureProvider : ProviderBase, IFeatureProvider 
 	{
 		public Task<Entity[]> List()
         {
@@ -120,7 +120,7 @@ namespace PatrolControl.UI.Providers
         }
 	}
 
-	public class OfficerProvider : ProviderBase, ICrud 
+	public partial class OfficerProvider : ProviderBase, ICrud 
 	{
 		public Task<Entity[]> List()
         {
@@ -213,7 +213,7 @@ namespace PatrolControl.UI.Providers
 
 	}
 
-	public class PatrolDistrictFeatureProvider : ProviderBase, IFeatureProvider 
+	public partial class PatrolDistrictFeatureProvider : ProviderBase, IFeatureProvider 
 	{
 		public Task<Entity[]> List()
         {
@@ -325,7 +325,7 @@ namespace PatrolControl.UI.Providers
         }
 	}
 
-	public class StreetFeatureProvider : ProviderBase, IFeatureProvider 
+	public partial class StreetFeatureProvider : ProviderBase, IFeatureProvider 
 	{
 		public Task<Entity[]> List()
         {
@@ -437,7 +437,7 @@ namespace PatrolControl.UI.Providers
         }
 	}
 
-	public class TownDistrictFeatureProvider : ProviderBase, IFeatureProvider 
+	public partial class TownDistrictFeatureProvider : ProviderBase, IFeatureProvider 
 	{
 		public Task<Entity[]> List()
         {
@@ -549,7 +549,7 @@ namespace PatrolControl.UI.Providers
         }
 	}
 
-	public class UserProvider : ProviderBase, ICrud 
+	public partial class UserProvider : ProviderBase, ICrud 
 	{
 		public Task<Entity[]> List()
         {

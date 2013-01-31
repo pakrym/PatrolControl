@@ -25,7 +25,7 @@ namespace PatrolControl.UI.Providers
 	var isFeature = type.IsSubclassOf(typeof(Feature));
 #>
 
-	public class <#= name + (isFeature ? "Feature" : "") #>Provider : ProviderBase, <#= isFeature  ? "IFeatureProvider" : "ICrud" #> 
+	public partial class <#= name + (isFeature ? "Feature" : "") #>Provider : ProviderBase, <#= isFeature  ? "IFeatureProvider" : "ICrud" #> 
 	{
 		public Task<Entity[]> List()
         {
