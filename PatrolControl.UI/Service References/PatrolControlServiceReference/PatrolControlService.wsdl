@@ -14,6 +14,42 @@
   <wsdl:message name="IPatrolControlService_Login_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoginResponse" />
   </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUser" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetBuilding_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBuilding" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetBuilding_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBuildingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetStreet_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStreet" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetStreet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStreetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetOfficer_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOfficer" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetOfficer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOfficerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetPatrolDistrict_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPatrolDistrict" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetPatrolDistrict_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPatrolDistrictResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetTownDistrict_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTownDistrict" />
+  </wsdl:message>
+  <wsdl:message name="IPatrolControlService_GetTownDistrict_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTownDistrictResponse" />
+  </wsdl:message>
   <wsdl:message name="IPatrolControlService_GetUsers_InputMessage">
     <wsdl:part name="parameters" element="tns:GetUsers" />
   </wsdl:message>
@@ -169,6 +205,30 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/Login" message="tns:IPatrolControlService_Login_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/LoginResponse" message="tns:IPatrolControlService_Login_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/GetUser" message="tns:IPatrolControlService_GetUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/GetUserResponse" message="tns:IPatrolControlService_GetUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBuilding">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/GetBuilding" message="tns:IPatrolControlService_GetBuilding_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/GetBuildingResponse" message="tns:IPatrolControlService_GetBuilding_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStreet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/GetStreet" message="tns:IPatrolControlService_GetStreet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/GetStreetResponse" message="tns:IPatrolControlService_GetStreet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOfficer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/GetOfficer" message="tns:IPatrolControlService_GetOfficer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/GetOfficerResponse" message="tns:IPatrolControlService_GetOfficer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPatrolDistrict">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/GetPatrolDistrict" message="tns:IPatrolControlService_GetPatrolDistrict_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/GetPatrolDistrictResponse" message="tns:IPatrolControlService_GetPatrolDistrict_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTownDistrict">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/GetTownDistrict" message="tns:IPatrolControlService_GetTownDistrict_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/GetTownDistrictResponse" message="tns:IPatrolControlService_GetTownDistrict_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetUsers">
       <wsdl:input wsaw:Action="http://tempuri.org/IPatrolControlService/GetUsers" message="tns:IPatrolControlService_GetUsers_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPatrolControlService/GetUsersResponse" message="tns:IPatrolControlService_GetUsers_OutputMessage" />
@@ -274,6 +334,60 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="Login">
       <soap:operation soapAction="http://tempuri.org/IPatrolControlService/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/GetUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBuilding">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/GetBuilding" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStreet">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/GetStreet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOfficer">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/GetOfficer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPatrolDistrict">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/GetPatrolDistrict" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTownDistrict">
+      <soap:operation soapAction="http://tempuri.org/IPatrolControlService/GetTownDistrict" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -377,6 +377,36 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         
         PatrolControl.UI.PatrolControlServiceReference.User EndLogin(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/GetUser", ReplyAction="http://tempuri.org/IPatrolControlService/GetUserResponse")]
+        System.IAsyncResult BeginGetUser(int id, System.AsyncCallback callback, object asyncState);
+        
+        PatrolControl.UI.PatrolControlServiceReference.User EndGetUser(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/GetBuilding", ReplyAction="http://tempuri.org/IPatrolControlService/GetBuildingResponse")]
+        System.IAsyncResult BeginGetBuilding(int id, System.AsyncCallback callback, object asyncState);
+        
+        PatrolControl.UI.PatrolControlServiceReference.Building EndGetBuilding(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/GetStreet", ReplyAction="http://tempuri.org/IPatrolControlService/GetStreetResponse")]
+        System.IAsyncResult BeginGetStreet(int id, System.AsyncCallback callback, object asyncState);
+        
+        PatrolControl.UI.PatrolControlServiceReference.Street EndGetStreet(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/GetOfficer", ReplyAction="http://tempuri.org/IPatrolControlService/GetOfficerResponse")]
+        System.IAsyncResult BeginGetOfficer(int id, System.AsyncCallback callback, object asyncState);
+        
+        PatrolControl.UI.PatrolControlServiceReference.Officer EndGetOfficer(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/GetPatrolDistrict", ReplyAction="http://tempuri.org/IPatrolControlService/GetPatrolDistrictResponse")]
+        System.IAsyncResult BeginGetPatrolDistrict(int id, System.AsyncCallback callback, object asyncState);
+        
+        PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict EndGetPatrolDistrict(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/GetTownDistrict", ReplyAction="http://tempuri.org/IPatrolControlService/GetTownDistrictResponse")]
+        System.IAsyncResult BeginGetTownDistrict(int id, System.AsyncCallback callback, object asyncState);
+        
+        PatrolControl.UI.PatrolControlServiceReference.TownDistrict EndGetTownDistrict(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/GetUsers", ReplyAction="http://tempuri.org/IPatrolControlService/GetUsersResponse")]
         System.IAsyncResult BeginGetUsers(System.AsyncCallback callback, object asyncState);
         
@@ -528,6 +558,120 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public PatrolControl.UI.PatrolControlServiceReference.User Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((PatrolControl.UI.PatrolControlServiceReference.User)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetBuildingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetBuildingCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public PatrolControl.UI.PatrolControlServiceReference.Building Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((PatrolControl.UI.PatrolControlServiceReference.Building)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetStreetCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetStreetCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public PatrolControl.UI.PatrolControlServiceReference.Street Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((PatrolControl.UI.PatrolControlServiceReference.Street)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetOfficerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetOfficerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public PatrolControl.UI.PatrolControlServiceReference.Officer Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((PatrolControl.UI.PatrolControlServiceReference.Officer)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetPatrolDistrictCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetPatrolDistrictCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetTownDistrictCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetTownDistrictCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public PatrolControl.UI.PatrolControlServiceReference.TownDistrict Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((PatrolControl.UI.PatrolControlServiceReference.TownDistrict)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class GetUsersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -668,6 +812,42 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         private EndOperationDelegate onEndLoginDelegate;
         
         private System.Threading.SendOrPostCallback onLoginCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetUserDelegate;
+        
+        private EndOperationDelegate onEndGetUserDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetUserCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetBuildingDelegate;
+        
+        private EndOperationDelegate onEndGetBuildingDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetBuildingCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetStreetDelegate;
+        
+        private EndOperationDelegate onEndGetStreetDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetStreetCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetOfficerDelegate;
+        
+        private EndOperationDelegate onEndGetOfficerDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetOfficerCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetPatrolDistrictDelegate;
+        
+        private EndOperationDelegate onEndGetPatrolDistrictDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetPatrolDistrictCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetTownDistrictDelegate;
+        
+        private EndOperationDelegate onEndGetTownDistrictDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetTownDistrictCompletedDelegate;
         
         private BeginOperationDelegate onBeginGetUsersDelegate;
         
@@ -874,6 +1054,18 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         
         public event System.EventHandler<LoginCompletedEventArgs> LoginCompleted;
         
+        public event System.EventHandler<GetUserCompletedEventArgs> GetUserCompleted;
+        
+        public event System.EventHandler<GetBuildingCompletedEventArgs> GetBuildingCompleted;
+        
+        public event System.EventHandler<GetStreetCompletedEventArgs> GetStreetCompleted;
+        
+        public event System.EventHandler<GetOfficerCompletedEventArgs> GetOfficerCompleted;
+        
+        public event System.EventHandler<GetPatrolDistrictCompletedEventArgs> GetPatrolDistrictCompleted;
+        
+        public event System.EventHandler<GetTownDistrictCompletedEventArgs> GetTownDistrictCompleted;
+        
         public event System.EventHandler<GetUsersCompletedEventArgs> GetUsersCompleted;
         
         public event System.EventHandler<GetBuildingsCompletedEventArgs> GetBuildingsCompleted;
@@ -974,6 +1166,282 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
             base.InvokeAsync(this.onBeginLoginDelegate, new object[] {
                         name,
                         password}, this.onEndLoginDelegate, this.onLoginCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginGetUser(int id, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetUser(id, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        PatrolControl.UI.PatrolControlServiceReference.User PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.EndGetUser(System.IAsyncResult result) {
+            return base.Channel.EndGetUser(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetUser(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int id = ((int)(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginGetUser(id, callback, asyncState);
+        }
+        
+        private object[] OnEndGetUser(System.IAsyncResult result) {
+            PatrolControl.UI.PatrolControlServiceReference.User retVal = ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).EndGetUser(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetUserCompleted(object state) {
+            if ((this.GetUserCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetUserCompleted(this, new GetUserCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetUserAsync(int id) {
+            this.GetUserAsync(id, null);
+        }
+        
+        public void GetUserAsync(int id, object userState) {
+            if ((this.onBeginGetUserDelegate == null)) {
+                this.onBeginGetUserDelegate = new BeginOperationDelegate(this.OnBeginGetUser);
+            }
+            if ((this.onEndGetUserDelegate == null)) {
+                this.onEndGetUserDelegate = new EndOperationDelegate(this.OnEndGetUser);
+            }
+            if ((this.onGetUserCompletedDelegate == null)) {
+                this.onGetUserCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetUserCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetUserDelegate, new object[] {
+                        id}, this.onEndGetUserDelegate, this.onGetUserCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginGetBuilding(int id, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBuilding(id, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        PatrolControl.UI.PatrolControlServiceReference.Building PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.EndGetBuilding(System.IAsyncResult result) {
+            return base.Channel.EndGetBuilding(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetBuilding(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int id = ((int)(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginGetBuilding(id, callback, asyncState);
+        }
+        
+        private object[] OnEndGetBuilding(System.IAsyncResult result) {
+            PatrolControl.UI.PatrolControlServiceReference.Building retVal = ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).EndGetBuilding(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetBuildingCompleted(object state) {
+            if ((this.GetBuildingCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetBuildingCompleted(this, new GetBuildingCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetBuildingAsync(int id) {
+            this.GetBuildingAsync(id, null);
+        }
+        
+        public void GetBuildingAsync(int id, object userState) {
+            if ((this.onBeginGetBuildingDelegate == null)) {
+                this.onBeginGetBuildingDelegate = new BeginOperationDelegate(this.OnBeginGetBuilding);
+            }
+            if ((this.onEndGetBuildingDelegate == null)) {
+                this.onEndGetBuildingDelegate = new EndOperationDelegate(this.OnEndGetBuilding);
+            }
+            if ((this.onGetBuildingCompletedDelegate == null)) {
+                this.onGetBuildingCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBuildingCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetBuildingDelegate, new object[] {
+                        id}, this.onEndGetBuildingDelegate, this.onGetBuildingCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginGetStreet(int id, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetStreet(id, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        PatrolControl.UI.PatrolControlServiceReference.Street PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.EndGetStreet(System.IAsyncResult result) {
+            return base.Channel.EndGetStreet(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetStreet(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int id = ((int)(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginGetStreet(id, callback, asyncState);
+        }
+        
+        private object[] OnEndGetStreet(System.IAsyncResult result) {
+            PatrolControl.UI.PatrolControlServiceReference.Street retVal = ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).EndGetStreet(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetStreetCompleted(object state) {
+            if ((this.GetStreetCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetStreetCompleted(this, new GetStreetCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetStreetAsync(int id) {
+            this.GetStreetAsync(id, null);
+        }
+        
+        public void GetStreetAsync(int id, object userState) {
+            if ((this.onBeginGetStreetDelegate == null)) {
+                this.onBeginGetStreetDelegate = new BeginOperationDelegate(this.OnBeginGetStreet);
+            }
+            if ((this.onEndGetStreetDelegate == null)) {
+                this.onEndGetStreetDelegate = new EndOperationDelegate(this.OnEndGetStreet);
+            }
+            if ((this.onGetStreetCompletedDelegate == null)) {
+                this.onGetStreetCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetStreetCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetStreetDelegate, new object[] {
+                        id}, this.onEndGetStreetDelegate, this.onGetStreetCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginGetOfficer(int id, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetOfficer(id, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        PatrolControl.UI.PatrolControlServiceReference.Officer PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.EndGetOfficer(System.IAsyncResult result) {
+            return base.Channel.EndGetOfficer(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetOfficer(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int id = ((int)(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginGetOfficer(id, callback, asyncState);
+        }
+        
+        private object[] OnEndGetOfficer(System.IAsyncResult result) {
+            PatrolControl.UI.PatrolControlServiceReference.Officer retVal = ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).EndGetOfficer(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetOfficerCompleted(object state) {
+            if ((this.GetOfficerCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetOfficerCompleted(this, new GetOfficerCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetOfficerAsync(int id) {
+            this.GetOfficerAsync(id, null);
+        }
+        
+        public void GetOfficerAsync(int id, object userState) {
+            if ((this.onBeginGetOfficerDelegate == null)) {
+                this.onBeginGetOfficerDelegate = new BeginOperationDelegate(this.OnBeginGetOfficer);
+            }
+            if ((this.onEndGetOfficerDelegate == null)) {
+                this.onEndGetOfficerDelegate = new EndOperationDelegate(this.OnEndGetOfficer);
+            }
+            if ((this.onGetOfficerCompletedDelegate == null)) {
+                this.onGetOfficerCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetOfficerCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetOfficerDelegate, new object[] {
+                        id}, this.onEndGetOfficerDelegate, this.onGetOfficerCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginGetPatrolDistrict(int id, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetPatrolDistrict(id, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.EndGetPatrolDistrict(System.IAsyncResult result) {
+            return base.Channel.EndGetPatrolDistrict(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetPatrolDistrict(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int id = ((int)(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginGetPatrolDistrict(id, callback, asyncState);
+        }
+        
+        private object[] OnEndGetPatrolDistrict(System.IAsyncResult result) {
+            PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict retVal = ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).EndGetPatrolDistrict(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetPatrolDistrictCompleted(object state) {
+            if ((this.GetPatrolDistrictCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetPatrolDistrictCompleted(this, new GetPatrolDistrictCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetPatrolDistrictAsync(int id) {
+            this.GetPatrolDistrictAsync(id, null);
+        }
+        
+        public void GetPatrolDistrictAsync(int id, object userState) {
+            if ((this.onBeginGetPatrolDistrictDelegate == null)) {
+                this.onBeginGetPatrolDistrictDelegate = new BeginOperationDelegate(this.OnBeginGetPatrolDistrict);
+            }
+            if ((this.onEndGetPatrolDistrictDelegate == null)) {
+                this.onEndGetPatrolDistrictDelegate = new EndOperationDelegate(this.OnEndGetPatrolDistrict);
+            }
+            if ((this.onGetPatrolDistrictCompletedDelegate == null)) {
+                this.onGetPatrolDistrictCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetPatrolDistrictCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetPatrolDistrictDelegate, new object[] {
+                        id}, this.onEndGetPatrolDistrictDelegate, this.onGetPatrolDistrictCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginGetTownDistrict(int id, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetTownDistrict(id, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        PatrolControl.UI.PatrolControlServiceReference.TownDistrict PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.EndGetTownDistrict(System.IAsyncResult result) {
+            return base.Channel.EndGetTownDistrict(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetTownDistrict(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int id = ((int)(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginGetTownDistrict(id, callback, asyncState);
+        }
+        
+        private object[] OnEndGetTownDistrict(System.IAsyncResult result) {
+            PatrolControl.UI.PatrolControlServiceReference.TownDistrict retVal = ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).EndGetTownDistrict(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetTownDistrictCompleted(object state) {
+            if ((this.GetTownDistrictCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetTownDistrictCompleted(this, new GetTownDistrictCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetTownDistrictAsync(int id) {
+            this.GetTownDistrictAsync(id, null);
+        }
+        
+        public void GetTownDistrictAsync(int id, object userState) {
+            if ((this.onBeginGetTownDistrictDelegate == null)) {
+                this.onBeginGetTownDistrictDelegate = new BeginOperationDelegate(this.OnBeginGetTownDistrict);
+            }
+            if ((this.onEndGetTownDistrictDelegate == null)) {
+                this.onEndGetTownDistrictDelegate = new EndOperationDelegate(this.OnEndGetTownDistrict);
+            }
+            if ((this.onGetTownDistrictCompletedDelegate == null)) {
+                this.onGetTownDistrictCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetTownDistrictCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetTownDistrictDelegate, new object[] {
+                        id}, this.onEndGetTownDistrictDelegate, this.onGetTownDistrictCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2183,6 +2651,84 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
             public PatrolControl.UI.PatrolControlServiceReference.User EndLogin(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 PatrolControl.UI.PatrolControlServiceReference.User _result = ((PatrolControl.UI.PatrolControlServiceReference.User)(base.EndInvoke("Login", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetUser(int id, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = id;
+                System.IAsyncResult _result = base.BeginInvoke("GetUser", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public PatrolControl.UI.PatrolControlServiceReference.User EndGetUser(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                PatrolControl.UI.PatrolControlServiceReference.User _result = ((PatrolControl.UI.PatrolControlServiceReference.User)(base.EndInvoke("GetUser", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetBuilding(int id, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = id;
+                System.IAsyncResult _result = base.BeginInvoke("GetBuilding", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public PatrolControl.UI.PatrolControlServiceReference.Building EndGetBuilding(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                PatrolControl.UI.PatrolControlServiceReference.Building _result = ((PatrolControl.UI.PatrolControlServiceReference.Building)(base.EndInvoke("GetBuilding", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetStreet(int id, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = id;
+                System.IAsyncResult _result = base.BeginInvoke("GetStreet", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public PatrolControl.UI.PatrolControlServiceReference.Street EndGetStreet(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                PatrolControl.UI.PatrolControlServiceReference.Street _result = ((PatrolControl.UI.PatrolControlServiceReference.Street)(base.EndInvoke("GetStreet", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetOfficer(int id, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = id;
+                System.IAsyncResult _result = base.BeginInvoke("GetOfficer", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public PatrolControl.UI.PatrolControlServiceReference.Officer EndGetOfficer(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                PatrolControl.UI.PatrolControlServiceReference.Officer _result = ((PatrolControl.UI.PatrolControlServiceReference.Officer)(base.EndInvoke("GetOfficer", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetPatrolDistrict(int id, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = id;
+                System.IAsyncResult _result = base.BeginInvoke("GetPatrolDistrict", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict EndGetPatrolDistrict(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict _result = ((PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict)(base.EndInvoke("GetPatrolDistrict", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetTownDistrict(int id, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = id;
+                System.IAsyncResult _result = base.BeginInvoke("GetTownDistrict", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public PatrolControl.UI.PatrolControlServiceReference.TownDistrict EndGetTownDistrict(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                PatrolControl.UI.PatrolControlServiceReference.TownDistrict _result = ((PatrolControl.UI.PatrolControlServiceReference.TownDistrict)(base.EndInvoke("GetTownDistrict", _args, result)));
                 return _result;
             }
             
