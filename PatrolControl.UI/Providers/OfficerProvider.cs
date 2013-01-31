@@ -73,7 +73,7 @@ namespace PatrolControl.UI.Providers
             callback = (sender, e) =>
             {
 
-                Client.AddUsersCompleted -= callback;
+                Client.AddOfficersCompleted -= callback;
 
                 if (e.Error != null) tcs.TrySetException(e.Error);
                 else if (e.Cancelled) tcs.TrySetCanceled();
@@ -94,13 +94,11 @@ namespace PatrolControl.UI.Providers
 
             callback = (sender, e) =>
             {
-
-                Client.DeleteUsersCompleted -= callback;
+                Client.DeleteOfficersCompleted -= callback;
 
                 if (e.Error != null) tcs.TrySetException(e.Error);
                 else if (e.Cancelled) tcs.TrySetCanceled();
                 else tcs.TrySetResult(null);
-
             };
 
             Client.DeleteOfficersCompleted += callback;

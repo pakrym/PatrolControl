@@ -96,6 +96,7 @@
     <Compile Include="Model\DatabaseContext.cs" />
     <Compile Include="Model\Entity.cs" />
     <Compile Include="Model\Feature.cs" />
+    <Compile Include="Model\GenerateProvider.cs" />
     <Compile Include="Model\Officer.cs" />
     <Compile Include="Model\PatrolDistrict.cs" />
     <Compile Include="Model\Street.cs" />

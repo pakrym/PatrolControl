@@ -5,6 +5,7 @@ using System.Text;
 namespace PatrolControl.Service.Model
 {
     [DataContract]
+    [GenerateProvider]
     public class User : Entity
     {
         [DataMember]

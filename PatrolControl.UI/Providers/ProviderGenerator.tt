@@ -1,0 +1,143 @@
+﻿<#@ template hostspecific="true" debug="true" language="C#" #>
+<#@ output extension=".cs" #>
+<#@ assembly name="$(SolutionDir)bin\PatrolControl.Service.dll" #>
+<#@ import namespace="PatrolControl.Service.Model" #>
+<#@ assembly name="$(ProjectDir)Bin\Debug\PatrolControl.UI.dll" #>
+<#@ import namespace="PatrolControl.UI.Providers" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#
+var assembly = System.Reflection.Assembly.GetAssembly(typeof(Entity));
+var types = assembly.GetTypes().Where(t => t.GetCustomAttributes(typeof(GenerateProvider), true).Any());
+#>
+using System;
+using System.ComponentModel;
+using System.Linq;
+using System.Threading.Tasks;
+using PatrolControl.UI.PatrolControlServiceReference;
+using ESRI.ArcGIS.Client.Geometry;
+
+namespace PatrolControl.UI.Providers
+{
+<# foreach(var type in types) 
+{	
+	var name = type.Name;
+	var isFeature = type.IsSubclassOf(typeof(Feature));
+#>
+
+	public class <#= name + (isFeature ? "Feature" : "") #>Provider : ProviderBase, <#= isFeature  ? "IFeatureProvider" : "ICrud" #> 
+	{
+		public Task<Entity[]> List()
+        {
+            var tcs = new TaskCompletionSource<Entity[]>();
+            EventHandler<Get<#=name#>sCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+            {
+                Client.Get<#=name#>sCompleted -= callback;
+
+                if (e.Error != null) tcs.TrySetException(e.Error);
+                else if (e.Cancelled) tcs.TrySetCanceled();
+                else tcs.TrySetResult(e.Result);
+            };
+
+            Client.Get<#=name#>sCompleted += callback;
+            Client.Get<#=name#>sAsync();
+
+            return tcs.Task;
+        }
+
+	    public Entity New()
+        {
+            return new <#=name#>();
+        }
+
+		public Task Save(Entity[] entities)
+        {
+            var tcs = new TaskCompletionSource<object>();
+            EventHandler<AsyncCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+            {
+                Client.Update<#=name#>sCompleted -= callback;
+
+                if (e.Error != null) tcs.TrySetException(e.Error);
+                else if (e.Cancelled) tcs.TrySetCanceled();
+                else tcs.TrySetResult(null);
+            };
+
+            Client.Update<#=name#>sCompleted += callback;
+            Client.Update<#=name#>sAsync(entities.Cast<<#=name#>>().ToArray());
+
+            return tcs.Task;
+        }
+
+		public Task Add(Entity[] entities)
+        {
+            var tcs = new TaskCompletionSource<object>();
+            EventHandler<AsyncCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+            {
+
+                Client.AddUsersCompleted -= callback;
+
+                if (e.Error != null) tcs.TrySetException(e.Error);
+                else if (e.Cancelled) tcs.TrySetCanceled();
+                else tcs.TrySetResult(null);
+
+            };
+
+            Client.Add<#=name#>sCompleted += callback;
+            Client.Add<#=name#>sAsync(entities.Cast<<#=name#>>().ToArray());
+
+            return tcs.Task;   
+        }
+
+		public Task Remove(Entity[] entities)
+        {
+            var tcs = new TaskCompletionSource<object>();
+            EventHandler<AsyncCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+            {
+
+                Client.Delete<#=name#>sCompleted -= callback;
+
+                if (e.Error != null) tcs.TrySetException(e.Error);
+                else if (e.Cancelled) tcs.TrySetCanceled();
+                else tcs.TrySetResult(null);
+
+            };
+
+            Client.Delete<#=name#>sCompleted += callback;
+            Client.Delete<#=name#>sAsync(entities.Cast<<#=name#>>().ToArray());
+
+            return tcs.Task;   
+        }
+
+<# if (isFeature)
+	  { #>
+	    public Task<Feature[]> List(Envelope envelope)
+        {
+            var tcs = new TaskCompletionSource<Feature[]>();
+            EventHandler<Get<#=name#>sCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+            {
+                Client.Get<#=name#>sCompleted -= callback;
+
+                if (e.Error != null) tcs.TrySetException(e.Error);
+                else if (e.Cancelled) tcs.TrySetCanceled();
+                else tcs.TrySetResult(e.Result);
+            };
+
+            Client.Get<#=name#>sCompleted += callback;
+            Client.Get<#=name#>sAsync();
+
+            return tcs.Task;
+        }
+<#	  }#>
+	}
+<#}#>
+}
