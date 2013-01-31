@@ -32,7 +32,41 @@ namespace PatrolControl.Service
             return _context.Users.Where(u => u.Name.Equals(name)).AsEnumerable().SingleOrDefault(u => u.ValidatePasword(password));
         }
 
-        #region Get
+        #region Get By Id
+
+        public User GetUser(int id)
+        {
+            return _context.Users.SingleOrDefault(e => e.Id == id);
+        }
+
+        public Building GetBuilding(int id)
+        {
+            return _context.Buildings.SingleOrDefault(e => e.Id == id);
+        }
+
+        public Street GetStreet(int id)
+        {
+            return _context.Streets.SingleOrDefault(e => e.Id == id);
+        }
+
+        public Officer GetOfficer(int id)
+        {
+            return _context.Officers.SingleOrDefault(e => e.Id == id);
+        }
+
+        public PatrolDistrict GetPatrolDistrict(int id)
+        {
+            return _context.PatrolDistricts.SingleOrDefault(e => e.Id == id);
+        }
+
+        public TownDistrict GetTownDistrict(int id)
+        {
+            return _context.TownDistricts.SingleOrDefault(e => e.Id == id);
+        }
+
+        #endregion
+
+        #region Get List
 
         public IList<User> GetUsers()
         {

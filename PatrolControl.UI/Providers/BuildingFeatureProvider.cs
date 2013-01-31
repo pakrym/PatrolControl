@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using ESRI.ArcGIS.Client.Geometry;
 using PatrolControl.UI.PatrolControlServiceReference;
@@ -11,6 +12,7 @@ namespace PatrolControl.UI.Providers
     {
         public Task<Feature[]> List(Envelope envelope)
         {
+            Assembly.GetExecutingAssembly().GetTypes().Where(t => t.GetCustomAttributes(typeof(int), true).Any());
             var tcs = new TaskCompletionSource<Feature[]>();
             EventHandler<GetBuildingsCompletedEventArgs> callback = null;
 

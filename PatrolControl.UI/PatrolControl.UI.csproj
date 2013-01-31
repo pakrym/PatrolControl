@@ -153,6 +153,11 @@
     <Compile Include="Providers\IRightProvider.cs" />
     <Compile Include="Providers\OfficerProvider.cs" />
     <Compile Include="Providers\PatrolDistrictFeatureProvider.cs" />
+    <Compile Include="Providers\ProviderGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProviderGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Common\Editors\BuildingEditorViewModel.cs" />
     <Compile Include="Screens\Common\Editors\FeatureGraphicEditorViewModel.cs" />
     <Compile Include="Screens\Common\Editors\StreetEditorViewModel.cs" />
@@ -332,6 +337,10 @@
     <Resource Include="Themes\Images\background.jpg" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
+    <Compile Include="Providers\ProviderGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ProviderGenerator.cs</LastGenOutput>
+    </Compile>
     <None Include="Service References\PatrolControlServiceReference\PatrolControl.UI.PatrolControlServiceReference.Building.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -381,7 +390,9 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Localization.resx">
       <Generator>ResXFileCodeGenerator</Generator>

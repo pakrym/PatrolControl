@@ -17,7 +17,29 @@ namespace PatrolControl.Service
         [OperationContract]
         User Login(String name, String password);
 
-        #region Get
+        #region Get By Id
+
+        [OperationContract]
+        User GetUser(int id);
+
+        [OperationContract]
+        Building GetBuilding(int id);
+
+        [OperationContract]
+        Street GetStreet(int id);
+
+        [OperationContract]
+        Officer GetOfficer(int id);
+
+        [OperationContract]
+        PatrolDistrict GetPatrolDistrict(int id);
+
+        [OperationContract]
+        TownDistrict GetTownDistrict(int id);
+
+        #endregion
+
+        #region Get List
 
         [OperationContract]
         IList<User> GetUsers();

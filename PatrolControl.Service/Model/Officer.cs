@@ -3,6 +3,7 @@
 namespace PatrolControl.Service.Model
 {
     [DataContract]
+    [GenerateProvider]
     public class Officer : Entity
     {
         [DataMember]
