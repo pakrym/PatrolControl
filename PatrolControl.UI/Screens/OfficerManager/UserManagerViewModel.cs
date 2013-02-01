@@ -7,6 +7,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using PatrolControl.UI.PatrolControlServiceReference;
 using PatrolControl.UI.Providers;
 using PatrolControl.UI.Screens.Common;
 using PatrolControl.UI.Screens.Common.ListManager;
@@ -18,7 +19,7 @@ namespace PatrolControl.UI.Screens.OfficerManager
     {
         
     }
-    public class OfficerManagerViewModel : ListManagerViewModel
+    public class OfficerManagerViewModel : ListManagerViewModel<Officer,OfficerViewModel>
     {
         public OfficerManagerViewModel(ObjectEditorViewModel editor)
             : base(new OfficerProvider(), editor)
@@ -37,4 +38,10 @@ namespace PatrolControl.UI.Screens.OfficerManager
 
     }
 
+    public class OfficerViewModel : ViewModelBase
+    {
+        public OfficerViewModel(Entity model) : base(model)
+        {
+        }
+    }
 }

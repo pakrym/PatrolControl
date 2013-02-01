@@ -6,6 +6,19 @@ using PatrolControl.UI.PatrolControlServiceReference;
 
 namespace PatrolControl.UI.Screens.Common.Map
 {
+    public class FeatureViewModel : ViewModelBase
+    {
+        public Feature Feature { get; set; }
+        public Graphic Graphic { get; set; }
+
+        public FeatureViewModel(Entity model)
+            : base(model)
+        {
+            Feature = (Feature)model;
+            Graphic = new FeatureGraphic(Feature);
+        }
+    }
+
     public class FeatureGraphic : Graphic
     {
         private static readonly WebMercator Mercator = new WebMercator();

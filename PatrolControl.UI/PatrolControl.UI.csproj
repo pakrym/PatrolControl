@@ -166,6 +166,8 @@
     <Compile Include="Screens\Common\EditorViewModelFactory.cs" />
     <Compile Include="Screens\Common\IEditorViewModel.cs" />
     <Compile Include="Screens\Common\IEditorViewModelFactory.cs" />
+    <Compile Include="Screens\Common\ViewModelBase.cs" />
+    <Compile Include="Screens\Common\ViewModelCollection.cs" />
     <Compile Include="Screens\OfficerManager\UserManagerViewModel.cs" />
     <Compile Include="Screens\Operations\OperationsView.xaml.cs">
       <DependentUpon>OperationsView.xaml</DependentUpon>
@@ -181,7 +183,7 @@
     <Compile Include="Screens\Common\Editors\UserEditorView.xaml.cs">
       <DependentUpon>UserEditorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\EntityCollection.cs" />
+    <Compile Include="Model\ViewModelCollection.cs" />
     <Compile Include="Model\FeatureCollection.cs" />
     <Compile Include="Screens\Common\Map\FeatureGraphicCollection.cs" />
     <Compile Include="Screens\Shell\BusyIndicatorView.xaml.cs">
@@ -337,10 +339,10 @@
     <Resource Include="Themes\Images\background.jpg" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
-    <Compile Include="Providers\ProviderGenerator.tt">
+    <None Include="Providers\ProviderGenerator.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ProviderGenerator.cs</LastGenOutput>
-    </Compile>
+    </None>
     <None Include="Service References\PatrolControlServiceReference\PatrolControl.UI.PatrolControlServiceReference.Building.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

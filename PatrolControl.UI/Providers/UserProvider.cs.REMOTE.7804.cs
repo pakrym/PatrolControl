@@ -7,13 +7,7 @@ using PatrolControl.UI.PatrolControlServiceReference;
 
 namespace PatrolControl.UI.Providers
 {
-
-    public interface IUserProvider: ICrud
-    {
-        
-    }
-
-    public partial class UserProvider: ProviderBase, IUserProvider 
+    public partial class UserProvider
     {
  
     }

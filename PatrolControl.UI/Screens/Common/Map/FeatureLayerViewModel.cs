@@ -23,30 +23,27 @@ using Geometry = ESRI.ArcGIS.Client.Geometry.Geometry;
 
 namespace PatrolControl.UI.Screens.Common.Map
 {
-    public class FeatureLayerViewModel : ViewAware
+    public class FeatureLayerViewModel<T> : ViewAware where T: Feature
     {
 
         private readonly Type _geometryType;
         private readonly Type _featureType;
         private bool _isVisible;
 
-        private FeatureCollection _entityCollection;
+        private FeatureCollection<T> _entityCollection;
 
 
-        public FeatureLayerViewModel(string name, IFeatureProvider featureProvider, Type geometryType)
+        public FeatureLayerViewModel(string name, IFeatureProvider<T> featureProvider, Type geometryType)
         {
-            _entityCollection = new FeatureCollection(featureProvider);
+            _entityCollection = new FeatureCollection<T>(featureProvider);
 
             Name = name;
             _geometryType = geometryType;
-            Features = new FeatureGraphicCollection(_entityCollection.Entities);
             IsVisible = true;
         }
 
         public string Name { get; private set; }
-
-        public FeatureGraphicCollection Features { get; private set; }
-
+        
         public bool IsVisible
         {
             get { return _isVisible; }
@@ -65,10 +62,10 @@ namespace PatrolControl.UI.Screens.Common.Map
 
         public FeatureGraphic NewFeature()
         {
-            return new FeatureGraphic((Feature)_entityCollection.New())
-            {
-                Geometry = (Geometry)Activator.CreateInstance(_geometryType)
-            };
+            //return new FeatureGraphic(_entityCollection.New())
+            //{
+            //    Geometry = (Geometry)Activator.CreateInstance(_geometryType)
+            //};
         }
 
         public Task Commit()

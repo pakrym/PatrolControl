@@ -6,11 +6,11 @@ using PatrolControl.UI.Services;
 
 namespace PatrolControl.UI.Screens.Common.Map
 {
-    public class StreetsFeatureLayerViewModel : FeatureLayerViewModel
+    public class StreetsFeatureLayerViewModel : FeatureLayerViewModel<Street>
     {
         public StreetsFeatureLayerViewModel(
             [Dependency("streets")]
-            IFeatureProvider featureProvider)
+            IFeatureProvider<Street> featureProvider)
             : base("Streets", featureProvider, typeof(Polyline))
         {
         }

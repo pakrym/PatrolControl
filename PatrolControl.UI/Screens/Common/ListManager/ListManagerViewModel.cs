@@ -10,12 +10,15 @@ using PatrolControl.UI.Providers;
 
 namespace PatrolControl.UI.Screens.Common.ListManager
 {
-    public class ListManagerViewModel: Screen
+    public class ListManagerViewModel<TE,TM> : Screen 
+        where TM : ViewModelBase 
+        where TE : Entity
+
     {
-        private Entity _selectedEntity;
+        private TE _selectedEntity;
         private bool _noDeselectOnCancel = false;
 
-        public ListManagerViewModel(ICrud crud, ObjectEditorViewModel objectEditorViewModel)
+        public ListManagerViewModel(ICrud<TE> crud, ObjectEditorViewModel objectEditorViewModel, Func<TE, TM> vmCreator)
         {
 
             ObjectEditor = objectEditorViewModel;
@@ -25,7 +28,7 @@ namespace PatrolControl.UI.Screens.Common.ListManager
             ObjectEditor.CanDelete = true;
             //ObjectEditor.Cancelled +=ObjectEditor_Cancelled;
 
-            EntitieCollection = new EntityCollection(crud);
+            EntitieCollection = new ViewModelCollection<TE, TM>(crud, vmCreator);
 
         }
 
@@ -48,13 +51,11 @@ namespace PatrolControl.UI.Screens.Common.ListManager
             ObjectEditor.Edit(SelectedEntity);
         }
 
+        public ViewModelCollection<TE, TM> EntitieCollection { get; set; }
 
+        public ObjectEditorViewModel ObjectEditor { get; private set; }
 
-        public EntityCollection EntitieCollection { get; set; }
-
-        public ObjectEditorViewModel ObjectEditor { get;private set; }
-
-        public Entity SelectedEntity
+        public TE SelectedEntity
         {
             get { return _selectedEntity; }
             set
