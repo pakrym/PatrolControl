@@ -12,8 +12,13 @@ using PatrolControl.UI.Screens.Common.Map;
 
 namespace PatrolControl.UI.Model
 {
+    public interface IViewModelCollection
+    {
+        Task Update();
+        Task Commit();
+    }
 
-    public class ViewModelCollection<TE, TM>
+    public class ViewModelCollection<TE, TM> : IViewModelCollection
         where TM : ViewModelBase
         where TE : Entity
     {
@@ -99,4 +104,5 @@ namespace PatrolControl.UI.Model
             }
         }
     }
+
 }

@@ -11,7 +11,7 @@ namespace PatrolControl.UI.Screens.Common.Map
         public BuildingFeatureLayerViewModel(
             [Dependency("buildings")]
             IFeatureProvider<Building> featureProvider)
-            : base("Buildings", featureProvider, typeof(MapPoint))
+            : base("Buildings", featureProvider, typeof(MapPoint), building => new FeatureViewModel(building))
         {
         }
     }

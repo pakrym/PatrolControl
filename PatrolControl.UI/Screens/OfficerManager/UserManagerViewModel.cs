@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -17,13 +18,13 @@ namespace PatrolControl.UI.Screens.OfficerManager
 {
     public class OfficerManagerView : ListManagerView
     {
-        
+
     }
-    public class OfficerManagerViewModel : ListManagerViewModel<Officer,OfficerViewModel>
+    public class OfficerManagerViewModel : ListManagerViewModel<Officer, OfficerViewModel>
     {
-        public OfficerManagerViewModel(ObjectEditorViewModel editor)
-            : base(new OfficerProvider(), editor)
+        public OfficerManagerViewModel(ICrud<Officer> crud, ObjectEditorViewModel objectEditorViewModel, Func<Officer, OfficerViewModel> vmCreator) : base(crud, objectEditorViewModel, vmCreator)
         {
+            
         }
 
         public override string DisplayName
@@ -40,7 +41,8 @@ namespace PatrolControl.UI.Screens.OfficerManager
 
     public class OfficerViewModel : ViewModelBase
     {
-        public OfficerViewModel(Entity model) : base(model)
+        public OfficerViewModel(Entity model)
+            : base(model)
         {
         }
     }

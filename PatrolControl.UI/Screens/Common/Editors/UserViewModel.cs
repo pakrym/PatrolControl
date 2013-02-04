@@ -17,13 +17,13 @@ using PatrolControl.UI.Utilities;
 
 namespace PatrolControl.UI.Screens.Common.Editors
 {
-    public class UserEditorViewModel : ViewModelBase, IEditableObject, IEditorViewModel<User>
+    public class UserViewModel : ViewModelBase, IEditableObject, IEditorViewModel<User>
     {
         private readonly User _model;
         private string _name;
         private int _type;
 
-        public UserEditorViewModel(User model, IRightProvider rightProvider)
+        public UserViewModel(User model, IRightProvider rightProvider)
             : base(model)
         {
             UserRights = rightProvider.GetAllRights().Select(r => new UserRightViewModel(this, r)).ToArray();

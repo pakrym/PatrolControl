@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Caliburn.Micro;
 using Microsoft.Practices.Unity;
 using PatrolControl.UI.Framework;
@@ -15,12 +17,13 @@ namespace PatrolControl.UI.Screens.Common.ListManager
         where TE : Entity
 
     {
-        private TE _selectedEntity;
+        private TM _selectedEntity;
         private bool _noDeselectOnCancel = false;
 
         public ListManagerViewModel(ICrud<TE> crud, ObjectEditorViewModel objectEditorViewModel, Func<TE, TM> vmCreator)
         {
-
+            Type t;
+            
             ObjectEditor = objectEditorViewModel;
             ObjectEditor.Saved += ObjectSaved;
             ObjectEditor.Deleted += ObjectDeleted;
@@ -55,7 +58,7 @@ namespace PatrolControl.UI.Screens.Common.ListManager
 
         public ObjectEditorViewModel ObjectEditor { get; private set; }
 
-        public TE SelectedEntity
+        public TM SelectedEntity
         {
             get { return _selectedEntity; }
             set

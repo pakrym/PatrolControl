@@ -6,11 +6,11 @@ namespace PatrolControl.UI.Screens.Common.Editors
 {
     public class UserRightViewModel : PropertyChangedBase
     {
-        private readonly UserEditorViewModel _user;
+        private readonly UserViewModel _user;
         private readonly Right _right;
         private bool _allowed;
 
-        public UserRightViewModel(UserEditorViewModel user, Right right)
+        public UserRightViewModel(UserViewModel user, Right right)
         {
             _user = user;
             _right = right;

@@ -3,9 +3,9 @@ using PatrolControl.UI.Utilities;
 
 namespace PatrolControl.UI.Screens.Common.Editors
 {
-    public class StreetEditorViewModel : FeatureGraphicEditorViewModel, IEditorViewModel<Street>
+    public class BuildingViewModel : EditableAdapter<Building>
     {
-        public StreetEditorViewModel(Street model)
+        public BuildingViewModel(Building model)
             : base(model)
         {
         }

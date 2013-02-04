@@ -5,7 +5,7 @@ namespace PatrolControl.UI.Model.Commands
 {
     public class UpdateEntities : ICommand<IEntityService>
     {
-        public ViewModelCollection Entities { get; set; }
+        public IViewModelCollection Entities { get; set; }
         
     }
 }

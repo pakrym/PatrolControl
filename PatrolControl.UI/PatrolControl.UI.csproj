@@ -90,7 +90,9 @@
     <Reference Include="System.ServiceModel.DomainServices.Client, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.ServiceModel.DomainServices.Client.Web, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.ServiceModel.Web.Extensions, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="system" />
     <Reference Include="System.Core">
       <HintPath>$(TargetFrameworkDirectory)System.Core.dll</HintPath>
@@ -149,6 +151,7 @@
     <Compile Include="Model\Commands\SetBusy.cs" />
     <Compile Include="Model\Commands\UpdateEntities.cs" />
     <Compile Include="Model\Commands\UpdateLayer.cs" />
+    <Compile Include="Providers\GenerateProviderAttribute.cs" />
     <Compile Include="Providers\ICrud.cs" />
     <Compile Include="Providers\IRightProvider.cs" />
     <Compile Include="Providers\OfficerProvider.cs" />
@@ -158,10 +161,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProviderGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="Screens\Common\Editors\BuildingEditorViewModel.cs" />
+    <Compile Include="Screens\Common\Editors\BuildingViewModel.cs" />
     <Compile Include="Screens\Common\Editors\FeatureGraphicEditorViewModel.cs" />
-    <Compile Include="Screens\Common\Editors\StreetEditorViewModel.cs" />
-    <Compile Include="Screens\Common\Editors\UserEditorViewModel.cs" />
+    <Compile Include="Screens\Common\Editors\StreetViewModel.cs" />
+    <Compile Include="Screens\Common\Editors\UserViewModel.cs" />
     <Compile Include="Screens\Common\Editors\UserRightViewModel.cs" />
     <Compile Include="Screens\Common\EditorViewModelFactory.cs" />
     <Compile Include="Screens\Common\IEditorViewModel.cs" />

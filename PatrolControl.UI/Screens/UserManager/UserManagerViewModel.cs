@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -20,10 +21,9 @@ namespace PatrolControl.UI.Screens.UserManager
     {
 
     }
-    public class UserManagerViewModel : ListManagerViewModel<User,UserEditorViewModel>
+    public class UserManagerViewModel : ListManagerViewModel<User, UserViewModel>
     {
-        public UserManagerViewModel(ObjectEditorViewModel editor)
-            : base(new UserProvider(), editor)
+        public UserManagerViewModel(ICrud<User> crud, ObjectEditorViewModel objectEditorViewModel, Func<User, UserViewModel> vmCreator) : base(crud, objectEditorViewModel, vmCreator)
         {
         }
 

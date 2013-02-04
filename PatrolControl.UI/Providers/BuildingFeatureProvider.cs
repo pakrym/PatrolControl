@@ -8,6 +8,7 @@ using PatrolControl.UI.PatrolControlServiceReference;
 
 namespace PatrolControl.UI.Providers
 {
+    [GenerateProvider(typeof(IFeatureProvider<Building>))]
     partial class BuildingFeatureProvider
     {
 

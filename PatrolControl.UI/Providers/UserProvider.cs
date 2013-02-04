@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
@@ -8,13 +7,8 @@ using PatrolControl.UI.PatrolControlServiceReference;
 namespace PatrolControl.UI.Providers
 {
 
-    public interface IUserProvider: ICrud
+    [GenerateProvider(typeof(ICrud<User>))]
+    public partial class UserProvider 
     {
-        
-    }
-
-    public partial class UserProvider: ProviderBase, IUserProvider 
-    {
- 
     }
 }

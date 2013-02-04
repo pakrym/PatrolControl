@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
 using ESRI.ArcGIS.Client;
@@ -13,6 +14,7 @@ using PatrolControl.UI.Model;
 using PatrolControl.UI.Model.Commands;
 using PatrolControl.UI.PatrolControlServiceReference;
 using PatrolControl.UI.Screens.Common;
+using PatrolControl.UI.Screens.Common.Editors;
 using PatrolControl.UI.Screens.Common.Map;
 using PatrolControl.UI.Utilities;
 
@@ -41,9 +43,7 @@ namespace PatrolControl.UI.Screens.MapEditor
         {
             SaveActiveEdit();
 
-            var featureGraphics = SelectedGraphics as FeatureGraphic;
-            if (featureGraphics != null)
-                SelectedLayer.Remove(featureGraphics);
+            SelectedLayer.Remove(SelectedFeature);
 
             yield return new CommitLayer().AsResult();
             yield return Update(SelectedLayer).AsResult();
@@ -55,11 +55,7 @@ namespace PatrolControl.UI.Screens.MapEditor
         {
             CancelActiveEdit();
 
-
-            var featureGraphics = SelectedGraphics as FeatureGraphic;
-            if (featureGraphics != null)
-                SelectedLayer.SaveOrAdd(featureGraphics);
-
+            SelectedLayer.SaveOrAdd(SelectedFeature);
             //            yield return new CommitLayer().AsResult();
 
             CleanUp();
@@ -71,38 +67,35 @@ namespace PatrolControl.UI.Screens.MapEditor
         {
             SaveActiveEdit();
 
-            var featureGraphics = SelectedGraphics as FeatureGraphic;
-            if (featureGraphics != null)
-                SelectedLayer.SaveOrAdd(featureGraphics);
+
+            SelectedLayer.SaveOrAdd(SelectedFeature);
 
 
             yield return new CommitLayer() { FeatureLayer = SelectedLayer }.AsResult();
             yield return Update(SelectedLayer).AsResult();
 
-            CleanUp(); 
+            CleanUp();
         }
 
 
-        [Dependency("buildings")]
-        public FeatureLayerViewModel BuildingsLayer { get; set; }
-        [Dependency("streets")]
-        public FeatureLayerViewModel StreetsLayer { get; set; }
+        public FeatureLayerViewModel<Street> BuildingsLayer { get; set; }
+        
+        public IFeatureLayerViewModel StreetsLayer { get; set; }
 
         public EditGeometryExtended GraphicEditor { get; set; }
 
         public Map Map { get; set; }
 
-        public Graphic SelectedGraphics { get; set; }
-        public FeatureLayerViewModel SelectedLayer { get; set; }
+        public IFeatureLayerViewModel SelectedLayer { get; set; }
 
         public ObjectEditorViewModel ObjectEditor { get; private set; }
 
-        public FeatureLayerViewModel[] Layers
+        public IFeatureLayerViewModel[] Layers
         {
             get { return new[] { BuildingsLayer, StreetsLayer }; }
         }
 
-        private IEnumerable<IResult> Update(FeatureLayerViewModel layer)
+        private IEnumerable<IResult> Update(IFeatureLayerViewModel layer)
         {
             yield return Show.Busy("Loading " + layer.Name);
 
@@ -130,30 +123,33 @@ namespace PatrolControl.UI.Screens.MapEditor
             GraphicEditor.Init(Map);
         }
 
-        public void MouseDown(FeatureLayerViewModel sender, GraphicMouseButtonEventArgs e)
+        public void MouseDown(IFeatureLayerViewModel sender, GraphicMouseButtonEventArgs e)
         {
             if (sender == null)
             {
                 return;
             }
+            var graphic = e.Graphic as FeatureGraphic;
+            if (graphic == null)
+            {
+                return;
+            }
+            var vm = graphic.ViewModel;
 
-            if (SelectedGraphics != e.Graphic)
+            if (SelectedFeature != vm)
             {
                 CancelActiveEdit();
 
+                SelectedFeature = vm;
                 SelectedLayer = sender;
-                SelectedGraphics = e.Graphic;
-                SelectedGraphics.Select();
+                vm.Graphic.Select();
 
-                GraphicEditor.StartEditEx(SelectedGraphics);
-
-                var featureGraphics = e.Graphic as FeatureGraphic;
-                if (featureGraphics != null)
-                {
-                    ObjectEditor.Edit(featureGraphics.Feature);
-                }
+                GraphicEditor.StartEditEx(SelectedFeature.Graphic);
+                ObjectEditor.Edit(SelectedFeature);
             }
         }
+
+        protected FeatureViewModel SelectedFeature { get; set; }
 
         public void AddStreet()
         {
@@ -165,9 +161,9 @@ namespace PatrolControl.UI.Screens.MapEditor
             Add(BuildingsLayer);
         }
 
-        public void Add(FeatureLayerViewModel featureLayer)
+        public void Add(IFeatureLayerViewModel featureLayer)
         {
-            var model = featureLayer as FeatureLayerViewModel;
+            var model = featureLayer as IFeatureLayerViewModel;
 
             if (model != null)
             {
@@ -178,11 +174,11 @@ namespace PatrolControl.UI.Screens.MapEditor
                 {
                     CancelActiveEdit();
 
-                    var featureGraphics = model.NewFeature();
+                    FeatureViewModel viewModel = model.NewFeature();
 
-                    ObjectEditor.Edit(featureGraphics.Feature);
-                    GraphicEditor.Add(layer, featureGraphics);
-                    SelectedGraphics = featureGraphics;
+                    ObjectEditor.Edit(viewModel);
+                    GraphicEditor.Add(layer, viewModel.Graphic);
+                    SelectedFeature = viewModel;
                     SelectedLayer = model;
                 }
             }
@@ -190,9 +186,9 @@ namespace PatrolControl.UI.Screens.MapEditor
 
         private void SaveActiveEdit()
         {
-            if (SelectedGraphics != null)
+            if (SelectedFeature != null)
             {
-                SelectedGraphics.UnSelect();
+                SelectedFeature.Graphic.UnSelect();
                 GraphicEditor.StopEditEx();
                 ObjectEditor.Save();
             }
@@ -200,9 +196,9 @@ namespace PatrolControl.UI.Screens.MapEditor
 
         private void CancelActiveEdit()
         {
-            if (SelectedGraphics != null)
+            if (SelectedFeature != null)
             {
-                SelectedGraphics.UnSelect();
+                SelectedFeature.Graphic.UnSelect();
                 GraphicEditor.CancelEditEx();
                 ObjectEditor.Cancel();
             }
@@ -210,8 +206,20 @@ namespace PatrolControl.UI.Screens.MapEditor
 
         private void CleanUp()
         {
-            SelectedGraphics = null;
+            SelectedFeature = null;
             SelectedLayer = null;
         }
+    }
+
+    public interface IFeatureLayerViewModel
+    {
+        object GetView(object context = null);
+        FeatureViewModel NewFeature();
+        string Name { get; }
+
+        void Remove(FeatureViewModel selectedFeature);
+        void SaveOrAdd(FeatureViewModel selectedFeature);
+        Task Commit();
+        Task Update(Envelope envelope);
     }
 }

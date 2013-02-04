@@ -8,14 +8,27 @@ namespace PatrolControl.UI.Screens.Common.Map
 {
     public class FeatureViewModel : ViewModelBase
     {
-        public Feature Feature { get; set; }
-        public Graphic Graphic { get; set; }
+        private DbGeography _geography;
+        public FeatureGraphic Graphic { get; set; }
 
         public FeatureViewModel(Entity model)
             : base(model)
         {
-            Feature = (Feature)model;
-            Graphic = new FeatureGraphic(Feature);
+            FeatureModel = (Feature) model;
+            Graphic = new FeatureGraphic(FeatureModel);
+        }
+
+        protected Feature FeatureModel { get; set; }
+
+        public DbGeography Geography
+        {
+            get { return _geography; }
+            set
+            {
+                if (Equals(value, _geography)) return;
+                _geography = value;
+                NotifyOfPropertyChange(() => Geography);
+            }
         }
     }
 
@@ -25,8 +38,6 @@ namespace PatrolControl.UI.Screens.Common.Map
 
         public FeatureGraphic(Feature feature)
         {
-            Feature = feature;
-
             if (feature.Geography != null)
             {
                 this.Geometry = Mercator.FromGeographic(GeometryFromWKT.Parse(feature.Geography.Geography.WellKnownText));
@@ -40,12 +51,12 @@ namespace PatrolControl.UI.Screens.Common.Map
                         try
                         {
 
-                            if (Feature.Geography == null)
+                            if (ViewModel.Geography == null)
                             {
-                                Feature.Geography = new DbGeography() { Geography = new DbGeographyWellKnownValue() };
+                                ViewModel.Geography = new DbGeography() { Geography = new DbGeographyWellKnownValue() };
                             }
-                            Feature.Geography.Geography.CoordinateSystemId = 4326;
-                            Feature.Geography.Geography.WellKnownText = GeometryToWKT.Write(Mercator.ToGeographic(this.Geometry));
+                            ViewModel.Geography.Geography.CoordinateSystemId = 4326;
+                            ViewModel.Geography.Geography.WellKnownText = GeometryToWKT.Write(Mercator.ToGeographic(this.Geometry));
                         }
                         catch (Exception)
                         {
@@ -55,7 +66,8 @@ namespace PatrolControl.UI.Screens.Common.Map
             };
         }
 
-        public Feature Feature { get; private set; }
+        
+        public FeatureViewModel ViewModel { get; private set; }
 
 
         public FeatureGraphic()
