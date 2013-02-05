@@ -1,0 +1,30 @@
+﻿<#@ template debug="true" hostSpecific="true" #>
+<#@ output extension=".cs" #>
+<#@ Assembly Name="System.Core.dll" #>
+<#@ Assembly Name="$(ProjectDir)bin\PatrolControl.Service.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="PatrolControl.Service.Utils" #>
+<#
+var except = typeof(Object).GetMethods().Select(m => m.ToString());
+var methods = typeof(PatrolControl.Service.PatrolControlService).GetMethods()
+		      .Where(m => m.IsPublic && !except.Contains(m.ToString())).ToList();
+#>
+using System;
+using System.Collections.Generic;
+using System.ServiceModel;
+using PatrolControl.Service.Model;
+
+namespace PatrolControl.Service
+{
+	[ServiceContract]
+	public partial interface IPatrolControlService
+	{
+	  <# foreach(var method in methods)
+		 { #>
+
+		[OperationContract]
+		<#= method.MethodSignature() #>;
+	  <# } #>
+
+	}
+}

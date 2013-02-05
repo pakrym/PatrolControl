@@ -18,50 +18,49 @@ using System.Data.SqlClient;
 
 namespace PatrolControl.Service
 {
-    public class PatrolControlService : IPatrolControlService
+    public partial class PatrolControlService
     {
-        private int SRID = 4326;
-
-        private DatabaseContext _context
-        {
-            get { return new DatabaseContext();}
-        }
-
         public User Login(String name, String password)
         {
-            return _context.Users.Where(u => u.Name.Equals(name)).AsEnumerable().SingleOrDefault(u => u.ValidatePasword(password));
+            return _newContext.Users.Where(u => u.Name.Equals(name)).AsEnumerable().SingleOrDefault(u => u.ValidatePasword(password));
         }
 
+        public IList<Building> GetBuildingsWithSimularNames(string name)
+        {
+            return _newContext.Database.SqlQuery<Building>("EXEC BuildingsWithSimularNames @name", new SqlParameter("name", "%" + name.Trim().Replace(' ', '%') + "%")).ToList();
+        }
+
+        /*
         #region Get By Id
 
         public User GetUser(int id)
         {
-            return _context.Users.SingleOrDefault(e => e.Id == id);
+            return _newContext.Users.SingleOrDefault(e => e.Id == id);
         }
 
         public Building GetBuilding(int id)
         {
-            return _context.Buildings.SingleOrDefault(e => e.Id == id);
+            return _newContext.Buildings.SingleOrDefault(e => e.Id == id);
         }
 
         public Street GetStreet(int id)
         {
-            return _context.Streets.SingleOrDefault(e => e.Id == id);
+            return _newContext.Streets.SingleOrDefault(e => e.Id == id);
         }
 
         public Officer GetOfficer(int id)
         {
-            return _context.Officers.SingleOrDefault(e => e.Id == id);
+            return _newContext.Officers.SingleOrDefault(e => e.Id == id);
         }
 
         public PatrolDistrict GetPatrolDistrict(int id)
         {
-            return _context.PatrolDistricts.SingleOrDefault(e => e.Id == id);
+            return _newContext.PatrolDistricts.SingleOrDefault(e => e.Id == id);
         }
 
         public TownDistrict GetTownDistrict(int id)
         {
-            return _context.TownDistricts.SingleOrDefault(e => e.Id == id);
+            return _newContext.TownDistricts.SingleOrDefault(e => e.Id == id);
         }
 
         #endregion
@@ -70,7 +69,7 @@ namespace PatrolControl.Service
 
         public IList<User> GetUsers()
         {
-            return _context.Users.ToList();
+            return _newContext.Users.ToList();
         }
 
         public IList<Building> GetBuildings()
@@ -95,7 +94,7 @@ namespace PatrolControl.Service
             //    }
             //}
             //return buildings;
-            return _context.Buildings.ToList();
+            return _newContext.Buildings.ToList();
         }
 
         public IList<Street> GetStreets()
@@ -129,27 +128,27 @@ namespace PatrolControl.Service
             //}
 
             //return buildings;
-            return _context.Streets.ToList();
+            return _newContext.Streets.ToList();
         }
 
         public IList<Officer> GetOfficers()
         {
-            return _context.Officers.ToList();
+            return _newContext.Officers.ToList();
         }
 
         public IList<PatrolDistrict> GetPatrolDistricts()
         {
-            return _context.PatrolDistricts.ToList();
+            return _newContext.PatrolDistricts.ToList();
         }
 
         public IList<TownDistrict> GetTownDistricts()
         {
-            return _context.TownDistricts.ToList();
+            return _newContext.TownDistricts.ToList();
         }
 
         public IList<Street> GetNearestStreets(DbGeography position, int count)
         {
-            return _context.Streets.OrderBy(s => s.Geography.Distance(position)).Take(count).ToList();
+            return _newContext.Streets.OrderBy(s => s.Geography.Distance(position)).Take(count).ToList();
         }
 
         //public IList<Street> GetStreetsWithSimularNames(string name)
@@ -160,7 +159,7 @@ namespace PatrolControl.Service
 
         public IList<Building> GetBuildingsWithSimularNames(string name)
         {
-            return _context.Database.SqlQuery<Building>("EXEC BuildingsWithSimularNames @name", new SqlParameter("name", "%" + name.Trim().Replace(' ', '%') + "%")).ToList();
+            return _newContext.Database.SqlQuery<Building>("EXEC BuildingsWithSimularNames @name", new SqlParameter("name", "%" + name.Trim().Replace(' ', '%') + "%")).ToList();
         }
 
         #endregion
@@ -170,43 +169,43 @@ namespace PatrolControl.Service
         public void AddUsers(params User[] users)
         {
             foreach (var user in users)
-                _context.Users.Add(user);
-            _context.SaveChanges();
+                _newContext.Users.Add(user);
+            _newContext.SaveChanges();
         }
 
         public void AddBuildings(params Building[] buildings)
         {
             foreach (var building in buildings)
-                _context.Buildings.Add(building);
-            _context.SaveChanges();
+                _newContext.Buildings.Add(building);
+            _newContext.SaveChanges();
         }
 
         public void AddOfficers(params Officer[] officers)
         {
             foreach (var officer in officers)
-                _context.Officers.Add(officer);
-            _context.SaveChanges();
+                _newContext.Officers.Add(officer);
+            _newContext.SaveChanges();
         }
 
         public void AddStreets(params Street[] streets)
         {
             foreach (var street in streets)
-                _context.Streets.Add(street);
-            _context.SaveChanges();
+                _newContext.Streets.Add(street);
+            _newContext.SaveChanges();
         }
 
         public void AddPatrolDistricts(params PatrolDistrict[] districts)
         {
             foreach (var district in districts)
-                _context.PatrolDistricts.Add(district);
-            _context.SaveChanges();
+                _newContext.PatrolDistricts.Add(district);
+            _newContext.SaveChanges();
         }
 
         public void AddTownDistricts(params TownDistrict[] districts)
         {
             foreach (var district in districts)
-                _context.TownDistricts.Add(district);
-            _context.SaveChanges();
+                _newContext.TownDistricts.Add(district);
+            _newContext.SaveChanges();
         }
 
         #endregion
@@ -217,61 +216,63 @@ namespace PatrolControl.Service
         {
             foreach (var user in users)
             {
-                _context.Users.Attach(user);
-                _context.Entry(user).State = EntityState.Modified;
+                _newContext.Users.Attach(user);
+                _newContext.Entry(user).State = EntityState.Modified;
             }
-            _context.SaveChanges();
+            _newContext.SaveChanges();
         }
 
         public void UpdateOfficers(params Officer[] officers)
         {
             foreach (var officer in officers)
             {
-                _context.Officers.Attach(officer);
-                _context.Entry(officer).State = EntityState.Modified;
+                _newContext.Officers.Attach(officer);
+                _newContext.Entry(officer).State = EntityState.Modified;
             }
-            _context.SaveChanges();
+            _newContext.SaveChanges();
         }
 
         public void UpdateBuildings(params Building[] buildings)
         {
             foreach (var building in buildings)
             {
-                _context.Buildings.Attach(building);
-                _context.Entry(building).State = EntityState.Modified;
+                _newContext.Buildings.Attach(building);
+                _newContext.Entry(building).State = EntityState.Modified;
             }
-            _context.SaveChanges();
+            _newContext.SaveChanges();
         }
 
         public void UpdateStreets(params Street[] streets)
         {
+            var context = _newContext;
             foreach (var street in streets)
             {
-                _context.Streets.Attach(street);
-                _context.Entry(street).State = EntityState.Modified;
+                context.Streets.Attach(street);
+                context.Entry(street).State = EntityState.Modified;
             }
-            _context.SaveChanges();
+            context.SaveChanges();
+
         }
 
         public void UpdatePatrolDistricts(params PatrolDistrict[] districts)
         {
             foreach (var district in districts)
             {
-                _context.PatrolDistricts.Attach(district);
-                _context.Entry(districts).State = EntityState.Modified;
+                _newContext.PatrolDistricts.Attach(district);
+                _newContext.Entry(districts).State = EntityState.Modified;
             }
                 
-            _context.SaveChanges();
+            _newContext.SaveChanges();
         }
 
         public void UpdateTownDistricts(params TownDistrict[] districts)
         {
             foreach (var district in districts)
             {
-                _context.TownDistricts.Attach(district);
-                _context.Entry(districts).State = EntityState.Modified;
+                _newContext.TownDistricts.Attach(district);
+                _newContext.Entry(districts).State = EntityState.Modified;
             }    
-            _context.SaveChanges();
+            _newContext.SaveChanges();
         }
 
         #endregion
@@ -280,46 +281,47 @@ namespace PatrolControl.Service
 
         public void DeleteUsers(params User[] users)
         {
-            foreach (var user in _context.Users.Where(b => users.Any(e => e.Id == b.Id)))
-                _context.Users.Remove(user);
-            _context.SaveChanges();
+            foreach (var user in _newContext.Users.Where(b => users.Any(e => e.Id == b.Id)))
+                _newContext.Users.Remove(user);
+            _newContext.SaveChanges();
         }
 
         public void DeleteBuildings(params Building[] buildings)
         {
-            foreach (var building in _context.Buildings.Where(b => buildings.Any(e => e.Id == b.Id)))
-                _context.Buildings.Remove(building);
-            _context.SaveChanges();
+            foreach (var building in _newContext.Buildings.Where(b => buildings.Any(e => e.Id == b.Id)))
+                _newContext.Buildings.Remove(building);
+            _newContext.SaveChanges();
         }
 
         public void DeleteStreets(params Street[] streets)
         {
-            foreach (var street in _context.Streets.Where(b => streets.Any(e => e.Id == b.Id)))
-                _context.Streets.Remove(street);
-            _context.SaveChanges();
+            foreach (var street in _newContext.Streets.Where(b => streets.Any(e => e.Id == b.Id)))
+                _newContext.Streets.Remove(street);
+            _newContext.SaveChanges();
         }
 
         public void DeleteOfficers(params Officer[] officers)
         {
-            foreach (var officer in _context.Officers.Where(b => officers.Any(e => e.Id == b.Id)))
-                _context.Officers.Remove(officer);
-            _context.SaveChanges();
+            foreach (var officer in _newContext.Officers.Where(b => officers.Any(e => e.Id == b.Id)))
+                _newContext.Officers.Remove(officer);
+            _newContext.SaveChanges();
         }
 
         public void DeletePatrolDistricts(params PatrolDistrict[] districts)
         {
-            foreach (var district in _context.PatrolDistricts.Where(b => districts.Any(e => e.Id == b.Id)))
-                _context.PatrolDistricts.Remove(district);
-            _context.SaveChanges();
+            foreach (var district in _newContext.PatrolDistricts.Where(b => districts.Any(e => e.Id == b.Id)))
+                _newContext.PatrolDistricts.Remove(district);
+            _newContext.SaveChanges();
         }
 
         public void DeleteTownDistricts(params TownDistrict[] districts)
         {
-            foreach (var district in _context.TownDistricts.Where(b => districts.Any(e => e.Id == b.Id)))
-                _context.TownDistricts.Remove(district);
-            _context.SaveChanges();
+            foreach (var district in _newContext.TownDistricts.Where(b => districts.Any(e => e.Id == b.Id)))
+                _newContext.TownDistricts.Remove(district);
+            _newContext.SaveChanges();
         }
 
         #endregion
+        */
     }
 }

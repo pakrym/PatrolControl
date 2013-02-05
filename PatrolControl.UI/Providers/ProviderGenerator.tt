@@ -7,8 +7,8 @@
 <#@ assembly name="System.Core" #>
 <#@ import namespace="System.Linq" #>
 <#
-var assembly = System.Reflection.Assembly.GetAssembly(typeof(Entity));
-var types = assembly.GetTypes().Where(t => t.GetCustomAttributes(typeof(GenerateProvider), true).Any());
+var serviceAssembly = System.Reflection.Assembly.GetAssembly(typeof(Entity));
+var types = serviceAssembly.GetTypes().Where(t => t.GetCustomAttributes(typeof(GenerateProvider), true).Any());
 #>
 // This file generated automatically, to make changes use partial classes or change T4 template
 using System;

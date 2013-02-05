@@ -149,12 +149,25 @@
     <Compile Include="Model\Commands\SetBusy.cs" />
     <Compile Include="Model\Commands\UpdateEntities.cs" />
     <Compile Include="Model\Commands\UpdateLayer.cs" />
-    <Compile Include="Providers\OfficerProvider.cs" />
-    <Compile Include="Providers\PatrolDistrictFeatureProvider.cs" />
+    <Compile Include="Providers\BuildingFeatureProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Providers\OfficerProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Providers\PatrolDistrictFeatureProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Providers\ProviderGenerator.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProviderGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Providers\StreetFeatureProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Providers\UserProvider.cs">
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Screens\Common\Editors\BuildingEditorViewModel.cs" />
     <Compile Include="Screens\Common\Editors\StreetEditorViewModel.cs" />
@@ -169,10 +182,7 @@
     <Compile Include="Screens\Operations\OperationsViewModel.cs" />
     <Compile Include="Screens\Common\ListManager\ListManagerViewModel.cs" />
     <Compile Include="Services\BackendService.cs" />
-    <Compile Include="Providers\BuildingFeatureProvider.cs" />
     <Compile Include="Providers\ProviderBase.cs" />
-    <Compile Include="Providers\StreetFeatureProvider.cs" />
-    <Compile Include="Providers\UserProvider.cs" />
     <Compile Include="Screens\Common\Editors\UserEditorView.xaml.cs">
       <DependentUpon>UserEditorView.xaml</DependentUpon>
     </Compile>
@@ -332,10 +342,10 @@
     <Resource Include="Themes\Images\background.jpg" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
-    <Compile Include="Providers\ProviderGenerator.tt">
+    <None Include="Providers\ProviderGenerator.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ProviderGenerator.cs</LastGenOutput>
-    </Compile>
+    </None>
     <None Include="Service References\PatrolControlServiceReference\PatrolControl.UI.PatrolControlServiceReference.Building.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

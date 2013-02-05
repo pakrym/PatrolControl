@@ -21,7 +21,6 @@ namespace PatrolControl.Service.Model
         public DatabaseContext() : base("PatrolControl")
         {
             
-
         }
 
         public DbSet<User> Users { get; set; }
@@ -31,5 +30,4 @@ namespace PatrolControl.Service.Model
         public DbSet<PatrolDistrict> PatrolDistricts { get; set; }
         public DbSet<TownDistrict> TownDistricts { get; set; }
     }
-
 }

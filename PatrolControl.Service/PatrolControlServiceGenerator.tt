@@ -1,0 +1,106 @@
+﻿<#@ template debug="true" hostSpecific="true" #>
+<#@ output extension=".cs" #>
+<#@ Assembly Name="System.Core.dll" #>
+<#@ Assembly Name="System.Data.Entity.dll" #>
+<#@ Assembly name="$(ProjectDir)bin\PatrolControl.Service.dll" #>
+<#@ Assembly name="$(ProjectDir)bin\EntityFramework.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Data.Entity" #>
+<#@ import namespace="PatrolControl.Service.Model" #>
+<#@ import namespace="System.Runtime.Serialization" #>
+
+<#
+var names = typeof(DatabaseContext).GetProperties().Select(p => p.PropertyType)
+									 //.Where(p => p.IsSubclassOf(typeof(DbSet)))
+									 .SelectMany(p => p.GetGenericArguments())
+									 //.Where(t => t.GetCustomAttributes(typeof(DataMember), true).Any())
+									 .Select(p => p.Name).ToList();
+#>
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Spatial;
+using System.Linq;
+using PatrolControl.Service.Model;
+using System.Data.SqlClient;
+
+namespace PatrolControl.Service
+{
+	  public partial class PatrolControlService : IPatrolControlService
+	  {
+	        private int SRID = 4326;
+
+			private DatabaseContext _newContext
+			{
+				get { return new DatabaseContext();}
+			}
+
+			#region Get By Id
+	  <# foreach(var name in names)
+		 { #>
+
+			public <#= name #> Get<#= name #>(int id)
+			{
+				return _newContext.<#= name #>s.SingleOrDefault(e => e.Id == id);
+			}
+	  <# } #>
+
+			#endregion
+			
+			#region Get List
+	 <# foreach(var name in names)
+		 { #>
+
+			public List<<#= name #>> Get<#= name #>s(int id)
+			{
+				return _newContext.<#= name #>s.ToList();
+			}
+	  <# } #>
+			#endregion
+
+			#region Add
+	 <# foreach(var name in names)
+		 { #>
+
+			public void Add<#= name #>s(params <#= name #>[] entities)
+			{
+				var context = _newContext;
+				foreach (var entity in entities)
+					context.<#= name #>s.Add(entity);
+				context.SaveChanges();
+			}
+	  <# } #>
+			#endregion
+
+			#region Update
+	 <# foreach(var name in names)
+		 { #>
+
+			public void Update<#= name #>s(params <#= name #>[] entities)
+			{
+				var context = _newContext;
+				foreach (var entity in entities)
+				{
+					context.<#= name #>s.Attach(entity);
+					context.Entry(entity).State = EntityState.Modified;
+				}
+				context.SaveChanges();
+			}
+	  <# } #>
+			#endregion
+
+			#region Delete
+	 <# foreach(var name in names)
+		 { #>
+
+			public void Delete<#= name #>s(params <#= name #>[] entities)
+			{
+				var context = _newContext;
+				foreach (var entity in context.<#= name #>s.Where(b => entities.Any(e => e.Id == b.Id)))
+					context.<#= name #>s.Remove(entity);
+				context.SaveChanges();
+			}
+	  <# } #>
+			#endregion
+	  }
+}
