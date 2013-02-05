@@ -16,6 +16,7 @@ using PatrolControl.UI.PatrolControlServiceReference;
 
 namespace PatrolControl.UI.Providers
 {
+    [GenerateProvider(typeof(ICrud<Officer>))]
     public partial class OfficerProvider
     {
 

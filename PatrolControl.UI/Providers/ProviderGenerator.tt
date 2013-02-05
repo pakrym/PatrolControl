@@ -1,36 +1,41 @@
 ﻿<#@ template hostspecific="true" debug="true" language="C#" #>
 <#@ output extension=".cs" #>
-<#@ assembly name="$(SolutionDir)bin\PatrolControl.Service.dll" #>
-<#@ import namespace="PatrolControl.Service.Model" #>
-<#@ assembly name="$(ProjectDir)Bin\Debug\PatrolControl.UI.dll" #>
+<#@ assembly name="C:\Program Files (x86)\Microsoft Silverlight\5.1.10411.0\System.Windows.dll" #>
+<#@ assembly name="C:\Program Files (x86)\Microsoft Silverlight\5.1.10411.0\System.ServiceModel.dll" #>
+<#@ assembly name="C:\Program Files (x86)\Microsoft Silverlight\5.1.10411.0\System.Runtime.Serialization.dll" #>
+<#@ assembly name="$(TargetPath)" #>
 <#@ import namespace="PatrolControl.UI.Providers" #>
 <#@ assembly name="System.Core" #>
-<#@ import namespace="System.Linq" #>
-<#
-var assembly = System.Reflection.Assembly.GetAssembly(typeof(Entity));
-var types = assembly.GetTypes().Where(t => t.GetCustomAttributes(typeof(GenerateProvider), true).Any());
-#>
-// This file generated automatically, to make changes use partial classes or change T4 template
+<#@ import namespace="System.Linq" #> 
+<#@ import namespace="System.Reflection" #> 
+<#@ import namespace="System.Text" #> 
 using System;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel;
 using PatrolControl.UI.PatrolControlServiceReference;
 using ESRI.ArcGIS.Client.Geometry;
 
 namespace PatrolControl.UI.Providers
 {
-<# foreach(var type in types) 
-{	
-	var name = type.Name;
-	var isFeature = type.IsSubclassOf(typeof(Feature));
+<#
+var assembly = System.Reflection.Assembly.GetAssembly(typeof(ICrud<>));
+
+var types = assembly.GetTypes().Where(t=> IsCrud(t));
+
+ foreach(var type in types){
+	var crudInterface = GetCrudInterface(type);
+
+	var name = crudInterface.GetGenericArguments()[0].Name;
+	var isFeature = crudInterface.GetGenericTypeDefinition() == typeof(IFeatureProvider<>);
 #>
 
-	public partial class <#= name + (isFeature ? "Feature" : "") #>Provider : ProviderBase, <#= isFeature  ? "IFeatureProvider" : "ICrud" #> 
+	public partial class <#=type.Name#> : ProviderBase, <#=GetFullName(crudInterface)#>
 	{
-		public Task<Entity[]> List()
+	
+			public Task<<#=name#>[]> List()
         {
-            var tcs = new TaskCompletionSource<Entity[]>();
+            var tcs = new TaskCompletionSource<<#=name#>[]>();
             EventHandler<Get<#=name#>sCompletedEventArgs> callback = null;
 
             callback = (sender, e) =>
@@ -48,9 +53,9 @@ namespace PatrolControl.UI.Providers
             return tcs.Task;
         }
 
-		public Task<Entity> Get(int id)
+		public Task<<#=name#>> Get(int id)
         {
-            var tcs = new TaskCompletionSource<Entity>();
+            var tcs = new TaskCompletionSource<<#=name#>>();
             EventHandler<Get<#=name#>CompletedEventArgs> callback = null;
 
             callback = (sender, e) =>
@@ -68,12 +73,12 @@ namespace PatrolControl.UI.Providers
             return tcs.Task;
         }
 
-	    public Entity New()
+	    public <#=name#> New()
         {
             return new <#=name#>();
         }
 
-		public Task Save(Entity[] entities)
+		public Task Save(<#=name#>[] entities)
         {
             var tcs = new TaskCompletionSource<object>();
             EventHandler<AsyncCompletedEventArgs> callback = null;
@@ -88,12 +93,12 @@ namespace PatrolControl.UI.Providers
             };
 
             Client.Update<#=name#>sCompleted += callback;
-            Client.Update<#=name#>sAsync(entities.Cast<<#=name#>>().ToArray());
+            Client.Update<#=name#>sAsync(entities.ToArray());
 
             return tcs.Task;
         }
 
-		public Task Add(Entity[] entities)
+		public Task Add(<#=name#>[] entities)
         {
             var tcs = new TaskCompletionSource<object>();
             EventHandler<AsyncCompletedEventArgs> callback = null;
@@ -110,12 +115,12 @@ namespace PatrolControl.UI.Providers
             };
 
             Client.Add<#=name#>sCompleted += callback;
-            Client.Add<#=name#>sAsync(entities.Cast<<#=name#>>().ToArray());
+            Client.Add<#=name#>sAsync(entities.ToArray());
 
             return tcs.Task;   
         }
 
-		public Task Remove(Entity[] entities)
+		public Task Remove(<#=name#>[] entities)
         {
             var tcs = new TaskCompletionSource<object>();
             EventHandler<AsyncCompletedEventArgs> callback = null;
@@ -132,16 +137,16 @@ namespace PatrolControl.UI.Providers
             };
 
             Client.Delete<#=name#>sCompleted += callback;
-            Client.Delete<#=name#>sAsync(entities.Cast<<#=name#>>().ToArray());
+            Client.Delete<#=name#>sAsync(entities.ToArray());
 
             return tcs.Task;   
         }
 
 <# if (isFeature)
 	  { #>
-	    public Task<Feature[]> List(Envelope envelope)
+	    public Task<<#=name#>[]> List(Envelope envelope)
         {
-            var tcs = new TaskCompletionSource<Feature[]>();
+            var tcs = new TaskCompletionSource<<#=name#>[]>();
             EventHandler<Get<#=name#>sCompletedEventArgs> callback = null;
 
             callback = (sender, e) =>
@@ -160,5 +165,46 @@ namespace PatrolControl.UI.Providers
         }
 <#	  }#>
 	}
-<#}#>
+
+	
+<#
 }
+#>
+}
+
+<#+
+
+
+Type GetCrudInterface(Type t)
+{
+
+var a = (PatrolControl.UI.Providers.GenerateProviderAttribute)t.GetCustomAttribute(typeof(GenerateProviderAttribute));
+if (a==null) return null;
+
+   return a.ProviderType;
+
+}
+
+bool IsCrud(Type t)
+{
+	return !t.IsInterface && GetCrudInterface(t) != null;
+}
+
+  string GetFullName(Type t)
+{
+    if (!t.IsGenericType)
+        return t.Name;
+    StringBuilder sb=new StringBuilder();
+
+    sb.Append(t.Name.Substring(0, t.Name.LastIndexOf("`")));
+    sb.Append(t.GetGenericArguments().Aggregate("<",
+
+        delegate(string aggregate,Type type)
+            {
+                return aggregate + (aggregate == "<" ? "" : ",") + GetFullName(type);
+            }  
+        ));
+    sb.Append(">");
+
+    return sb.ToString();
+}#>

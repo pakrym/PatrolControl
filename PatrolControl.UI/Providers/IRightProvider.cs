@@ -15,7 +15,7 @@ namespace PatrolControl.UI.Providers
                 {
                      new Right(0, "mapeditor"),
                         new Right(1, "usermanager"),
-                        new Right(2, "operationscreen"),
+                        //new Right(2, "operationscreen"),
                         new Right(3, "officermanager")
                 };
         }

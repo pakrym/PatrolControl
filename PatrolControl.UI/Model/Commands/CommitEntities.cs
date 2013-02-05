@@ -5,6 +5,6 @@ namespace PatrolControl.UI.Model.Commands
 {
     public class CommitEntities : ICommand<IEntityService>
     {
-        public EntityCollection Entities { get; set; }
+        public IViewModelCollection Entities { get; set; }
     }
 }
