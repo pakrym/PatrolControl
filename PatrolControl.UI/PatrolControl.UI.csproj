@@ -200,6 +200,7 @@
     <Compile Include="Providers\ProviderBase.cs" />
     <Compile Include="Screens\Common\Editors\UserEditorView.xaml.cs">
       <DependentUpon>UserEditorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Providers\StreetFeatureProvider.cs" />
     <Compile Include="Providers\UserProvider.cs" />
     <Compile Include="Screens\Common\Editors\UserView.xaml.cs">
