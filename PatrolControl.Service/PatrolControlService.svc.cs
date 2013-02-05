@@ -239,6 +239,7 @@ namespace PatrolControl.Service
             {
                 _context.Buildings.Attach(building);
                 _context.Entry(building).State = EntityState.Modified;
+
             }
             _context.SaveChanges();
         }

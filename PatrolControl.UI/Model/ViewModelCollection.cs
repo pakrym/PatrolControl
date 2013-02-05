@@ -18,6 +18,7 @@ namespace PatrolControl.UI.Model
         Task Commit();
     }
 
+
     public class ViewModelCollection<TE, TM> : IViewModelCollection
         where TM : ViewModelBase
         where TE : Entity

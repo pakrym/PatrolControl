@@ -6,38 +6,14 @@ using PatrolControl.UI.PatrolControlServiceReference;
 
 namespace PatrolControl.UI.Screens.Common.Map
 {
-    public class FeatureViewModel : ViewModelBase
-    {
-        private DbGeography _geography;
-        public FeatureGraphic Graphic { get; set; }
-
-        public FeatureViewModel(Entity model)
-            : base(model)
-        {
-            FeatureModel = (Feature) model;
-            Graphic = new FeatureGraphic(FeatureModel);
-        }
-
-        protected Feature FeatureModel { get; set; }
-
-        public DbGeography Geography
-        {
-            get { return _geography; }
-            set
-            {
-                if (Equals(value, _geography)) return;
-                _geography = value;
-                NotifyOfPropertyChange(() => Geography);
-            }
-        }
-    }
-
     public class FeatureGraphic : Graphic
     {
         private static readonly WebMercator Mercator = new WebMercator();
 
-        public FeatureGraphic(Feature feature)
+        public FeatureGraphic(FeatureViewModel feature)
         {
+            ViewModel = feature;
+
             if (feature.Geography != null)
             {
                 this.Geometry = Mercator.FromGeographic(GeometryFromWKT.Parse(feature.Geography.Geography.WellKnownText));

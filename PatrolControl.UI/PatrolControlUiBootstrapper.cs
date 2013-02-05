@@ -116,8 +116,8 @@ namespace PatrolControl.UI
 
 
 
-            _container.RegisterType<FeatureLayerViewModel<Building>, BuildingFeatureLayerViewModel>();
-            _container.RegisterType<FeatureLayerViewModel<Street>, StreetsFeatureLayerViewModel>();
+            _container.RegisterType<BuildingFeatureLayerViewModel>();
+            _container.RegisterType<StreetsFeatureLayerViewModel>();
 
             _container.RegisterType<IFeatureProvider<Building>, BuildingFeatureProvider>();
             _container.RegisterType<IFeatureProvider<Street>, StreetFeatureProvider>();
@@ -136,6 +136,7 @@ namespace PatrolControl.UI
 
             _container.RegisterInstance<Func<User, UserViewModel>>(
                 user => new UserViewModel(user, _container.Resolve<IRightProvider>()));
+
             _container.RegisterInstance<Func<Street, StreetViewModel>>(street => new StreetViewModel(street));
             _container.RegisterInstance<Func<Building, BuildingViewModel>>(building => new BuildingViewModel(building));
 

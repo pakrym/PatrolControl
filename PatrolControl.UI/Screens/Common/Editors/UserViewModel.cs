@@ -34,6 +34,9 @@ namespace PatrolControl.UI.Screens.Common.Editors
                 NotifyOfPropertyChange(() => Name);
                 NotifyOfPropertyChange(() => Type);
             };
+
+            Name = _model.Name;
+            Type = _model.Type;
         }
 
 
