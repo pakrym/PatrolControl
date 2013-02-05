@@ -4,17 +4,13 @@ using PatrolControl.UI.PatrolControlServiceReference;
 
 namespace PatrolControl.UI.Providers
 {
-    public interface ICrud
+
+    public interface IFeatureProvider<T> : ICrud<T> where T: Feature
     {
-        Task<Entity[]> List();
-        
-        Entity New();
-        Task Save(Entity[] entities);
-        Task Add(Entity[] entities);
-        Task Remove(Entity[] entities);
+        Task<T[]> List(Envelope envelope);
     }
 
-    public interface IFeatureProvider: ICrud
+    public interface IFeatureProvider : ICrud
     {
         Task<Feature[]> List(Envelope envelope);
     }

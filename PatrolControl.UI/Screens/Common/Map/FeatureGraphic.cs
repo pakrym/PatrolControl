@@ -10,9 +10,9 @@ namespace PatrolControl.UI.Screens.Common.Map
     {
         private static readonly WebMercator Mercator = new WebMercator();
 
-        public FeatureGraphic(Feature feature)
+        public FeatureGraphic(FeatureViewModel feature)
         {
-            Feature = feature;
+            ViewModel = feature;
 
             if (feature.Geography != null)
             {
@@ -27,12 +27,12 @@ namespace PatrolControl.UI.Screens.Common.Map
                         try
                         {
 
-                            if (Feature.Geography == null)
+                            if (ViewModel.Geography == null)
                             {
-                                Feature.Geography = new DbGeography() { Geography = new DbGeographyWellKnownValue() };
+                                ViewModel.Geography = new DbGeography() { Geography = new DbGeographyWellKnownValue() };
                             }
-                            Feature.Geography.Geography.CoordinateSystemId = 4326;
-                            Feature.Geography.Geography.WellKnownText = GeometryToWKT.Write(Mercator.ToGeographic(this.Geometry));
+                            ViewModel.Geography.Geography.CoordinateSystemId = 4326;
+                            ViewModel.Geography.Geography.WellKnownText = GeometryToWKT.Write(Mercator.ToGeographic(this.Geometry));
                         }
                         catch (Exception)
                         {
@@ -42,7 +42,8 @@ namespace PatrolControl.UI.Screens.Common.Map
             };
         }
 
-        public Feature Feature { get; private set; }
+        
+        public FeatureViewModel ViewModel { get; private set; }
 
 
         public FeatureGraphic()

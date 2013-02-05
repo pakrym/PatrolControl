@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -7,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using PatrolControl.UI.PatrolControlServiceReference;
 using PatrolControl.UI.Providers;
 using PatrolControl.UI.Screens.Common;
 using PatrolControl.UI.Screens.Common.ListManager;
@@ -16,13 +18,13 @@ namespace PatrolControl.UI.Screens.OfficerManager
 {
     public class OfficerManagerView : ListManagerView
     {
-        
+
     }
-    public class OfficerManagerViewModel : ListManagerViewModel
+    public class OfficerManagerViewModel : ListManagerViewModel<Officer, OfficerViewModel>
     {
-        public OfficerManagerViewModel(ObjectEditorViewModel editor)
-            : base(new OfficerProvider(), editor)
+        public OfficerManagerViewModel(ICrud<Officer> crud, ObjectEditorViewModel objectEditorViewModel, Func<Officer, OfficerViewModel> vmCreator) : base(crud, objectEditorViewModel, vmCreator)
         {
+            
         }
 
         public override string DisplayName
@@ -37,4 +39,11 @@ namespace PatrolControl.UI.Screens.OfficerManager
 
     }
 
+    public class OfficerViewModel : ViewModelBase
+    {
+        public OfficerViewModel(Entity model)
+            : base(model)
+        {
+        }
+    }
 }

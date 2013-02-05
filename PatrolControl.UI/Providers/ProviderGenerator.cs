@@ -1,151 +1,22 @@
-﻿// This file generated automatically, to make changes use partial classes or change T4 template
+﻿ 
+ 
+ 
 using System;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel;
 using PatrolControl.UI.PatrolControlServiceReference;
 using ESRI.ArcGIS.Client.Geometry;
 
 namespace PatrolControl.UI.Providers
 {
 
-	public partial class BuildingFeatureProvider : ProviderBase, IFeatureProvider 
+	public partial class OfficerProvider : ProviderBase, ICrud<Officer>
 	{
-		public Task<Entity[]> List()
+	
+			public Task<Officer[]> List()
         {
-            var tcs = new TaskCompletionSource<Entity[]>();
-            EventHandler<GetBuildingsCompletedEventArgs> callback = null;
-
-            callback = (sender, e) =>
-            {
-                Client.GetBuildingsCompleted -= callback;
-
-                if (e.Error != null) tcs.TrySetException(e.Error);
-                else if (e.Cancelled) tcs.TrySetCanceled();
-                else tcs.TrySetResult(e.Result);
-            };
-
-            Client.GetBuildingsCompleted += callback;
-            Client.GetBuildingsAsync();
-
-            return tcs.Task;
-        }
-
-		public Task<Entity> Get(int id)
-        {
-            var tcs = new TaskCompletionSource<Entity>();
-            EventHandler<GetBuildingCompletedEventArgs> callback = null;
-
-            callback = (sender, e) =>
-            {
-                Client.GetBuildingCompleted -= callback;
-
-                if (e.Error != null) tcs.TrySetException(e.Error);
-                else if (e.Cancelled) tcs.TrySetCanceled();
-                else tcs.TrySetResult(e.Result);
-            };
-
-            Client.GetBuildingCompleted += callback;
-            Client.GetBuildingAsync(id);
-
-            return tcs.Task;
-        }
-
-	    public Entity New()
-        {
-            return new Building();
-        }
-
-		public Task Save(Entity[] entities)
-        {
-            var tcs = new TaskCompletionSource<object>();
-            EventHandler<AsyncCompletedEventArgs> callback = null;
-
-            callback = (sender, e) =>
-            {
-                Client.UpdateBuildingsCompleted -= callback;
-
-                if (e.Error != null) tcs.TrySetException(e.Error);
-                else if (e.Cancelled) tcs.TrySetCanceled();
-                else tcs.TrySetResult(null);
-            };
-
-            Client.UpdateBuildingsCompleted += callback;
-            Client.UpdateBuildingsAsync(entities.Cast<Building>().ToArray());
-
-            return tcs.Task;
-        }
-
-		public Task Add(Entity[] entities)
-        {
-            var tcs = new TaskCompletionSource<object>();
-            EventHandler<AsyncCompletedEventArgs> callback = null;
-
-            callback = (sender, e) =>
-            {
-
-                Client.AddUsersCompleted -= callback;
-
-                if (e.Error != null) tcs.TrySetException(e.Error);
-                else if (e.Cancelled) tcs.TrySetCanceled();
-                else tcs.TrySetResult(null);
-
-            };
-
-            Client.AddBuildingsCompleted += callback;
-            Client.AddBuildingsAsync(entities.Cast<Building>().ToArray());
-
-            return tcs.Task;   
-        }
-
-		public Task Remove(Entity[] entities)
-        {
-            var tcs = new TaskCompletionSource<object>();
-            EventHandler<AsyncCompletedEventArgs> callback = null;
-
-            callback = (sender, e) =>
-            {
-
-                Client.DeleteBuildingsCompleted -= callback;
-
-                if (e.Error != null) tcs.TrySetException(e.Error);
-                else if (e.Cancelled) tcs.TrySetCanceled();
-                else tcs.TrySetResult(null);
-
-            };
-
-            Client.DeleteBuildingsCompleted += callback;
-            Client.DeleteBuildingsAsync(entities.Cast<Building>().ToArray());
-
-            return tcs.Task;   
-        }
-
-	    public Task<Feature[]> List(Envelope envelope)
-        {
-            var tcs = new TaskCompletionSource<Feature[]>();
-            EventHandler<GetBuildingsCompletedEventArgs> callback = null;
-
-            callback = (sender, e) =>
-            {
-                Client.GetBuildingsCompleted -= callback;
-
-                if (e.Error != null) tcs.TrySetException(e.Error);
-                else if (e.Cancelled) tcs.TrySetCanceled();
-                else tcs.TrySetResult(e.Result);
-            };
-
-            Client.GetBuildingsCompleted += callback;
-            Client.GetBuildingsAsync();
-
-            return tcs.Task;
-        }
-	}
-
-	public partial class OfficerProvider : ProviderBase, ICrud 
-	{
-		public Task<Entity[]> List()
-        {
-            var tcs = new TaskCompletionSource<Entity[]>();
+            var tcs = new TaskCompletionSource<Officer[]>();
             EventHandler<GetOfficersCompletedEventArgs> callback = null;
 
             callback = (sender, e) =>
@@ -163,9 +34,9 @@ namespace PatrolControl.UI.Providers
             return tcs.Task;
         }
 
-		public Task<Entity> Get(int id)
+		public Task<Officer> Get(int id)
         {
-            var tcs = new TaskCompletionSource<Entity>();
+            var tcs = new TaskCompletionSource<Officer>();
             EventHandler<GetOfficerCompletedEventArgs> callback = null;
 
             callback = (sender, e) =>
@@ -183,12 +54,12 @@ namespace PatrolControl.UI.Providers
             return tcs.Task;
         }
 
-	    public Entity New()
+	    public Officer New()
         {
             return new Officer();
         }
 
-		public Task Save(Entity[] entities)
+		public Task Save(Officer[] entities)
         {
             var tcs = new TaskCompletionSource<object>();
             EventHandler<AsyncCompletedEventArgs> callback = null;
@@ -203,12 +74,12 @@ namespace PatrolControl.UI.Providers
             };
 
             Client.UpdateOfficersCompleted += callback;
-            Client.UpdateOfficersAsync(entities.Cast<Officer>().ToArray());
+            Client.UpdateOfficersAsync(entities.ToArray());
 
             return tcs.Task;
         }
 
-		public Task Add(Entity[] entities)
+		public Task Add(Officer[] entities)
         {
             var tcs = new TaskCompletionSource<object>();
             EventHandler<AsyncCompletedEventArgs> callback = null;
@@ -225,12 +96,12 @@ namespace PatrolControl.UI.Providers
             };
 
             Client.AddOfficersCompleted += callback;
-            Client.AddOfficersAsync(entities.Cast<Officer>().ToArray());
+            Client.AddOfficersAsync(entities.ToArray());
 
             return tcs.Task;   
         }
 
-		public Task Remove(Entity[] entities)
+		public Task Remove(Officer[] entities)
         {
             var tcs = new TaskCompletionSource<object>();
             EventHandler<AsyncCompletedEventArgs> callback = null;
@@ -247,150 +118,21 @@ namespace PatrolControl.UI.Providers
             };
 
             Client.DeleteOfficersCompleted += callback;
-            Client.DeleteOfficersAsync(entities.Cast<Officer>().ToArray());
+            Client.DeleteOfficersAsync(entities.ToArray());
 
             return tcs.Task;   
         }
 
 	}
 
-	public partial class PatrolDistrictFeatureProvider : ProviderBase, IFeatureProvider 
+	
+
+	public partial class StreetFeatureProvider : ProviderBase, IFeatureProvider<Street>
 	{
-		public Task<Entity[]> List()
+	
+			public Task<Street[]> List()
         {
-            var tcs = new TaskCompletionSource<Entity[]>();
-            EventHandler<GetPatrolDistrictsCompletedEventArgs> callback = null;
-
-            callback = (sender, e) =>
-            {
-                Client.GetPatrolDistrictsCompleted -= callback;
-
-                if (e.Error != null) tcs.TrySetException(e.Error);
-                else if (e.Cancelled) tcs.TrySetCanceled();
-                else tcs.TrySetResult(e.Result);
-            };
-
-            Client.GetPatrolDistrictsCompleted += callback;
-            Client.GetPatrolDistrictsAsync();
-
-            return tcs.Task;
-        }
-
-		public Task<Entity> Get(int id)
-        {
-            var tcs = new TaskCompletionSource<Entity>();
-            EventHandler<GetPatrolDistrictCompletedEventArgs> callback = null;
-
-            callback = (sender, e) =>
-            {
-                Client.GetPatrolDistrictCompleted -= callback;
-
-                if (e.Error != null) tcs.TrySetException(e.Error);
-                else if (e.Cancelled) tcs.TrySetCanceled();
-                else tcs.TrySetResult(e.Result);
-            };
-
-            Client.GetPatrolDistrictCompleted += callback;
-            Client.GetPatrolDistrictAsync(id);
-
-            return tcs.Task;
-        }
-
-	    public Entity New()
-        {
-            return new PatrolDistrict();
-        }
-
-		public Task Save(Entity[] entities)
-        {
-            var tcs = new TaskCompletionSource<object>();
-            EventHandler<AsyncCompletedEventArgs> callback = null;
-
-            callback = (sender, e) =>
-            {
-                Client.UpdatePatrolDistrictsCompleted -= callback;
-
-                if (e.Error != null) tcs.TrySetException(e.Error);
-                else if (e.Cancelled) tcs.TrySetCanceled();
-                else tcs.TrySetResult(null);
-            };
-
-            Client.UpdatePatrolDistrictsCompleted += callback;
-            Client.UpdatePatrolDistrictsAsync(entities.Cast<PatrolDistrict>().ToArray());
-
-            return tcs.Task;
-        }
-
-		public Task Add(Entity[] entities)
-        {
-            var tcs = new TaskCompletionSource<object>();
-            EventHandler<AsyncCompletedEventArgs> callback = null;
-
-            callback = (sender, e) =>
-            {
-
-                Client.AddUsersCompleted -= callback;
-
-                if (e.Error != null) tcs.TrySetException(e.Error);
-                else if (e.Cancelled) tcs.TrySetCanceled();
-                else tcs.TrySetResult(null);
-
-            };
-
-            Client.AddPatrolDistrictsCompleted += callback;
-            Client.AddPatrolDistrictsAsync(entities.Cast<PatrolDistrict>().ToArray());
-
-            return tcs.Task;   
-        }
-
-		public Task Remove(Entity[] entities)
-        {
-            var tcs = new TaskCompletionSource<object>();
-            EventHandler<AsyncCompletedEventArgs> callback = null;
-
-            callback = (sender, e) =>
-            {
-
-                Client.DeletePatrolDistrictsCompleted -= callback;
-
-                if (e.Error != null) tcs.TrySetException(e.Error);
-                else if (e.Cancelled) tcs.TrySetCanceled();
-                else tcs.TrySetResult(null);
-
-            };
-
-            Client.DeletePatrolDistrictsCompleted += callback;
-            Client.DeletePatrolDistrictsAsync(entities.Cast<PatrolDistrict>().ToArray());
-
-            return tcs.Task;   
-        }
-
-	    public Task<Feature[]> List(Envelope envelope)
-        {
-            var tcs = new TaskCompletionSource<Feature[]>();
-            EventHandler<GetPatrolDistrictsCompletedEventArgs> callback = null;
-
-            callback = (sender, e) =>
-            {
-                Client.GetPatrolDistrictsCompleted -= callback;
-
-                if (e.Error != null) tcs.TrySetException(e.Error);
-                else if (e.Cancelled) tcs.TrySetCanceled();
-                else tcs.TrySetResult(e.Result);
-            };
-
-            Client.GetPatrolDistrictsCompleted += callback;
-            Client.GetPatrolDistrictsAsync();
-
-            return tcs.Task;
-        }
-	}
-
-	public partial class StreetFeatureProvider : ProviderBase, IFeatureProvider 
-	{
-		public Task<Entity[]> List()
-        {
-            var tcs = new TaskCompletionSource<Entity[]>();
+            var tcs = new TaskCompletionSource<Street[]>();
             EventHandler<GetStreetsCompletedEventArgs> callback = null;
 
             callback = (sender, e) =>
@@ -408,9 +150,9 @@ namespace PatrolControl.UI.Providers
             return tcs.Task;
         }
 
-		public Task<Entity> Get(int id)
+		public Task<Street> Get(int id)
         {
-            var tcs = new TaskCompletionSource<Entity>();
+            var tcs = new TaskCompletionSource<Street>();
             EventHandler<GetStreetCompletedEventArgs> callback = null;
 
             callback = (sender, e) =>
@@ -428,12 +170,12 @@ namespace PatrolControl.UI.Providers
             return tcs.Task;
         }
 
-	    public Entity New()
+	    public Street New()
         {
             return new Street();
         }
 
-		public Task Save(Entity[] entities)
+		public Task Save(Street[] entities)
         {
             var tcs = new TaskCompletionSource<object>();
             EventHandler<AsyncCompletedEventArgs> callback = null;
@@ -448,12 +190,12 @@ namespace PatrolControl.UI.Providers
             };
 
             Client.UpdateStreetsCompleted += callback;
-            Client.UpdateStreetsAsync(entities.Cast<Street>().ToArray());
+            Client.UpdateStreetsAsync(entities.ToArray());
 
             return tcs.Task;
         }
 
-		public Task Add(Entity[] entities)
+		public Task Add(Street[] entities)
         {
             var tcs = new TaskCompletionSource<object>();
             EventHandler<AsyncCompletedEventArgs> callback = null;
@@ -470,12 +212,12 @@ namespace PatrolControl.UI.Providers
             };
 
             Client.AddStreetsCompleted += callback;
-            Client.AddStreetsAsync(entities.Cast<Street>().ToArray());
+            Client.AddStreetsAsync(entities.ToArray());
 
             return tcs.Task;   
         }
 
-		public Task Remove(Entity[] entities)
+		public Task Remove(Street[] entities)
         {
             var tcs = new TaskCompletionSource<object>();
             EventHandler<AsyncCompletedEventArgs> callback = null;
@@ -492,14 +234,14 @@ namespace PatrolControl.UI.Providers
             };
 
             Client.DeleteStreetsCompleted += callback;
-            Client.DeleteStreetsAsync(entities.Cast<Street>().ToArray());
+            Client.DeleteStreetsAsync(entities.ToArray());
 
             return tcs.Task;   
         }
 
-	    public Task<Feature[]> List(Envelope envelope)
+	    public Task<Street[]> List(Envelope envelope)
         {
-            var tcs = new TaskCompletionSource<Feature[]>();
+            var tcs = new TaskCompletionSource<Street[]>();
             EventHandler<GetStreetsCompletedEventArgs> callback = null;
 
             callback = (sender, e) =>
@@ -518,143 +260,14 @@ namespace PatrolControl.UI.Providers
         }
 	}
 
-	public partial class TownDistrictFeatureProvider : ProviderBase, IFeatureProvider 
+	
+
+	public partial class UserProvider : ProviderBase, ICrud<User>
 	{
-		public Task<Entity[]> List()
+	
+			public Task<User[]> List()
         {
-            var tcs = new TaskCompletionSource<Entity[]>();
-            EventHandler<GetTownDistrictsCompletedEventArgs> callback = null;
-
-            callback = (sender, e) =>
-            {
-                Client.GetTownDistrictsCompleted -= callback;
-
-                if (e.Error != null) tcs.TrySetException(e.Error);
-                else if (e.Cancelled) tcs.TrySetCanceled();
-                else tcs.TrySetResult(e.Result);
-            };
-
-            Client.GetTownDistrictsCompleted += callback;
-            Client.GetTownDistrictsAsync();
-
-            return tcs.Task;
-        }
-
-		public Task<Entity> Get(int id)
-        {
-            var tcs = new TaskCompletionSource<Entity>();
-            EventHandler<GetTownDistrictCompletedEventArgs> callback = null;
-
-            callback = (sender, e) =>
-            {
-                Client.GetTownDistrictCompleted -= callback;
-
-                if (e.Error != null) tcs.TrySetException(e.Error);
-                else if (e.Cancelled) tcs.TrySetCanceled();
-                else tcs.TrySetResult(e.Result);
-            };
-
-            Client.GetTownDistrictCompleted += callback;
-            Client.GetTownDistrictAsync(id);
-
-            return tcs.Task;
-        }
-
-	    public Entity New()
-        {
-            return new TownDistrict();
-        }
-
-		public Task Save(Entity[] entities)
-        {
-            var tcs = new TaskCompletionSource<object>();
-            EventHandler<AsyncCompletedEventArgs> callback = null;
-
-            callback = (sender, e) =>
-            {
-                Client.UpdateTownDistrictsCompleted -= callback;
-
-                if (e.Error != null) tcs.TrySetException(e.Error);
-                else if (e.Cancelled) tcs.TrySetCanceled();
-                else tcs.TrySetResult(null);
-            };
-
-            Client.UpdateTownDistrictsCompleted += callback;
-            Client.UpdateTownDistrictsAsync(entities.Cast<TownDistrict>().ToArray());
-
-            return tcs.Task;
-        }
-
-		public Task Add(Entity[] entities)
-        {
-            var tcs = new TaskCompletionSource<object>();
-            EventHandler<AsyncCompletedEventArgs> callback = null;
-
-            callback = (sender, e) =>
-            {
-
-                Client.AddUsersCompleted -= callback;
-
-                if (e.Error != null) tcs.TrySetException(e.Error);
-                else if (e.Cancelled) tcs.TrySetCanceled();
-                else tcs.TrySetResult(null);
-
-            };
-
-            Client.AddTownDistrictsCompleted += callback;
-            Client.AddTownDistrictsAsync(entities.Cast<TownDistrict>().ToArray());
-
-            return tcs.Task;   
-        }
-
-		public Task Remove(Entity[] entities)
-        {
-            var tcs = new TaskCompletionSource<object>();
-            EventHandler<AsyncCompletedEventArgs> callback = null;
-
-            callback = (sender, e) =>
-            {
-
-                Client.DeleteTownDistrictsCompleted -= callback;
-
-                if (e.Error != null) tcs.TrySetException(e.Error);
-                else if (e.Cancelled) tcs.TrySetCanceled();
-                else tcs.TrySetResult(null);
-
-            };
-
-            Client.DeleteTownDistrictsCompleted += callback;
-            Client.DeleteTownDistrictsAsync(entities.Cast<TownDistrict>().ToArray());
-
-            return tcs.Task;   
-        }
-
-	    public Task<Feature[]> List(Envelope envelope)
-        {
-            var tcs = new TaskCompletionSource<Feature[]>();
-            EventHandler<GetTownDistrictsCompletedEventArgs> callback = null;
-
-            callback = (sender, e) =>
-            {
-                Client.GetTownDistrictsCompleted -= callback;
-
-                if (e.Error != null) tcs.TrySetException(e.Error);
-                else if (e.Cancelled) tcs.TrySetCanceled();
-                else tcs.TrySetResult(e.Result);
-            };
-
-            Client.GetTownDistrictsCompleted += callback;
-            Client.GetTownDistrictsAsync();
-
-            return tcs.Task;
-        }
-	}
-
-	public partial class UserProvider : ProviderBase, ICrud 
-	{
-		public Task<Entity[]> List()
-        {
-            var tcs = new TaskCompletionSource<Entity[]>();
+            var tcs = new TaskCompletionSource<User[]>();
             EventHandler<GetUsersCompletedEventArgs> callback = null;
 
             callback = (sender, e) =>
@@ -672,9 +285,9 @@ namespace PatrolControl.UI.Providers
             return tcs.Task;
         }
 
-		public Task<Entity> Get(int id)
+		public Task<User> Get(int id)
         {
-            var tcs = new TaskCompletionSource<Entity>();
+            var tcs = new TaskCompletionSource<User>();
             EventHandler<GetUserCompletedEventArgs> callback = null;
 
             callback = (sender, e) =>
@@ -692,12 +305,12 @@ namespace PatrolControl.UI.Providers
             return tcs.Task;
         }
 
-	    public Entity New()
+	    public User New()
         {
             return new User();
         }
 
-		public Task Save(Entity[] entities)
+		public Task Save(User[] entities)
         {
             var tcs = new TaskCompletionSource<object>();
             EventHandler<AsyncCompletedEventArgs> callback = null;
@@ -712,12 +325,12 @@ namespace PatrolControl.UI.Providers
             };
 
             Client.UpdateUsersCompleted += callback;
-            Client.UpdateUsersAsync(entities.Cast<User>().ToArray());
+            Client.UpdateUsersAsync(entities.ToArray());
 
             return tcs.Task;
         }
 
-		public Task Add(Entity[] entities)
+		public Task Add(User[] entities)
         {
             var tcs = new TaskCompletionSource<object>();
             EventHandler<AsyncCompletedEventArgs> callback = null;
@@ -734,12 +347,12 @@ namespace PatrolControl.UI.Providers
             };
 
             Client.AddUsersCompleted += callback;
-            Client.AddUsersAsync(entities.Cast<User>().ToArray());
+            Client.AddUsersAsync(entities.ToArray());
 
             return tcs.Task;   
         }
 
-		public Task Remove(Entity[] entities)
+		public Task Remove(User[] entities)
         {
             var tcs = new TaskCompletionSource<object>();
             EventHandler<AsyncCompletedEventArgs> callback = null;
@@ -756,10 +369,148 @@ namespace PatrolControl.UI.Providers
             };
 
             Client.DeleteUsersCompleted += callback;
-            Client.DeleteUsersAsync(entities.Cast<User>().ToArray());
+            Client.DeleteUsersAsync(entities.ToArray());
 
             return tcs.Task;   
         }
 
 	}
+
+	
+
+	public partial class BuildingFeatureProvider : ProviderBase, IFeatureProvider<Building>
+	{
+	
+			public Task<Building[]> List()
+        {
+            var tcs = new TaskCompletionSource<Building[]>();
+            EventHandler<GetBuildingsCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+            {
+                Client.GetBuildingsCompleted -= callback;
+
+                if (e.Error != null) tcs.TrySetException(e.Error);
+                else if (e.Cancelled) tcs.TrySetCanceled();
+                else tcs.TrySetResult(e.Result);
+            };
+
+            Client.GetBuildingsCompleted += callback;
+            Client.GetBuildingsAsync();
+
+            return tcs.Task;
+        }
+
+		public Task<Building> Get(int id)
+        {
+            var tcs = new TaskCompletionSource<Building>();
+            EventHandler<GetBuildingCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+            {
+                Client.GetBuildingCompleted -= callback;
+
+                if (e.Error != null) tcs.TrySetException(e.Error);
+                else if (e.Cancelled) tcs.TrySetCanceled();
+                else tcs.TrySetResult(e.Result);
+            };
+
+            Client.GetBuildingCompleted += callback;
+            Client.GetBuildingAsync(id);
+
+            return tcs.Task;
+        }
+
+	    public Building New()
+        {
+            return new Building();
+        }
+
+		public Task Save(Building[] entities)
+        {
+            var tcs = new TaskCompletionSource<object>();
+            EventHandler<AsyncCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+            {
+                Client.UpdateBuildingsCompleted -= callback;
+
+                if (e.Error != null) tcs.TrySetException(e.Error);
+                else if (e.Cancelled) tcs.TrySetCanceled();
+                else tcs.TrySetResult(null);
+            };
+
+            Client.UpdateBuildingsCompleted += callback;
+            Client.UpdateBuildingsAsync(entities.ToArray());
+
+            return tcs.Task;
+        }
+
+		public Task Add(Building[] entities)
+        {
+            var tcs = new TaskCompletionSource<object>();
+            EventHandler<AsyncCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+            {
+
+                Client.AddUsersCompleted -= callback;
+
+                if (e.Error != null) tcs.TrySetException(e.Error);
+                else if (e.Cancelled) tcs.TrySetCanceled();
+                else tcs.TrySetResult(null);
+
+            };
+
+            Client.AddBuildingsCompleted += callback;
+            Client.AddBuildingsAsync(entities.ToArray());
+
+            return tcs.Task;   
+        }
+
+		public Task Remove(Building[] entities)
+        {
+            var tcs = new TaskCompletionSource<object>();
+            EventHandler<AsyncCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+            {
+
+                Client.DeleteBuildingsCompleted -= callback;
+
+                if (e.Error != null) tcs.TrySetException(e.Error);
+                else if (e.Cancelled) tcs.TrySetCanceled();
+                else tcs.TrySetResult(null);
+
+            };
+
+            Client.DeleteBuildingsCompleted += callback;
+            Client.DeleteBuildingsAsync(entities.ToArray());
+
+            return tcs.Task;   
+        }
+
+	    public Task<Building[]> List(Envelope envelope)
+        {
+            var tcs = new TaskCompletionSource<Building[]>();
+            EventHandler<GetBuildingsCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+            {
+                Client.GetBuildingsCompleted -= callback;
+
+                if (e.Error != null) tcs.TrySetException(e.Error);
+                else if (e.Cancelled) tcs.TrySetCanceled();
+                else tcs.TrySetResult(e.Result);
+            };
+
+            Client.GetBuildingsCompleted += callback;
+            Client.GetBuildingsAsync();
+
+            return tcs.Task;
+        }
+	}
+
+	
 }
+

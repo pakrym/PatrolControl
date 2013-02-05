@@ -236,8 +236,14 @@ namespace PatrolControl.Service
         {
             foreach (var building in buildings)
             {
+<<<<<<< HEAD
                 _newContext.Buildings.Attach(building);
                 _newContext.Entry(building).State = EntityState.Modified;
+=======
+                _context.Buildings.Attach(building);
+                _context.Entry(building).State = EntityState.Modified;
+
+>>>>>>> f26c314258bbd2d43aeef02ee3da677f5e2c1e12
             }
             _newContext.SaveChanges();
         }

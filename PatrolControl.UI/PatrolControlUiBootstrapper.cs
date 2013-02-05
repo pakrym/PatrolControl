@@ -116,28 +116,29 @@ namespace PatrolControl.UI
 
 
 
-            _container.RegisterType<FeatureLayerViewModel, BuildingFeatureLayerViewModel>("buildings");
+            _container.RegisterType<BuildingFeatureLayerViewModel>();
+            _container.RegisterType<StreetsFeatureLayerViewModel>();
 
-            _container.RegisterType<FeatureLayerViewModel, StreetsFeatureLayerViewModel>("streets");
+            _container.RegisterType<IFeatureProvider<Building>, BuildingFeatureProvider>();
+            _container.RegisterType<IFeatureProvider<Street>, StreetFeatureProvider>();
 
-            _container.RegisterType<IFeatureProvider, BuildingFeatureProvider>("buildings");
-            _container.RegisterType<IFeatureProvider, StreetFeatureProvider>("streets");
+            _container.RegisterType<ICrud<User>, UserProvider>();
+            _container.RegisterType<IRightProvider, RightProvider>();
 
-            _container.RegisterType<ICrud, UserProvider>("user");
-            
             _container.RegisterType<IFeatureService, FeatureService>();
             _container.RegisterType<IEntityService, EntityService>();
-
             _container.RegisterType<IShellService, ShellService>();
 
             _container.RegisterType<IScreen, MapEditorScreenViewModel>("mapeditor");
             _container.RegisterType<IScreen, UserManagerViewModel>("usermanager");
-            _container.RegisterType<IScreen, OperationsViewModel>("operationscreen");
+            //_container.RegisterType<IScreen, OperationsViewModel>("operationscreen");
             _container.RegisterType<IScreen, OfficerManagerViewModel>("operationscreen");
 
-            _container.RegisterType<IEditorViewModel<User>, UserEditorViewModel>();
-            _container.RegisterType<IEditorViewModel<Building>, BuildingEditorViewModel>();
-            _container.RegisterType<IEditorViewModel<Street>, StreetEditorViewModel>();
+            _container.RegisterInstance<Func<User, UserViewModel>>(
+                user => new UserViewModel(user, _container.Resolve<IRightProvider>()));
+
+            _container.RegisterInstance<Func<Street, StreetViewModel>>(street => new StreetViewModel(street));
+            _container.RegisterInstance<Func<Building, BuildingViewModel>>(building => new BuildingViewModel(building));
 
             _container.RegisterType<IEditorViewModelFactory, EditorViewModelFactory>();
 

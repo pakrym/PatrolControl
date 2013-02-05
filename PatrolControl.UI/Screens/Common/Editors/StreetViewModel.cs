@@ -1,11 +1,12 @@
 ﻿using PatrolControl.UI.PatrolControlServiceReference;
+using PatrolControl.UI.Screens.Common.Map;
 using PatrolControl.UI.Utilities;
 
 namespace PatrolControl.UI.Screens.Common.Editors
 {
-    public class StreetEditorViewModel : EditableAdapter<Street>
+    public class StreetViewModel : FeatureViewModel, IEditorViewModel<Street>
     {
-        public StreetEditorViewModel(Street model)
+        public StreetViewModel(Street model)
             : base(model)
         {
         }

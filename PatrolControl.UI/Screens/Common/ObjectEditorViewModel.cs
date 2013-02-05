@@ -54,7 +54,7 @@ namespace PatrolControl.UI.Screens.Common
 
         public void Edit(object o)
         {
-            Target = EditorViewModelFactory.GetEditorViewModel(o);
+            Target = o;
 
             IsEditing = true;
             var ieo = Target as IEditableObject;

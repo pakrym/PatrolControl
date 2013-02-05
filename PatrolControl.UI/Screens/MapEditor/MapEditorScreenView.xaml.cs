@@ -35,7 +35,7 @@ namespace PatrolControl.UI.Screens.MapEditor
             var vm = ViewModelHelper.GetViewModel(sender as DependencyObject);
 
             if (mapEditorScreenViewModel != null)
-                mapEditorScreenViewModel.MouseDown(vm as FeatureLayerViewModel, e);
+                mapEditorScreenViewModel.MouseDown(vm as IFeatureLayerViewModel, e);
         }
     }
 }

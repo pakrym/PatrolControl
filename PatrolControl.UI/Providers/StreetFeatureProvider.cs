@@ -7,8 +7,8 @@ using PatrolControl.UI.PatrolControlServiceReference;
 
 namespace PatrolControl.UI.Providers
 {
-    public partial class StreetFeatureProvider
+    [GenerateProvider(typeof(IFeatureProvider<Street>))]
+    public partial class StreetFeatureProvider 
     {
-
     }
 }
