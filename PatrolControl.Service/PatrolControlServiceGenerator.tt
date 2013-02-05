@@ -101,6 +101,7 @@ namespace PatrolControl.Service
 				context.SaveChanges();
 			}
 	  <# } #>
+
 			#endregion
 	  }
 }

@@ -254,6 +254,7 @@ namespace PatrolControl.Service
 					context.TownDistricts.Remove(entity);
 				context.SaveChanges();
 			}
-	  			#endregion
+	  
+			#endregion
 	  }
 }
