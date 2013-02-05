@@ -1,4 +1,5 @@
-﻿using System;
+﻿// This file generated automatically, to make changes use partial classes or change T4 template
+using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,6 +27,26 @@ namespace PatrolControl.UI.Providers
 
             Client.GetBuildingsCompleted += callback;
             Client.GetBuildingsAsync();
+
+            return tcs.Task;
+        }
+
+		public Task<Entity> Get(int id)
+        {
+            var tcs = new TaskCompletionSource<Entity>();
+            EventHandler<GetBuildingCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+            {
+                Client.GetBuildingCompleted -= callback;
+
+                if (e.Error != null) tcs.TrySetException(e.Error);
+                else if (e.Cancelled) tcs.TrySetCanceled();
+                else tcs.TrySetResult(e.Result);
+            };
+
+            Client.GetBuildingCompleted += callback;
+            Client.GetBuildingAsync(id);
 
             return tcs.Task;
         }
@@ -142,6 +163,26 @@ namespace PatrolControl.UI.Providers
             return tcs.Task;
         }
 
+		public Task<Entity> Get(int id)
+        {
+            var tcs = new TaskCompletionSource<Entity>();
+            EventHandler<GetOfficerCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+            {
+                Client.GetOfficerCompleted -= callback;
+
+                if (e.Error != null) tcs.TrySetException(e.Error);
+                else if (e.Cancelled) tcs.TrySetCanceled();
+                else tcs.TrySetResult(e.Result);
+            };
+
+            Client.GetOfficerCompleted += callback;
+            Client.GetOfficerAsync(id);
+
+            return tcs.Task;
+        }
+
 	    public Entity New()
         {
             return new Officer();
@@ -231,6 +272,26 @@ namespace PatrolControl.UI.Providers
 
             Client.GetPatrolDistrictsCompleted += callback;
             Client.GetPatrolDistrictsAsync();
+
+            return tcs.Task;
+        }
+
+		public Task<Entity> Get(int id)
+        {
+            var tcs = new TaskCompletionSource<Entity>();
+            EventHandler<GetPatrolDistrictCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+            {
+                Client.GetPatrolDistrictCompleted -= callback;
+
+                if (e.Error != null) tcs.TrySetException(e.Error);
+                else if (e.Cancelled) tcs.TrySetCanceled();
+                else tcs.TrySetResult(e.Result);
+            };
+
+            Client.GetPatrolDistrictCompleted += callback;
+            Client.GetPatrolDistrictAsync(id);
 
             return tcs.Task;
         }
@@ -347,6 +408,26 @@ namespace PatrolControl.UI.Providers
             return tcs.Task;
         }
 
+		public Task<Entity> Get(int id)
+        {
+            var tcs = new TaskCompletionSource<Entity>();
+            EventHandler<GetStreetCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+            {
+                Client.GetStreetCompleted -= callback;
+
+                if (e.Error != null) tcs.TrySetException(e.Error);
+                else if (e.Cancelled) tcs.TrySetCanceled();
+                else tcs.TrySetResult(e.Result);
+            };
+
+            Client.GetStreetCompleted += callback;
+            Client.GetStreetAsync(id);
+
+            return tcs.Task;
+        }
+
 	    public Entity New()
         {
             return new Street();
@@ -459,6 +540,26 @@ namespace PatrolControl.UI.Providers
             return tcs.Task;
         }
 
+		public Task<Entity> Get(int id)
+        {
+            var tcs = new TaskCompletionSource<Entity>();
+            EventHandler<GetTownDistrictCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+            {
+                Client.GetTownDistrictCompleted -= callback;
+
+                if (e.Error != null) tcs.TrySetException(e.Error);
+                else if (e.Cancelled) tcs.TrySetCanceled();
+                else tcs.TrySetResult(e.Result);
+            };
+
+            Client.GetTownDistrictCompleted += callback;
+            Client.GetTownDistrictAsync(id);
+
+            return tcs.Task;
+        }
+
 	    public Entity New()
         {
             return new TownDistrict();
@@ -567,6 +668,26 @@ namespace PatrolControl.UI.Providers
 
             Client.GetUsersCompleted += callback;
             Client.GetUsersAsync();
+
+            return tcs.Task;
+        }
+
+		public Task<Entity> Get(int id)
+        {
+            var tcs = new TaskCompletionSource<Entity>();
+            EventHandler<GetUserCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+            {
+                Client.GetUserCompleted -= callback;
+
+                if (e.Error != null) tcs.TrySetException(e.Error);
+                else if (e.Cancelled) tcs.TrySetCanceled();
+                else tcs.TrySetResult(e.Result);
+            };
+
+            Client.GetUserCompleted += callback;
+            Client.GetUserAsync(id);
 
             return tcs.Task;
         }

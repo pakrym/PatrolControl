@@ -10,6 +10,7 @@
 var assembly = System.Reflection.Assembly.GetAssembly(typeof(Entity));
 var types = assembly.GetTypes().Where(t => t.GetCustomAttributes(typeof(GenerateProvider), true).Any());
 #>
+// This file generated automatically, to make changes use partial classes or change T4 template
 using System;
 using System.ComponentModel;
 using System.Linq;
@@ -43,6 +44,26 @@ namespace PatrolControl.UI.Providers
 
             Client.Get<#=name#>sCompleted += callback;
             Client.Get<#=name#>sAsync();
+
+            return tcs.Task;
+        }
+
+		public Task<Entity> Get(int id)
+        {
+            var tcs = new TaskCompletionSource<Entity>();
+            EventHandler<Get<#=name#>CompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+            {
+                Client.Get<#=name#>Completed -= callback;
+
+                if (e.Error != null) tcs.TrySetException(e.Error);
+                else if (e.Cancelled) tcs.TrySetCanceled();
+                else tcs.TrySetResult(e.Result);
+            };
+
+            Client.Get<#=name#>Completed += callback;
+            Client.Get<#=name#>Async(id);
 
             return tcs.Task;
         }
