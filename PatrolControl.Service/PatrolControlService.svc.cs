@@ -22,12 +22,12 @@ namespace PatrolControl.Service
     {
         public User Login(String name, String password)
         {
-            return _newContext.Users.Where(u => u.Name.Equals(name)).AsEnumerable().SingleOrDefault(u => u.ValidatePasword(password));
+            return newContext.Users.Where(u => u.Name.Equals(name)).AsEnumerable().SingleOrDefault(u => u.ValidatePasword(password));
         }
 
         public IList<Building> GetBuildingsWithSimularNames(string name)
         {
-            return _newContext.Database.SqlQuery<Building>("EXEC BuildingsWithSimularNames @name", new SqlParameter("name", "%" + name.Trim().Replace(' ', '%') + "%")).ToList();
+            return newContext.Database.SqlQuery<Building>("EXEC BuildingsWithSimularNames @name", new SqlParameter("name", "%" + name.Trim().Replace(' ', '%') + "%")).ToList();
         }
     }
 }
