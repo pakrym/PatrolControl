@@ -30,9 +30,9 @@ namespace PatrolControl.Service
 	  {
 	        private int SRID = 4326;
 
-			private DatabaseContext newContext
+			protected DatabaseContext getNewContext()
 			{
-				get { return new DatabaseContext();}
+				return new DatabaseContext();
 			}
 
 			#region Get By Id
@@ -41,7 +41,7 @@ namespace PatrolControl.Service
 
 			public <#= name #> Get<#= name #>(int id)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					return context.<#= name #>s.SingleOrDefault(e => e.Id == id);
 				}
@@ -54,9 +54,9 @@ namespace PatrolControl.Service
 	 <# foreach(var name in names)
 		 { #>
 
-			public List<<#= name #>> Get<#= name #>s(int id)
+			public IList<<#= name #>> Get<#= name #>s()
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					return context.<#= name #>s.ToList();
 				}
@@ -70,7 +70,7 @@ namespace PatrolControl.Service
 
 			public void Add<#= name #>s(params <#= name #>[] entities)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					foreach (var entity in entities)
 						context.<#= name #>s.Add(entity);
@@ -86,7 +86,7 @@ namespace PatrolControl.Service
 
 			public void Update<#= name #>s(params <#= name #>[] entities)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					foreach (var entity in entities)
 					{
@@ -105,7 +105,7 @@ namespace PatrolControl.Service
 
 			public void Delete<#= name #>s(params <#= name #>[] entities)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					foreach (var entity in context.<#= name #>s.Where(b => entities.Any(e => e.Id == b.Id)))
 						context.<#= name #>s.Remove(entity);

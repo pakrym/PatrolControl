@@ -377,25 +377,30 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         
         PatrolControl.UI.PatrolControlServiceReference.User EndLogin(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/GetBuildingsWithSimularNames", ReplyAction="http://tempuri.org/IPatrolControlService/GetBuildingsWithSimularNamesResponse")]
+        System.IAsyncResult BeginGetBuildingsWithSimularNames(string name, System.AsyncCallback callback, object asyncState);
+        
+        PatrolControl.UI.PatrolControlServiceReference.Building[] EndGetBuildingsWithSimularNames(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/GetUser", ReplyAction="http://tempuri.org/IPatrolControlService/GetUserResponse")]
         System.IAsyncResult BeginGetUser(int id, System.AsyncCallback callback, object asyncState);
         
         PatrolControl.UI.PatrolControlServiceReference.User EndGetUser(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/GetBuilding", ReplyAction="http://tempuri.org/IPatrolControlService/GetBuildingResponse")]
-        System.IAsyncResult BeginGetBuilding(int id, System.AsyncCallback callback, object asyncState);
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/GetOfficer", ReplyAction="http://tempuri.org/IPatrolControlService/GetOfficerResponse")]
+        System.IAsyncResult BeginGetOfficer(int id, System.AsyncCallback callback, object asyncState);
         
-        PatrolControl.UI.PatrolControlServiceReference.Building EndGetBuilding(System.IAsyncResult result);
+        PatrolControl.UI.PatrolControlServiceReference.Officer EndGetOfficer(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/GetStreet", ReplyAction="http://tempuri.org/IPatrolControlService/GetStreetResponse")]
         System.IAsyncResult BeginGetStreet(int id, System.AsyncCallback callback, object asyncState);
         
         PatrolControl.UI.PatrolControlServiceReference.Street EndGetStreet(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/GetOfficer", ReplyAction="http://tempuri.org/IPatrolControlService/GetOfficerResponse")]
-        System.IAsyncResult BeginGetOfficer(int id, System.AsyncCallback callback, object asyncState);
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/GetBuilding", ReplyAction="http://tempuri.org/IPatrolControlService/GetBuildingResponse")]
+        System.IAsyncResult BeginGetBuilding(int id, System.AsyncCallback callback, object asyncState);
         
-        PatrolControl.UI.PatrolControlServiceReference.Officer EndGetOfficer(System.IAsyncResult result);
+        PatrolControl.UI.PatrolControlServiceReference.Building EndGetBuilding(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/GetPatrolDistrict", ReplyAction="http://tempuri.org/IPatrolControlService/GetPatrolDistrictResponse")]
         System.IAsyncResult BeginGetPatrolDistrict(int id, System.AsyncCallback callback, object asyncState);
@@ -412,20 +417,20 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         
         PatrolControl.UI.PatrolControlServiceReference.User[] EndGetUsers(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/GetBuildings", ReplyAction="http://tempuri.org/IPatrolControlService/GetBuildingsResponse")]
-        System.IAsyncResult BeginGetBuildings(System.AsyncCallback callback, object asyncState);
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/GetOfficers", ReplyAction="http://tempuri.org/IPatrolControlService/GetOfficersResponse")]
+        System.IAsyncResult BeginGetOfficers(System.AsyncCallback callback, object asyncState);
         
-        PatrolControl.UI.PatrolControlServiceReference.Building[] EndGetBuildings(System.IAsyncResult result);
+        PatrolControl.UI.PatrolControlServiceReference.Officer[] EndGetOfficers(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/GetStreets", ReplyAction="http://tempuri.org/IPatrolControlService/GetStreetsResponse")]
         System.IAsyncResult BeginGetStreets(System.AsyncCallback callback, object asyncState);
         
         PatrolControl.UI.PatrolControlServiceReference.Street[] EndGetStreets(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/GetOfficers", ReplyAction="http://tempuri.org/IPatrolControlService/GetOfficersResponse")]
-        System.IAsyncResult BeginGetOfficers(System.AsyncCallback callback, object asyncState);
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/GetBuildings", ReplyAction="http://tempuri.org/IPatrolControlService/GetBuildingsResponse")]
+        System.IAsyncResult BeginGetBuildings(System.AsyncCallback callback, object asyncState);
         
-        PatrolControl.UI.PatrolControlServiceReference.Officer[] EndGetOfficers(System.IAsyncResult result);
+        PatrolControl.UI.PatrolControlServiceReference.Building[] EndGetBuildings(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/GetPatrolDistricts", ReplyAction="http://tempuri.org/IPatrolControlService/GetPatrolDistrictsResponse")]
         System.IAsyncResult BeginGetPatrolDistricts(System.AsyncCallback callback, object asyncState);
@@ -437,98 +442,93 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         
         PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] EndGetTownDistricts(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/GetBuildingsWithSimularNames", ReplyAction="http://tempuri.org/IPatrolControlService/GetBuildingsWithSimularNamesResponse")]
-        System.IAsyncResult BeginGetBuildingsWithSimularNames(string name, System.AsyncCallback callback, object asyncState);
-        
-        PatrolControl.UI.PatrolControlServiceReference.Building[] EndGetBuildingsWithSimularNames(System.IAsyncResult result);
-        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/AddUsers", ReplyAction="http://tempuri.org/IPatrolControlService/AddUsersResponse")]
-        System.IAsyncResult BeginAddUsers(PatrolControl.UI.PatrolControlServiceReference.User[] users, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginAddUsers(PatrolControl.UI.PatrolControlServiceReference.User[] entities, System.AsyncCallback callback, object asyncState);
         
         void EndAddUsers(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/AddBuildings", ReplyAction="http://tempuri.org/IPatrolControlService/AddBuildingsResponse")]
-        System.IAsyncResult BeginAddBuildings(PatrolControl.UI.PatrolControlServiceReference.Building[] buildings, System.AsyncCallback callback, object asyncState);
-        
-        void EndAddBuildings(System.IAsyncResult result);
-        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/AddOfficers", ReplyAction="http://tempuri.org/IPatrolControlService/AddOfficersResponse")]
-        System.IAsyncResult BeginAddOfficers(PatrolControl.UI.PatrolControlServiceReference.Officer[] users, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginAddOfficers(PatrolControl.UI.PatrolControlServiceReference.Officer[] entities, System.AsyncCallback callback, object asyncState);
         
         void EndAddOfficers(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/AddStreets", ReplyAction="http://tempuri.org/IPatrolControlService/AddStreetsResponse")]
-        System.IAsyncResult BeginAddStreets(PatrolControl.UI.PatrolControlServiceReference.Street[] streets, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginAddStreets(PatrolControl.UI.PatrolControlServiceReference.Street[] entities, System.AsyncCallback callback, object asyncState);
         
         void EndAddStreets(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/AddBuildings", ReplyAction="http://tempuri.org/IPatrolControlService/AddBuildingsResponse")]
+        System.IAsyncResult BeginAddBuildings(PatrolControl.UI.PatrolControlServiceReference.Building[] entities, System.AsyncCallback callback, object asyncState);
+        
+        void EndAddBuildings(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/AddPatrolDistricts", ReplyAction="http://tempuri.org/IPatrolControlService/AddPatrolDistrictsResponse")]
-        System.IAsyncResult BeginAddPatrolDistricts(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] districts, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginAddPatrolDistricts(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] entities, System.AsyncCallback callback, object asyncState);
         
         void EndAddPatrolDistricts(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/AddTownDistricts", ReplyAction="http://tempuri.org/IPatrolControlService/AddTownDistrictsResponse")]
-        System.IAsyncResult BeginAddTownDistricts(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] districts, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginAddTownDistricts(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] entities, System.AsyncCallback callback, object asyncState);
         
         void EndAddTownDistricts(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/UpdateUsers", ReplyAction="http://tempuri.org/IPatrolControlService/UpdateUsersResponse")]
-        System.IAsyncResult BeginUpdateUsers(PatrolControl.UI.PatrolControlServiceReference.User[] users, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginUpdateUsers(PatrolControl.UI.PatrolControlServiceReference.User[] entities, System.AsyncCallback callback, object asyncState);
         
         void EndUpdateUsers(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/UpdateOfficers", ReplyAction="http://tempuri.org/IPatrolControlService/UpdateOfficersResponse")]
-        System.IAsyncResult BeginUpdateOfficers(PatrolControl.UI.PatrolControlServiceReference.Officer[] users, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginUpdateOfficers(PatrolControl.UI.PatrolControlServiceReference.Officer[] entities, System.AsyncCallback callback, object asyncState);
         
         void EndUpdateOfficers(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/UpdateBuildings", ReplyAction="http://tempuri.org/IPatrolControlService/UpdateBuildingsResponse")]
-        System.IAsyncResult BeginUpdateBuildings(PatrolControl.UI.PatrolControlServiceReference.Building[] buildings, System.AsyncCallback callback, object asyncState);
-        
-        void EndUpdateBuildings(System.IAsyncResult result);
-        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/UpdateStreets", ReplyAction="http://tempuri.org/IPatrolControlService/UpdateStreetsResponse")]
-        System.IAsyncResult BeginUpdateStreets(PatrolControl.UI.PatrolControlServiceReference.Street[] streets, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginUpdateStreets(PatrolControl.UI.PatrolControlServiceReference.Street[] entities, System.AsyncCallback callback, object asyncState);
         
         void EndUpdateStreets(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/UpdateBuildings", ReplyAction="http://tempuri.org/IPatrolControlService/UpdateBuildingsResponse")]
+        System.IAsyncResult BeginUpdateBuildings(PatrolControl.UI.PatrolControlServiceReference.Building[] entities, System.AsyncCallback callback, object asyncState);
+        
+        void EndUpdateBuildings(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/UpdatePatrolDistricts", ReplyAction="http://tempuri.org/IPatrolControlService/UpdatePatrolDistrictsResponse")]
-        System.IAsyncResult BeginUpdatePatrolDistricts(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] districts, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginUpdatePatrolDistricts(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] entities, System.AsyncCallback callback, object asyncState);
         
         void EndUpdatePatrolDistricts(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/UpdateTownDistricts", ReplyAction="http://tempuri.org/IPatrolControlService/UpdateTownDistrictsResponse")]
-        System.IAsyncResult BeginUpdateTownDistricts(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] districts, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginUpdateTownDistricts(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] entities, System.AsyncCallback callback, object asyncState);
         
         void EndUpdateTownDistricts(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/DeleteUsers", ReplyAction="http://tempuri.org/IPatrolControlService/DeleteUsersResponse")]
-        System.IAsyncResult BeginDeleteUsers(PatrolControl.UI.PatrolControlServiceReference.User[] users, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginDeleteUsers(PatrolControl.UI.PatrolControlServiceReference.User[] entities, System.AsyncCallback callback, object asyncState);
         
         void EndDeleteUsers(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/DeleteBuildings", ReplyAction="http://tempuri.org/IPatrolControlService/DeleteBuildingsResponse")]
-        System.IAsyncResult BeginDeleteBuildings(PatrolControl.UI.PatrolControlServiceReference.Building[] buildings, System.AsyncCallback callback, object asyncState);
-        
-        void EndDeleteBuildings(System.IAsyncResult result);
-        
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/DeleteStreets", ReplyAction="http://tempuri.org/IPatrolControlService/DeleteStreetsResponse")]
-        System.IAsyncResult BeginDeleteStreets(PatrolControl.UI.PatrolControlServiceReference.Street[] streets, System.AsyncCallback callback, object asyncState);
-        
-        void EndDeleteStreets(System.IAsyncResult result);
-        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/DeleteOfficers", ReplyAction="http://tempuri.org/IPatrolControlService/DeleteOfficersResponse")]
-        System.IAsyncResult BeginDeleteOfficers(PatrolControl.UI.PatrolControlServiceReference.Officer[] officers, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginDeleteOfficers(PatrolControl.UI.PatrolControlServiceReference.Officer[] entities, System.AsyncCallback callback, object asyncState);
         
         void EndDeleteOfficers(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/DeleteStreets", ReplyAction="http://tempuri.org/IPatrolControlService/DeleteStreetsResponse")]
+        System.IAsyncResult BeginDeleteStreets(PatrolControl.UI.PatrolControlServiceReference.Street[] entities, System.AsyncCallback callback, object asyncState);
+        
+        void EndDeleteStreets(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/DeleteBuildings", ReplyAction="http://tempuri.org/IPatrolControlService/DeleteBuildingsResponse")]
+        System.IAsyncResult BeginDeleteBuildings(PatrolControl.UI.PatrolControlServiceReference.Building[] entities, System.AsyncCallback callback, object asyncState);
+        
+        void EndDeleteBuildings(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/DeletePatrolDistricts", ReplyAction="http://tempuri.org/IPatrolControlService/DeletePatrolDistrictsResponse")]
-        System.IAsyncResult BeginDeletePatrolDistricts(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] districts, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginDeletePatrolDistricts(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] entities, System.AsyncCallback callback, object asyncState);
         
         void EndDeletePatrolDistricts(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPatrolControlService/DeleteTownDistricts", ReplyAction="http://tempuri.org/IPatrolControlService/DeleteTownDistrictsResponse")]
-        System.IAsyncResult BeginDeleteTownDistricts(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] districts, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginDeleteTownDistricts(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] entities, System.AsyncCallback callback, object asyncState);
         
         void EndDeleteTownDistricts(System.IAsyncResult result);
     }
@@ -558,6 +558,25 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetBuildingsWithSimularNamesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetBuildingsWithSimularNamesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public PatrolControl.UI.PatrolControlServiceReference.Building[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((PatrolControl.UI.PatrolControlServiceReference.Building[])(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class GetUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -577,19 +596,19 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GetBuildingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class GetOfficerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        public GetBuildingCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        public GetOfficerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
-        public PatrolControl.UI.PatrolControlServiceReference.Building Result {
+        public PatrolControl.UI.PatrolControlServiceReference.Officer Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((PatrolControl.UI.PatrolControlServiceReference.Building)(this.results[0]));
+                return ((PatrolControl.UI.PatrolControlServiceReference.Officer)(this.results[0]));
             }
         }
     }
@@ -615,19 +634,19 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GetOfficerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class GetBuildingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        public GetOfficerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        public GetBuildingCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
-        public PatrolControl.UI.PatrolControlServiceReference.Officer Result {
+        public PatrolControl.UI.PatrolControlServiceReference.Building Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((PatrolControl.UI.PatrolControlServiceReference.Officer)(this.results[0]));
+                return ((PatrolControl.UI.PatrolControlServiceReference.Building)(this.results[0]));
             }
         }
     }
@@ -691,19 +710,19 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GetBuildingsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class GetOfficersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        public GetBuildingsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        public GetOfficersCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
-        public PatrolControl.UI.PatrolControlServiceReference.Building[] Result {
+        public PatrolControl.UI.PatrolControlServiceReference.Officer[] Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((PatrolControl.UI.PatrolControlServiceReference.Building[])(this.results[0]));
+                return ((PatrolControl.UI.PatrolControlServiceReference.Officer[])(this.results[0]));
             }
         }
     }
@@ -729,19 +748,19 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GetOfficersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class GetBuildingsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        public GetOfficersCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        public GetBuildingsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
-        public PatrolControl.UI.PatrolControlServiceReference.Officer[] Result {
+        public PatrolControl.UI.PatrolControlServiceReference.Building[] Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((PatrolControl.UI.PatrolControlServiceReference.Officer[])(this.results[0]));
+                return ((PatrolControl.UI.PatrolControlServiceReference.Building[])(this.results[0]));
             }
         }
     }
@@ -786,25 +805,6 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GetBuildingsWithSimularNamesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        public GetBuildingsWithSimularNamesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public PatrolControl.UI.PatrolControlServiceReference.Building[] Result {
-            get {
-                base.RaiseExceptionIfNecessary();
-                return ((PatrolControl.UI.PatrolControlServiceReference.Building[])(this.results[0]));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class PatrolControlServiceClient : System.ServiceModel.ClientBase<PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService>, PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService {
         
         private BeginOperationDelegate onBeginLoginDelegate;
@@ -813,17 +813,23 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         
         private System.Threading.SendOrPostCallback onLoginCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetBuildingsWithSimularNamesDelegate;
+        
+        private EndOperationDelegate onEndGetBuildingsWithSimularNamesDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetBuildingsWithSimularNamesCompletedDelegate;
+        
         private BeginOperationDelegate onBeginGetUserDelegate;
         
         private EndOperationDelegate onEndGetUserDelegate;
         
         private System.Threading.SendOrPostCallback onGetUserCompletedDelegate;
         
-        private BeginOperationDelegate onBeginGetBuildingDelegate;
+        private BeginOperationDelegate onBeginGetOfficerDelegate;
         
-        private EndOperationDelegate onEndGetBuildingDelegate;
+        private EndOperationDelegate onEndGetOfficerDelegate;
         
-        private System.Threading.SendOrPostCallback onGetBuildingCompletedDelegate;
+        private System.Threading.SendOrPostCallback onGetOfficerCompletedDelegate;
         
         private BeginOperationDelegate onBeginGetStreetDelegate;
         
@@ -831,11 +837,11 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         
         private System.Threading.SendOrPostCallback onGetStreetCompletedDelegate;
         
-        private BeginOperationDelegate onBeginGetOfficerDelegate;
+        private BeginOperationDelegate onBeginGetBuildingDelegate;
         
-        private EndOperationDelegate onEndGetOfficerDelegate;
+        private EndOperationDelegate onEndGetBuildingDelegate;
         
-        private System.Threading.SendOrPostCallback onGetOfficerCompletedDelegate;
+        private System.Threading.SendOrPostCallback onGetBuildingCompletedDelegate;
         
         private BeginOperationDelegate onBeginGetPatrolDistrictDelegate;
         
@@ -855,11 +861,11 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         
         private System.Threading.SendOrPostCallback onGetUsersCompletedDelegate;
         
-        private BeginOperationDelegate onBeginGetBuildingsDelegate;
+        private BeginOperationDelegate onBeginGetOfficersDelegate;
         
-        private EndOperationDelegate onEndGetBuildingsDelegate;
+        private EndOperationDelegate onEndGetOfficersDelegate;
         
-        private System.Threading.SendOrPostCallback onGetBuildingsCompletedDelegate;
+        private System.Threading.SendOrPostCallback onGetOfficersCompletedDelegate;
         
         private BeginOperationDelegate onBeginGetStreetsDelegate;
         
@@ -867,11 +873,11 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         
         private System.Threading.SendOrPostCallback onGetStreetsCompletedDelegate;
         
-        private BeginOperationDelegate onBeginGetOfficersDelegate;
+        private BeginOperationDelegate onBeginGetBuildingsDelegate;
         
-        private EndOperationDelegate onEndGetOfficersDelegate;
+        private EndOperationDelegate onEndGetBuildingsDelegate;
         
-        private System.Threading.SendOrPostCallback onGetOfficersCompletedDelegate;
+        private System.Threading.SendOrPostCallback onGetBuildingsCompletedDelegate;
         
         private BeginOperationDelegate onBeginGetPatrolDistrictsDelegate;
         
@@ -885,23 +891,11 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         
         private System.Threading.SendOrPostCallback onGetTownDistrictsCompletedDelegate;
         
-        private BeginOperationDelegate onBeginGetBuildingsWithSimularNamesDelegate;
-        
-        private EndOperationDelegate onEndGetBuildingsWithSimularNamesDelegate;
-        
-        private System.Threading.SendOrPostCallback onGetBuildingsWithSimularNamesCompletedDelegate;
-        
         private BeginOperationDelegate onBeginAddUsersDelegate;
         
         private EndOperationDelegate onEndAddUsersDelegate;
         
         private System.Threading.SendOrPostCallback onAddUsersCompletedDelegate;
-        
-        private BeginOperationDelegate onBeginAddBuildingsDelegate;
-        
-        private EndOperationDelegate onEndAddBuildingsDelegate;
-        
-        private System.Threading.SendOrPostCallback onAddBuildingsCompletedDelegate;
         
         private BeginOperationDelegate onBeginAddOfficersDelegate;
         
@@ -914,6 +908,12 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         private EndOperationDelegate onEndAddStreetsDelegate;
         
         private System.Threading.SendOrPostCallback onAddStreetsCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginAddBuildingsDelegate;
+        
+        private EndOperationDelegate onEndAddBuildingsDelegate;
+        
+        private System.Threading.SendOrPostCallback onAddBuildingsCompletedDelegate;
         
         private BeginOperationDelegate onBeginAddPatrolDistrictsDelegate;
         
@@ -939,17 +939,17 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         
         private System.Threading.SendOrPostCallback onUpdateOfficersCompletedDelegate;
         
-        private BeginOperationDelegate onBeginUpdateBuildingsDelegate;
-        
-        private EndOperationDelegate onEndUpdateBuildingsDelegate;
-        
-        private System.Threading.SendOrPostCallback onUpdateBuildingsCompletedDelegate;
-        
         private BeginOperationDelegate onBeginUpdateStreetsDelegate;
         
         private EndOperationDelegate onEndUpdateStreetsDelegate;
         
         private System.Threading.SendOrPostCallback onUpdateStreetsCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginUpdateBuildingsDelegate;
+        
+        private EndOperationDelegate onEndUpdateBuildingsDelegate;
+        
+        private System.Threading.SendOrPostCallback onUpdateBuildingsCompletedDelegate;
         
         private BeginOperationDelegate onBeginUpdatePatrolDistrictsDelegate;
         
@@ -969,11 +969,11 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         
         private System.Threading.SendOrPostCallback onDeleteUsersCompletedDelegate;
         
-        private BeginOperationDelegate onBeginDeleteBuildingsDelegate;
+        private BeginOperationDelegate onBeginDeleteOfficersDelegate;
         
-        private EndOperationDelegate onEndDeleteBuildingsDelegate;
+        private EndOperationDelegate onEndDeleteOfficersDelegate;
         
-        private System.Threading.SendOrPostCallback onDeleteBuildingsCompletedDelegate;
+        private System.Threading.SendOrPostCallback onDeleteOfficersCompletedDelegate;
         
         private BeginOperationDelegate onBeginDeleteStreetsDelegate;
         
@@ -981,11 +981,11 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         
         private System.Threading.SendOrPostCallback onDeleteStreetsCompletedDelegate;
         
-        private BeginOperationDelegate onBeginDeleteOfficersDelegate;
+        private BeginOperationDelegate onBeginDeleteBuildingsDelegate;
         
-        private EndOperationDelegate onEndDeleteOfficersDelegate;
+        private EndOperationDelegate onEndDeleteBuildingsDelegate;
         
-        private System.Threading.SendOrPostCallback onDeleteOfficersCompletedDelegate;
+        private System.Threading.SendOrPostCallback onDeleteBuildingsCompletedDelegate;
         
         private BeginOperationDelegate onBeginDeletePatrolDistrictsDelegate;
         
@@ -1054,13 +1054,15 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         
         public event System.EventHandler<LoginCompletedEventArgs> LoginCompleted;
         
+        public event System.EventHandler<GetBuildingsWithSimularNamesCompletedEventArgs> GetBuildingsWithSimularNamesCompleted;
+        
         public event System.EventHandler<GetUserCompletedEventArgs> GetUserCompleted;
         
-        public event System.EventHandler<GetBuildingCompletedEventArgs> GetBuildingCompleted;
+        public event System.EventHandler<GetOfficerCompletedEventArgs> GetOfficerCompleted;
         
         public event System.EventHandler<GetStreetCompletedEventArgs> GetStreetCompleted;
         
-        public event System.EventHandler<GetOfficerCompletedEventArgs> GetOfficerCompleted;
+        public event System.EventHandler<GetBuildingCompletedEventArgs> GetBuildingCompleted;
         
         public event System.EventHandler<GetPatrolDistrictCompletedEventArgs> GetPatrolDistrictCompleted;
         
@@ -1068,25 +1070,23 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         
         public event System.EventHandler<GetUsersCompletedEventArgs> GetUsersCompleted;
         
-        public event System.EventHandler<GetBuildingsCompletedEventArgs> GetBuildingsCompleted;
+        public event System.EventHandler<GetOfficersCompletedEventArgs> GetOfficersCompleted;
         
         public event System.EventHandler<GetStreetsCompletedEventArgs> GetStreetsCompleted;
         
-        public event System.EventHandler<GetOfficersCompletedEventArgs> GetOfficersCompleted;
+        public event System.EventHandler<GetBuildingsCompletedEventArgs> GetBuildingsCompleted;
         
         public event System.EventHandler<GetPatrolDistrictsCompletedEventArgs> GetPatrolDistrictsCompleted;
         
         public event System.EventHandler<GetTownDistrictsCompletedEventArgs> GetTownDistrictsCompleted;
         
-        public event System.EventHandler<GetBuildingsWithSimularNamesCompletedEventArgs> GetBuildingsWithSimularNamesCompleted;
-        
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AddUsersCompleted;
-        
-        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AddBuildingsCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AddOfficersCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AddStreetsCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AddBuildingsCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AddPatrolDistrictsCompleted;
         
@@ -1096,9 +1096,9 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> UpdateOfficersCompleted;
         
-        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> UpdateBuildingsCompleted;
-        
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> UpdateStreetsCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> UpdateBuildingsCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> UpdatePatrolDistrictsCompleted;
         
@@ -1106,11 +1106,11 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> DeleteUsersCompleted;
         
-        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> DeleteBuildingsCompleted;
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> DeleteOfficersCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> DeleteStreetsCompleted;
         
-        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> DeleteOfficersCompleted;
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> DeleteBuildingsCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> DeletePatrolDistrictsCompleted;
         
@@ -1169,6 +1169,52 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginGetBuildingsWithSimularNames(string name, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBuildingsWithSimularNames(name, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        PatrolControl.UI.PatrolControlServiceReference.Building[] PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.EndGetBuildingsWithSimularNames(System.IAsyncResult result) {
+            return base.Channel.EndGetBuildingsWithSimularNames(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetBuildingsWithSimularNames(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string name = ((string)(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginGetBuildingsWithSimularNames(name, callback, asyncState);
+        }
+        
+        private object[] OnEndGetBuildingsWithSimularNames(System.IAsyncResult result) {
+            PatrolControl.UI.PatrolControlServiceReference.Building[] retVal = ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).EndGetBuildingsWithSimularNames(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetBuildingsWithSimularNamesCompleted(object state) {
+            if ((this.GetBuildingsWithSimularNamesCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetBuildingsWithSimularNamesCompleted(this, new GetBuildingsWithSimularNamesCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetBuildingsWithSimularNamesAsync(string name) {
+            this.GetBuildingsWithSimularNamesAsync(name, null);
+        }
+        
+        public void GetBuildingsWithSimularNamesAsync(string name, object userState) {
+            if ((this.onBeginGetBuildingsWithSimularNamesDelegate == null)) {
+                this.onBeginGetBuildingsWithSimularNamesDelegate = new BeginOperationDelegate(this.OnBeginGetBuildingsWithSimularNames);
+            }
+            if ((this.onEndGetBuildingsWithSimularNamesDelegate == null)) {
+                this.onEndGetBuildingsWithSimularNamesDelegate = new EndOperationDelegate(this.OnEndGetBuildingsWithSimularNames);
+            }
+            if ((this.onGetBuildingsWithSimularNamesCompletedDelegate == null)) {
+                this.onGetBuildingsWithSimularNamesCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBuildingsWithSimularNamesCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetBuildingsWithSimularNamesDelegate, new object[] {
+                        name}, this.onEndGetBuildingsWithSimularNamesDelegate, this.onGetBuildingsWithSimularNamesCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginGetUser(int id, System.AsyncCallback callback, object asyncState) {
             return base.Channel.BeginGetUser(id, callback, asyncState);
         }
@@ -1215,49 +1261,49 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginGetBuilding(int id, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetBuilding(id, callback, asyncState);
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginGetOfficer(int id, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetOfficer(id, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        PatrolControl.UI.PatrolControlServiceReference.Building PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.EndGetBuilding(System.IAsyncResult result) {
-            return base.Channel.EndGetBuilding(result);
+        PatrolControl.UI.PatrolControlServiceReference.Officer PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.EndGetOfficer(System.IAsyncResult result) {
+            return base.Channel.EndGetOfficer(result);
         }
         
-        private System.IAsyncResult OnBeginGetBuilding(object[] inValues, System.AsyncCallback callback, object asyncState) {
+        private System.IAsyncResult OnBeginGetOfficer(object[] inValues, System.AsyncCallback callback, object asyncState) {
             int id = ((int)(inValues[0]));
-            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginGetBuilding(id, callback, asyncState);
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginGetOfficer(id, callback, asyncState);
         }
         
-        private object[] OnEndGetBuilding(System.IAsyncResult result) {
-            PatrolControl.UI.PatrolControlServiceReference.Building retVal = ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).EndGetBuilding(result);
+        private object[] OnEndGetOfficer(System.IAsyncResult result) {
+            PatrolControl.UI.PatrolControlServiceReference.Officer retVal = ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).EndGetOfficer(result);
             return new object[] {
                     retVal};
         }
         
-        private void OnGetBuildingCompleted(object state) {
-            if ((this.GetBuildingCompleted != null)) {
+        private void OnGetOfficerCompleted(object state) {
+            if ((this.GetOfficerCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.GetBuildingCompleted(this, new GetBuildingCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+                this.GetOfficerCompleted(this, new GetOfficerCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
             }
         }
         
-        public void GetBuildingAsync(int id) {
-            this.GetBuildingAsync(id, null);
+        public void GetOfficerAsync(int id) {
+            this.GetOfficerAsync(id, null);
         }
         
-        public void GetBuildingAsync(int id, object userState) {
-            if ((this.onBeginGetBuildingDelegate == null)) {
-                this.onBeginGetBuildingDelegate = new BeginOperationDelegate(this.OnBeginGetBuilding);
+        public void GetOfficerAsync(int id, object userState) {
+            if ((this.onBeginGetOfficerDelegate == null)) {
+                this.onBeginGetOfficerDelegate = new BeginOperationDelegate(this.OnBeginGetOfficer);
             }
-            if ((this.onEndGetBuildingDelegate == null)) {
-                this.onEndGetBuildingDelegate = new EndOperationDelegate(this.OnEndGetBuilding);
+            if ((this.onEndGetOfficerDelegate == null)) {
+                this.onEndGetOfficerDelegate = new EndOperationDelegate(this.OnEndGetOfficer);
             }
-            if ((this.onGetBuildingCompletedDelegate == null)) {
-                this.onGetBuildingCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBuildingCompleted);
+            if ((this.onGetOfficerCompletedDelegate == null)) {
+                this.onGetOfficerCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetOfficerCompleted);
             }
-            base.InvokeAsync(this.onBeginGetBuildingDelegate, new object[] {
-                        id}, this.onEndGetBuildingDelegate, this.onGetBuildingCompletedDelegate, userState);
+            base.InvokeAsync(this.onBeginGetOfficerDelegate, new object[] {
+                        id}, this.onEndGetOfficerDelegate, this.onGetOfficerCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1307,49 +1353,49 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginGetOfficer(int id, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetOfficer(id, callback, asyncState);
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginGetBuilding(int id, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBuilding(id, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        PatrolControl.UI.PatrolControlServiceReference.Officer PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.EndGetOfficer(System.IAsyncResult result) {
-            return base.Channel.EndGetOfficer(result);
+        PatrolControl.UI.PatrolControlServiceReference.Building PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.EndGetBuilding(System.IAsyncResult result) {
+            return base.Channel.EndGetBuilding(result);
         }
         
-        private System.IAsyncResult OnBeginGetOfficer(object[] inValues, System.AsyncCallback callback, object asyncState) {
+        private System.IAsyncResult OnBeginGetBuilding(object[] inValues, System.AsyncCallback callback, object asyncState) {
             int id = ((int)(inValues[0]));
-            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginGetOfficer(id, callback, asyncState);
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginGetBuilding(id, callback, asyncState);
         }
         
-        private object[] OnEndGetOfficer(System.IAsyncResult result) {
-            PatrolControl.UI.PatrolControlServiceReference.Officer retVal = ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).EndGetOfficer(result);
+        private object[] OnEndGetBuilding(System.IAsyncResult result) {
+            PatrolControl.UI.PatrolControlServiceReference.Building retVal = ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).EndGetBuilding(result);
             return new object[] {
                     retVal};
         }
         
-        private void OnGetOfficerCompleted(object state) {
-            if ((this.GetOfficerCompleted != null)) {
+        private void OnGetBuildingCompleted(object state) {
+            if ((this.GetBuildingCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.GetOfficerCompleted(this, new GetOfficerCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+                this.GetBuildingCompleted(this, new GetBuildingCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
             }
         }
         
-        public void GetOfficerAsync(int id) {
-            this.GetOfficerAsync(id, null);
+        public void GetBuildingAsync(int id) {
+            this.GetBuildingAsync(id, null);
         }
         
-        public void GetOfficerAsync(int id, object userState) {
-            if ((this.onBeginGetOfficerDelegate == null)) {
-                this.onBeginGetOfficerDelegate = new BeginOperationDelegate(this.OnBeginGetOfficer);
+        public void GetBuildingAsync(int id, object userState) {
+            if ((this.onBeginGetBuildingDelegate == null)) {
+                this.onBeginGetBuildingDelegate = new BeginOperationDelegate(this.OnBeginGetBuilding);
             }
-            if ((this.onEndGetOfficerDelegate == null)) {
-                this.onEndGetOfficerDelegate = new EndOperationDelegate(this.OnEndGetOfficer);
+            if ((this.onEndGetBuildingDelegate == null)) {
+                this.onEndGetBuildingDelegate = new EndOperationDelegate(this.OnEndGetBuilding);
             }
-            if ((this.onGetOfficerCompletedDelegate == null)) {
-                this.onGetOfficerCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetOfficerCompleted);
+            if ((this.onGetBuildingCompletedDelegate == null)) {
+                this.onGetBuildingCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBuildingCompleted);
             }
-            base.InvokeAsync(this.onBeginGetOfficerDelegate, new object[] {
-                        id}, this.onEndGetOfficerDelegate, this.onGetOfficerCompletedDelegate, userState);
+            base.InvokeAsync(this.onBeginGetBuildingDelegate, new object[] {
+                        id}, this.onEndGetBuildingDelegate, this.onGetBuildingCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1489,47 +1535,47 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginGetBuildings(System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetBuildings(callback, asyncState);
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginGetOfficers(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetOfficers(callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        PatrolControl.UI.PatrolControlServiceReference.Building[] PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.EndGetBuildings(System.IAsyncResult result) {
-            return base.Channel.EndGetBuildings(result);
+        PatrolControl.UI.PatrolControlServiceReference.Officer[] PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.EndGetOfficers(System.IAsyncResult result) {
+            return base.Channel.EndGetOfficers(result);
         }
         
-        private System.IAsyncResult OnBeginGetBuildings(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginGetBuildings(callback, asyncState);
+        private System.IAsyncResult OnBeginGetOfficers(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginGetOfficers(callback, asyncState);
         }
         
-        private object[] OnEndGetBuildings(System.IAsyncResult result) {
-            PatrolControl.UI.PatrolControlServiceReference.Building[] retVal = ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).EndGetBuildings(result);
+        private object[] OnEndGetOfficers(System.IAsyncResult result) {
+            PatrolControl.UI.PatrolControlServiceReference.Officer[] retVal = ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).EndGetOfficers(result);
             return new object[] {
                     retVal};
         }
         
-        private void OnGetBuildingsCompleted(object state) {
-            if ((this.GetBuildingsCompleted != null)) {
+        private void OnGetOfficersCompleted(object state) {
+            if ((this.GetOfficersCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.GetBuildingsCompleted(this, new GetBuildingsCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+                this.GetOfficersCompleted(this, new GetOfficersCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
             }
         }
         
-        public void GetBuildingsAsync() {
-            this.GetBuildingsAsync(null);
+        public void GetOfficersAsync() {
+            this.GetOfficersAsync(null);
         }
         
-        public void GetBuildingsAsync(object userState) {
-            if ((this.onBeginGetBuildingsDelegate == null)) {
-                this.onBeginGetBuildingsDelegate = new BeginOperationDelegate(this.OnBeginGetBuildings);
+        public void GetOfficersAsync(object userState) {
+            if ((this.onBeginGetOfficersDelegate == null)) {
+                this.onBeginGetOfficersDelegate = new BeginOperationDelegate(this.OnBeginGetOfficers);
             }
-            if ((this.onEndGetBuildingsDelegate == null)) {
-                this.onEndGetBuildingsDelegate = new EndOperationDelegate(this.OnEndGetBuildings);
+            if ((this.onEndGetOfficersDelegate == null)) {
+                this.onEndGetOfficersDelegate = new EndOperationDelegate(this.OnEndGetOfficers);
             }
-            if ((this.onGetBuildingsCompletedDelegate == null)) {
-                this.onGetBuildingsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBuildingsCompleted);
+            if ((this.onGetOfficersCompletedDelegate == null)) {
+                this.onGetOfficersCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetOfficersCompleted);
             }
-            base.InvokeAsync(this.onBeginGetBuildingsDelegate, null, this.onEndGetBuildingsDelegate, this.onGetBuildingsCompletedDelegate, userState);
+            base.InvokeAsync(this.onBeginGetOfficersDelegate, null, this.onEndGetOfficersDelegate, this.onGetOfficersCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1577,47 +1623,47 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginGetOfficers(System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetOfficers(callback, asyncState);
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginGetBuildings(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBuildings(callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        PatrolControl.UI.PatrolControlServiceReference.Officer[] PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.EndGetOfficers(System.IAsyncResult result) {
-            return base.Channel.EndGetOfficers(result);
+        PatrolControl.UI.PatrolControlServiceReference.Building[] PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.EndGetBuildings(System.IAsyncResult result) {
+            return base.Channel.EndGetBuildings(result);
         }
         
-        private System.IAsyncResult OnBeginGetOfficers(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginGetOfficers(callback, asyncState);
+        private System.IAsyncResult OnBeginGetBuildings(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginGetBuildings(callback, asyncState);
         }
         
-        private object[] OnEndGetOfficers(System.IAsyncResult result) {
-            PatrolControl.UI.PatrolControlServiceReference.Officer[] retVal = ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).EndGetOfficers(result);
+        private object[] OnEndGetBuildings(System.IAsyncResult result) {
+            PatrolControl.UI.PatrolControlServiceReference.Building[] retVal = ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).EndGetBuildings(result);
             return new object[] {
                     retVal};
         }
         
-        private void OnGetOfficersCompleted(object state) {
-            if ((this.GetOfficersCompleted != null)) {
+        private void OnGetBuildingsCompleted(object state) {
+            if ((this.GetBuildingsCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.GetOfficersCompleted(this, new GetOfficersCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+                this.GetBuildingsCompleted(this, new GetBuildingsCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
             }
         }
         
-        public void GetOfficersAsync() {
-            this.GetOfficersAsync(null);
+        public void GetBuildingsAsync() {
+            this.GetBuildingsAsync(null);
         }
         
-        public void GetOfficersAsync(object userState) {
-            if ((this.onBeginGetOfficersDelegate == null)) {
-                this.onBeginGetOfficersDelegate = new BeginOperationDelegate(this.OnBeginGetOfficers);
+        public void GetBuildingsAsync(object userState) {
+            if ((this.onBeginGetBuildingsDelegate == null)) {
+                this.onBeginGetBuildingsDelegate = new BeginOperationDelegate(this.OnBeginGetBuildings);
             }
-            if ((this.onEndGetOfficersDelegate == null)) {
-                this.onEndGetOfficersDelegate = new EndOperationDelegate(this.OnEndGetOfficers);
+            if ((this.onEndGetBuildingsDelegate == null)) {
+                this.onEndGetBuildingsDelegate = new EndOperationDelegate(this.OnEndGetBuildings);
             }
-            if ((this.onGetOfficersCompletedDelegate == null)) {
-                this.onGetOfficersCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetOfficersCompleted);
+            if ((this.onGetBuildingsCompletedDelegate == null)) {
+                this.onGetBuildingsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBuildingsCompleted);
             }
-            base.InvokeAsync(this.onBeginGetOfficersDelegate, null, this.onEndGetOfficersDelegate, this.onGetOfficersCompletedDelegate, userState);
+            base.InvokeAsync(this.onBeginGetBuildingsDelegate, null, this.onEndGetBuildingsDelegate, this.onGetBuildingsCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1709,54 +1755,8 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginGetBuildingsWithSimularNames(string name, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetBuildingsWithSimularNames(name, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        PatrolControl.UI.PatrolControlServiceReference.Building[] PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.EndGetBuildingsWithSimularNames(System.IAsyncResult result) {
-            return base.Channel.EndGetBuildingsWithSimularNames(result);
-        }
-        
-        private System.IAsyncResult OnBeginGetBuildingsWithSimularNames(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            string name = ((string)(inValues[0]));
-            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginGetBuildingsWithSimularNames(name, callback, asyncState);
-        }
-        
-        private object[] OnEndGetBuildingsWithSimularNames(System.IAsyncResult result) {
-            PatrolControl.UI.PatrolControlServiceReference.Building[] retVal = ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).EndGetBuildingsWithSimularNames(result);
-            return new object[] {
-                    retVal};
-        }
-        
-        private void OnGetBuildingsWithSimularNamesCompleted(object state) {
-            if ((this.GetBuildingsWithSimularNamesCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.GetBuildingsWithSimularNamesCompleted(this, new GetBuildingsWithSimularNamesCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void GetBuildingsWithSimularNamesAsync(string name) {
-            this.GetBuildingsWithSimularNamesAsync(name, null);
-        }
-        
-        public void GetBuildingsWithSimularNamesAsync(string name, object userState) {
-            if ((this.onBeginGetBuildingsWithSimularNamesDelegate == null)) {
-                this.onBeginGetBuildingsWithSimularNamesDelegate = new BeginOperationDelegate(this.OnBeginGetBuildingsWithSimularNames);
-            }
-            if ((this.onEndGetBuildingsWithSimularNamesDelegate == null)) {
-                this.onEndGetBuildingsWithSimularNamesDelegate = new EndOperationDelegate(this.OnEndGetBuildingsWithSimularNames);
-            }
-            if ((this.onGetBuildingsWithSimularNamesCompletedDelegate == null)) {
-                this.onGetBuildingsWithSimularNamesCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBuildingsWithSimularNamesCompleted);
-            }
-            base.InvokeAsync(this.onBeginGetBuildingsWithSimularNamesDelegate, new object[] {
-                        name}, this.onEndGetBuildingsWithSimularNamesDelegate, this.onGetBuildingsWithSimularNamesCompletedDelegate, userState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginAddUsers(PatrolControl.UI.PatrolControlServiceReference.User[] users, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginAddUsers(users, callback, asyncState);
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginAddUsers(PatrolControl.UI.PatrolControlServiceReference.User[] entities, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddUsers(entities, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1765,8 +1765,8 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         }
         
         private System.IAsyncResult OnBeginAddUsers(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            PatrolControl.UI.PatrolControlServiceReference.User[] users = ((PatrolControl.UI.PatrolControlServiceReference.User[])(inValues[0]));
-            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginAddUsers(users, callback, asyncState);
+            PatrolControl.UI.PatrolControlServiceReference.User[] entities = ((PatrolControl.UI.PatrolControlServiceReference.User[])(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginAddUsers(entities, callback, asyncState);
         }
         
         private object[] OnEndAddUsers(System.IAsyncResult result) {
@@ -1781,11 +1781,11 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
             }
         }
         
-        public void AddUsersAsync(PatrolControl.UI.PatrolControlServiceReference.User[] users) {
-            this.AddUsersAsync(users, null);
+        public void AddUsersAsync(PatrolControl.UI.PatrolControlServiceReference.User[] entities) {
+            this.AddUsersAsync(entities, null);
         }
         
-        public void AddUsersAsync(PatrolControl.UI.PatrolControlServiceReference.User[] users, object userState) {
+        public void AddUsersAsync(PatrolControl.UI.PatrolControlServiceReference.User[] entities, object userState) {
             if ((this.onBeginAddUsersDelegate == null)) {
                 this.onBeginAddUsersDelegate = new BeginOperationDelegate(this.OnBeginAddUsers);
             }
@@ -1796,57 +1796,12 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 this.onAddUsersCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddUsersCompleted);
             }
             base.InvokeAsync(this.onBeginAddUsersDelegate, new object[] {
-                        users}, this.onEndAddUsersDelegate, this.onAddUsersCompletedDelegate, userState);
+                        entities}, this.onEndAddUsersDelegate, this.onAddUsersCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginAddBuildings(PatrolControl.UI.PatrolControlServiceReference.Building[] buildings, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginAddBuildings(buildings, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        void PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.EndAddBuildings(System.IAsyncResult result) {
-            base.Channel.EndAddBuildings(result);
-        }
-        
-        private System.IAsyncResult OnBeginAddBuildings(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            PatrolControl.UI.PatrolControlServiceReference.Building[] buildings = ((PatrolControl.UI.PatrolControlServiceReference.Building[])(inValues[0]));
-            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginAddBuildings(buildings, callback, asyncState);
-        }
-        
-        private object[] OnEndAddBuildings(System.IAsyncResult result) {
-            ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).EndAddBuildings(result);
-            return null;
-        }
-        
-        private void OnAddBuildingsCompleted(object state) {
-            if ((this.AddBuildingsCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.AddBuildingsCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void AddBuildingsAsync(PatrolControl.UI.PatrolControlServiceReference.Building[] buildings) {
-            this.AddBuildingsAsync(buildings, null);
-        }
-        
-        public void AddBuildingsAsync(PatrolControl.UI.PatrolControlServiceReference.Building[] buildings, object userState) {
-            if ((this.onBeginAddBuildingsDelegate == null)) {
-                this.onBeginAddBuildingsDelegate = new BeginOperationDelegate(this.OnBeginAddBuildings);
-            }
-            if ((this.onEndAddBuildingsDelegate == null)) {
-                this.onEndAddBuildingsDelegate = new EndOperationDelegate(this.OnEndAddBuildings);
-            }
-            if ((this.onAddBuildingsCompletedDelegate == null)) {
-                this.onAddBuildingsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddBuildingsCompleted);
-            }
-            base.InvokeAsync(this.onBeginAddBuildingsDelegate, new object[] {
-                        buildings}, this.onEndAddBuildingsDelegate, this.onAddBuildingsCompletedDelegate, userState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginAddOfficers(PatrolControl.UI.PatrolControlServiceReference.Officer[] users, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginAddOfficers(users, callback, asyncState);
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginAddOfficers(PatrolControl.UI.PatrolControlServiceReference.Officer[] entities, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddOfficers(entities, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1855,8 +1810,8 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         }
         
         private System.IAsyncResult OnBeginAddOfficers(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            PatrolControl.UI.PatrolControlServiceReference.Officer[] users = ((PatrolControl.UI.PatrolControlServiceReference.Officer[])(inValues[0]));
-            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginAddOfficers(users, callback, asyncState);
+            PatrolControl.UI.PatrolControlServiceReference.Officer[] entities = ((PatrolControl.UI.PatrolControlServiceReference.Officer[])(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginAddOfficers(entities, callback, asyncState);
         }
         
         private object[] OnEndAddOfficers(System.IAsyncResult result) {
@@ -1871,11 +1826,11 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
             }
         }
         
-        public void AddOfficersAsync(PatrolControl.UI.PatrolControlServiceReference.Officer[] users) {
-            this.AddOfficersAsync(users, null);
+        public void AddOfficersAsync(PatrolControl.UI.PatrolControlServiceReference.Officer[] entities) {
+            this.AddOfficersAsync(entities, null);
         }
         
-        public void AddOfficersAsync(PatrolControl.UI.PatrolControlServiceReference.Officer[] users, object userState) {
+        public void AddOfficersAsync(PatrolControl.UI.PatrolControlServiceReference.Officer[] entities, object userState) {
             if ((this.onBeginAddOfficersDelegate == null)) {
                 this.onBeginAddOfficersDelegate = new BeginOperationDelegate(this.OnBeginAddOfficers);
             }
@@ -1886,12 +1841,12 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 this.onAddOfficersCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddOfficersCompleted);
             }
             base.InvokeAsync(this.onBeginAddOfficersDelegate, new object[] {
-                        users}, this.onEndAddOfficersDelegate, this.onAddOfficersCompletedDelegate, userState);
+                        entities}, this.onEndAddOfficersDelegate, this.onAddOfficersCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginAddStreets(PatrolControl.UI.PatrolControlServiceReference.Street[] streets, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginAddStreets(streets, callback, asyncState);
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginAddStreets(PatrolControl.UI.PatrolControlServiceReference.Street[] entities, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddStreets(entities, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1900,8 +1855,8 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         }
         
         private System.IAsyncResult OnBeginAddStreets(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            PatrolControl.UI.PatrolControlServiceReference.Street[] streets = ((PatrolControl.UI.PatrolControlServiceReference.Street[])(inValues[0]));
-            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginAddStreets(streets, callback, asyncState);
+            PatrolControl.UI.PatrolControlServiceReference.Street[] entities = ((PatrolControl.UI.PatrolControlServiceReference.Street[])(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginAddStreets(entities, callback, asyncState);
         }
         
         private object[] OnEndAddStreets(System.IAsyncResult result) {
@@ -1916,11 +1871,11 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
             }
         }
         
-        public void AddStreetsAsync(PatrolControl.UI.PatrolControlServiceReference.Street[] streets) {
-            this.AddStreetsAsync(streets, null);
+        public void AddStreetsAsync(PatrolControl.UI.PatrolControlServiceReference.Street[] entities) {
+            this.AddStreetsAsync(entities, null);
         }
         
-        public void AddStreetsAsync(PatrolControl.UI.PatrolControlServiceReference.Street[] streets, object userState) {
+        public void AddStreetsAsync(PatrolControl.UI.PatrolControlServiceReference.Street[] entities, object userState) {
             if ((this.onBeginAddStreetsDelegate == null)) {
                 this.onBeginAddStreetsDelegate = new BeginOperationDelegate(this.OnBeginAddStreets);
             }
@@ -1931,12 +1886,57 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 this.onAddStreetsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddStreetsCompleted);
             }
             base.InvokeAsync(this.onBeginAddStreetsDelegate, new object[] {
-                        streets}, this.onEndAddStreetsDelegate, this.onAddStreetsCompletedDelegate, userState);
+                        entities}, this.onEndAddStreetsDelegate, this.onAddStreetsCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginAddPatrolDistricts(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] districts, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginAddPatrolDistricts(districts, callback, asyncState);
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginAddBuildings(PatrolControl.UI.PatrolControlServiceReference.Building[] entities, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddBuildings(entities, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        void PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.EndAddBuildings(System.IAsyncResult result) {
+            base.Channel.EndAddBuildings(result);
+        }
+        
+        private System.IAsyncResult OnBeginAddBuildings(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            PatrolControl.UI.PatrolControlServiceReference.Building[] entities = ((PatrolControl.UI.PatrolControlServiceReference.Building[])(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginAddBuildings(entities, callback, asyncState);
+        }
+        
+        private object[] OnEndAddBuildings(System.IAsyncResult result) {
+            ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).EndAddBuildings(result);
+            return null;
+        }
+        
+        private void OnAddBuildingsCompleted(object state) {
+            if ((this.AddBuildingsCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.AddBuildingsCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void AddBuildingsAsync(PatrolControl.UI.PatrolControlServiceReference.Building[] entities) {
+            this.AddBuildingsAsync(entities, null);
+        }
+        
+        public void AddBuildingsAsync(PatrolControl.UI.PatrolControlServiceReference.Building[] entities, object userState) {
+            if ((this.onBeginAddBuildingsDelegate == null)) {
+                this.onBeginAddBuildingsDelegate = new BeginOperationDelegate(this.OnBeginAddBuildings);
+            }
+            if ((this.onEndAddBuildingsDelegate == null)) {
+                this.onEndAddBuildingsDelegate = new EndOperationDelegate(this.OnEndAddBuildings);
+            }
+            if ((this.onAddBuildingsCompletedDelegate == null)) {
+                this.onAddBuildingsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddBuildingsCompleted);
+            }
+            base.InvokeAsync(this.onBeginAddBuildingsDelegate, new object[] {
+                        entities}, this.onEndAddBuildingsDelegate, this.onAddBuildingsCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginAddPatrolDistricts(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] entities, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddPatrolDistricts(entities, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1945,8 +1945,8 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         }
         
         private System.IAsyncResult OnBeginAddPatrolDistricts(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] districts = ((PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[])(inValues[0]));
-            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginAddPatrolDistricts(districts, callback, asyncState);
+            PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] entities = ((PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[])(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginAddPatrolDistricts(entities, callback, asyncState);
         }
         
         private object[] OnEndAddPatrolDistricts(System.IAsyncResult result) {
@@ -1961,11 +1961,11 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
             }
         }
         
-        public void AddPatrolDistrictsAsync(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] districts) {
-            this.AddPatrolDistrictsAsync(districts, null);
+        public void AddPatrolDistrictsAsync(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] entities) {
+            this.AddPatrolDistrictsAsync(entities, null);
         }
         
-        public void AddPatrolDistrictsAsync(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] districts, object userState) {
+        public void AddPatrolDistrictsAsync(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] entities, object userState) {
             if ((this.onBeginAddPatrolDistrictsDelegate == null)) {
                 this.onBeginAddPatrolDistrictsDelegate = new BeginOperationDelegate(this.OnBeginAddPatrolDistricts);
             }
@@ -1976,12 +1976,12 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 this.onAddPatrolDistrictsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddPatrolDistrictsCompleted);
             }
             base.InvokeAsync(this.onBeginAddPatrolDistrictsDelegate, new object[] {
-                        districts}, this.onEndAddPatrolDistrictsDelegate, this.onAddPatrolDistrictsCompletedDelegate, userState);
+                        entities}, this.onEndAddPatrolDistrictsDelegate, this.onAddPatrolDistrictsCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginAddTownDistricts(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] districts, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginAddTownDistricts(districts, callback, asyncState);
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginAddTownDistricts(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] entities, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddTownDistricts(entities, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1990,8 +1990,8 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         }
         
         private System.IAsyncResult OnBeginAddTownDistricts(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] districts = ((PatrolControl.UI.PatrolControlServiceReference.TownDistrict[])(inValues[0]));
-            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginAddTownDistricts(districts, callback, asyncState);
+            PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] entities = ((PatrolControl.UI.PatrolControlServiceReference.TownDistrict[])(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginAddTownDistricts(entities, callback, asyncState);
         }
         
         private object[] OnEndAddTownDistricts(System.IAsyncResult result) {
@@ -2006,11 +2006,11 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
             }
         }
         
-        public void AddTownDistrictsAsync(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] districts) {
-            this.AddTownDistrictsAsync(districts, null);
+        public void AddTownDistrictsAsync(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] entities) {
+            this.AddTownDistrictsAsync(entities, null);
         }
         
-        public void AddTownDistrictsAsync(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] districts, object userState) {
+        public void AddTownDistrictsAsync(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] entities, object userState) {
             if ((this.onBeginAddTownDistrictsDelegate == null)) {
                 this.onBeginAddTownDistrictsDelegate = new BeginOperationDelegate(this.OnBeginAddTownDistricts);
             }
@@ -2021,12 +2021,12 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 this.onAddTownDistrictsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddTownDistrictsCompleted);
             }
             base.InvokeAsync(this.onBeginAddTownDistrictsDelegate, new object[] {
-                        districts}, this.onEndAddTownDistrictsDelegate, this.onAddTownDistrictsCompletedDelegate, userState);
+                        entities}, this.onEndAddTownDistrictsDelegate, this.onAddTownDistrictsCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginUpdateUsers(PatrolControl.UI.PatrolControlServiceReference.User[] users, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginUpdateUsers(users, callback, asyncState);
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginUpdateUsers(PatrolControl.UI.PatrolControlServiceReference.User[] entities, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateUsers(entities, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2035,8 +2035,8 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         }
         
         private System.IAsyncResult OnBeginUpdateUsers(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            PatrolControl.UI.PatrolControlServiceReference.User[] users = ((PatrolControl.UI.PatrolControlServiceReference.User[])(inValues[0]));
-            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginUpdateUsers(users, callback, asyncState);
+            PatrolControl.UI.PatrolControlServiceReference.User[] entities = ((PatrolControl.UI.PatrolControlServiceReference.User[])(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginUpdateUsers(entities, callback, asyncState);
         }
         
         private object[] OnEndUpdateUsers(System.IAsyncResult result) {
@@ -2051,11 +2051,11 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
             }
         }
         
-        public void UpdateUsersAsync(PatrolControl.UI.PatrolControlServiceReference.User[] users) {
-            this.UpdateUsersAsync(users, null);
+        public void UpdateUsersAsync(PatrolControl.UI.PatrolControlServiceReference.User[] entities) {
+            this.UpdateUsersAsync(entities, null);
         }
         
-        public void UpdateUsersAsync(PatrolControl.UI.PatrolControlServiceReference.User[] users, object userState) {
+        public void UpdateUsersAsync(PatrolControl.UI.PatrolControlServiceReference.User[] entities, object userState) {
             if ((this.onBeginUpdateUsersDelegate == null)) {
                 this.onBeginUpdateUsersDelegate = new BeginOperationDelegate(this.OnBeginUpdateUsers);
             }
@@ -2066,12 +2066,12 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 this.onUpdateUsersCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateUsersCompleted);
             }
             base.InvokeAsync(this.onBeginUpdateUsersDelegate, new object[] {
-                        users}, this.onEndUpdateUsersDelegate, this.onUpdateUsersCompletedDelegate, userState);
+                        entities}, this.onEndUpdateUsersDelegate, this.onUpdateUsersCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginUpdateOfficers(PatrolControl.UI.PatrolControlServiceReference.Officer[] users, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginUpdateOfficers(users, callback, asyncState);
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginUpdateOfficers(PatrolControl.UI.PatrolControlServiceReference.Officer[] entities, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateOfficers(entities, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2080,8 +2080,8 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         }
         
         private System.IAsyncResult OnBeginUpdateOfficers(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            PatrolControl.UI.PatrolControlServiceReference.Officer[] users = ((PatrolControl.UI.PatrolControlServiceReference.Officer[])(inValues[0]));
-            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginUpdateOfficers(users, callback, asyncState);
+            PatrolControl.UI.PatrolControlServiceReference.Officer[] entities = ((PatrolControl.UI.PatrolControlServiceReference.Officer[])(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginUpdateOfficers(entities, callback, asyncState);
         }
         
         private object[] OnEndUpdateOfficers(System.IAsyncResult result) {
@@ -2096,11 +2096,11 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
             }
         }
         
-        public void UpdateOfficersAsync(PatrolControl.UI.PatrolControlServiceReference.Officer[] users) {
-            this.UpdateOfficersAsync(users, null);
+        public void UpdateOfficersAsync(PatrolControl.UI.PatrolControlServiceReference.Officer[] entities) {
+            this.UpdateOfficersAsync(entities, null);
         }
         
-        public void UpdateOfficersAsync(PatrolControl.UI.PatrolControlServiceReference.Officer[] users, object userState) {
+        public void UpdateOfficersAsync(PatrolControl.UI.PatrolControlServiceReference.Officer[] entities, object userState) {
             if ((this.onBeginUpdateOfficersDelegate == null)) {
                 this.onBeginUpdateOfficersDelegate = new BeginOperationDelegate(this.OnBeginUpdateOfficers);
             }
@@ -2111,57 +2111,12 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 this.onUpdateOfficersCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateOfficersCompleted);
             }
             base.InvokeAsync(this.onBeginUpdateOfficersDelegate, new object[] {
-                        users}, this.onEndUpdateOfficersDelegate, this.onUpdateOfficersCompletedDelegate, userState);
+                        entities}, this.onEndUpdateOfficersDelegate, this.onUpdateOfficersCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginUpdateBuildings(PatrolControl.UI.PatrolControlServiceReference.Building[] buildings, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginUpdateBuildings(buildings, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        void PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.EndUpdateBuildings(System.IAsyncResult result) {
-            base.Channel.EndUpdateBuildings(result);
-        }
-        
-        private System.IAsyncResult OnBeginUpdateBuildings(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            PatrolControl.UI.PatrolControlServiceReference.Building[] buildings = ((PatrolControl.UI.PatrolControlServiceReference.Building[])(inValues[0]));
-            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginUpdateBuildings(buildings, callback, asyncState);
-        }
-        
-        private object[] OnEndUpdateBuildings(System.IAsyncResult result) {
-            ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).EndUpdateBuildings(result);
-            return null;
-        }
-        
-        private void OnUpdateBuildingsCompleted(object state) {
-            if ((this.UpdateBuildingsCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.UpdateBuildingsCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void UpdateBuildingsAsync(PatrolControl.UI.PatrolControlServiceReference.Building[] buildings) {
-            this.UpdateBuildingsAsync(buildings, null);
-        }
-        
-        public void UpdateBuildingsAsync(PatrolControl.UI.PatrolControlServiceReference.Building[] buildings, object userState) {
-            if ((this.onBeginUpdateBuildingsDelegate == null)) {
-                this.onBeginUpdateBuildingsDelegate = new BeginOperationDelegate(this.OnBeginUpdateBuildings);
-            }
-            if ((this.onEndUpdateBuildingsDelegate == null)) {
-                this.onEndUpdateBuildingsDelegate = new EndOperationDelegate(this.OnEndUpdateBuildings);
-            }
-            if ((this.onUpdateBuildingsCompletedDelegate == null)) {
-                this.onUpdateBuildingsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateBuildingsCompleted);
-            }
-            base.InvokeAsync(this.onBeginUpdateBuildingsDelegate, new object[] {
-                        buildings}, this.onEndUpdateBuildingsDelegate, this.onUpdateBuildingsCompletedDelegate, userState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginUpdateStreets(PatrolControl.UI.PatrolControlServiceReference.Street[] streets, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginUpdateStreets(streets, callback, asyncState);
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginUpdateStreets(PatrolControl.UI.PatrolControlServiceReference.Street[] entities, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateStreets(entities, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2170,8 +2125,8 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         }
         
         private System.IAsyncResult OnBeginUpdateStreets(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            PatrolControl.UI.PatrolControlServiceReference.Street[] streets = ((PatrolControl.UI.PatrolControlServiceReference.Street[])(inValues[0]));
-            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginUpdateStreets(streets, callback, asyncState);
+            PatrolControl.UI.PatrolControlServiceReference.Street[] entities = ((PatrolControl.UI.PatrolControlServiceReference.Street[])(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginUpdateStreets(entities, callback, asyncState);
         }
         
         private object[] OnEndUpdateStreets(System.IAsyncResult result) {
@@ -2186,11 +2141,11 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
             }
         }
         
-        public void UpdateStreetsAsync(PatrolControl.UI.PatrolControlServiceReference.Street[] streets) {
-            this.UpdateStreetsAsync(streets, null);
+        public void UpdateStreetsAsync(PatrolControl.UI.PatrolControlServiceReference.Street[] entities) {
+            this.UpdateStreetsAsync(entities, null);
         }
         
-        public void UpdateStreetsAsync(PatrolControl.UI.PatrolControlServiceReference.Street[] streets, object userState) {
+        public void UpdateStreetsAsync(PatrolControl.UI.PatrolControlServiceReference.Street[] entities, object userState) {
             if ((this.onBeginUpdateStreetsDelegate == null)) {
                 this.onBeginUpdateStreetsDelegate = new BeginOperationDelegate(this.OnBeginUpdateStreets);
             }
@@ -2201,12 +2156,57 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 this.onUpdateStreetsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateStreetsCompleted);
             }
             base.InvokeAsync(this.onBeginUpdateStreetsDelegate, new object[] {
-                        streets}, this.onEndUpdateStreetsDelegate, this.onUpdateStreetsCompletedDelegate, userState);
+                        entities}, this.onEndUpdateStreetsDelegate, this.onUpdateStreetsCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginUpdatePatrolDistricts(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] districts, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginUpdatePatrolDistricts(districts, callback, asyncState);
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginUpdateBuildings(PatrolControl.UI.PatrolControlServiceReference.Building[] entities, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateBuildings(entities, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        void PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.EndUpdateBuildings(System.IAsyncResult result) {
+            base.Channel.EndUpdateBuildings(result);
+        }
+        
+        private System.IAsyncResult OnBeginUpdateBuildings(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            PatrolControl.UI.PatrolControlServiceReference.Building[] entities = ((PatrolControl.UI.PatrolControlServiceReference.Building[])(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginUpdateBuildings(entities, callback, asyncState);
+        }
+        
+        private object[] OnEndUpdateBuildings(System.IAsyncResult result) {
+            ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).EndUpdateBuildings(result);
+            return null;
+        }
+        
+        private void OnUpdateBuildingsCompleted(object state) {
+            if ((this.UpdateBuildingsCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UpdateBuildingsCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UpdateBuildingsAsync(PatrolControl.UI.PatrolControlServiceReference.Building[] entities) {
+            this.UpdateBuildingsAsync(entities, null);
+        }
+        
+        public void UpdateBuildingsAsync(PatrolControl.UI.PatrolControlServiceReference.Building[] entities, object userState) {
+            if ((this.onBeginUpdateBuildingsDelegate == null)) {
+                this.onBeginUpdateBuildingsDelegate = new BeginOperationDelegate(this.OnBeginUpdateBuildings);
+            }
+            if ((this.onEndUpdateBuildingsDelegate == null)) {
+                this.onEndUpdateBuildingsDelegate = new EndOperationDelegate(this.OnEndUpdateBuildings);
+            }
+            if ((this.onUpdateBuildingsCompletedDelegate == null)) {
+                this.onUpdateBuildingsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateBuildingsCompleted);
+            }
+            base.InvokeAsync(this.onBeginUpdateBuildingsDelegate, new object[] {
+                        entities}, this.onEndUpdateBuildingsDelegate, this.onUpdateBuildingsCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginUpdatePatrolDistricts(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] entities, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdatePatrolDistricts(entities, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2215,8 +2215,8 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         }
         
         private System.IAsyncResult OnBeginUpdatePatrolDistricts(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] districts = ((PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[])(inValues[0]));
-            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginUpdatePatrolDistricts(districts, callback, asyncState);
+            PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] entities = ((PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[])(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginUpdatePatrolDistricts(entities, callback, asyncState);
         }
         
         private object[] OnEndUpdatePatrolDistricts(System.IAsyncResult result) {
@@ -2231,11 +2231,11 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
             }
         }
         
-        public void UpdatePatrolDistrictsAsync(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] districts) {
-            this.UpdatePatrolDistrictsAsync(districts, null);
+        public void UpdatePatrolDistrictsAsync(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] entities) {
+            this.UpdatePatrolDistrictsAsync(entities, null);
         }
         
-        public void UpdatePatrolDistrictsAsync(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] districts, object userState) {
+        public void UpdatePatrolDistrictsAsync(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] entities, object userState) {
             if ((this.onBeginUpdatePatrolDistrictsDelegate == null)) {
                 this.onBeginUpdatePatrolDistrictsDelegate = new BeginOperationDelegate(this.OnBeginUpdatePatrolDistricts);
             }
@@ -2246,12 +2246,12 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 this.onUpdatePatrolDistrictsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdatePatrolDistrictsCompleted);
             }
             base.InvokeAsync(this.onBeginUpdatePatrolDistrictsDelegate, new object[] {
-                        districts}, this.onEndUpdatePatrolDistrictsDelegate, this.onUpdatePatrolDistrictsCompletedDelegate, userState);
+                        entities}, this.onEndUpdatePatrolDistrictsDelegate, this.onUpdatePatrolDistrictsCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginUpdateTownDistricts(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] districts, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginUpdateTownDistricts(districts, callback, asyncState);
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginUpdateTownDistricts(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] entities, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateTownDistricts(entities, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2260,8 +2260,8 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         }
         
         private System.IAsyncResult OnBeginUpdateTownDistricts(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] districts = ((PatrolControl.UI.PatrolControlServiceReference.TownDistrict[])(inValues[0]));
-            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginUpdateTownDistricts(districts, callback, asyncState);
+            PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] entities = ((PatrolControl.UI.PatrolControlServiceReference.TownDistrict[])(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginUpdateTownDistricts(entities, callback, asyncState);
         }
         
         private object[] OnEndUpdateTownDistricts(System.IAsyncResult result) {
@@ -2276,11 +2276,11 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
             }
         }
         
-        public void UpdateTownDistrictsAsync(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] districts) {
-            this.UpdateTownDistrictsAsync(districts, null);
+        public void UpdateTownDistrictsAsync(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] entities) {
+            this.UpdateTownDistrictsAsync(entities, null);
         }
         
-        public void UpdateTownDistrictsAsync(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] districts, object userState) {
+        public void UpdateTownDistrictsAsync(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] entities, object userState) {
             if ((this.onBeginUpdateTownDistrictsDelegate == null)) {
                 this.onBeginUpdateTownDistrictsDelegate = new BeginOperationDelegate(this.OnBeginUpdateTownDistricts);
             }
@@ -2291,12 +2291,12 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 this.onUpdateTownDistrictsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateTownDistrictsCompleted);
             }
             base.InvokeAsync(this.onBeginUpdateTownDistrictsDelegate, new object[] {
-                        districts}, this.onEndUpdateTownDistrictsDelegate, this.onUpdateTownDistrictsCompletedDelegate, userState);
+                        entities}, this.onEndUpdateTownDistrictsDelegate, this.onUpdateTownDistrictsCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginDeleteUsers(PatrolControl.UI.PatrolControlServiceReference.User[] users, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginDeleteUsers(users, callback, asyncState);
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginDeleteUsers(PatrolControl.UI.PatrolControlServiceReference.User[] entities, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginDeleteUsers(entities, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2305,8 +2305,8 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         }
         
         private System.IAsyncResult OnBeginDeleteUsers(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            PatrolControl.UI.PatrolControlServiceReference.User[] users = ((PatrolControl.UI.PatrolControlServiceReference.User[])(inValues[0]));
-            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginDeleteUsers(users, callback, asyncState);
+            PatrolControl.UI.PatrolControlServiceReference.User[] entities = ((PatrolControl.UI.PatrolControlServiceReference.User[])(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginDeleteUsers(entities, callback, asyncState);
         }
         
         private object[] OnEndDeleteUsers(System.IAsyncResult result) {
@@ -2321,11 +2321,11 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
             }
         }
         
-        public void DeleteUsersAsync(PatrolControl.UI.PatrolControlServiceReference.User[] users) {
-            this.DeleteUsersAsync(users, null);
+        public void DeleteUsersAsync(PatrolControl.UI.PatrolControlServiceReference.User[] entities) {
+            this.DeleteUsersAsync(entities, null);
         }
         
-        public void DeleteUsersAsync(PatrolControl.UI.PatrolControlServiceReference.User[] users, object userState) {
+        public void DeleteUsersAsync(PatrolControl.UI.PatrolControlServiceReference.User[] entities, object userState) {
             if ((this.onBeginDeleteUsersDelegate == null)) {
                 this.onBeginDeleteUsersDelegate = new BeginOperationDelegate(this.OnBeginDeleteUsers);
             }
@@ -2336,102 +2336,12 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 this.onDeleteUsersCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnDeleteUsersCompleted);
             }
             base.InvokeAsync(this.onBeginDeleteUsersDelegate, new object[] {
-                        users}, this.onEndDeleteUsersDelegate, this.onDeleteUsersCompletedDelegate, userState);
+                        entities}, this.onEndDeleteUsersDelegate, this.onDeleteUsersCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginDeleteBuildings(PatrolControl.UI.PatrolControlServiceReference.Building[] buildings, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginDeleteBuildings(buildings, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        void PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.EndDeleteBuildings(System.IAsyncResult result) {
-            base.Channel.EndDeleteBuildings(result);
-        }
-        
-        private System.IAsyncResult OnBeginDeleteBuildings(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            PatrolControl.UI.PatrolControlServiceReference.Building[] buildings = ((PatrolControl.UI.PatrolControlServiceReference.Building[])(inValues[0]));
-            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginDeleteBuildings(buildings, callback, asyncState);
-        }
-        
-        private object[] OnEndDeleteBuildings(System.IAsyncResult result) {
-            ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).EndDeleteBuildings(result);
-            return null;
-        }
-        
-        private void OnDeleteBuildingsCompleted(object state) {
-            if ((this.DeleteBuildingsCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.DeleteBuildingsCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void DeleteBuildingsAsync(PatrolControl.UI.PatrolControlServiceReference.Building[] buildings) {
-            this.DeleteBuildingsAsync(buildings, null);
-        }
-        
-        public void DeleteBuildingsAsync(PatrolControl.UI.PatrolControlServiceReference.Building[] buildings, object userState) {
-            if ((this.onBeginDeleteBuildingsDelegate == null)) {
-                this.onBeginDeleteBuildingsDelegate = new BeginOperationDelegate(this.OnBeginDeleteBuildings);
-            }
-            if ((this.onEndDeleteBuildingsDelegate == null)) {
-                this.onEndDeleteBuildingsDelegate = new EndOperationDelegate(this.OnEndDeleteBuildings);
-            }
-            if ((this.onDeleteBuildingsCompletedDelegate == null)) {
-                this.onDeleteBuildingsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnDeleteBuildingsCompleted);
-            }
-            base.InvokeAsync(this.onBeginDeleteBuildingsDelegate, new object[] {
-                        buildings}, this.onEndDeleteBuildingsDelegate, this.onDeleteBuildingsCompletedDelegate, userState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginDeleteStreets(PatrolControl.UI.PatrolControlServiceReference.Street[] streets, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginDeleteStreets(streets, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        void PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.EndDeleteStreets(System.IAsyncResult result) {
-            base.Channel.EndDeleteStreets(result);
-        }
-        
-        private System.IAsyncResult OnBeginDeleteStreets(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            PatrolControl.UI.PatrolControlServiceReference.Street[] streets = ((PatrolControl.UI.PatrolControlServiceReference.Street[])(inValues[0]));
-            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginDeleteStreets(streets, callback, asyncState);
-        }
-        
-        private object[] OnEndDeleteStreets(System.IAsyncResult result) {
-            ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).EndDeleteStreets(result);
-            return null;
-        }
-        
-        private void OnDeleteStreetsCompleted(object state) {
-            if ((this.DeleteStreetsCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.DeleteStreetsCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void DeleteStreetsAsync(PatrolControl.UI.PatrolControlServiceReference.Street[] streets) {
-            this.DeleteStreetsAsync(streets, null);
-        }
-        
-        public void DeleteStreetsAsync(PatrolControl.UI.PatrolControlServiceReference.Street[] streets, object userState) {
-            if ((this.onBeginDeleteStreetsDelegate == null)) {
-                this.onBeginDeleteStreetsDelegate = new BeginOperationDelegate(this.OnBeginDeleteStreets);
-            }
-            if ((this.onEndDeleteStreetsDelegate == null)) {
-                this.onEndDeleteStreetsDelegate = new EndOperationDelegate(this.OnEndDeleteStreets);
-            }
-            if ((this.onDeleteStreetsCompletedDelegate == null)) {
-                this.onDeleteStreetsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnDeleteStreetsCompleted);
-            }
-            base.InvokeAsync(this.onBeginDeleteStreetsDelegate, new object[] {
-                        streets}, this.onEndDeleteStreetsDelegate, this.onDeleteStreetsCompletedDelegate, userState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginDeleteOfficers(PatrolControl.UI.PatrolControlServiceReference.Officer[] officers, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginDeleteOfficers(officers, callback, asyncState);
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginDeleteOfficers(PatrolControl.UI.PatrolControlServiceReference.Officer[] entities, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginDeleteOfficers(entities, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2440,8 +2350,8 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         }
         
         private System.IAsyncResult OnBeginDeleteOfficers(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            PatrolControl.UI.PatrolControlServiceReference.Officer[] officers = ((PatrolControl.UI.PatrolControlServiceReference.Officer[])(inValues[0]));
-            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginDeleteOfficers(officers, callback, asyncState);
+            PatrolControl.UI.PatrolControlServiceReference.Officer[] entities = ((PatrolControl.UI.PatrolControlServiceReference.Officer[])(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginDeleteOfficers(entities, callback, asyncState);
         }
         
         private object[] OnEndDeleteOfficers(System.IAsyncResult result) {
@@ -2456,11 +2366,11 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
             }
         }
         
-        public void DeleteOfficersAsync(PatrolControl.UI.PatrolControlServiceReference.Officer[] officers) {
-            this.DeleteOfficersAsync(officers, null);
+        public void DeleteOfficersAsync(PatrolControl.UI.PatrolControlServiceReference.Officer[] entities) {
+            this.DeleteOfficersAsync(entities, null);
         }
         
-        public void DeleteOfficersAsync(PatrolControl.UI.PatrolControlServiceReference.Officer[] officers, object userState) {
+        public void DeleteOfficersAsync(PatrolControl.UI.PatrolControlServiceReference.Officer[] entities, object userState) {
             if ((this.onBeginDeleteOfficersDelegate == null)) {
                 this.onBeginDeleteOfficersDelegate = new BeginOperationDelegate(this.OnBeginDeleteOfficers);
             }
@@ -2471,12 +2381,102 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 this.onDeleteOfficersCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnDeleteOfficersCompleted);
             }
             base.InvokeAsync(this.onBeginDeleteOfficersDelegate, new object[] {
-                        officers}, this.onEndDeleteOfficersDelegate, this.onDeleteOfficersCompletedDelegate, userState);
+                        entities}, this.onEndDeleteOfficersDelegate, this.onDeleteOfficersCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginDeletePatrolDistricts(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] districts, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginDeletePatrolDistricts(districts, callback, asyncState);
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginDeleteStreets(PatrolControl.UI.PatrolControlServiceReference.Street[] entities, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginDeleteStreets(entities, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        void PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.EndDeleteStreets(System.IAsyncResult result) {
+            base.Channel.EndDeleteStreets(result);
+        }
+        
+        private System.IAsyncResult OnBeginDeleteStreets(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            PatrolControl.UI.PatrolControlServiceReference.Street[] entities = ((PatrolControl.UI.PatrolControlServiceReference.Street[])(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginDeleteStreets(entities, callback, asyncState);
+        }
+        
+        private object[] OnEndDeleteStreets(System.IAsyncResult result) {
+            ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).EndDeleteStreets(result);
+            return null;
+        }
+        
+        private void OnDeleteStreetsCompleted(object state) {
+            if ((this.DeleteStreetsCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.DeleteStreetsCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void DeleteStreetsAsync(PatrolControl.UI.PatrolControlServiceReference.Street[] entities) {
+            this.DeleteStreetsAsync(entities, null);
+        }
+        
+        public void DeleteStreetsAsync(PatrolControl.UI.PatrolControlServiceReference.Street[] entities, object userState) {
+            if ((this.onBeginDeleteStreetsDelegate == null)) {
+                this.onBeginDeleteStreetsDelegate = new BeginOperationDelegate(this.OnBeginDeleteStreets);
+            }
+            if ((this.onEndDeleteStreetsDelegate == null)) {
+                this.onEndDeleteStreetsDelegate = new EndOperationDelegate(this.OnEndDeleteStreets);
+            }
+            if ((this.onDeleteStreetsCompletedDelegate == null)) {
+                this.onDeleteStreetsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnDeleteStreetsCompleted);
+            }
+            base.InvokeAsync(this.onBeginDeleteStreetsDelegate, new object[] {
+                        entities}, this.onEndDeleteStreetsDelegate, this.onDeleteStreetsCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginDeleteBuildings(PatrolControl.UI.PatrolControlServiceReference.Building[] entities, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginDeleteBuildings(entities, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        void PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.EndDeleteBuildings(System.IAsyncResult result) {
+            base.Channel.EndDeleteBuildings(result);
+        }
+        
+        private System.IAsyncResult OnBeginDeleteBuildings(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            PatrolControl.UI.PatrolControlServiceReference.Building[] entities = ((PatrolControl.UI.PatrolControlServiceReference.Building[])(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginDeleteBuildings(entities, callback, asyncState);
+        }
+        
+        private object[] OnEndDeleteBuildings(System.IAsyncResult result) {
+            ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).EndDeleteBuildings(result);
+            return null;
+        }
+        
+        private void OnDeleteBuildingsCompleted(object state) {
+            if ((this.DeleteBuildingsCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.DeleteBuildingsCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void DeleteBuildingsAsync(PatrolControl.UI.PatrolControlServiceReference.Building[] entities) {
+            this.DeleteBuildingsAsync(entities, null);
+        }
+        
+        public void DeleteBuildingsAsync(PatrolControl.UI.PatrolControlServiceReference.Building[] entities, object userState) {
+            if ((this.onBeginDeleteBuildingsDelegate == null)) {
+                this.onBeginDeleteBuildingsDelegate = new BeginOperationDelegate(this.OnBeginDeleteBuildings);
+            }
+            if ((this.onEndDeleteBuildingsDelegate == null)) {
+                this.onEndDeleteBuildingsDelegate = new EndOperationDelegate(this.OnEndDeleteBuildings);
+            }
+            if ((this.onDeleteBuildingsCompletedDelegate == null)) {
+                this.onDeleteBuildingsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnDeleteBuildingsCompleted);
+            }
+            base.InvokeAsync(this.onBeginDeleteBuildingsDelegate, new object[] {
+                        entities}, this.onEndDeleteBuildingsDelegate, this.onDeleteBuildingsCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginDeletePatrolDistricts(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] entities, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginDeletePatrolDistricts(entities, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2485,8 +2485,8 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         }
         
         private System.IAsyncResult OnBeginDeletePatrolDistricts(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] districts = ((PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[])(inValues[0]));
-            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginDeletePatrolDistricts(districts, callback, asyncState);
+            PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] entities = ((PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[])(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginDeletePatrolDistricts(entities, callback, asyncState);
         }
         
         private object[] OnEndDeletePatrolDistricts(System.IAsyncResult result) {
@@ -2501,11 +2501,11 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
             }
         }
         
-        public void DeletePatrolDistrictsAsync(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] districts) {
-            this.DeletePatrolDistrictsAsync(districts, null);
+        public void DeletePatrolDistrictsAsync(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] entities) {
+            this.DeletePatrolDistrictsAsync(entities, null);
         }
         
-        public void DeletePatrolDistrictsAsync(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] districts, object userState) {
+        public void DeletePatrolDistrictsAsync(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] entities, object userState) {
             if ((this.onBeginDeletePatrolDistrictsDelegate == null)) {
                 this.onBeginDeletePatrolDistrictsDelegate = new BeginOperationDelegate(this.OnBeginDeletePatrolDistricts);
             }
@@ -2516,12 +2516,12 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 this.onDeletePatrolDistrictsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnDeletePatrolDistrictsCompleted);
             }
             base.InvokeAsync(this.onBeginDeletePatrolDistrictsDelegate, new object[] {
-                        districts}, this.onEndDeletePatrolDistrictsDelegate, this.onDeletePatrolDistrictsCompletedDelegate, userState);
+                        entities}, this.onEndDeletePatrolDistrictsDelegate, this.onDeletePatrolDistrictsCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginDeleteTownDistricts(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] districts, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginDeleteTownDistricts(districts, callback, asyncState);
+        System.IAsyncResult PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService.BeginDeleteTownDistricts(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] entities, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginDeleteTownDistricts(entities, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2530,8 +2530,8 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
         }
         
         private System.IAsyncResult OnBeginDeleteTownDistricts(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] districts = ((PatrolControl.UI.PatrolControlServiceReference.TownDistrict[])(inValues[0]));
-            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginDeleteTownDistricts(districts, callback, asyncState);
+            PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] entities = ((PatrolControl.UI.PatrolControlServiceReference.TownDistrict[])(inValues[0]));
+            return ((PatrolControl.UI.PatrolControlServiceReference.IPatrolControlService)(this)).BeginDeleteTownDistricts(entities, callback, asyncState);
         }
         
         private object[] OnEndDeleteTownDistricts(System.IAsyncResult result) {
@@ -2546,11 +2546,11 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
             }
         }
         
-        public void DeleteTownDistrictsAsync(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] districts) {
-            this.DeleteTownDistrictsAsync(districts, null);
+        public void DeleteTownDistrictsAsync(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] entities) {
+            this.DeleteTownDistrictsAsync(entities, null);
         }
         
-        public void DeleteTownDistrictsAsync(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] districts, object userState) {
+        public void DeleteTownDistrictsAsync(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] entities, object userState) {
             if ((this.onBeginDeleteTownDistrictsDelegate == null)) {
                 this.onBeginDeleteTownDistrictsDelegate = new BeginOperationDelegate(this.OnBeginDeleteTownDistricts);
             }
@@ -2561,7 +2561,7 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 this.onDeleteTownDistrictsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnDeleteTownDistrictsCompleted);
             }
             base.InvokeAsync(this.onBeginDeleteTownDistrictsDelegate, new object[] {
-                        districts}, this.onEndDeleteTownDistrictsDelegate, this.onDeleteTownDistrictsCompletedDelegate, userState);
+                        entities}, this.onEndDeleteTownDistrictsDelegate, this.onDeleteTownDistrictsCompletedDelegate, userState);
         }
         
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
@@ -2654,6 +2654,19 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 return _result;
             }
             
+            public System.IAsyncResult BeginGetBuildingsWithSimularNames(string name, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = name;
+                System.IAsyncResult _result = base.BeginInvoke("GetBuildingsWithSimularNames", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public PatrolControl.UI.PatrolControlServiceReference.Building[] EndGetBuildingsWithSimularNames(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                PatrolControl.UI.PatrolControlServiceReference.Building[] _result = ((PatrolControl.UI.PatrolControlServiceReference.Building[])(base.EndInvoke("GetBuildingsWithSimularNames", _args, result)));
+                return _result;
+            }
+            
             public System.IAsyncResult BeginGetUser(int id, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
                 _args[0] = id;
@@ -2667,16 +2680,16 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetBuilding(int id, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetOfficer(int id, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
                 _args[0] = id;
-                System.IAsyncResult _result = base.BeginInvoke("GetBuilding", _args, callback, asyncState);
+                System.IAsyncResult _result = base.BeginInvoke("GetOfficer", _args, callback, asyncState);
                 return _result;
             }
             
-            public PatrolControl.UI.PatrolControlServiceReference.Building EndGetBuilding(System.IAsyncResult result) {
+            public PatrolControl.UI.PatrolControlServiceReference.Officer EndGetOfficer(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                PatrolControl.UI.PatrolControlServiceReference.Building _result = ((PatrolControl.UI.PatrolControlServiceReference.Building)(base.EndInvoke("GetBuilding", _args, result)));
+                PatrolControl.UI.PatrolControlServiceReference.Officer _result = ((PatrolControl.UI.PatrolControlServiceReference.Officer)(base.EndInvoke("GetOfficer", _args, result)));
                 return _result;
             }
             
@@ -2693,16 +2706,16 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetOfficer(int id, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetBuilding(int id, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
                 _args[0] = id;
-                System.IAsyncResult _result = base.BeginInvoke("GetOfficer", _args, callback, asyncState);
+                System.IAsyncResult _result = base.BeginInvoke("GetBuilding", _args, callback, asyncState);
                 return _result;
             }
             
-            public PatrolControl.UI.PatrolControlServiceReference.Officer EndGetOfficer(System.IAsyncResult result) {
+            public PatrolControl.UI.PatrolControlServiceReference.Building EndGetBuilding(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                PatrolControl.UI.PatrolControlServiceReference.Officer _result = ((PatrolControl.UI.PatrolControlServiceReference.Officer)(base.EndInvoke("GetOfficer", _args, result)));
+                PatrolControl.UI.PatrolControlServiceReference.Building _result = ((PatrolControl.UI.PatrolControlServiceReference.Building)(base.EndInvoke("GetBuilding", _args, result)));
                 return _result;
             }
             
@@ -2744,15 +2757,15 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetBuildings(System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetOfficers(System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[0];
-                System.IAsyncResult _result = base.BeginInvoke("GetBuildings", _args, callback, asyncState);
+                System.IAsyncResult _result = base.BeginInvoke("GetOfficers", _args, callback, asyncState);
                 return _result;
             }
             
-            public PatrolControl.UI.PatrolControlServiceReference.Building[] EndGetBuildings(System.IAsyncResult result) {
+            public PatrolControl.UI.PatrolControlServiceReference.Officer[] EndGetOfficers(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                PatrolControl.UI.PatrolControlServiceReference.Building[] _result = ((PatrolControl.UI.PatrolControlServiceReference.Building[])(base.EndInvoke("GetBuildings", _args, result)));
+                PatrolControl.UI.PatrolControlServiceReference.Officer[] _result = ((PatrolControl.UI.PatrolControlServiceReference.Officer[])(base.EndInvoke("GetOfficers", _args, result)));
                 return _result;
             }
             
@@ -2768,15 +2781,15 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetOfficers(System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetBuildings(System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[0];
-                System.IAsyncResult _result = base.BeginInvoke("GetOfficers", _args, callback, asyncState);
+                System.IAsyncResult _result = base.BeginInvoke("GetBuildings", _args, callback, asyncState);
                 return _result;
             }
             
-            public PatrolControl.UI.PatrolControlServiceReference.Officer[] EndGetOfficers(System.IAsyncResult result) {
+            public PatrolControl.UI.PatrolControlServiceReference.Building[] EndGetBuildings(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                PatrolControl.UI.PatrolControlServiceReference.Officer[] _result = ((PatrolControl.UI.PatrolControlServiceReference.Officer[])(base.EndInvoke("GetOfficers", _args, result)));
+                PatrolControl.UI.PatrolControlServiceReference.Building[] _result = ((PatrolControl.UI.PatrolControlServiceReference.Building[])(base.EndInvoke("GetBuildings", _args, result)));
                 return _result;
             }
             
@@ -2804,22 +2817,9 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetBuildingsWithSimularNames(string name, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginAddUsers(PatrolControl.UI.PatrolControlServiceReference.User[] entities, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
-                _args[0] = name;
-                System.IAsyncResult _result = base.BeginInvoke("GetBuildingsWithSimularNames", _args, callback, asyncState);
-                return _result;
-            }
-            
-            public PatrolControl.UI.PatrolControlServiceReference.Building[] EndGetBuildingsWithSimularNames(System.IAsyncResult result) {
-                object[] _args = new object[0];
-                PatrolControl.UI.PatrolControlServiceReference.Building[] _result = ((PatrolControl.UI.PatrolControlServiceReference.Building[])(base.EndInvoke("GetBuildingsWithSimularNames", _args, result)));
-                return _result;
-            }
-            
-            public System.IAsyncResult BeginAddUsers(PatrolControl.UI.PatrolControlServiceReference.User[] users, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[1];
-                _args[0] = users;
+                _args[0] = entities;
                 System.IAsyncResult _result = base.BeginInvoke("AddUsers", _args, callback, asyncState);
                 return _result;
             }
@@ -2829,21 +2829,9 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 base.EndInvoke("AddUsers", _args, result);
             }
             
-            public System.IAsyncResult BeginAddBuildings(PatrolControl.UI.PatrolControlServiceReference.Building[] buildings, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginAddOfficers(PatrolControl.UI.PatrolControlServiceReference.Officer[] entities, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
-                _args[0] = buildings;
-                System.IAsyncResult _result = base.BeginInvoke("AddBuildings", _args, callback, asyncState);
-                return _result;
-            }
-            
-            public void EndAddBuildings(System.IAsyncResult result) {
-                object[] _args = new object[0];
-                base.EndInvoke("AddBuildings", _args, result);
-            }
-            
-            public System.IAsyncResult BeginAddOfficers(PatrolControl.UI.PatrolControlServiceReference.Officer[] users, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[1];
-                _args[0] = users;
+                _args[0] = entities;
                 System.IAsyncResult _result = base.BeginInvoke("AddOfficers", _args, callback, asyncState);
                 return _result;
             }
@@ -2853,9 +2841,9 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 base.EndInvoke("AddOfficers", _args, result);
             }
             
-            public System.IAsyncResult BeginAddStreets(PatrolControl.UI.PatrolControlServiceReference.Street[] streets, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginAddStreets(PatrolControl.UI.PatrolControlServiceReference.Street[] entities, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
-                _args[0] = streets;
+                _args[0] = entities;
                 System.IAsyncResult _result = base.BeginInvoke("AddStreets", _args, callback, asyncState);
                 return _result;
             }
@@ -2865,9 +2853,21 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 base.EndInvoke("AddStreets", _args, result);
             }
             
-            public System.IAsyncResult BeginAddPatrolDistricts(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] districts, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginAddBuildings(PatrolControl.UI.PatrolControlServiceReference.Building[] entities, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
-                _args[0] = districts;
+                _args[0] = entities;
+                System.IAsyncResult _result = base.BeginInvoke("AddBuildings", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public void EndAddBuildings(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                base.EndInvoke("AddBuildings", _args, result);
+            }
+            
+            public System.IAsyncResult BeginAddPatrolDistricts(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] entities, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = entities;
                 System.IAsyncResult _result = base.BeginInvoke("AddPatrolDistricts", _args, callback, asyncState);
                 return _result;
             }
@@ -2877,9 +2877,9 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 base.EndInvoke("AddPatrolDistricts", _args, result);
             }
             
-            public System.IAsyncResult BeginAddTownDistricts(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] districts, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginAddTownDistricts(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] entities, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
-                _args[0] = districts;
+                _args[0] = entities;
                 System.IAsyncResult _result = base.BeginInvoke("AddTownDistricts", _args, callback, asyncState);
                 return _result;
             }
@@ -2889,9 +2889,9 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 base.EndInvoke("AddTownDistricts", _args, result);
             }
             
-            public System.IAsyncResult BeginUpdateUsers(PatrolControl.UI.PatrolControlServiceReference.User[] users, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginUpdateUsers(PatrolControl.UI.PatrolControlServiceReference.User[] entities, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
-                _args[0] = users;
+                _args[0] = entities;
                 System.IAsyncResult _result = base.BeginInvoke("UpdateUsers", _args, callback, asyncState);
                 return _result;
             }
@@ -2901,9 +2901,9 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 base.EndInvoke("UpdateUsers", _args, result);
             }
             
-            public System.IAsyncResult BeginUpdateOfficers(PatrolControl.UI.PatrolControlServiceReference.Officer[] users, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginUpdateOfficers(PatrolControl.UI.PatrolControlServiceReference.Officer[] entities, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
-                _args[0] = users;
+                _args[0] = entities;
                 System.IAsyncResult _result = base.BeginInvoke("UpdateOfficers", _args, callback, asyncState);
                 return _result;
             }
@@ -2913,21 +2913,9 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 base.EndInvoke("UpdateOfficers", _args, result);
             }
             
-            public System.IAsyncResult BeginUpdateBuildings(PatrolControl.UI.PatrolControlServiceReference.Building[] buildings, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginUpdateStreets(PatrolControl.UI.PatrolControlServiceReference.Street[] entities, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
-                _args[0] = buildings;
-                System.IAsyncResult _result = base.BeginInvoke("UpdateBuildings", _args, callback, asyncState);
-                return _result;
-            }
-            
-            public void EndUpdateBuildings(System.IAsyncResult result) {
-                object[] _args = new object[0];
-                base.EndInvoke("UpdateBuildings", _args, result);
-            }
-            
-            public System.IAsyncResult BeginUpdateStreets(PatrolControl.UI.PatrolControlServiceReference.Street[] streets, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[1];
-                _args[0] = streets;
+                _args[0] = entities;
                 System.IAsyncResult _result = base.BeginInvoke("UpdateStreets", _args, callback, asyncState);
                 return _result;
             }
@@ -2937,9 +2925,21 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 base.EndInvoke("UpdateStreets", _args, result);
             }
             
-            public System.IAsyncResult BeginUpdatePatrolDistricts(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] districts, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginUpdateBuildings(PatrolControl.UI.PatrolControlServiceReference.Building[] entities, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
-                _args[0] = districts;
+                _args[0] = entities;
+                System.IAsyncResult _result = base.BeginInvoke("UpdateBuildings", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public void EndUpdateBuildings(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                base.EndInvoke("UpdateBuildings", _args, result);
+            }
+            
+            public System.IAsyncResult BeginUpdatePatrolDistricts(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] entities, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = entities;
                 System.IAsyncResult _result = base.BeginInvoke("UpdatePatrolDistricts", _args, callback, asyncState);
                 return _result;
             }
@@ -2949,9 +2949,9 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 base.EndInvoke("UpdatePatrolDistricts", _args, result);
             }
             
-            public System.IAsyncResult BeginUpdateTownDistricts(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] districts, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginUpdateTownDistricts(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] entities, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
-                _args[0] = districts;
+                _args[0] = entities;
                 System.IAsyncResult _result = base.BeginInvoke("UpdateTownDistricts", _args, callback, asyncState);
                 return _result;
             }
@@ -2961,9 +2961,9 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 base.EndInvoke("UpdateTownDistricts", _args, result);
             }
             
-            public System.IAsyncResult BeginDeleteUsers(PatrolControl.UI.PatrolControlServiceReference.User[] users, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginDeleteUsers(PatrolControl.UI.PatrolControlServiceReference.User[] entities, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
-                _args[0] = users;
+                _args[0] = entities;
                 System.IAsyncResult _result = base.BeginInvoke("DeleteUsers", _args, callback, asyncState);
                 return _result;
             }
@@ -2973,33 +2973,9 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 base.EndInvoke("DeleteUsers", _args, result);
             }
             
-            public System.IAsyncResult BeginDeleteBuildings(PatrolControl.UI.PatrolControlServiceReference.Building[] buildings, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginDeleteOfficers(PatrolControl.UI.PatrolControlServiceReference.Officer[] entities, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
-                _args[0] = buildings;
-                System.IAsyncResult _result = base.BeginInvoke("DeleteBuildings", _args, callback, asyncState);
-                return _result;
-            }
-            
-            public void EndDeleteBuildings(System.IAsyncResult result) {
-                object[] _args = new object[0];
-                base.EndInvoke("DeleteBuildings", _args, result);
-            }
-            
-            public System.IAsyncResult BeginDeleteStreets(PatrolControl.UI.PatrolControlServiceReference.Street[] streets, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[1];
-                _args[0] = streets;
-                System.IAsyncResult _result = base.BeginInvoke("DeleteStreets", _args, callback, asyncState);
-                return _result;
-            }
-            
-            public void EndDeleteStreets(System.IAsyncResult result) {
-                object[] _args = new object[0];
-                base.EndInvoke("DeleteStreets", _args, result);
-            }
-            
-            public System.IAsyncResult BeginDeleteOfficers(PatrolControl.UI.PatrolControlServiceReference.Officer[] officers, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[1];
-                _args[0] = officers;
+                _args[0] = entities;
                 System.IAsyncResult _result = base.BeginInvoke("DeleteOfficers", _args, callback, asyncState);
                 return _result;
             }
@@ -3009,9 +2985,33 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 base.EndInvoke("DeleteOfficers", _args, result);
             }
             
-            public System.IAsyncResult BeginDeletePatrolDistricts(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] districts, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginDeleteStreets(PatrolControl.UI.PatrolControlServiceReference.Street[] entities, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
-                _args[0] = districts;
+                _args[0] = entities;
+                System.IAsyncResult _result = base.BeginInvoke("DeleteStreets", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public void EndDeleteStreets(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                base.EndInvoke("DeleteStreets", _args, result);
+            }
+            
+            public System.IAsyncResult BeginDeleteBuildings(PatrolControl.UI.PatrolControlServiceReference.Building[] entities, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = entities;
+                System.IAsyncResult _result = base.BeginInvoke("DeleteBuildings", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public void EndDeleteBuildings(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                base.EndInvoke("DeleteBuildings", _args, result);
+            }
+            
+            public System.IAsyncResult BeginDeletePatrolDistricts(PatrolControl.UI.PatrolControlServiceReference.PatrolDistrict[] entities, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = entities;
                 System.IAsyncResult _result = base.BeginInvoke("DeletePatrolDistricts", _args, callback, asyncState);
                 return _result;
             }
@@ -3021,9 +3021,9 @@ namespace PatrolControl.UI.PatrolControlServiceReference {
                 base.EndInvoke("DeletePatrolDistricts", _args, result);
             }
             
-            public System.IAsyncResult BeginDeleteTownDistricts(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] districts, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginDeleteTownDistricts(PatrolControl.UI.PatrolControlServiceReference.TownDistrict[] entities, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
-                _args[0] = districts;
+                _args[0] = entities;
                 System.IAsyncResult _result = base.BeginInvoke("DeleteTownDistricts", _args, callback, asyncState);
                 return _result;
             }

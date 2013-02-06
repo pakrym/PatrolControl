@@ -13,16 +13,16 @@ namespace PatrolControl.Service
 	  {
 	        private int SRID = 4326;
 
-			private DatabaseContext newContext
+			protected DatabaseContext getNewContext()
 			{
-				get { return new DatabaseContext();}
+				return new DatabaseContext();
 			}
 
 			#region Get By Id
 	  
 			public User GetUser(int id)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					return context.Users.SingleOrDefault(e => e.Id == id);
 				}
@@ -30,7 +30,7 @@ namespace PatrolControl.Service
 	  
 			public Officer GetOfficer(int id)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					return context.Officers.SingleOrDefault(e => e.Id == id);
 				}
@@ -38,7 +38,7 @@ namespace PatrolControl.Service
 	  
 			public Street GetStreet(int id)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					return context.Streets.SingleOrDefault(e => e.Id == id);
 				}
@@ -46,7 +46,7 @@ namespace PatrolControl.Service
 	  
 			public Building GetBuilding(int id)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					return context.Buildings.SingleOrDefault(e => e.Id == id);
 				}
@@ -54,7 +54,7 @@ namespace PatrolControl.Service
 	  
 			public PatrolDistrict GetPatrolDistrict(int id)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					return context.PatrolDistricts.SingleOrDefault(e => e.Id == id);
 				}
@@ -62,7 +62,7 @@ namespace PatrolControl.Service
 	  
 			public TownDistrict GetTownDistrict(int id)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					return context.TownDistricts.SingleOrDefault(e => e.Id == id);
 				}
@@ -72,49 +72,49 @@ namespace PatrolControl.Service
 			
 			#region Get List
 	 
-			public List<User> GetUsers(int id)
+			public IList<User> GetUsers()
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					return context.Users.ToList();
 				}
 			}
 	  
-			public List<Officer> GetOfficers(int id)
+			public IList<Officer> GetOfficers()
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					return context.Officers.ToList();
 				}
 			}
 	  
-			public List<Street> GetStreets(int id)
+			public IList<Street> GetStreets()
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					return context.Streets.ToList();
 				}
 			}
 	  
-			public List<Building> GetBuildings(int id)
+			public IList<Building> GetBuildings()
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					return context.Buildings.ToList();
 				}
 			}
 	  
-			public List<PatrolDistrict> GetPatrolDistricts(int id)
+			public IList<PatrolDistrict> GetPatrolDistricts()
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					return context.PatrolDistricts.ToList();
 				}
 			}
 	  
-			public List<TownDistrict> GetTownDistricts(int id)
+			public IList<TownDistrict> GetTownDistricts()
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					return context.TownDistricts.ToList();
 				}
@@ -125,7 +125,7 @@ namespace PatrolControl.Service
 	 
 			public void AddUsers(params User[] entities)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					foreach (var entity in entities)
 						context.Users.Add(entity);
@@ -135,7 +135,7 @@ namespace PatrolControl.Service
 	  
 			public void AddOfficers(params Officer[] entities)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					foreach (var entity in entities)
 						context.Officers.Add(entity);
@@ -145,7 +145,7 @@ namespace PatrolControl.Service
 	  
 			public void AddStreets(params Street[] entities)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					foreach (var entity in entities)
 						context.Streets.Add(entity);
@@ -155,7 +155,7 @@ namespace PatrolControl.Service
 	  
 			public void AddBuildings(params Building[] entities)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					foreach (var entity in entities)
 						context.Buildings.Add(entity);
@@ -165,7 +165,7 @@ namespace PatrolControl.Service
 	  
 			public void AddPatrolDistricts(params PatrolDistrict[] entities)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					foreach (var entity in entities)
 						context.PatrolDistricts.Add(entity);
@@ -175,7 +175,7 @@ namespace PatrolControl.Service
 	  
 			public void AddTownDistricts(params TownDistrict[] entities)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					foreach (var entity in entities)
 						context.TownDistricts.Add(entity);
@@ -188,7 +188,7 @@ namespace PatrolControl.Service
 	 
 			public void UpdateUsers(params User[] entities)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					foreach (var entity in entities)
 					{
@@ -201,7 +201,7 @@ namespace PatrolControl.Service
 	  
 			public void UpdateOfficers(params Officer[] entities)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					foreach (var entity in entities)
 					{
@@ -214,7 +214,7 @@ namespace PatrolControl.Service
 	  
 			public void UpdateStreets(params Street[] entities)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					foreach (var entity in entities)
 					{
@@ -227,7 +227,7 @@ namespace PatrolControl.Service
 	  
 			public void UpdateBuildings(params Building[] entities)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					foreach (var entity in entities)
 					{
@@ -240,7 +240,7 @@ namespace PatrolControl.Service
 	  
 			public void UpdatePatrolDistricts(params PatrolDistrict[] entities)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					foreach (var entity in entities)
 					{
@@ -253,7 +253,7 @@ namespace PatrolControl.Service
 	  
 			public void UpdateTownDistricts(params TownDistrict[] entities)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					foreach (var entity in entities)
 					{
@@ -269,7 +269,7 @@ namespace PatrolControl.Service
 	 
 			public void DeleteUsers(params User[] entities)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					foreach (var entity in context.Users.Where(b => entities.Any(e => e.Id == b.Id)))
 						context.Users.Remove(entity);
@@ -279,7 +279,7 @@ namespace PatrolControl.Service
 	  
 			public void DeleteOfficers(params Officer[] entities)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					foreach (var entity in context.Officers.Where(b => entities.Any(e => e.Id == b.Id)))
 						context.Officers.Remove(entity);
@@ -289,7 +289,7 @@ namespace PatrolControl.Service
 	  
 			public void DeleteStreets(params Street[] entities)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					foreach (var entity in context.Streets.Where(b => entities.Any(e => e.Id == b.Id)))
 						context.Streets.Remove(entity);
@@ -299,7 +299,7 @@ namespace PatrolControl.Service
 	  
 			public void DeleteBuildings(params Building[] entities)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					foreach (var entity in context.Buildings.Where(b => entities.Any(e => e.Id == b.Id)))
 						context.Buildings.Remove(entity);
@@ -309,7 +309,7 @@ namespace PatrolControl.Service
 	  
 			public void DeletePatrolDistricts(params PatrolDistrict[] entities)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					foreach (var entity in context.PatrolDistricts.Where(b => entities.Any(e => e.Id == b.Id)))
 						context.PatrolDistricts.Remove(entity);
@@ -319,7 +319,7 @@ namespace PatrolControl.Service
 	  
 			public void DeleteTownDistricts(params TownDistrict[] entities)
 			{
-				using(var context = newContext)
+				using(var context = getNewContext())
 				{
 					foreach (var entity in context.TownDistricts.Where(b => entities.Any(e => e.Id == b.Id)))
 						context.TownDistricts.Remove(entity);

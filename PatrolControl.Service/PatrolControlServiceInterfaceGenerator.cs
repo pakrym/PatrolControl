@@ -34,22 +34,22 @@ namespace PatrolControl.Service
 		TownDistrict GetTownDistrict(Int32 id);
 	  
 		[OperationContract]
-		List<User> GetUsers(Int32 id);
+		IList<User> GetUsers();
 	  
 		[OperationContract]
-		List<Officer> GetOfficers(Int32 id);
+		IList<Officer> GetOfficers();
 	  
 		[OperationContract]
-		List<Street> GetStreets(Int32 id);
+		IList<Street> GetStreets();
 	  
 		[OperationContract]
-		List<Building> GetBuildings(Int32 id);
+		IList<Building> GetBuildings();
 	  
 		[OperationContract]
-		List<PatrolDistrict> GetPatrolDistricts(Int32 id);
+		IList<PatrolDistrict> GetPatrolDistricts();
 	  
 		[OperationContract]
-		List<TownDistrict> GetTownDistricts(Int32 id);
+		IList<TownDistrict> GetTownDistricts();
 	  
 		[OperationContract]
 		void AddUsers(User[] entities);

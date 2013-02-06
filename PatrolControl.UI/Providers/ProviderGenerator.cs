@@ -11,6 +11,141 @@ using ESRI.ArcGIS.Client.Geometry;
 namespace PatrolControl.UI.Providers
 {
 
+	public partial class BuildingFeatureProvider : ProviderBase, IFeatureProvider<Building>
+	{
+
+			public Task<Building[]> List()
+        {
+            var tcs = new TaskCompletionSource<Building[]>();
+            EventHandler<GetBuildingsCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+            {
+                Client.GetBuildingsCompleted -= callback;
+
+                if (e.Error != null) tcs.TrySetException(e.Error);
+                else if (e.Cancelled) tcs.TrySetCanceled();
+                else tcs.TrySetResult(e.Result);
+            };
+
+            Client.GetBuildingsCompleted += callback;
+            Client.GetBuildingsAsync();
+
+            return tcs.Task;
+        }
+
+		public Task<Building> Get(int id)
+        {
+            var tcs = new TaskCompletionSource<Building>();
+            EventHandler<GetBuildingCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+            {
+                Client.GetBuildingCompleted -= callback;
+
+                if (e.Error != null) tcs.TrySetException(e.Error);
+                else if (e.Cancelled) tcs.TrySetCanceled();
+                else tcs.TrySetResult(e.Result);
+            };
+
+            Client.GetBuildingCompleted += callback;
+            Client.GetBuildingAsync(id);
+
+            return tcs.Task;
+        }
+
+	    public Building New()
+        {
+            return new Building();
+        }
+
+		public Task Save(Building[] entities)
+        {
+            var tcs = new TaskCompletionSource<object>();
+            EventHandler<AsyncCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+            {
+                Client.UpdateBuildingsCompleted -= callback;
+
+                if (e.Error != null) tcs.TrySetException(e.Error);
+                else if (e.Cancelled) tcs.TrySetCanceled();
+                else tcs.TrySetResult(null);
+            };
+
+            Client.UpdateBuildingsCompleted += callback;
+            Client.UpdateBuildingsAsync(entities.ToArray());
+
+            return tcs.Task;
+        }
+
+		public Task Add(Building[] entities)
+        {
+            var tcs = new TaskCompletionSource<object>();
+            EventHandler<AsyncCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+            {
+
+                Client.AddUsersCompleted -= callback;
+
+                if (e.Error != null) tcs.TrySetException(e.Error);
+                else if (e.Cancelled) tcs.TrySetCanceled();
+                else tcs.TrySetResult(null);
+
+            };
+
+            Client.AddBuildingsCompleted += callback;
+            Client.AddBuildingsAsync(entities.ToArray());
+
+            return tcs.Task;   
+        }
+
+		public Task Remove(Building[] entities)
+        {
+            var tcs = new TaskCompletionSource<object>();
+            EventHandler<AsyncCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+            {
+
+                Client.DeleteBuildingsCompleted -= callback;
+
+                if (e.Error != null) tcs.TrySetException(e.Error);
+                else if (e.Cancelled) tcs.TrySetCanceled();
+                else tcs.TrySetResult(null);
+
+            };
+
+            Client.DeleteBuildingsCompleted += callback;
+            Client.DeleteBuildingsAsync(entities.ToArray());
+
+            return tcs.Task;   
+        }
+
+	    public Task<Building[]> List(Envelope envelope)
+        {
+            var tcs = new TaskCompletionSource<Building[]>();
+            EventHandler<GetBuildingsCompletedEventArgs> callback = null;
+
+            callback = (sender, e) =>
+            {
+                Client.GetBuildingsCompleted -= callback;
+
+                if (e.Error != null) tcs.TrySetException(e.Error);
+                else if (e.Cancelled) tcs.TrySetCanceled();
+                else tcs.TrySetResult(e.Result);
+            };
+
+            Client.GetBuildingsCompleted += callback;
+            Client.GetBuildingsAsync();
+
+            return tcs.Task;
+        }
+	}
+
+
+
 	public partial class OfficerProvider : ProviderBase, ICrud<Officer>
 	{
 
@@ -374,141 +509,6 @@ namespace PatrolControl.UI.Providers
             return tcs.Task;   
         }
 
-	}
-
-
-
-	public partial class BuildingFeatureProvider : ProviderBase, IFeatureProvider<Building>
-	{
-
-			public Task<Building[]> List()
-        {
-            var tcs = new TaskCompletionSource<Building[]>();
-            EventHandler<GetBuildingsCompletedEventArgs> callback = null;
-
-            callback = (sender, e) =>
-            {
-                Client.GetBuildingsCompleted -= callback;
-
-                if (e.Error != null) tcs.TrySetException(e.Error);
-                else if (e.Cancelled) tcs.TrySetCanceled();
-                else tcs.TrySetResult(e.Result);
-            };
-
-            Client.GetBuildingsCompleted += callback;
-            Client.GetBuildingsAsync();
-
-            return tcs.Task;
-        }
-
-		public Task<Building> Get(int id)
-        {
-            var tcs = new TaskCompletionSource<Building>();
-            EventHandler<GetBuildingCompletedEventArgs> callback = null;
-
-            callback = (sender, e) =>
-            {
-                Client.GetBuildingCompleted -= callback;
-
-                if (e.Error != null) tcs.TrySetException(e.Error);
-                else if (e.Cancelled) tcs.TrySetCanceled();
-                else tcs.TrySetResult(e.Result);
-            };
-
-            Client.GetBuildingCompleted += callback;
-            Client.GetBuildingAsync(id);
-
-            return tcs.Task;
-        }
-
-	    public Building New()
-        {
-            return new Building();
-        }
-
-		public Task Save(Building[] entities)
-        {
-            var tcs = new TaskCompletionSource<object>();
-            EventHandler<AsyncCompletedEventArgs> callback = null;
-
-            callback = (sender, e) =>
-            {
-                Client.UpdateBuildingsCompleted -= callback;
-
-                if (e.Error != null) tcs.TrySetException(e.Error);
-                else if (e.Cancelled) tcs.TrySetCanceled();
-                else tcs.TrySetResult(null);
-            };
-
-            Client.UpdateBuildingsCompleted += callback;
-            Client.UpdateBuildingsAsync(entities.ToArray());
-
-            return tcs.Task;
-        }
-
-		public Task Add(Building[] entities)
-        {
-            var tcs = new TaskCompletionSource<object>();
-            EventHandler<AsyncCompletedEventArgs> callback = null;
-
-            callback = (sender, e) =>
-            {
-
-                Client.AddUsersCompleted -= callback;
-
-                if (e.Error != null) tcs.TrySetException(e.Error);
-                else if (e.Cancelled) tcs.TrySetCanceled();
-                else tcs.TrySetResult(null);
-
-            };
-
-            Client.AddBuildingsCompleted += callback;
-            Client.AddBuildingsAsync(entities.ToArray());
-
-            return tcs.Task;   
-        }
-
-		public Task Remove(Building[] entities)
-        {
-            var tcs = new TaskCompletionSource<object>();
-            EventHandler<AsyncCompletedEventArgs> callback = null;
-
-            callback = (sender, e) =>
-            {
-
-                Client.DeleteBuildingsCompleted -= callback;
-
-                if (e.Error != null) tcs.TrySetException(e.Error);
-                else if (e.Cancelled) tcs.TrySetCanceled();
-                else tcs.TrySetResult(null);
-
-            };
-
-            Client.DeleteBuildingsCompleted += callback;
-            Client.DeleteBuildingsAsync(entities.ToArray());
-
-            return tcs.Task;   
-        }
-
-	    public Task<Building[]> List(Envelope envelope)
-        {
-            var tcs = new TaskCompletionSource<Building[]>();
-            EventHandler<GetBuildingsCompletedEventArgs> callback = null;
-
-            callback = (sender, e) =>
-            {
-                Client.GetBuildingsCompleted -= callback;
-
-                if (e.Error != null) tcs.TrySetException(e.Error);
-                else if (e.Cancelled) tcs.TrySetCanceled();
-                else tcs.TrySetResult(e.Result);
-            };
-
-            Client.GetBuildingsCompleted += callback;
-            Client.GetBuildingsAsync();
-
-            return tcs.Task;
-        }
 	}
 
 
