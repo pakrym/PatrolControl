@@ -1,4 +1,5 @@
-﻿using Microsoft.Practices.Unity;
+﻿using System;
+using Microsoft.Practices.Unity;
 
 namespace PatrolControl.UI.Screens.Common
 {
@@ -9,6 +10,7 @@ namespace PatrolControl.UI.Screens.Common
         public EditorViewModelFactory(UnityContainer container)
         {
             _container = container;
+            
         }
 
         public object GetEditorViewModel(object model)

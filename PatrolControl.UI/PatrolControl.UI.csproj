@@ -157,13 +157,9 @@
     <Compile Include="Providers\OfficerProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Providers\PatrolDistrictFeatureProvider.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Providers\GenerateProviderAttribute.cs" />
     <Compile Include="Providers\ICrud.cs" />
     <Compile Include="Providers\IRightProvider.cs" />
-    <Compile Include="Providers\OfficerProvider.cs" />
     <Compile Include="Providers\PatrolDistrictFeatureProvider.cs" />
     <Compile Include="Providers\ProviderGenerator.cs">
       <AutoGen>True</AutoGen>
@@ -176,19 +172,19 @@
     <Compile Include="Providers\UserProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Screens\Common\Editors\BuildingEditorViewModel.cs" />
-    <Compile Include="Screens\Common\Editors\StreetEditorViewModel.cs" />
-    <Compile Include="Screens\Common\Editors\UserEditorViewModel.cs" />
-    <Compile Include="Screens\Common\Editors\BuildingViewModel.cs" />
-    <Compile Include="Screens\Common\Editors\FeatureGraphicEditorViewModel.cs" />
-    <Compile Include="Screens\Common\Editors\StreetViewModel.cs" />
-    <Compile Include="Screens\Common\Editors\UserViewModel.cs" />
-    <Compile Include="Screens\Common\Editors\UserRightViewModel.cs" />
     <Compile Include="Screens\Common\EditorViewModelFactory.cs" />
     <Compile Include="Screens\Common\IEditorViewModel.cs" />
     <Compile Include="Screens\Common\IEditorViewModelFactory.cs" />
     <Compile Include="Screens\Common\Map\FeatureViewModel.cs" />
     <Compile Include="Screens\Common\ViewModelBase.cs" />
+    <Compile Include="Screens\MapEditor\BuildingView.xaml.cs">
+      <DependentUpon>BuildingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\MapEditor\BuildingViewModel.cs" />
+    <Compile Include="Screens\MapEditor\StreetView.xaml.cs">
+      <DependentUpon>StreetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\MapEditor\StreetViewModel.cs" />
     <Compile Include="Screens\OfficerManager\UserManagerViewModel.cs" />
     <Compile Include="Screens\Operations\OperationsView.xaml.cs">
       <DependentUpon>OperationsView.xaml</DependentUpon>
@@ -196,16 +192,13 @@
     <Compile Include="Screens\Operations\OperationsViewModel.cs" />
     <Compile Include="Screens\Common\ListManager\ListManagerViewModel.cs" />
     <Compile Include="Model\Right.cs" />
-    <Compile Include="Services\BackendService.cs" />
-    <Compile Include="Providers\ProviderBase.cs" />
-    <Compile Include="Screens\Common\Editors\UserEditorView.xaml.cs">
-      <DependentUpon>UserEditorView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Providers\StreetFeatureProvider.cs" />
-    <Compile Include="Providers\UserProvider.cs" />
-    <Compile Include="Screens\Common\Editors\UserView.xaml.cs">
+    <Compile Include="Screens\UserManager\UserRightViewModel.cs" />
+    <Compile Include="Screens\UserManager\UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Screens\UserManager\UserViewModel.cs" />
+    <Compile Include="Services\BackendService.cs" />
+    <Compile Include="Providers\ProviderBase.cs" />
     <Compile Include="Model\ViewModelCollection.cs" />
     <Compile Include="Model\FeatureCollection.cs" />
     <Compile Include="Screens\Common\Map\FeatureGraphicCollection.cs" />
@@ -229,12 +222,6 @@
     <Compile Include="Framework\QueryResult.cs" />
     <Compile Include="Framework\ServiceBase.cs" />
     <Compile Include="Model\Commands\LoginUser.cs" />
-    <Compile Include="Screens\Common\Editors\BuildingView.xaml.cs">
-      <DependentUpon>BuildingView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\Common\Editors\StreetView.xaml.cs">
-      <DependentUpon>StreetView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Screens\Common\Map\BuildingFeatureLayerViewModel.cs" />
     <Compile Include="Screens\Common\Map\FeatureGraphic.cs" />
     <Compile Include="Screens\Common\Map\FeatureLayerViewModel.cs" />
@@ -297,18 +284,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Screens\Common\Editors\BuildingView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Screens\Common\Editors\StreetView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Screens\Common\Editors\UserView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Screens\Common\ObjectEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -317,9 +292,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Screens\MapEditor\BuildingView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Screens\MapEditor\MapEditorScreenView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\MapEditor\StreetView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Screens\Operations\OperationsView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -336,6 +319,10 @@
     <Page Include="Screens\Common\ListManager\ListManagerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\UserManager\UserView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Brushes.xaml">
       <Generator>MSBuild:Compile</Generator>

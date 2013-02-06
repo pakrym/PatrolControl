@@ -11,7 +11,7 @@
 
 <#
 var names = typeof(DatabaseContext).GetProperties().Select(p => p.PropertyType)
-									 //.Where(p => p.IsSubclassOf(typeof(DbSet)))
+									 .Where(p =>p.IsGenericType && typeof(DbSet<>) == p.GetGenericTypeDefinition())
 									 .SelectMany(p => p.GetGenericArguments())
 									 //.Where(t => t.GetCustomAttributes(typeof(DataMember), true).Any())
 									 .Select(p => p.Name).ToList();
