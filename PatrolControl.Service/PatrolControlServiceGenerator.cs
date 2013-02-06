@@ -13,7 +13,7 @@ namespace PatrolControl.Service
 	  {
 	        private int SRID = 4326;
 
-			private DatabaseContext _newContext
+			private DatabaseContext newContext
 			{
 				get { return new DatabaseContext();}
 			}
@@ -22,32 +22,50 @@ namespace PatrolControl.Service
 	  
 			public User GetUser(int id)
 			{
-				return _newContext.Users.SingleOrDefault(e => e.Id == id);
+				using(var context = newContext)
+				{
+					return context.Users.SingleOrDefault(e => e.Id == id);
+				}
 			}
 	  
 			public Officer GetOfficer(int id)
 			{
-				return _newContext.Officers.SingleOrDefault(e => e.Id == id);
+				using(var context = newContext)
+				{
+					return context.Officers.SingleOrDefault(e => e.Id == id);
+				}
 			}
 	  
 			public Street GetStreet(int id)
 			{
-				return _newContext.Streets.SingleOrDefault(e => e.Id == id);
+				using(var context = newContext)
+				{
+					return context.Streets.SingleOrDefault(e => e.Id == id);
+				}
 			}
 	  
 			public Building GetBuilding(int id)
 			{
-				return _newContext.Buildings.SingleOrDefault(e => e.Id == id);
+				using(var context = newContext)
+				{
+					return context.Buildings.SingleOrDefault(e => e.Id == id);
+				}
 			}
 	  
 			public PatrolDistrict GetPatrolDistrict(int id)
 			{
-				return _newContext.PatrolDistricts.SingleOrDefault(e => e.Id == id);
+				using(var context = newContext)
+				{
+					return context.PatrolDistricts.SingleOrDefault(e => e.Id == id);
+				}
 			}
 	  
 			public TownDistrict GetTownDistrict(int id)
 			{
-				return _newContext.TownDistricts.SingleOrDefault(e => e.Id == id);
+				using(var context = newContext)
+				{
+					return context.TownDistricts.SingleOrDefault(e => e.Id == id);
+				}
 			}
 	  
 			#endregion
@@ -56,32 +74,50 @@ namespace PatrolControl.Service
 	 
 			public List<User> GetUsers(int id)
 			{
-				return _newContext.Users.ToList();
+				using(var context = newContext)
+				{
+					return context.Users.ToList();
+				}
 			}
 	  
 			public List<Officer> GetOfficers(int id)
 			{
-				return _newContext.Officers.ToList();
+				using(var context = newContext)
+				{
+					return context.Officers.ToList();
+				}
 			}
 	  
 			public List<Street> GetStreets(int id)
 			{
-				return _newContext.Streets.ToList();
+				using(var context = newContext)
+				{
+					return context.Streets.ToList();
+				}
 			}
 	  
 			public List<Building> GetBuildings(int id)
 			{
-				return _newContext.Buildings.ToList();
+				using(var context = newContext)
+				{
+					return context.Buildings.ToList();
+				}
 			}
 	  
 			public List<PatrolDistrict> GetPatrolDistricts(int id)
 			{
-				return _newContext.PatrolDistricts.ToList();
+				using(var context = newContext)
+				{
+					return context.PatrolDistricts.ToList();
+				}
 			}
 	  
 			public List<TownDistrict> GetTownDistricts(int id)
 			{
-				return _newContext.TownDistricts.ToList();
+				using(var context = newContext)
+				{
+					return context.TownDistricts.ToList();
+				}
 			}
 	  			#endregion
 
@@ -89,50 +125,62 @@ namespace PatrolControl.Service
 	 
 			public void AddUsers(params User[] entities)
 			{
-				var context = _newContext;
-				foreach (var entity in entities)
-					context.Users.Add(entity);
-				context.SaveChanges();
+				using(var context = newContext)
+				{
+					foreach (var entity in entities)
+						context.Users.Add(entity);
+					context.SaveChanges();
+				}
 			}
 	  
 			public void AddOfficers(params Officer[] entities)
 			{
-				var context = _newContext;
-				foreach (var entity in entities)
-					context.Officers.Add(entity);
-				context.SaveChanges();
+				using(var context = newContext)
+				{
+					foreach (var entity in entities)
+						context.Officers.Add(entity);
+					context.SaveChanges();
+				}
 			}
 	  
 			public void AddStreets(params Street[] entities)
 			{
-				var context = _newContext;
-				foreach (var entity in entities)
-					context.Streets.Add(entity);
-				context.SaveChanges();
+				using(var context = newContext)
+				{
+					foreach (var entity in entities)
+						context.Streets.Add(entity);
+					context.SaveChanges();
+				}
 			}
 	  
 			public void AddBuildings(params Building[] entities)
 			{
-				var context = _newContext;
-				foreach (var entity in entities)
-					context.Buildings.Add(entity);
-				context.SaveChanges();
+				using(var context = newContext)
+				{
+					foreach (var entity in entities)
+						context.Buildings.Add(entity);
+					context.SaveChanges();
+				}
 			}
 	  
 			public void AddPatrolDistricts(params PatrolDistrict[] entities)
 			{
-				var context = _newContext;
-				foreach (var entity in entities)
-					context.PatrolDistricts.Add(entity);
-				context.SaveChanges();
+				using(var context = newContext)
+				{
+					foreach (var entity in entities)
+						context.PatrolDistricts.Add(entity);
+					context.SaveChanges();
+				}
 			}
 	  
 			public void AddTownDistricts(params TownDistrict[] entities)
 			{
-				var context = _newContext;
-				foreach (var entity in entities)
-					context.TownDistricts.Add(entity);
-				context.SaveChanges();
+				using(var context = newContext)
+				{
+					foreach (var entity in entities)
+						context.TownDistricts.Add(entity);
+					context.SaveChanges();
+				}
 			}
 	  			#endregion
 
@@ -140,68 +188,80 @@ namespace PatrolControl.Service
 	 
 			public void UpdateUsers(params User[] entities)
 			{
-				var context = _newContext;
-				foreach (var entity in entities)
+				using(var context = newContext)
 				{
-					context.Users.Attach(entity);
-					context.Entry(entity).State = EntityState.Modified;
+					foreach (var entity in entities)
+					{
+						context.Users.Attach(entity);
+						context.Entry(entity).State = EntityState.Modified;
+					}
+					context.SaveChanges();
 				}
-				context.SaveChanges();
 			}
 	  
 			public void UpdateOfficers(params Officer[] entities)
 			{
-				var context = _newContext;
-				foreach (var entity in entities)
+				using(var context = newContext)
 				{
-					context.Officers.Attach(entity);
-					context.Entry(entity).State = EntityState.Modified;
+					foreach (var entity in entities)
+					{
+						context.Officers.Attach(entity);
+						context.Entry(entity).State = EntityState.Modified;
+					}
+					context.SaveChanges();
 				}
-				context.SaveChanges();
 			}
 	  
 			public void UpdateStreets(params Street[] entities)
 			{
-				var context = _newContext;
-				foreach (var entity in entities)
+				using(var context = newContext)
 				{
-					context.Streets.Attach(entity);
-					context.Entry(entity).State = EntityState.Modified;
+					foreach (var entity in entities)
+					{
+						context.Streets.Attach(entity);
+						context.Entry(entity).State = EntityState.Modified;
+					}
+					context.SaveChanges();
 				}
-				context.SaveChanges();
 			}
 	  
 			public void UpdateBuildings(params Building[] entities)
 			{
-				var context = _newContext;
-				foreach (var entity in entities)
+				using(var context = newContext)
 				{
-					context.Buildings.Attach(entity);
-					context.Entry(entity).State = EntityState.Modified;
+					foreach (var entity in entities)
+					{
+						context.Buildings.Attach(entity);
+						context.Entry(entity).State = EntityState.Modified;
+					}
+					context.SaveChanges();
 				}
-				context.SaveChanges();
 			}
 	  
 			public void UpdatePatrolDistricts(params PatrolDistrict[] entities)
 			{
-				var context = _newContext;
-				foreach (var entity in entities)
+				using(var context = newContext)
 				{
-					context.PatrolDistricts.Attach(entity);
-					context.Entry(entity).State = EntityState.Modified;
+					foreach (var entity in entities)
+					{
+						context.PatrolDistricts.Attach(entity);
+						context.Entry(entity).State = EntityState.Modified;
+					}
+					context.SaveChanges();
 				}
-				context.SaveChanges();
 			}
 	  
 			public void UpdateTownDistricts(params TownDistrict[] entities)
 			{
-				var context = _newContext;
-				foreach (var entity in entities)
+				using(var context = newContext)
 				{
-					context.TownDistricts.Attach(entity);
-					context.Entry(entity).State = EntityState.Modified;
+					foreach (var entity in entities)
+					{
+						context.TownDistricts.Attach(entity);
+						context.Entry(entity).State = EntityState.Modified;
+					}
+					context.SaveChanges();
 				}
-				context.SaveChanges();
 			}
 	  			#endregion
 
@@ -209,50 +269,62 @@ namespace PatrolControl.Service
 	 
 			public void DeleteUsers(params User[] entities)
 			{
-				var context = _newContext;
-				foreach (var entity in context.Users.Where(b => entities.Any(e => e.Id == b.Id)))
-					context.Users.Remove(entity);
-				context.SaveChanges();
+				using(var context = newContext)
+				{
+					foreach (var entity in context.Users.Where(b => entities.Any(e => e.Id == b.Id)))
+						context.Users.Remove(entity);
+					context.SaveChanges();
+				}
 			}
 	  
 			public void DeleteOfficers(params Officer[] entities)
 			{
-				var context = _newContext;
-				foreach (var entity in context.Officers.Where(b => entities.Any(e => e.Id == b.Id)))
-					context.Officers.Remove(entity);
-				context.SaveChanges();
+				using(var context = newContext)
+				{
+					foreach (var entity in context.Officers.Where(b => entities.Any(e => e.Id == b.Id)))
+						context.Officers.Remove(entity);
+					context.SaveChanges();
+				}
 			}
 	  
 			public void DeleteStreets(params Street[] entities)
 			{
-				var context = _newContext;
-				foreach (var entity in context.Streets.Where(b => entities.Any(e => e.Id == b.Id)))
-					context.Streets.Remove(entity);
-				context.SaveChanges();
+				using(var context = newContext)
+				{
+					foreach (var entity in context.Streets.Where(b => entities.Any(e => e.Id == b.Id)))
+						context.Streets.Remove(entity);
+					context.SaveChanges();
+				}
 			}
 	  
 			public void DeleteBuildings(params Building[] entities)
 			{
-				var context = _newContext;
-				foreach (var entity in context.Buildings.Where(b => entities.Any(e => e.Id == b.Id)))
-					context.Buildings.Remove(entity);
-				context.SaveChanges();
+				using(var context = newContext)
+				{
+					foreach (var entity in context.Buildings.Where(b => entities.Any(e => e.Id == b.Id)))
+						context.Buildings.Remove(entity);
+					context.SaveChanges();
+				}
 			}
 	  
 			public void DeletePatrolDistricts(params PatrolDistrict[] entities)
 			{
-				var context = _newContext;
-				foreach (var entity in context.PatrolDistricts.Where(b => entities.Any(e => e.Id == b.Id)))
-					context.PatrolDistricts.Remove(entity);
-				context.SaveChanges();
+				using(var context = newContext)
+				{
+					foreach (var entity in context.PatrolDistricts.Where(b => entities.Any(e => e.Id == b.Id)))
+						context.PatrolDistricts.Remove(entity);
+					context.SaveChanges();
+				}
 			}
 	  
 			public void DeleteTownDistricts(params TownDistrict[] entities)
 			{
-				var context = _newContext;
-				foreach (var entity in context.TownDistricts.Where(b => entities.Any(e => e.Id == b.Id)))
-					context.TownDistricts.Remove(entity);
-				context.SaveChanges();
+				using(var context = newContext)
+				{
+					foreach (var entity in context.TownDistricts.Where(b => entities.Any(e => e.Id == b.Id)))
+						context.TownDistricts.Remove(entity);
+					context.SaveChanges();
+				}
 			}
 	  
 			#endregion
