@@ -30,7 +30,7 @@ namespace PatrolControl.Service
 	  {
 	        private int SRID = 4326;
 
-			private DatabaseContext _newContext
+			private DatabaseContext newContext
 			{
 				get { return new DatabaseContext();}
 			}
@@ -41,7 +41,10 @@ namespace PatrolControl.Service
 
 			public <#= name #> Get<#= name #>(int id)
 			{
-				return _newContext.<#= name #>s.SingleOrDefault(e => e.Id == id);
+				using(var context = newContext)
+				{
+					return context.<#= name #>s.SingleOrDefault(e => e.Id == id);
+				}
 			}
 	  <# } #>
 
@@ -53,7 +56,10 @@ namespace PatrolControl.Service
 
 			public List<<#= name #>> Get<#= name #>s(int id)
 			{
-				return _newContext.<#= name #>s.ToList();
+				using(var context = newContext)
+				{
+					return context.<#= name #>s.ToList();
+				}
 			}
 	  <# } #>
 			#endregion
@@ -64,10 +70,12 @@ namespace PatrolControl.Service
 
 			public void Add<#= name #>s(params <#= name #>[] entities)
 			{
-				var context = _newContext;
-				foreach (var entity in entities)
-					context.<#= name #>s.Add(entity);
-				context.SaveChanges();
+				using(var context = newContext)
+				{
+					foreach (var entity in entities)
+						context.<#= name #>s.Add(entity);
+					context.SaveChanges();
+				}
 			}
 	  <# } #>
 			#endregion
@@ -78,13 +86,15 @@ namespace PatrolControl.Service
 
 			public void Update<#= name #>s(params <#= name #>[] entities)
 			{
-				var context = _newContext;
-				foreach (var entity in entities)
+				using(var context = newContext)
 				{
-					context.<#= name #>s.Attach(entity);
-					context.Entry(entity).State = EntityState.Modified;
+					foreach (var entity in entities)
+					{
+						context.<#= name #>s.Attach(entity);
+						context.Entry(entity).State = EntityState.Modified;
+					}
+					context.SaveChanges();
 				}
-				context.SaveChanges();
 			}
 	  <# } #>
 			#endregion
@@ -95,10 +105,12 @@ namespace PatrolControl.Service
 
 			public void Delete<#= name #>s(params <#= name #>[] entities)
 			{
-				var context = _newContext;
-				foreach (var entity in context.<#= name #>s.Where(b => entities.Any(e => e.Id == b.Id)))
-					context.<#= name #>s.Remove(entity);
-				context.SaveChanges();
+				using(var context = newContext)
+				{
+					foreach (var entity in context.<#= name #>s.Where(b => entities.Any(e => e.Id == b.Id)))
+						context.<#= name #>s.Remove(entity);
+					context.SaveChanges();
+				}
 			}
 	  <# } #>
 
