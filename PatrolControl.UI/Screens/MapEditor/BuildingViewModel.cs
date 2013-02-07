@@ -8,17 +8,17 @@ namespace PatrolControl.UI.Screens.Common.Editors
     {
         private string _number;
 
+        private int _streetId;
+
         public BuildingViewModel(Building model)
             : base(model)
         {
             BuildingModel = model;
             Number = BuildingModel.Number;
-
         }
 
         protected Building BuildingModel { get; set; }
 
-        
 
         public string Number
         {
@@ -31,9 +31,21 @@ namespace PatrolControl.UI.Screens.Common.Editors
             }
         }
 
+        public int StreetId
+        {
+            get { return _streetId; }
+            set
+            {
+                if (value == _streetId) return;
+                _streetId = value;
+                NotifyOfPropertyChange(() => StreetId);
+            }
+        }
+
         public override void BeginEdit()
         {
             Number = BuildingModel.Number;
+            StreetId = BuildingModel.StreetId;
             base.BeginEdit();
         }
 
@@ -47,6 +59,7 @@ namespace PatrolControl.UI.Screens.Common.Editors
         {
             base.EndEdit();
             BuildingModel.Number = Number;
+            BuildingModel.StreetId = StreetId;
         }
     }
 }
